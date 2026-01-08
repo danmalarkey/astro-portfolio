@@ -1,0 +1,123 @@
+
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props as Props; // Ensure type safety with Props
+const currentPath = Astro.url.pathname;
+console.log(currentPath); // Log the current path
+---
+
+<div class="header">
+    <header>
+        <!--<div class="logo">-->
+        <!--    DM-->
+        <!--</div>-->
+        <ul class="header-nav">
+            <li>
+                <a href="/" class={`header-nav--link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
+            </li>
+            <li>
+                <a href="/work" class={`header-nav--link ${currentPath === '/work' ? 'active' : ''}`}>Work</a>
+            </li>
+            <li>
+                <a href="/writing" class={`header-nav--link ${currentPath === '/writing' ? 'active' : ''}`}>Writing</a>
+            </li>
+            <li>
+                <a href="/library" class={`header-nav--link ${currentPath === '/library' ? 'active' : ''}`}>Library</a>
+            </li>
+            <li>
+                <a href="/about" class={`header-nav--link ${currentPath === '/about' ? 'active' : ''}`}>About</a>
+            </li>
+            <li>
+                <a href="/blog" class={`header-nav--link ${currentPath === '/blog' ? 'active' : ''}`}>Blog</a>
+            </li>
+            <li>
+                <a href="/contact" class={`header-nav--link ${currentPath === '/contact' ? 'active' : ''}`}>Contact</a>
+            </li>
+        </ul>
+    </header>
+</div>
+
+
+<!-- Client-side logging of current path -->
+<script>
+    console.log({ currentPath: window.location.pathname });
+</script>
+
+
+<style lang="scss">
+
+    @use "../styles/settings/variables" as vars;
+
+	/*$text-color-white: #fff;*/
+    /*$black-color: #000;*/
+
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    .header {
+        display: flex;
+        position: relative;
+        margin-top: 2rem;
+        justify-content: center;
+        height: 76px;
+        z-index: 10000;
+
+        header {
+            display: inline-flex;
+            align-self: center;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto 0 auto;
+            background-color: #161617;
+            background-color: rgba(255, 255, 255, 0.015);
+            padding: 0.25rem 2rem;
+            color: vars.$text-color-white;
+            border-radius: 100rem;
+            position: fixed;
+            z-index: 10000;
+            /* The blur magic */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); /* Safari support */
+
+            /* Optional: Border to define edges */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .header-nav {
+		display: flex;
+        margin-left: 0;
+        padding-left: 0;
+
+        .header-nav--link {
+			color: #aaa;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            border-radius: 100rem;
+
+
+            &:hover {
+                background-color: #232323;
+             }
+
+            &.active {
+                font-weight: bold;
+                background-color: vars.$dm-yellow;
+                color: vars.$dm-black-color;
+            }
+        }
+
+        li {
+            list-style: none;
+        }
+
+        li:not(:last-child) .header-nav--link {
+            /*margin-right: 1rem;*/
+        }
+    }
+</style>

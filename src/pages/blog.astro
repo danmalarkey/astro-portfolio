@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../layouts/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPost from "../components/BlogPost.astro";
+const pageTitle = "About Dan Malarkey | Product Design Leader  |  Blog";
+const allPosts = await Astro.glob("../pages/posts/*.md");
+---
+<Layout pageTitle = {pageTitle}>
+    <Header></Header>
+    <main>
+        <h1>This is a blog</h1>
+        <p>This is where I will post about my journey learning Astro.</p>
+        <ul>
+            {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
+        </ul>
+    </main>
+</Layout>

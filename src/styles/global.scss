@@ -1,0 +1,14 @@
+@use "./settings/variables";
+@use "./settings/typography";
+@use "./settings/fonts";
+
+h1 {
+    font-size: clamp(4.5rem,4.28571vw,22.5rem);
+    color: variables.$white-color;
+    font-family: "Cal Sans", -apple-system, sans-serif;
+    line-height: clamp(1.3rem,5.2381vw,27.5rem);
+    text-align: left;
+    margin-bottom: 1em;
+    letter-spacing: -0.05rem;
+    font-weight: 900;
+}
