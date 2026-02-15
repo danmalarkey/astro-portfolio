@@ -105,7 +105,14 @@ A component/feature is only done when the WCAG answer is: **YES**.
 ## Component Patterns (Current Site)
 
 - Hero feature card with constrained width and surface elevation
-- Mixed content cards (image-backed + image-top + neutral info cards)
+- Mixed content cards (image-backed + editorial proof metrics + engagement cards)
+- Homepage narrative flow:
+  - Hero
+  - leadership across the organization
+  - about and proof
+  - selected impact
+  - ways to engage
+  - close CTA
 - Section transitions with controlled visual rhythm
 - Persistent decorative background effects must not block content legibility
 

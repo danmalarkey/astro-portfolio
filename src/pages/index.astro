@@ -4,26 +4,32 @@ import Layout from '../layouts/Layout.astro';
 
 const leverageCards = [
   {
-    title: 'Executives, Founders, & Product Owners',
+    title: 'Executives, founders, and product owners',
     description: 'Clarifying product direction, aligning priorities, and ensuring design meaningfully supports business outcomes.',
     bgClass: 'exec-bg'
   },
   {
-    title: 'Product & Engineering Teams',
+    title: 'Product and engineering teams',
     description: 'Strengthening collaboration, reducing delivery friction, and building shared patterns that scale.',
     bgClass: 'prod-bg'
   },
   {
-    title: 'Designers & Design Leaders',
+    title: 'Designers and design leaders',
     description: 'Elevating practice maturity, establishing standards, and increasing design’s strategic voice.',
     bgClass: 'design-bg'
   }
 ];
 
 const practiceStats = [
-  { label: '17+ Years', text: 'Product and design leadership experience' },
-  { label: 'Startup → Fortune 500', text: 'Experience across organizational scale' },
-  { label: 'Built for Scale', text: 'Products, teams, and standards designed for durability' }
+  { label: '17+', text: 'Years in product and design leadership' },
+  { label: 'Startup to enterprise', text: 'Experience across organizational scale' },
+  { label: 'Built for scale', text: 'Products, teams, and standards designed for durability' }
+];
+
+const proofMetrics = [
+  { label: 'Conversion impact', value: '+250%', detail: 'Membership growth in first 6 months' },
+  { label: 'Workflow efficiency', value: '-46%', detail: 'Design-to-dev rework reduction' },
+  { label: 'Onboarding friction', value: '-38%', detail: 'Lower activation drop-off across key journeys' }
 ];
 
 const caseStudies = [
@@ -44,7 +50,7 @@ const caseStudies = [
     logo: 'Northline',
     logoImage: '/images/case-logos/northline.svg',
     logoAlt: 'Northline logo',
-    role: 'Fractional Product Design Lead',
+    role: 'Fractional product design lead',
     tags: ['Service Design', 'Operations', 'Growth'],
     outcome: 'Cut onboarding friction by 38% while improving activation quality.',
     text: 'Defined reusable design and engineering patterns that improved consistency at speed.'
@@ -55,8 +61,8 @@ const caseStudies = [
     logo: 'HarborTech',
     logoImage: '/images/case-logos/harbortech.svg',
     logoAlt: 'HarborTech logo',
-    role: 'Product & Design Advisor',
-    tags: ['Platform', 'B2B', 'Design Systems'],
+    role: 'Product and design advisor',
+    tags: ['Platform', 'Business to business', 'Design systems'],
     outcome: 'Shipped a unified platform experience across three enterprise products.',
     text: 'Introduced leadership rhythms and standards that shifted design earlier in decision-making.'
   },
@@ -66,114 +72,28 @@ const caseStudies = [
     logo: 'Astera Health',
     logoImage: '/images/case-logos/astera.svg',
     logoAlt: 'Astera Health logo',
-    role: 'Interim Head of Product Design',
-    tags: ['Healthcare', 'CX', 'Workflow'],
+    role: 'Interim head of product design',
+    tags: ['Healthcare', 'Customer experience', 'Workflow'],
     outcome: 'Reduced patient intake completion time by 41% across core service flows.',
     text: 'Reframed intake journey architecture and aligned product-engineering decisions around high-friction touchpoints.'
-  },
-  {
-    image: '/images/dan-right.png',
-    imageAlt: 'Executive team collaboration setting',
-    logo: 'SummitPay',
-    logoImage: '/images/case-logos/summitpay.svg',
-    logoAlt: 'SummitPay logo',
-    role: 'Fractional Design Executive',
-    tags: ['Fintech', 'Risk', 'Growth'],
-    outcome: 'Drove a 29% increase in verified account conversion without raising fraud exposure.',
-    text: 'Introduced progressive trust patterns and aligned risk, design, and product teams under one decision model.'
-  },
-  {
-    image: '/images/dan.png',
-    imageAlt: 'Product manager reviewing enterprise metrics',
-    logo: 'Orbital Cloud',
-    logoImage: '/images/case-logos/orbital-cloud.svg',
-    logoAlt: 'Orbital Cloud logo',
-    role: 'Design Systems Advisor',
-    tags: ['Enterprise SaaS', 'Systems', 'Enablement'],
-    outcome: 'Cut design-to-dev handoff rework by 46% in two quarters.',
-    text: 'Established scalable UI standards, token architecture, and cross-team governance rituals.'
-  },
-  {
-    image: '/images/img.png',
-    imageAlt: 'Founder-level strategy work session',
-    logo: 'Lumen Learning',
-    logoImage: '/images/case-logos/lumen-learning.svg',
-    logoAlt: 'Lumen Learning logo',
-    role: 'Product Strategy Partner',
-    tags: ['EdTech', 'Discovery', 'Retention'],
-    outcome: 'Increased 90-day learner retention by 34% through product and experience redesign.',
-    text: 'Connected roadmap priorities to behavior signals and reshaped early lifecycle journeys.'
-  },
-  {
-    image: '/images/dan-right.png',
-    imageAlt: 'Cross-functional product team in planning mode',
-    logo: 'Ridge Commerce',
-    logoImage: '/images/case-logos/ridge-commerce.svg',
-    logoAlt: 'Ridge Commerce logo',
-    role: 'Fractional VP Product Design',
-    tags: ['E-commerce', 'Platform', 'Scale'],
-    outcome: 'Unified B2B and B2C experience layers into one scalable platform model.',
-    text: 'Defined cross-surface interaction patterns and operating standards to accelerate parallel product squads.'
   }
-];
-
-const speedModels = [
-  {
-    eyebrow: 'Launch Fast',
-    title: 'Founders & early teams',
-    bullets: ['Clarity sprint in 2 weeks', 'Decision-ready product direction', 'Prototype and narrative support for fundraising']
-  },
-  {
-    eyebrow: 'Enterprise at Speed',
-    title: 'Scale-ups & enterprise',
-    bullets: ['Leadership and pod alignment', 'Design system and workflow acceleration', 'Quality, accessibility, and consistency at scale']
-  }
-];
-
-const whyItems = [
-  {
-    title: 'Senior signal, low ego',
-    text: 'Clear direction without theatrics, and honest collaboration across functions.'
-  },
-  {
-    title: 'Fast, structured, practical',
-    text: 'Momentum each week, tied to decisions and delivery outcomes that matter.'
-  },
-  {
-    title: 'Built for durable scale',
-    text: 'Solutions designed to hold up as teams, products, and constraints evolve.'
-  }
-];
-
-const excelAreas = [
-  'Product Vision Alignment',
-  'Cross-functional Operating Models',
-  'Design System Strategy',
-  'Org Design for Product Teams'
-];
-
-const principles = [
-  { title: 'Direction Before Execution', text: 'We clarify priorities before increasing output.' },
-  { title: 'Design as Infrastructure', text: 'Strong foundations reduce confusion and create consistency.' },
-  { title: 'Human, With Constraints', text: 'Real user needs balanced with technical and business realities.' },
-  { title: 'Progress Without Chaos', text: 'Momentum that protects quality, accessibility, and long-term thinking.' }
 ];
 
 const engagementItems = [
   {
-    eyebrow: '01',
-    title: 'Fractional Design Leadership',
-    text: 'Ongoing senior partnership for strategy, org alignment, and high-leverage product decisions.'
+    title: 'Fractional design leadership',
+    text: 'Ongoing senior partnership for strategy, organizational alignment, and high-leverage product decisions.',
+    icon: 'orbit'
   },
   {
-    eyebrow: '02',
-    title: 'Transformation Sprint',
-    text: 'Focused 4-8 week engagement to diagnose friction, align teams, and set a practical operating model.'
+    title: 'Transformation program',
+    text: 'Focused 4–8 week engagement to diagnose friction, align teams, and establish a practical operating model.',
+    icon: 'pulse'
   },
   {
-    eyebrow: '03',
-    title: 'Advisory for Leaders',
-    text: 'Targeted support for founders and product leaders navigating growth, change, or organization scaling.'
+    title: 'Advisory for leaders',
+    text: 'Targeted support for founders and product leaders navigating growth, change, or organization scaling.',
+    icon: 'signal'
   }
 ];
 ---
@@ -189,11 +109,12 @@ const engagementItems = [
     <section class="intro-mh" id="top" data-star-density="1" data-star-brightness="1">
       <div class="sky-burst" aria-hidden="true"></div>
 
-      <div class="hero-shell">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+      <div class="hero-shell gc-start-2 gc-span-24">
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="intro-sub-list intro-sub-list--top">
             <span class="pill">
-              <span>Fractional Chief Product Designer <span class="separator">•</span> 17+ Years <span class="separator">•</span> Startup → Fortune 500</span>
+              <span>Fractional chief product designer <span class="separator">•</span> 17+ years <span class="separator">•</span> Startup to enterprise</span>
             </span>
           </div>
         </div>
@@ -208,10 +129,10 @@ const engagementItems = [
           </p>
         </div>
       </div>
+      </div>
     </section>
 
-    <div class="main-surface">
-    <section class="section leverage" data-star-density="0.9" data-star-brightness="0.88">
+    <section class="section leverage section-panel section-surface--dark section-panel--hero-bridge" data-star-density="0.9" data-star-brightness="0.88">
       <div class="dm-grid-l dm-grid-l--grid-sys leadership-intro">
         <h2 class="section-title text-white gc-start-2 gc-span-22">Leadership across the organization.</h2>
         <p class="gc-start-2 gc-span-18">Design is most effective when vision, execution, and the people responsible for both are aligned.</p>
@@ -231,38 +152,51 @@ const engagementItems = [
       </div>
     </section>
 
-    <section class="section col-layout dm-grid-l dm-grid-l--grid-sys gc-start-2 gc-span-12 about-panel-wrap" data-star-density="0.7" data-star-brightness="0.68">
-      <div class="section xl bg-greek gc-start-2 gc-span-12 round-radi-2 about-panel">
-        <div class="dm-grid-l dm-grid-l--grid-sys">
-          <div class="gc-start-3 gc-span-10">
-            <h2 class="section-title">Business success grounded in practice.</h2>
-            <p class="small-text">
-              I’m a product and design leader who helps organizations bring clarity to complex problems and build design capability that scales, working closely with executives, product, and engineering teams to support what’s next.
-            </p>
-            <p class="small-text">
-              I’ve led through early-stage growth, enterprise complexity, and moments of significant organizational change.
-            </p>
-            <ul class="practice-list">
-              {practiceStats.map((item) => (
-                <li>
-                  <span><strong>{item.label}</strong></span>
-                  <span>{item.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="gc-start-14 gc-span-11 about-image">
-            <img src="/images/dan-right.png" alt="Dan Malarkey" class="round-radi-1" />
-          </div>
+    <section class="section about-panel-wrap section-panel section-surface--warm" data-star-density="0.7" data-star-brightness="0.68">
+      <div class="about-feature dm-grid-l dm-grid-l--grid-sys">
+        <div class="about-feature--body gc-start-2 gc-span-12">
+          <h2 class="section-title">Business success grounded in practice.</h2>
+          <p>
+            I’m a product and design leader who helps organizations bring clarity to complex problems and build design capability that scales, working closely with executives, product, and engineering teams to support what’s next.
+          </p>
+          <p>
+            I’ve led through early-stage growth, enterprise complexity, and moments of significant organizational change.
+          </p>
+        </div>
+
+        <div class="about-feature--media gc-start-14 gc-span-12">
+          <img src="/images/dan-right.png" alt="Dan Malarkey" class="round-radi-1" />
+        </div>
+
+        <div class="about-highlights gc-start-2 gc-span-24">
+          {practiceStats.map((item) => (
+            <article class="about-highlights--item">
+              <p class="about-highlights--value">{item.label}</p>
+              <p class="about-highlights--text">{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <div class="proof-intro gc-start-2 gc-span-24">
+          <h3>Outcomes tied to business movement.</h3>
+          <p>Measurable impact across growth-stage and enterprise contexts.</p>
+        </div>
+        <div class="proof-metrics gc-start-2 gc-span-24">
+          {proofMetrics.map((item) => (
+            <article class="proof-metric">
+              <p class="proof-metric--value">{item.value}</p>
+              <p>{item.label}</p>
+              <p class="proof-metric--detail">{item.detail}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <section class="section case-studies" data-star-density="0.82" data-star-brightness="0.82">
+    <section class="section case-studies section-panel section-surface--dark section-transition-impact" data-star-density="0.82" data-star-brightness="0.82">
       <div class="dm-grid-l dm-grid-l--grid-sys case-intro case-intro--with-controls">
-        <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Selected Impact</h2>
+        <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Selected impact</h2>
         <p class="gc-start-2 gc-span-18">Case-study style snapshots you can expand later with full story pages.</p>
-        <div class="case-rail-controls gc-start-21 gc-span-5" aria-label="Case studies navigation">
+        <div class="case-rail-controls gc-start-19 gc-span-7" aria-label="Case studies navigation">
           <div class="case-rail-progress" aria-live="polite">
             <p class="case-rail-count"><span data-case-current>1</span><span class="case-rail-sep">/</span><span data-case-total>{caseStudies.length}</span></p>
             <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
@@ -298,90 +232,19 @@ const engagementItems = [
       </div>
     </section>
 
-    <section class="section featured-work" data-star-density="0.8" data-star-brightness="0.8">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <h2 class="section-title text-white gc-start-2 gc-span-14">Featured Product Program</h2>
-        <p class="gc-start-2 gc-span-16">A deeper look at one engagement where strategy, team alignment, and execution had to move together.</p>
+    <section class="section ways-to-engage section-panel section-surface--light" data-star-density="0.82" data-star-brightness="0.82">
+      <div class="dm-grid-l dm-grid-l--grid-sys section-head">
+        <h2 class="section-title gc-start-2 gc-span-16">Ways to engage</h2>
+        <p class="gc-start-2 gc-span-18">Here’s how support is structured in practice, from embedded leadership to focused change work.</p>
       </div>
-      <div class="feature-panel dm-grid-l dm-grid-l--grid-sys">
-        <div class="feature-image gc-start-2 gc-span-12">
-          <img src="/images/img.png" alt="Featured product engagement" />
-        </div>
-        <article class="feature-body gc-start-14 gc-span-12">
-          <p class="feature-kicker">Platform Transformation</p>
-          <h3>From fragmented roadmap to a cohesive product operating rhythm</h3>
-          <p>Partnered with leadership and delivery teams to align decision-making, create reusable product patterns, and increase speed without introducing quality debt.</p>
-          <ul>
-            <li>Unified product vision and sequencing model</li>
-            <li>Cross-functional rituals for weekly decision velocity</li>
-            <li>Shared standards across design and engineering teams</li>
-          </ul>
-          <a href="#" class="ghost-link">Read case study</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section speed-models" data-star-density="0.76" data-star-brightness="0.76">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <h2 class="section-title text-white gc-start-2 gc-span-18">Engagement Models for Different Stages</h2>
-      </div>
-      <div class="speed-grid col-layout col-layout--2x10 dm-grid-l dm-grid-l--grid-sys">
-        {speedModels.map((item) => (
-          <article class="speed-card">
-            <p class="eyebrow">{item.eyebrow}</p>
-            <h3>{item.title}</h3>
-            <ul>
-              {item.bullets.map((bullet) => <li>{bullet}</li>)}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section why-section" data-star-density="0.74" data-star-brightness="0.74">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <h2 class="section-title text-white gc-start-2 gc-span-12">Why Teams Work With Me</h2>
-      </div>
-      <div class="why-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
-        {whyItems.map((item) => (
-          <article class="why-card">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section excel-section" data-star-density="0.72" data-star-brightness="0.72">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <h2 class="section-title text-white gc-start-2 gc-span-12">What I Excel At</h2>
-      </div>
-      <div class="excel-grid col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys">
-        {excelAreas.map((item) => <article class="excel-chip">{item}</article>)}
-      </div>
-    </section>
-
-    <section class="section principles" data-star-density="0.78" data-star-brightness="0.78">
-      <h2 class="principles-title h1 text-white intro-title">Strategic. Structured.<br />Human.</h2>
-
-      <div class="principles-list">
-        {principles.map((item) => (
-          <div class="principle">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="section ways-to-engage" data-star-density="0.82" data-star-brightness="0.82">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <h2 class="section-title text-white gc-start-2 gc-span-16">Ways to Engage</h2>
-      </div>
-      <div class="engagement-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
+      <div class="engagement-model dm-grid-l dm-grid-l--grid-sys">
         {engagementItems.map((item) => (
-          <article class="engagement-card">
-            <p class="eyebrow">{item.eyebrow}</p>
+          <article class="engagement-model--item">
+            <div class="engagement-model--head">
+              <div class={`engagement-model--icon icon-${item.icon}`} aria-hidden="true">
+                <span></span>
+              </div>
+            </div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>
@@ -389,7 +252,7 @@ const engagementItems = [
       </div>
     </section>
 
-    <section class="section close-cta" data-star-density="0.88" data-star-brightness="0.88">
+    <section class="section close-cta section-panel section-surface--dark" data-star-density="0.88" data-star-brightness="0.88">
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="cta-panel gc-start-4 gc-span-20">
           <p>
@@ -399,7 +262,6 @@ const engagementItems = [
         </div>
       </div>
     </section>
-    </div>
   </main>
 </Layout>
 
@@ -413,6 +275,20 @@ const engagementItems = [
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const stars = [];
+    const nebulaClouds = [];
+    const starPalette = [
+      [255, 255, 255],
+      [214, 232, 255],
+      [255, 228, 177],
+      [198, 220, 255],
+      [255, 245, 223]
+    ];
+    const nebulaPalette = [
+      [88, 111, 255],
+      [58, 180, 255],
+      [186, 88, 255],
+      [242, 125, 199]
+    ];
     const STAR_COUNT = 420;
     let width = 0;
     let height = 0;
@@ -450,13 +326,33 @@ const engagementItems = [
     const seedStars = () => {
       stars.length = 0;
       for (let i = 0; i < STAR_COUNT; i += 1) {
+        const color = starPalette[Math.floor(Math.random() * starPalette.length)];
+        const radius = Math.pow(Math.random(), 1.3) * 1.8 + 0.25;
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          r: Math.random() * 1.8 + 0.25,
+          r: radius,
           a: Math.random() * 0.8 + 0.15,
           twinkle: Math.random() * 0.022 + 0.002,
-          visibilitySeed: Math.random()
+          visibilitySeed: Math.random(),
+          color
+        });
+      }
+    };
+
+    const seedNebula = () => {
+      nebulaClouds.length = 0;
+      const cloudCount = Math.max(3, Math.round(width / 430));
+      for (let i = 0; i < cloudCount; i += 1) {
+        const color = nebulaPalette[Math.floor(Math.random() * nebulaPalette.length)];
+        nebulaClouds.push({
+          x: width * (0.15 + Math.random() * 0.7),
+          y: height * (0.06 + Math.random() * 0.42),
+          radius: 180 + Math.random() * 280,
+          alpha: 0.12 + Math.random() * 0.1,
+          drift: 8 + Math.random() * 10,
+          phase: Math.random() * Math.PI * 2,
+          color
         });
       }
     };
@@ -470,14 +366,30 @@ const engagementItems = [
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#ffffff';
 
       const pointerOffsetX = (pointerX - width / 2) * 0.008;
       const pointerOffsetY = (pointerY - height / 2) * 0.01;
       const scrollOffset = -(scrollY * 0.045);
+      const now = performance.now();
 
       currentDensity += (targetDensity - currentDensity) * 0.055;
       currentBrightness += (targetBrightness - currentBrightness) * 0.055;
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      for (const cloud of nebulaClouds) {
+        const cx = cloud.x + Math.sin(now * 0.00006 + cloud.phase) * cloud.drift;
+        const cy = cloud.y + Math.cos(now * 0.00005 + cloud.phase) * cloud.drift * 0.5 + pointerOffsetY * 0.05;
+        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, cloud.radius);
+        gradient.addColorStop(0, `rgba(${cloud.color[0]}, ${cloud.color[1]}, ${cloud.color[2]}, ${cloud.alpha * currentBrightness})`);
+        gradient.addColorStop(0.45, `rgba(${cloud.color[0]}, ${cloud.color[1]}, ${cloud.color[2]}, ${cloud.alpha * 0.36})`);
+        gradient.addColorStop(1, `rgba(${cloud.color[0]}, ${cloud.color[1]}, ${cloud.color[2]}, 0)`);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(cx, cy, cloud.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
 
       const effectiveDensity = Math.max(0.85, currentDensity);
 
@@ -491,6 +403,7 @@ const engagementItems = [
 
         const y = ((star.y + pointerOffsetY + scrollOffset) % height + height) % height;
 
+        ctx.fillStyle = `rgb(${star.color[0]} ${star.color[1]} ${star.color[2]})`;
         ctx.globalAlpha = Math.min(1, star.a * currentBrightness);
         ctx.beginPath();
         ctx.arc(star.x + pointerOffsetX, y, star.r, 0, Math.PI * 2);
@@ -499,7 +412,6 @@ const engagementItems = [
 
       // Occasional shooting star for atmospheric motion.
       if (!prefersReducedMotion) {
-        const now = performance.now();
         if (!shootingStar && now >= nextShootingStarAt) {
           const fromLeft = Math.random() > 0.5;
           const startX = fromLeft ? -120 : width + 120;
@@ -544,7 +456,7 @@ const engagementItems = [
             shootingStar.y > height + 120
           ) {
             shootingStar = null;
-            nextShootingStarAt = now + 9000 + Math.random() * 11000;
+            nextShootingStarAt = now + 5000 + Math.random() * 6000;
           }
         }
       }
@@ -567,16 +479,18 @@ const engagementItems = [
     window.addEventListener('resize', () => {
       resize();
       seedStars();
+      seedNebula();
       updateTargetsFromScroll();
       if (prefersReducedMotion) draw();
     });
 
     resize();
     seedStars();
+    seedNebula();
     pointerX = width / 2;
     pointerY = height / 2;
     scrollY = window.scrollY;
-    nextShootingStarAt = performance.now() + 5000;
+    nextShootingStarAt = performance.now() + 2600;
     updateTargetsFromScroll();
     draw();
   })();

@@ -25,6 +25,9 @@ Ensure variable names are understandable, descriptive, and scalable.
 
 - `--size-touch-target-min`
 - `--size-focus-ring`
+- `--size-border-thin`
+- `--size-body-compact`
+- `--motion-lift-subtle`
 
 ### Spacing tokens
 
@@ -44,6 +47,8 @@ Using descriptive scale names:
 - No ambiguous color token names remain in the root token layer.
 - Spacing and size tokens are now semantically named and easier to use.
 - Documentation is updated to match implementation.
+- Removed unused legacy section tokens/classes tied to retired homepage sections.
+- Project styles now use rem-based units for spacing, sizing, and typography (no `px` values in `src` styles/layouts).
 
 ## Naming Standard
 

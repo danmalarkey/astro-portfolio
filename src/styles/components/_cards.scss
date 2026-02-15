@@ -1,15 +1,13 @@
-@use "../settings/variables" as vars;
-
 .intro-cards {
   .card {
     padding: 0;
-    border-radius: 1rem;
-    background-color: vars.$dm-bg-dark;
-    color: vars.$villa-greek;
+    border-radius: var(--radius-md);
+    background-color: var(--color-background-surface-alt);
+    color: var(--color-light-surface);
     position: relative;
     overflow: hidden;
-    border: 1px solid vars.$dm-border-dark;
-    min-height: 30rem;
+    border: var(--size-border-thin) solid var(--color-border-subtle-dark);
+    min-height: var(--size-card-leverage-min-height);
     display: flex;
     flex-direction: column;
     isolation: isolate;
@@ -18,15 +16,15 @@
       position: relative;
       z-index: 2;
       margin-top: auto;
-      padding: 1.6rem;
+      padding: var(--spacing-md);
 
       &::before {
         content: "";
         position: absolute;
-        inset: -3.8rem 0 0 0;
+        inset: -4rem 0 0 0;
         z-index: -1;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.84), rgba(0, 0, 0, 0.55) 46%, rgba(0, 0, 0, 0));
-        backdrop-filter: blur(2px);
+        background: var(--gradient-overlay-dark-heavy);
+        backdrop-filter: blur(0.125rem);
       }
     }
 
@@ -38,18 +36,18 @@
 
     h3 {
       margin: 0;
-      font-size: 1.45rem;
+      font-size: calc(var(--spacing-sm) + var(--spacing-xs));
       line-height: 1.3;
       font-family: "Cal Sans", -apple-system, sans-serif;
       font-weight: 400;
-      color: vars.$dm-white-color;
+      color: var(--color-text-primary);
     }
 
     p {
-      margin: 0.85rem 0 0;
-      font-size: 1rem;
+      margin: var(--spacing-sm) 0 0;
+      font-size: var(--size-body-md);
       line-height: 1.5;
-      color: rgba(255, 255, 255, 0.78);
+      color: var(--color-text-on-dark-base);
     }
   }
 }
@@ -61,32 +59,33 @@
 }
 
 .prod-bg {
-  background-image: linear-gradient(135deg, rgba(77, 77, 77, 0.44), rgba(31, 31, 31, 0.74)), url("/images/img.png");
+  background-image: var(--gradient-photo-overlay-product), url("/images/img.png");
   background-position: center;
   background-size: cover;
 }
 
 .design-bg {
-  background-image: linear-gradient(135deg, rgba(98, 98, 98, 0.4), rgba(15, 15, 15, 0.68)), url("/images/dan.png");
+  background-image: var(--gradient-photo-overlay-design), url("/images/dan.png");
   background-position: center;
   background-size: cover;
 }
 
 .case-card {
-  flex: 0 0 min(31rem, 82vw);
-  min-height: 32rem;
-  border-radius: 1.25rem;
+  flex: 0 0 min(calc(var(--spacing-4xl) * 8), 82vw);
+  min-height: var(--size-card-case-min-height);
+  border-radius: calc(var(--radius-md) + calc(var(--spacing-xs) * 0.5));
   overflow: hidden;
-  border: 1px solid vars.$dm-border-dark;
-  background: rgba(255, 255, 255, 0.04);
+  border: var(--size-border-thin) solid var(--color-border-case-card);
+  background: var(--color-surface-glass-soft);
   position: relative;
   isolation: isolate;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition: transform var(--duration-transition-slow) var(--easing-standard), box-shadow var(--duration-transition-slow) var(--easing-standard), border-color var(--duration-transition-slow) var(--easing-standard);
+  box-shadow: var(--shadow-case-resting);
 
   &:hover {
-    transform: translateY(-0.25rem);
-    border-color: rgba(241, 226, 24, 0.46);
-    box-shadow: 0 1.2rem 2.6rem rgba(0, 0, 0, 0.42), 0 0 0.8rem rgba(241, 226, 24, 0.12);
+    transform: translateY(calc(var(--spacing-xs) * -0.5));
+    border-color: var(--color-border-case-card-hover);
+    box-shadow: var(--shadow-case-hover-elevation), 0 0 var(--spacing-sm) var(--color-accent-glow-soft);
   }
 
   img {
@@ -102,18 +101,31 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 2rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.84) 28%, rgba(0, 0, 0, 0.36) 56%, rgba(0, 0, 0, 0.12) 100%);
+    padding: var(--spacing-lg);
+    background: var(--gradient-overlay-case-base);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-overlay-case-top);
+      pointer-events: none;
+    }
   }
 
   .case-meta {
+    position: relative;
+    z-index: 1;
     margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-xs) * 0.75);
   }
 
   .case-logo {
     margin: 0;
-    color: rgba(255, 255, 255, 0.94);
-    font-size: 1.8rem;
+    color: var(--color-text-on-dark-strong);
+    font-size: calc(var(--spacing-sm) + var(--spacing-md));
     line-height: 1;
     font-family: "Cal Sans", -apple-system, sans-serif;
     letter-spacing: 0.02em;
@@ -121,202 +133,108 @@
 
   .case-logo-image {
     display: block;
-    max-width: 11rem;
+    max-width: calc(var(--spacing-4xl) + var(--spacing-3xl));
     width: auto;
-    height: 2rem;
+    height: var(--spacing-lg);
     object-fit: contain;
     object-position: left center;
-    filter: drop-shadow(0 0.12rem 0.35rem rgba(0, 0, 0, 0.35));
+    filter: var(--shadow-logo-drop);
   }
 
   .case-tags {
-    margin: 1rem 0 0;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
     list-style: none;
 
     li {
-      font-size: 0.66rem;
-      color: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 999rem;
-      padding: 0.28rem 0.52rem;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      font-weight: 600;
+      font-size: var(--size-label-xs);
+      color: var(--color-text-case-tag);
+      border: var(--size-border-thin) solid var(--color-border-case-tag);
+      border-radius: var(--radius-pill);
+      padding: calc(var(--spacing-xs) * 0.5) calc(var(--spacing-sm) * 0.5);
+      background: var(--color-surface-case-tag);
+      letter-spacing: 0.01em;
+      font-weight: 500;
     }
   }
 
   .case-role {
-    margin: 0 0 0.6rem;
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin: 0 0 calc(var(--spacing-xs) * 0.75);
+    color: var(--color-text-on-dark-high);
+    font-size: var(--size-label-sm);
   }
 
   .case-outcome {
+    position: relative;
+    z-index: 1;
     margin: 0;
-    color: vars.$dm-white-color;
-    font-size: clamp(1.25rem, 2.1vw, 1.625rem);
-    line-height: 1.14;
+    color: var(--color-text-primary);
+    font-size: var(--size-case-title);
+    line-height: 1.2;
     max-width: 18ch;
     text-wrap: balance;
   }
 
   .case-summary {
-    margin: 1rem 0 0;
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 0.98rem;
+    position: relative;
+    z-index: 1;
+    margin: var(--spacing-sm) 0 0;
+    color: var(--color-text-on-dark-high);
+    font-size: var(--size-body-sm);
     line-height: 1.45;
     max-width: 42ch;
   }
 }
 
-.feature-body,
-.speed-card,
-.why-card,
-.excel-chip,
-.engagement-card {
-  border: 1px solid vars.$dm-border-dark;
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.feature-body {
-  border-radius: 1rem;
-  padding: 1.5rem;
-
-  .feature-kicker {
-    margin: 0;
-    color: vars.$dm-yellow;
-    letter-spacing: 0.07em;
-    font-size: 0.78rem;
-    text-transform: uppercase;
+@media (max-width: 62rem) {
+  .intro-cards .card {
+    min-height: calc(var(--spacing-4xl) * 6 + var(--spacing-lg));
   }
 
-  h3 {
-    margin: 0.55rem 0;
-    font-size: 1.45rem;
-    color: vars.$dm-white-color;
-    line-height: 1.32;
-  }
+  .case-card {
+    flex-basis: min(calc(var(--spacing-4xl) * 6 + var(--spacing-lg)), 88vw);
+    min-height: var(--size-card-case-min-height-tablet);
 
-  p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.95rem;
-  }
-
-  ul {
-    margin: 1rem 0;
-    padding-left: 1rem;
-
-    li {
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 0.92rem;
-
-      &:not(:last-child) {
-        margin-bottom: 0.35rem;
-      }
+    .case-overlay {
+      padding: var(--spacing-md);
     }
-  }
 
-  .ghost-link {
-    display: inline-block;
-    text-decoration: none;
-    color: vars.$dm-white-color;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 999px;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+    .case-logo-image {
+      max-width: calc(var(--spacing-4xl) * 2 + var(--spacing-sm));
+      height: calc(var(--spacing-md) + var(--spacing-xs) * 0.5);
+    }
 
-    &:hover {
-      border-color: vars.$dm-yellow;
-      color: vars.$dm-yellow;
+    .case-outcome {
+      max-width: 20ch;
     }
   }
 }
 
-.speed-card {
-  border-radius: 1rem;
-  padding: 1.5rem;
-
-  .eyebrow {
-    margin: 0;
-    color: vars.$dm-yellow;
-    letter-spacing: 0.08em;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+@media (max-width: 48rem) {
+  .intro-cards .card {
+    min-height: calc(var(--spacing-4xl) * 6);
   }
 
-  h3 {
-    margin: 0.45rem 0 0.75rem;
-    color: vars.$dm-white-color;
-    font-size: 1.2rem;
-  }
+  .case-card {
+    flex-basis: min(calc(var(--spacing-4xl) * 5 + var(--spacing-xl)), 92vw);
+    min-height: var(--size-card-case-min-height-mobile);
 
-  ul {
-    padding-left: 1rem;
-    margin: 0;
-
-    li {
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.92rem;
-
-      &:not(:last-child) {
-        margin-bottom: 0.35rem;
-      }
+    .case-overlay {
+      padding: var(--spacing-sm);
     }
-  }
-}
 
-.why-card {
-  border-radius: 1rem;
-  padding: 1.4rem;
+    .case-tags {
+      gap: calc(var(--spacing-xs) * 0.5);
+    }
 
-  h3 {
-    margin: 0;
-    color: vars.$dm-white-color;
-    font-size: 1.1rem;
-  }
-
-  p {
-    margin: 0.5rem 0 0;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.94rem;
-  }
-}
-
-.excel-chip {
-  border-radius: 999px;
-  padding: 0.7rem 1rem;
-  color: vars.$dm-white-color;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.engagement-card {
-  padding: 1.5rem;
-  border-radius: 1rem;
-
-  .eyebrow {
-    margin: 0;
-    color: vars.$dm-yellow;
-    letter-spacing: 0.08em;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    margin: 0.55rem 0;
-    color: vars.$dm-white-color;
-    font-size: 1.2rem;
-  }
-
-  p {
-    margin: 0;
-    font-size: 0.98rem;
-    color: rgba(255, 255, 255, 0.7);
+    .case-summary {
+      margin-top: var(--spacing-xs);
+      font-size: var(--size-body-compact);
+    }
   }
 }
