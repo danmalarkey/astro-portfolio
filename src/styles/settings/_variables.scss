@@ -10,5 +10,31 @@ $dm-black-color: #323232;
 $dm-yellow: #f1e218;
 $villa-greek: #F0ECE2;
 
+$dm-gray-700: #7a7a7a;
+$dm-text-muted: rgba(0, 0, 0, 0.6);
+$dm-border-light: rgba(0, 0, 0, 0.1);
+
+$dm-bg-dark: #171717;
+$dm-border-dark: #232323;
+$dm-text-muted-white: rgba(255, 255, 255, 0.40);
+$dm-text-more-muted-white: rgba(255, 255, 255, 0.32);
+
+.bg-greek {
+    background-color: $villa-greek;
+}
+
+$round-radi-0-5: 0.5rem; .round-radi-0-5 {
+    border-radius: 0.5rem;
+                         }
+$round-radi-1: 1rem; .round-radi-1 {
+    border-radius: 1rem;
+                     }
+$round-radi-2: 2rem; .round-radi-2 {
+    border-radius: 2rem;
+                     }
+$round-radi-3: 3rem; .round-radi-3 {
+    border-radius: 3rem;
+}
+
 
 $darkest-black-color-0A0A0A: #0A0A0A;

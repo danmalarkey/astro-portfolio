@@ -1,134 +1,64 @@
 @use "./variables" as vars;
-//$white-color: #fff;
-//$black-color: #323232;
-//$villa-greek: #F0ECE2;
-//$dm-yellow: #f1e218;
+@use "./grid" as grid;
 
-
-h1.intro-title {
-    font-size: clamp(2.5rem,5.65vw,22.5rem);
-    line-height: clamp(1.3rem,6.65vw,27.5rem);
-    font-size: 3rem;
-    line-height: 120%;
-    letter-spacing: 0.025rem;
-    font-weight: 600;
-    text-rendering: optimizeLegibility;
-    grid-column: 4 / 20;
-}
-
-p.intro-text {
-    grid-column: 4 / 20;
-}
-
+// Typography
 body {
     font-family: "Geist", -apple-system, sans-serif;
 }
 
+h1.intro-title,
+.h1,
+.intro-title {
+    font-size: clamp(2rem, 4.25vw, 3.25rem);
+    line-height: 116%;
+    font-family: "Cal Sans", -apple-system, sans-serif;
+    letter-spacing: 0.025rem;
+    font-weight: 600;
+    text-rendering: optimizeLegibility;
+    margin-bottom: 0;
+    margin-top: 0;
 
+    @include grid.responsive-grid-column((
+            'base': ('start': 1, 'span': 26),
+            'md': ('start': 2, 'span': 24),
+            'lg': ('start': 4, 'span': 17)
+    ));
+}
 
+h2 {
+    line-height: 130%;
+    margin-bottom: 0;
+}
 
-.card {
-    padding: 2rem;
-    border-radius: 1rem;
-    background-color: vars.$dm-black-color;
-    background-color: #171717;
-    color: vars.$villa-greek;
-    ///* The blur magic */
-    //backdrop-filter: blur(12px);
-    //-webkit-backdrop-filter: blur(12px); /* Safari support */
+p {
+    color: #7a7a7a;
+    font-size: 1.25rem;
+    font-weight: 400;
 
-    /* Optional: Border to define edges */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    h2 {
-        margin-top: 0;
-        font-size: 1.25rem;
-        line-height: 135%;
-        margin-bottom: 0rem;
-        font-family: "Cal Sans", -apple-system, sans-serif;
-        font-family: "Giest", -apple-system, sans-serif;
-        font-weight: 400;
+    &.intro-text {
+        @include grid.responsive-grid-column((
+                'base': ('start': 1, 'span': 26),
+                'md': ('start': 2, 'span': 24),
+                'lg': ('start': 4, 'span': 16)
+        ));
     }
 
-    small {
-        font-size: 0.75rem;
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    ul {
-        padding-left: 0;
-        margin-top: 1rem;
-        margin-bottom: 0;
-        color: #7a7a7a;
-
-        li {
-            font-size: 0.875rem;
-            list-style: circle;
-            margin-left: 0;
-            //margin-bottom: 0.35rem;
-            padding-left: 0;
-
-            &:not(:last-child) {
-                margin-bottom: 0.35rem;
-            }
-        }
-    }
-
-
-}
-
-
-
-.dm-grid-l {
-    display: grid;
-}
-
-.dm-grid-l--grid-sys {
-    grid-template-columns: repeat(26, 1fr);
-}
-
-.card-grid {
-    gap: 1.5rem;
-    grid-column-start: 4;
-}
-
-
-.intro-cards {
-
-    &>.card:first-child {
-        grid-column-start: 4;
-
+    &.small-text {
+        font-size: 0.875rem;
     }
 }
-.card-grid .card {
-    grid-column: span 6;
+
+.text-white {
+    color: vars.$dm-white-color;
 }
 
-.dm-grid-l--grid-sys.card-grid .card {
-    //grid-column: span 8;
-
+.section-title {
+    margin-top: 0;
+    font-size: 2.5rem;
 }
 
-.dm-grid-l--grid-sys {
-    display: grid;
-    grid-template-columns: repeat(26, 1fr);
-    gap: 1.5rem;
+// Images
+img {
+    width: 100%;
+    height: auto;
 }
-
-.intro-cards {
-    padding: 4rem 0;
-}
-
-.card-grid .card:nth-child(1) {
-    grid-column: 4 / span 7;
-}
-
-.card-grid .card:nth-child(2) {
-    grid-column: 11 / span 7;
-}
-
-.card-grid .card:nth-child(3) {
-    grid-column: 18 / span 7;
-}
-

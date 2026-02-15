@@ -1,0 +1,224 @@
+// Grid system configuration
+$grid-columns: 26;
+$grid-gap: 1.5rem;
+$content-start: 4;
+
+// Breakpoints
+$breakpoints: (
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px,
+        'xxl': 1400px
+);
+
+// Mixins
+@mixin grid-column($start, $span) {
+    grid-column: #{$start} / span #{$span};
+}
+
+@mixin responsive-grid-column($configs) {
+    @each $breakpoint, $config in $configs {
+        @if $breakpoint == 'base' {
+            grid-column: #{map-get($config, 'start')} / span #{map-get($config, 'span')};
+        } @else {
+            @media (min-width: map-get($breakpoints, $breakpoint)) {
+                grid-column: #{map-get($config, 'start')} / span #{map-get($config, 'span')};
+            }
+        }
+    }
+}
+
+@mixin auto-columns($cols-lg: 3, $cols-md: 2, $cols-sm: 1) {
+    display: grid;
+    grid-template-columns: repeat($cols-lg, 1fr);
+    gap: $grid-gap;
+
+    @media (max-width: map-get($breakpoints, 'lg')) {
+        grid-template-columns: repeat($cols-md, 1fr);
+    }
+
+    @media (max-width: map-get($breakpoints, 'md')) {
+        grid-template-columns: repeat($cols-sm, 1fr);
+    }
+}
+
+// Base grid container
+.dm-grid-l {
+    display: grid;
+
+    &--grid-sys {
+        grid-template-columns: repeat($grid-columns, 1fr);
+        gap: $grid-gap;
+    }
+}
+
+// Mobile-first column start utilities
+// Automatically responsive: full width on mobile, inset on tablet, actual position on desktop
+@for $i from 1 through $grid-columns {
+    .gc-start-#{$i} {
+        // Mobile: full width
+        grid-column: 1 / -1;
+
+        // Tablet: slight inset
+        @media (min-width: map-get($breakpoints, 'md')) {
+            grid-column: 2 / -2;
+        }
+
+        // Desktop: actual column position
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            grid-column-start: #{$i};
+            grid-column-end: auto;
+        }
+    }
+}
+
+// Column span utilities (desktop only by default)
+@for $i from 1 through $grid-columns {
+    .gc-span-#{$i} {
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            grid-column-end: span #{$i};
+        }
+    }
+}
+
+// Column end utilities
+@for $i from 1 through $grid-columns {
+    .gc-end-#{$i} {
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            grid-column-end: #{$i + 1};
+        }
+    }
+}
+
+// Responsive breakpoint overrides
+// Use these when you need different behavior at specific breakpoints
+@each $breakpoint, $width in $breakpoints {
+    @media (min-width: $width) {
+        @for $i from 1 through $grid-columns {
+            .gc-start-#{$breakpoint}-#{$i} {
+                grid-column-start: #{$i};
+            }
+
+            .gc-span-#{$breakpoint}-#{$i} {
+                grid-column-end: span #{$i};
+            }
+
+            .gc-end-#{$breakpoint}-#{$i} {
+                grid-column-end: #{$i + 1};
+            }
+        }
+    }
+}
+
+// Common presets
+.gc-full {
+    grid-column: 1 / -1;
+}
+
+.gc-content {
+    grid-column: 1 / -1;
+
+    @media (min-width: map-get($breakpoints, 'md')) {
+        grid-column: 2 / -2;
+    }
+
+    @media (min-width: map-get($breakpoints, 'lg')) {
+        grid-column: 4 / span 20;
+    }
+}
+
+// Auto-flow helpers (for equal-width children)
+.grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $grid-gap;
+}
+
+.grid-auto-fill {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: $grid-gap;
+}
+
+// Column layout utilities - these handle positioning for multi-item layouts
+.col-layout {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(26, 1fr);
+    gap: $grid-gap;
+    padding: 4rem 0;
+
+    // Mobile: everything full width
+    > * {
+        @include responsive-grid-column((
+                'base': ('start': 1, 'span': 26),
+                'sm': ('start': 1, 'span': 26),
+                'md': ('start': 2, 'span': 24)
+        ));
+    }
+}
+
+// 3 columns, span 7 each (columns 4, 11, 18)
+.col-layout--3x7 {
+    > * {
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(1) { grid-column: 4 / span 7; }
+            &:nth-child(2) { grid-column: 11 / span 7; }
+            &:nth-child(3) { grid-column: 18 / span 7; }
+        }
+
+        @media (min-width: map-get($breakpoints, 'md')) and (max-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(odd) { grid-column: 3 / span 11; }
+            &:nth-child(even) { grid-column: 14 / span 11; }
+        }
+    }
+}
+
+// 3 columns, span 8 each (columns 2, 10, 18)
+.col-layout--3x8 {
+    > * {
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(1) { grid-column: 2 / span 8; }
+            &:nth-child(2) { grid-column: 10 / span 8; }
+            &:nth-child(3) { grid-column: 18 / span 8; }
+        }
+
+        @media (min-width: map-get($breakpoints, 'md')) and (max-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(odd) { grid-column: 2 / span 12; }
+            &:nth-child(even) { grid-column: 14 / span 12; }
+        }
+    }
+}
+
+// 2 columns, span 10 each
+.col-layout--2x10 {
+    > * {
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(1) { grid-column: 4 / span 10; }
+            &:nth-child(2) { grid-column: 14 / span 10; }
+        }
+
+        @media (min-width: map-get($breakpoints, 'md')) and (max-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(odd) { grid-column: 3 / span 11; }
+            &:nth-child(even) { grid-column: 14 / span 11; }
+        }
+    }
+}
+
+// 4 columns, span 6 each
+.col-layout--4x6 {
+    > * {
+        @media (min-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(1) { grid-column: 2 / span 6; }
+            &:nth-child(2) { grid-column: 8 / span 6; }
+            &:nth-child(3) { grid-column: 14 / span 6; }
+            &:nth-child(4) { grid-column: 20 / span 6; }
+        }
+
+        @media (min-width: map-get($breakpoints, 'md')) and (max-width: map-get($breakpoints, 'lg')) {
+            &:nth-child(odd) { grid-column: 3 / span 11; }
+            &:nth-child(even) { grid-column: 14 / span 11; }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<svg width="1200" height="500" viewBox="0 0 1200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.7" filter="url(#blur)">
+    <path d="M-60 120C180 30 330 30 520 120C710 210 860 210 1080 120C1130 98 1170 90 1260 95" stroke="#F1E218" stroke-width="2.2"/>
+    <path d="M-40 170C200 80 350 80 540 170C730 260 880 260 1100 170C1150 148 1190 140 1280 145" stroke="#F1E218" stroke-width="2.4"/>
+    <path d="M-20 220C220 130 370 130 560 220C750 310 900 310 1120 220C1170 198 1210 190 1300 195" stroke="#F1E218" stroke-width="2.6"/>
+    <path d="M0 275C240 185 390 185 580 275C770 365 920 365 1140 275C1190 253 1230 245 1320 250" stroke="#F1E218" stroke-width="2.8"/>
+  </g>
+  <defs>
+    <filter id="blur" x="-180" y="0" width="1600" height="430" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.8"/>
+    </filter>
+  </defs>
+</svg>

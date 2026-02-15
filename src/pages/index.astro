@@ -1,135 +1,647 @@
 ---
 import Header from '../layouts/Header.astro';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+
+const leverageCards = [
+  {
+    title: 'Executives, Founders, & Product Owners',
+    description: 'Clarifying product direction, aligning priorities, and ensuring design meaningfully supports business outcomes.',
+    bgClass: 'exec-bg'
+  },
+  {
+    title: 'Product & Engineering Teams',
+    description: 'Strengthening collaboration, reducing delivery friction, and building shared patterns that scale.',
+    bgClass: 'prod-bg'
+  },
+  {
+    title: 'Designers & Design Leaders',
+    description: 'Elevating practice maturity, establishing standards, and increasing design’s strategic voice.',
+    bgClass: 'design-bg'
+  }
+];
+
+const practiceStats = [
+  { label: '17+ Years', text: 'Product and design leadership experience' },
+  { label: 'Startup → Fortune 500', text: 'Experience across organizational scale' },
+  { label: 'Built for Scale', text: 'Products, teams, and standards designed for durability' }
+];
+
+const caseStudies = [
+  {
+    image: '/images/img.png',
+    imageAlt: 'Banking customer using laptop at home',
+    logo: 'VyStar',
+    logoImage: '/images/case-logos/vystar.svg',
+    logoAlt: 'VyStar logo',
+    role: 'Chief Product Designer',
+    tags: ['Transformation', 'User Experience', 'Product'],
+    outcome: 'Increasing bank memberships by 250% in the first six months.',
+    text: 'Aligned competing bets into one roadmap and a shared decision framework.'
+  },
+  {
+    image: '/images/dan-right.png',
+    imageAlt: 'Product leader in office environment',
+    logo: 'Northline',
+    logoImage: '/images/case-logos/northline.svg',
+    logoAlt: 'Northline logo',
+    role: 'Fractional Product Design Lead',
+    tags: ['Service Design', 'Operations', 'Growth'],
+    outcome: 'Cut onboarding friction by 38% while improving activation quality.',
+    text: 'Defined reusable design and engineering patterns that improved consistency at speed.'
+  },
+  {
+    image: '/images/dan.png',
+    imageAlt: 'Team leader at desk',
+    logo: 'HarborTech',
+    logoImage: '/images/case-logos/harbortech.svg',
+    logoAlt: 'HarborTech logo',
+    role: 'Product & Design Advisor',
+    tags: ['Platform', 'B2B', 'Design Systems'],
+    outcome: 'Shipped a unified platform experience across three enterprise products.',
+    text: 'Introduced leadership rhythms and standards that shifted design earlier in decision-making.'
+  },
+  {
+    image: '/images/img.png',
+    imageAlt: 'Professional working remotely on strategic planning',
+    logo: 'Astera Health',
+    logoImage: '/images/case-logos/astera.svg',
+    logoAlt: 'Astera Health logo',
+    role: 'Interim Head of Product Design',
+    tags: ['Healthcare', 'CX', 'Workflow'],
+    outcome: 'Reduced patient intake completion time by 41% across core service flows.',
+    text: 'Reframed intake journey architecture and aligned product-engineering decisions around high-friction touchpoints.'
+  },
+  {
+    image: '/images/dan-right.png',
+    imageAlt: 'Executive team collaboration setting',
+    logo: 'SummitPay',
+    logoImage: '/images/case-logos/summitpay.svg',
+    logoAlt: 'SummitPay logo',
+    role: 'Fractional Design Executive',
+    tags: ['Fintech', 'Risk', 'Growth'],
+    outcome: 'Drove a 29% increase in verified account conversion without raising fraud exposure.',
+    text: 'Introduced progressive trust patterns and aligned risk, design, and product teams under one decision model.'
+  },
+  {
+    image: '/images/dan.png',
+    imageAlt: 'Product manager reviewing enterprise metrics',
+    logo: 'Orbital Cloud',
+    logoImage: '/images/case-logos/orbital-cloud.svg',
+    logoAlt: 'Orbital Cloud logo',
+    role: 'Design Systems Advisor',
+    tags: ['Enterprise SaaS', 'Systems', 'Enablement'],
+    outcome: 'Cut design-to-dev handoff rework by 46% in two quarters.',
+    text: 'Established scalable UI standards, token architecture, and cross-team governance rituals.'
+  },
+  {
+    image: '/images/img.png',
+    imageAlt: 'Founder-level strategy work session',
+    logo: 'Lumen Learning',
+    logoImage: '/images/case-logos/lumen-learning.svg',
+    logoAlt: 'Lumen Learning logo',
+    role: 'Product Strategy Partner',
+    tags: ['EdTech', 'Discovery', 'Retention'],
+    outcome: 'Increased 90-day learner retention by 34% through product and experience redesign.',
+    text: 'Connected roadmap priorities to behavior signals and reshaped early lifecycle journeys.'
+  },
+  {
+    image: '/images/dan-right.png',
+    imageAlt: 'Cross-functional product team in planning mode',
+    logo: 'Ridge Commerce',
+    logoImage: '/images/case-logos/ridge-commerce.svg',
+    logoAlt: 'Ridge Commerce logo',
+    role: 'Fractional VP Product Design',
+    tags: ['E-commerce', 'Platform', 'Scale'],
+    outcome: 'Unified B2B and B2C experience layers into one scalable platform model.',
+    text: 'Defined cross-surface interaction patterns and operating standards to accelerate parallel product squads.'
+  }
+];
+
+const speedModels = [
+  {
+    eyebrow: 'Launch Fast',
+    title: 'Founders & early teams',
+    bullets: ['Clarity sprint in 2 weeks', 'Decision-ready product direction', 'Prototype and narrative support for fundraising']
+  },
+  {
+    eyebrow: 'Enterprise at Speed',
+    title: 'Scale-ups & enterprise',
+    bullets: ['Leadership and pod alignment', 'Design system and workflow acceleration', 'Quality, accessibility, and consistency at scale']
+  }
+];
+
+const whyItems = [
+  {
+    title: 'Senior signal, low ego',
+    text: 'Clear direction without theatrics, and honest collaboration across functions.'
+  },
+  {
+    title: 'Fast, structured, practical',
+    text: 'Momentum each week, tied to decisions and delivery outcomes that matter.'
+  },
+  {
+    title: 'Built for durable scale',
+    text: 'Solutions designed to hold up as teams, products, and constraints evolve.'
+  }
+];
+
+const excelAreas = [
+  'Product Vision Alignment',
+  'Cross-functional Operating Models',
+  'Design System Strategy',
+  'Org Design for Product Teams'
+];
+
+const principles = [
+  { title: 'Direction Before Execution', text: 'We clarify priorities before increasing output.' },
+  { title: 'Design as Infrastructure', text: 'Strong foundations reduce confusion and create consistency.' },
+  { title: 'Human, With Constraints', text: 'Real user needs balanced with technical and business realities.' },
+  { title: 'Progress Without Chaos', text: 'Momentum that protects quality, accessibility, and long-term thinking.' }
+];
+
+const engagementItems = [
+  {
+    eyebrow: '01',
+    title: 'Fractional Design Leadership',
+    text: 'Ongoing senior partnership for strategy, org alignment, and high-leverage product decisions.'
+  },
+  {
+    eyebrow: '02',
+    title: 'Transformation Sprint',
+    text: 'Focused 4-8 week engagement to diagnose friction, align teams, and set a practical operating model.'
+  },
+  {
+    eyebrow: '03',
+    title: 'Advisory for Leaders',
+    text: 'Targeted support for founders and product leaders navigating growth, change, or organization scaling.'
+  }
+];
 ---
 
-<Layout title="Dan Malarkey title here">
-    <div class="tri-lay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;">
-        <img class="" src="/images/blur-tri.png" alt="blurred triangle" style="position: absolute; left: 0; z-index: -1; top: -75%; opacity: 0.45;"></img>
+<Layout title="Dan Malarkey | Fractional Chief Product Designer">
+  <div class="site-sky" aria-hidden="true">
+    <canvas id="site-stars"></canvas>
+  </div>
+
+  <Header />
+
+  <main>
+    <section class="intro-mh" id="top" data-star-density="1" data-star-brightness="1">
+      <div class="sky-burst" aria-hidden="true"></div>
+
+      <div class="hero-shell">
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <div class="intro-sub-list intro-sub-list--top">
+            <span class="pill">
+              <span>Fractional Chief Product Designer <span class="separator">•</span> 17+ Years <span class="separator">•</span> Startup → Fortune 500</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <h1 class="intro-title text-white">Design leadership for organizations navigating growth, complexity, & change.</h1>
+        </div>
+
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <p class="intro-text">
+            I help businesses scale design capability, align teams, and build the foundations that support what’s next, whether that’s incremental improvement or meaningful transformation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-surface">
+    <section class="section leverage" data-star-density="0.9" data-star-brightness="0.88">
+      <div class="dm-grid-l dm-grid-l--grid-sys leadership-intro">
+        <h2 class="section-title text-white gc-start-2 gc-span-22">Leadership across the organization.</h2>
+        <p class="gc-start-2 gc-span-18">Design is most effective when vision, execution, and the people responsible for both are aligned.</p>
+      </div>
+
+      <div class="intro-cards col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
+        {leverageCards.map((item) => (
+          <article class={`card leverage-card ${item.bgClass}`}>
+            <div class="card-content">
+              <div class="head-group">
+                <h3>{item.title}</h3>
+              </div>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section col-layout dm-grid-l dm-grid-l--grid-sys gc-start-2 gc-span-12 about-panel-wrap" data-star-density="0.7" data-star-brightness="0.68">
+      <div class="section xl bg-greek gc-start-2 gc-span-12 round-radi-2 about-panel">
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <div class="gc-start-3 gc-span-10">
+            <h2 class="section-title">Business success grounded in practice.</h2>
+            <p class="small-text">
+              I’m a product and design leader who helps organizations bring clarity to complex problems and build design capability that scales, working closely with executives, product, and engineering teams to support what’s next.
+            </p>
+            <p class="small-text">
+              I’ve led through early-stage growth, enterprise complexity, and moments of significant organizational change.
+            </p>
+            <ul class="practice-list">
+              {practiceStats.map((item) => (
+                <li>
+                  <span><strong>{item.label}</strong></span>
+                  <span>{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="gc-start-14 gc-span-11 about-image">
+            <img src="/images/dan-right.png" alt="Dan Malarkey" class="round-radi-1" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section case-studies" data-star-density="0.82" data-star-brightness="0.82">
+      <div class="dm-grid-l dm-grid-l--grid-sys case-intro case-intro--with-controls">
+        <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Selected Impact</h2>
+        <p class="gc-start-2 gc-span-18">Case-study style snapshots you can expand later with full story pages.</p>
+        <div class="case-rail-controls gc-start-21 gc-span-5" aria-label="Case studies navigation">
+          <div class="case-rail-progress" aria-live="polite">
+            <p class="case-rail-count"><span data-case-current>1</span><span class="case-rail-sep">/</span><span data-case-total>{caseStudies.length}</span></p>
+            <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
+          </div>
+          <button type="button" class="case-rail-btn" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">Previous</button>
+          <button type="button" class="case-rail-btn" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">Next</button>
+        </div>
+      </div>
+
+      <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
+        <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies">
+        {caseStudies.map((item) => (
+          <article class="case-card">
+            <img src={item.image} alt={item.imageAlt} />
+            <div class="case-overlay">
+              <div class="case-meta">
+                {item.logoImage ? (
+                  <img class="case-logo-image" src={item.logoImage} alt={item.logoAlt ?? `${item.logo} logo`} />
+                ) : (
+                  <p class="case-logo">{item.logo}</p>
+                )}
+                <ul class="case-tags">
+                  {item.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+              </div>
+              <p class="case-role">{item.role}</p>
+              <h3 class="case-outcome">{item.outcome}</h3>
+              <p class="case-summary">{item.text}</p>
+            </div>
+          </article>
+        ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section featured-work" data-star-density="0.8" data-star-brightness="0.8">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <h2 class="section-title text-white gc-start-2 gc-span-14">Featured Product Program</h2>
+        <p class="gc-start-2 gc-span-16">A deeper look at one engagement where strategy, team alignment, and execution had to move together.</p>
+      </div>
+      <div class="feature-panel dm-grid-l dm-grid-l--grid-sys">
+        <div class="feature-image gc-start-2 gc-span-12">
+          <img src="/images/img.png" alt="Featured product engagement" />
+        </div>
+        <article class="feature-body gc-start-14 gc-span-12">
+          <p class="feature-kicker">Platform Transformation</p>
+          <h3>From fragmented roadmap to a cohesive product operating rhythm</h3>
+          <p>Partnered with leadership and delivery teams to align decision-making, create reusable product patterns, and increase speed without introducing quality debt.</p>
+          <ul>
+            <li>Unified product vision and sequencing model</li>
+            <li>Cross-functional rituals for weekly decision velocity</li>
+            <li>Shared standards across design and engineering teams</li>
+          </ul>
+          <a href="#" class="ghost-link">Read case study</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section speed-models" data-star-density="0.76" data-star-brightness="0.76">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <h2 class="section-title text-white gc-start-2 gc-span-18">Engagement Models for Different Stages</h2>
+      </div>
+      <div class="speed-grid col-layout col-layout--2x10 dm-grid-l dm-grid-l--grid-sys">
+        {speedModels.map((item) => (
+          <article class="speed-card">
+            <p class="eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <ul>
+              {item.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section why-section" data-star-density="0.74" data-star-brightness="0.74">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <h2 class="section-title text-white gc-start-2 gc-span-12">Why Teams Work With Me</h2>
+      </div>
+      <div class="why-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
+        {whyItems.map((item) => (
+          <article class="why-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section excel-section" data-star-density="0.72" data-star-brightness="0.72">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <h2 class="section-title text-white gc-start-2 gc-span-12">What I Excel At</h2>
+      </div>
+      <div class="excel-grid col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys">
+        {excelAreas.map((item) => <article class="excel-chip">{item}</article>)}
+      </div>
+    </section>
+
+    <section class="section principles" data-star-density="0.78" data-star-brightness="0.78">
+      <h2 class="principles-title h1 text-white intro-title">Strategic. Structured.<br />Human.</h2>
+
+      <div class="principles-list">
+        {principles.map((item) => (
+          <div class="principle">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section ways-to-engage" data-star-density="0.82" data-star-brightness="0.82">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <h2 class="section-title text-white gc-start-2 gc-span-16">Ways to Engage</h2>
+      </div>
+      <div class="engagement-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
+        {engagementItems.map((item) => (
+          <article class="engagement-card">
+            <p class="eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section close-cta" data-star-density="0.88" data-star-brightness="0.88">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="cta-panel gc-start-4 gc-span-20">
+          <p>
+            If you’re navigating growth, complexity, or change, and want design leadership that strengthens your product and your teams, I’d welcome a conversation.
+          </p>
+          <a href="mailto:hello@example.com" class="cta-link">Start a Conversation</a>
+        </div>
+      </div>
+    </section>
     </div>
-
-	<Header  title="Home"/>
-	<main>
-        <div class="intro-mh">
-            <div class="dm-grid-l dm-grid-l--grid-sys">
-                <h1 class="intro-title">Design leadership for organizations navigating growth, complexity, and change.</h1>
-            </div>
-            <div class="dm-grid-l dm-grid-l--grid-sys">
-                <p class="intro-text">
-                    <!--<strong class="black-font" style="margin-bottom: 0; font-size: 1.75rem; font-weight: 900;">What do you expect from this.</strong><br>-->
-                    I help businesses scale design capability, align teams, and build systems that support what's next—whether that's incremental improvement or radical transformational change.
-                </p>
-                <div style="grid-column: 4/26;">
-                    <span style="background-color: #171717; border: 1px solid #232323; padding: 0.25rem 1rem; border-radius: 24rem; color: white;">
-                        <span>Chief Product Designer at featurep[23] since 2012</span>
-                    </span>
-                </div>
-                <div style="grid-column: 4/26;">
-                    <span style="display: flex; gap: 1rem; color: rgba(255, 255, 255, 0.5); font-size: 0.875rem;">
-                         <span>17 years across startups to Fortune 100</span> •
-                        <span>Strategy, Systems, and Execution</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="intro-cards card-grid dm-grid-l dm-grid-l--grid-sys">
-            <div class="card">
-                <h2>Executives & <br>Founders</h2>
-                <small>For leaders navigating uncertainty</small>
-                <ul>
-                    <li> Scaling without breaking culture or quality</li>
-                    <li> Turning design into a business capability</li>
-                    <li> Making smart, and safe, bets in ambiguous markets</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h2>Product & <br>Engineering Teams</h2>
-                <small>For teams shipping complex products</small>
-                <ul>
-                    <li> Clarifying direction and priorities</li>
-                    <li> Building systems instead of one-off solutions</li>
-                    <li> Improving collaboration between product, design, and engineering</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h2>Designers & <br>Design Leaders</h2>
-                <small>For growing design teams and orgs</small>
-                <ul>
-                    <li> Maturing design practices</li>
-                    <li>Establishing standards and systems</li>
-                    <li>Elevating design's role beyond execution</li>
-                </ul>
-            </div>
-
-        </div>
-
-
-
-	</main>
+  </main>
 </Layout>
 
-<style>
-	.intro-mh {
-        margin-top: 5rem;
-    }
+<script is:inline>
+  (() => {
+    const canvas = document.getElementById('site-stars');
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
 
-	main {
-		margin: auto;
-		padding: 1rem;
-		//width: clamp(45rem, 65rem, 65rem);
-		max-width: calc(100% - 2rem);
-		font-size: 20px;
-		line-height: 1.6;
-		//font-family: "Helvetica Neue";
-		//color: #444;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stars = [];
+    const STAR_COUNT = 420;
+    let width = 0;
+    let height = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    let scrollY = 0;
+    let currentDensity = 1;
+    let currentBrightness = 1;
+    let targetDensity = 1;
+    let targetBrightness = 1;
+    let sectionProfiles = [];
+    let shootingStar = null;
+    let nextShootingStarAt = 0;
 
-	p {
-		color: #7a7a7a;
-		font-size: 1.25rem;
-		font-weight: 400;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = Math.floor(width * ratio);
+      canvas.height = Math.floor(height * ratio);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+      sectionProfiles = Array.from(document.querySelectorAll('[data-star-density]')).map((section) => {
+        const rect = section.getBoundingClientRect();
+        const start = rect.top + window.scrollY;
+        const end = start + rect.height;
+        const density = Number(section.getAttribute('data-star-density') || 1);
+        const brightness = Number(section.getAttribute('data-star-brightness') || 1);
+        return { start, end, density, brightness };
+      });
+    };
+
+    const seedStars = () => {
+      stars.length = 0;
+      for (let i = 0; i < STAR_COUNT; i += 1) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.8 + 0.25,
+          a: Math.random() * 0.8 + 0.15,
+          twinkle: Math.random() * 0.022 + 0.002,
+          visibilitySeed: Math.random()
+        });
+      }
+    };
+
+    const updateTargetsFromScroll = () => {
+      const probeY = scrollY + height * 0.42;
+      const profile = sectionProfiles.find((item) => probeY >= item.start && probeY <= item.end);
+      targetDensity = profile ? profile.density : 1;
+      targetBrightness = profile ? profile.brightness : 1;
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#ffffff';
+
+      const pointerOffsetX = (pointerX - width / 2) * 0.008;
+      const pointerOffsetY = (pointerY - height / 2) * 0.01;
+      const scrollOffset = -(scrollY * 0.045);
+
+      currentDensity += (targetDensity - currentDensity) * 0.055;
+      currentBrightness += (targetBrightness - currentBrightness) * 0.055;
+
+      const effectiveDensity = Math.max(0.85, currentDensity);
+
+      for (const star of stars) {
+        if (star.visibilitySeed > effectiveDensity) continue;
+
+        if (!prefersReducedMotion) {
+          star.a += (Math.random() - 0.5) * star.twinkle;
+          star.a = Math.min(1, Math.max(0.08, star.a));
+        }
+
+        const y = ((star.y + pointerOffsetY + scrollOffset) % height + height) % height;
+
+        ctx.globalAlpha = Math.min(1, star.a * currentBrightness);
+        ctx.beginPath();
+        ctx.arc(star.x + pointerOffsetX, y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Occasional shooting star for atmospheric motion.
+      if (!prefersReducedMotion) {
+        const now = performance.now();
+        if (!shootingStar && now >= nextShootingStarAt) {
+          const fromLeft = Math.random() > 0.5;
+          const startX = fromLeft ? -120 : width + 120;
+          const startY = Math.random() * (height * 0.45) + 20;
+          const speed = 4.5 + Math.random() * 2.5;
+          const angle = fromLeft ? 0.35 + Math.random() * 0.25 : Math.PI - (0.35 + Math.random() * 0.25);
+          shootingStar = {
+            x: startX,
+            y: startY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 0,
+            maxLife: 90 + Math.random() * 45
+          };
+        }
+
+        if (shootingStar) {
+          shootingStar.x += shootingStar.vx;
+          shootingStar.y += shootingStar.vy;
+          shootingStar.life += 1;
+
+          const t = shootingStar.life / shootingStar.maxLife;
+          const alpha = Math.max(0, 0.9 * (1 - t));
+          const tailX = shootingStar.x - shootingStar.vx * 7;
+          const tailY = shootingStar.y - shootingStar.vy * 7;
+
+          const gradient = ctx.createLinearGradient(shootingStar.x, shootingStar.y, tailX, tailY);
+          gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+          gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(shootingStar.x, shootingStar.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.stroke();
+
+          if (
+            shootingStar.life >= shootingStar.maxLife ||
+            shootingStar.x < -240 ||
+            shootingStar.x > width + 240 ||
+            shootingStar.y > height + 120
+          ) {
+            shootingStar = null;
+            nextShootingStarAt = now + 9000 + Math.random() * 11000;
+          }
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      if (!prefersReducedMotion) requestAnimationFrame(draw);
+    };
+
+    window.addEventListener('pointermove', (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+    });
+
+    window.addEventListener('scroll', () => {
+      scrollY = window.scrollY;
+      updateTargetsFromScroll();
+      if (prefersReducedMotion) draw();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      resize();
+      seedStars();
+      updateTargetsFromScroll();
+      if (prefersReducedMotion) draw();
+    });
+
+    resize();
+    seedStars();
+    pointerX = width / 2;
+    pointerY = height / 2;
+    scrollY = window.scrollY;
+    nextShootingStarAt = performance.now() + 5000;
+    updateTargetsFromScroll();
+    draw();
+  })();
+
+  (() => {
+    const rail = document.getElementById('case-rail');
+    const prevButton = document.querySelector('[data-case-prev]');
+    const nextButton = document.querySelector('[data-case-next]');
+    const currentNode = document.querySelector('[data-case-current]');
+    const progressNode = document.querySelector('[data-case-progress]');
+
+    if (!rail || !(rail instanceof HTMLElement) || !prevButton || !nextButton) return;
+
+    const cards = Array.from(rail.querySelectorAll('.case-card'));
+    const totalCards = cards.length;
+    let activeIndex = 0;
+
+    const updateProgress = () => {
+      if (currentNode) currentNode.textContent = `${activeIndex + 1}`;
+      if (progressNode instanceof HTMLElement) {
+        const progress = totalCards <= 1 ? 1 : (activeIndex + 1) / totalCards;
+        progressNode.style.transform = `scaleX(${progress.toFixed(4)})`;
+      }
+    };
+
+    const updateActiveIndex = () => {
+      const railCenter = rail.scrollLeft + rail.clientWidth / 2;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        if (!(card instanceof HTMLElement)) return;
+        const center = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(center - railCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      activeIndex = closestIndex;
+      updateProgress();
+    };
+
+    const updateButtons = () => {
+      const maxScroll = rail.scrollWidth - rail.clientWidth;
+      prevButton.toggleAttribute('disabled', rail.scrollLeft <= 4);
+      nextButton.toggleAttribute('disabled', rail.scrollLeft >= maxScroll - 4);
+      updateActiveIndex();
+    };
+
+    const scrollByCard = (direction) => {
+      const firstCard = rail.querySelector('.case-card');
+      if (!(firstCard instanceof HTMLElement)) return;
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const gap = 24;
+      rail.scrollBy({ left: direction * (cardWidth + gap), behavior: 'smooth' });
+    };
+
+    prevButton.addEventListener('click', () => scrollByCard(-1));
+    nextButton.addEventListener('click', () => scrollByCard(1));
+    rail.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+
+    updateProgress();
+    updateButtons();
+  })();
+</script>

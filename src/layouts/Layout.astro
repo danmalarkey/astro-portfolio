@@ -1,13 +1,15 @@
 ---
 interface Props {
-	title: string;
+	title?: string;
+	pageTitle?: string;
 }
 
 // 1. Import the global SCSS here.
 // Vite watches imports in the script section much better than @use in <style> tags.
 import '../styles/global.scss';
 
-const { pageTitle } = Astro.props;
+const { title, pageTitle } = Astro.props as Props;
+const resolvedTitle = pageTitle ?? title ?? "Dan Malarkey";
 ---
 
 <!doctype html>
@@ -18,48 +20,13 @@ const { pageTitle } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
+		<title>{resolvedTitle}</title>
 		<!--<style lang="scss" is:global>-->
 		<!--	@use '../styles/global.scss';-->
 		<!--</style>-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_right_alt" />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-<style is:global lang="scss">
-	$white-color: #fff;
-	$black-color: #323232;
-    $darkest-black-color-0A0A0A: #0A0A0A;
-
-	body {
-		background-color: $darkest-black-color-0A0A0A;
-	}
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		/*font-family: "Helvetica Neue", system-ui, sans-serif;*/
-		//background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

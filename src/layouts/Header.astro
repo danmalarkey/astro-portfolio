@@ -1,12 +1,10 @@
 
 ---
 interface Props {
-    title: string;
+    title?: string;
 }
 
-const { title } = Astro.props as Props; // Ensure type safety with Props
 const currentPath = Astro.url.pathname;
-console.log(currentPath); // Log the current path
 ---
 
 <div class="header">
@@ -40,13 +38,6 @@ console.log(currentPath); // Log the current path
     </header>
 </div>
 
-
-<!-- Client-side logging of current path -->
-<script>
-    console.log({ currentPath: window.location.pathname });
-</script>
-
-
 <style lang="scss">
 
     @use "../styles/settings/variables" as vars;
@@ -74,7 +65,7 @@ console.log(currentPath); // Log the current path
             margin: 2rem auto 0 auto;
             background-color: #161617;
             background-color: rgba(255, 255, 255, 0.015);
-            padding: 0.25rem 2rem;
+            padding: 0.25rem 1rem;
             color: vars.$text-color-white;
             border-radius: 100rem;
             position: fixed;
@@ -85,6 +76,7 @@ console.log(currentPath); // Log the current path
 
             /* Optional: Border to define edges */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 18px 26px rgba(0, 0, 0, 0.45);
         }
     }
 
