@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "push:checkpoint": "./scripts/push.sh",
     "lint:font-weight": "./scripts/guard-font-weight.sh",
     "lint:style-guards": "npm run lint:font-weight",
     "build": "astro build",
