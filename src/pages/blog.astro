@@ -1,17 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.astro";
-import BlogPost from "../components/BlogPost.astro";
-const pageTitle = "About Dan Malarkey | Product Design Leader  |  Blog";
-const allPosts = Object.values(import.meta.glob("./posts/*.md", { eager: true }));
+const pageTitle = "Writing | Dan Malarkey";
 ---
-<Layout pageTitle = {pageTitle}>
-    <Header></Header>
+<Layout title={pageTitle}>
+    <Header />
     <main>
-        <h1>This is a blog</h1>
-        <p>This is where I will post about my journey learning Astro.</p>
-        <ul>
-            {allPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
-        </ul>
+        <section class="section">
+            <div class="dm-grid-l dm-grid-l--grid-sys">
+                <div class="gc-start-2 gc-span-18">
+                    <h1 class="section-title text-white">Writing</h1>
+                    <p>
+                        Essays, notes, and field observations on design leadership, product direction, systems, and the practical use of AI in delivery.
+                    </p>
+                    <p class="small-text">
+                        This page is being rebuilt from the Astro starter blog scaffold into the portfolio writing system.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 </Layout>

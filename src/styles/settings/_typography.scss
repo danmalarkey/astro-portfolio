@@ -3,7 +3,7 @@
 
 // Typography
 body {
-    font-family: "Geist", -apple-system, sans-serif;
+    font-family: var(--font-family-body);
 }
 
 h1.intro-title,
@@ -11,7 +11,7 @@ h1.intro-title,
 .intro-title {
     font-size: clamp(2rem, 4.25vw, 3.25rem);
     line-height: 116%;
-    font-family: "Cal Sans", -apple-system, sans-serif;
+    font-family: var(--font-family-display);
     letter-spacing: 0.025rem;
     font-weight: var(--font-weight-semibold);
     text-rendering: optimizeLegibility;
@@ -51,6 +51,10 @@ p {
 
 .text-white {
     color: vars.$dm-white-color;
+}
+
+.text-accent {
+    color: var(--color-tag-text-accent);
 }
 
 .section-title {

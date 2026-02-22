@@ -1,0 +1,51 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  fitItems?: string[];
+  ctaLabel?: string;
+  email?: string;
+}
+
+const {
+  eyebrow = 'Work with me',
+  title = 'Advisory and fractional design leadership for high-stakes product work.',
+  body = 'If you need experienced design leadership to clarify direction, align teams, and improve product outcomes, I am available for select advisory and fractional engagements.',
+  fitItems = [
+    'Executives and product leaders navigating change',
+    'Teams that need direction-setting and delivery alignment',
+    'Organizations investing in design capability and systems'
+  ],
+  ctaLabel = 'Work with me',
+  email = 'hello@danmalarkey.com'
+} = Astro.props;
+---
+
+<footer class="site-footer-home" data-star-density="0.88" data-star-brightness="0.88">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="cta-panel site-footer-panel">
+      <div class="dm-grid-l dm-grid-l--grid-sys site-footer-layout">
+        <div class="site-footer-main gc-start-2 gc-span-14">
+          <p class="cta-eyebrow">{eyebrow}</p>
+          <h2 class="site-footer-title">{title}</h2>
+          <p>{body}</p>
+        </div>
+        <aside class="site-footer-side gc-start-17 gc-span-9" aria-label="Engagement fit">
+          <p class="site-footer-side-title">Best fit for</p>
+          <ul class="site-footer-side-list">
+            {fitItems.map((item) => <li>{item}</li>)}
+          </ul>
+          <a href={`mailto:${email}`} class="cta-link cta-link--footer">
+            <span>{ctaLabel}</span>
+            <svg viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+              <path d="M4.75 9h8.5" />
+              <path d="M9.5 4.25 14.25 9 9.5 13.75" />
+            </svg>
+          </a>
+          <p class="cta-meta">Email: {email}</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+</footer>

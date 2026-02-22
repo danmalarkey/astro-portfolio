@@ -1,72 +1,88 @@
 ---
 import Header from '../layouts/Header.astro';
 import Layout from '../layouts/Layout.astro';
+import MediaPanel from '../components/MediaPanel.astro';
+import HomeFooter from '../components/HomeFooter.astro';
 
 const leverageCards = [
   {
-    // title: 'Executives, founders, and product owners',
     title: 'Executives and product drivers',
-    description: 'Clarifying direction, aligning priorities, and ensuring design drives business outcomes.',
-    bgClass: 'exec-bg'
+    descriptionLines: [
+      'Clarifying product direction, aligning',
+      'investment priorities, and making design',
+      'a driver of business outcomes.'
+    ],
+    image: 'images/dan-right.png',
+    imageAlt: 'Executive product design leadership and strategy collaboration'
   },
   {
     title: 'Product and engineering teams',
-    description: 'Improving collaboration, reducing delivery friction, and establishing patterns that scale.',
-    bgClass: 'prod-bg'
+    descriptionLines: [
+      'Reducing delivery friction, improving',
+      'collaboration, and creating repeatable',
+      'patterns teams can ship with confidence.'
+    ],
+    image: 'images/img.png',
+    imageAlt: 'Cross-functional product and engineering collaboration'
   },
   {
     title: 'Designers and design leaders',
-    description: 'Raising craft maturity, setting standards, and strengthening design’s strategic influence.',
-    bgClass: 'design-bg'
+    descriptionLines: [
+      'Raising craft maturity, establishing standards,',
+      'and strengthening design influence in strategic',
+      'product and organizational decisions.'
+    ],
+    image: 'images/dan.png',
+    imageAlt: 'Design leadership and team development'
   }
 ];
 
 const practiceStats = [
-  { label: 'Executive design partner', text: 'Trusted by leadership teams to align product direction and delivery' },
-  { label: 'Startup to enterprise', text: 'Led through early growth and complex organizational environments' },
-  { label: 'Portfolio-level leadership', text: 'Aligned product, program, and design decisions to real business outcomes' }
+  { labelLines: ['Chief Product Designer', 'at feature[23]'], text: 'Built and scaled a design practice focused on repeatable client outcomes, team quality, and delivery partnership' },
+  { labelLines: ['17+ years across', 'product and design'], text: 'Hands-on leadership across startups and enterprise environments, from direction setting through implementation' },
+  { labelLines: ['Systems-led, people-first', 'operating model'], text: 'Clarifies priorities, aligns teams, and builds standards that preserve momentum without creating chaos' }
 ];
 
 const caseStudies = [
   {
-    image: '/images/case-studies/home/vystar-bg-img.png',
+    image: 'images/case-studies/home/vystar-bg-img.png',
     imageAlt: 'Banking customer using laptop at home',
-    logo: 'VyStar',
-    logoImage: '/images/case-logos/vystar.svg',
-    logoAlt: 'VyStar logo',
+    logo: 'Regional banking organization',
+    logoImage: '',
+    logoAlt: 'Regional banking organization',
     role: 'Chief Product Designer',
     tags: ['Transformation', 'User Experience', 'Product'],
     outcome: 'Increasing bank memberships by 250% in the first six months.',
     text: 'Aligned competing bets into one roadmap and a shared decision framework.'
   },
   {
-    image: '/images/dan-right.png',
+    image: 'images/dan-right.png',
     imageAlt: 'Product leader in office environment',
-    logo: 'Northline',
-    logoImage: '/images/case-logos/northline.svg',
-    logoAlt: 'Northline logo',
+    logo: 'Growth-stage operations platform',
+    logoImage: '',
+    logoAlt: 'Growth-stage operations platform',
     role: 'Fractional product design lead',
     tags: ['Service Design', 'Operations', 'Growth'],
     outcome: 'Cut onboarding friction by 38% while improving activation quality.',
     text: 'Defined reusable design and engineering patterns that improved consistency at speed.'
   },
   {
-    image: '/images/dan.png',
+    image: 'images/dan.png',
     imageAlt: 'Team leader at desk',
-    logo: 'HarborTech',
-    logoImage: '/images/case-logos/harbortech.svg',
-    logoAlt: 'HarborTech logo',
+    logo: 'Enterprise platform portfolio',
+    logoImage: '',
+    logoAlt: 'Enterprise platform portfolio',
     role: 'Product and design advisor',
     tags: ['Platform', 'Business to business', 'Design systems'],
     outcome: 'Shipped a unified platform experience across three enterprise products.',
     text: 'Introduced leadership rhythms and standards that shifted design earlier in decision-making.'
   },
   {
-    image: '/images/img.png',
+    image: 'images/img.png',
     imageAlt: 'Professional working remotely on strategic planning',
-    logo: 'Astera Health',
-    logoImage: '/images/case-logos/astera.svg',
-    logoAlt: 'Astera Health logo',
+    logo: 'Healthcare service organization',
+    logoImage: '',
+    logoAlt: 'Healthcare service organization',
     role: 'Interim head of product design',
     tags: ['Healthcare', 'Customer experience', 'Workflow'],
     outcome: 'Reduced patient intake completion time by 41% across core service flows.',
@@ -77,18 +93,18 @@ const caseStudies = [
 const engagementItems = [
   {
     title: 'Fractional design leadership',
-    text: 'Embedded senior design leadership for strategy, organizational alignment, and critical product decisions.',
+    text: 'Embedded leadership support for product direction, organizational alignment, and critical design decisions across teams.',
     fit: 'Best for sustained leadership'
   },
   {
-    title: 'Transformation program',
-    text: 'A focused 4–8 week engagement to diagnose friction, align teams, and reset delivery foundations.',
+    title: 'Advisory and consulting engagements',
+    text: 'Targeted support for high-stakes decisions, product direction, and delivery friction where senior design leadership is needed quickly.',
     fit: 'Best for high-stakes inflection points'
   },
   {
-    title: 'Advisory for leaders',
-    text: 'Targeted guidance for founders and product leaders navigating growth, change, or scale.',
-    fit: 'Best for focused decision support'
+    title: 'Transformation and reset work',
+    text: 'Focused engagements to diagnose operational friction, realign teams, and establish stronger product and design foundations.',
+    fit: 'Best for change, scale, or recovery'
   }
 ];
 ---
@@ -109,19 +125,22 @@ const engagementItems = [
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="intro-sub-list intro-sub-list--top">
             <span class="pill">
-              <span>Chief product designer <span class="separator">•</span> 17+ Years <span class="separator">•</span> Startup to enterprise</span>
+              <span>Chief Product Designer at feature[23] <span class="separator">•</span> 17+ years <span class="separator">•</span> Startup to enterprise</span>
             </span>
           </div>
         </div>
 
         <div class="dm-grid-l dm-grid-l--grid-sys">
-          <h1 class="intro-title text-white">Design leadership for organizations navigating growth, complexity, & change.</h1>
+          <h1 class="intro-title text-white">Design leadership for organizations navigating growth, complexity, and change.</h1>
         </div>
 
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <p class="intro-text">
-            I help organizations scale design capability, align teams, and build the foundations for what’s next, from incremental improvement to meaningful transformation.
+            I help executives, product leaders, and cross-functional teams bring clarity to complex product decisions, align execution, and build design capability that scales.
           </p>
+        </div>
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <p class="intro-text text-accent">Available for select advisory and fractional engagements.</p>
         </div>
       </div>
       </div>
@@ -129,44 +148,48 @@ const engagementItems = [
 
     <section class="section leverage section-panel section-surface--dark section-panel--hero-bridge" data-star-density="0.9" data-star-brightness="0.88">
       <div class="dm-grid-l dm-grid-l--grid-sys leadership-intro">
-        <h2 class="section-title text-white gc-start-2 gc-span-22">Leadership across the organization.</h2>
-        <p class="gc-start-2 gc-span-18">Design is most effective when vision, execution, and the people are aligned.</p>
+        <h2 class="section-title text-white gc-start-2 gc-span-22">Design leadership across the organization.</h2>
+        <p class="gc-start-2 gc-span-18">I support the people setting direction, the teams building product, and the design leaders scaling capability.</p>
       </div>
 
       <div class="intro-cards col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
         {leverageCards.map((item) => (
-          <article class={`card leverage-card ${item.bgClass}`}>
+          <MediaPanel className="card leverage-card" image={item.image} imageAlt={item.imageAlt}>
             <div class="card-content">
               <div class="head-group">
                 <h3>{item.title}</h3>
               </div>
-              <p>{item.description}</p>
+              <p>
+                {item.descriptionLines.map((line) => <span class="leverage-card-description-line">{line}</span>)}
+              </p>
             </div>
-          </article>
+          </MediaPanel>
         ))}
       </div>
     </section>
 
     <section class="section about-panel-wrap section-panel section-surface--warm" data-star-density="0.7" data-star-brightness="0.68">
       <div class="about-feature dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-feature--body gc-start-2 gc-span-12">
-          <h2 class="section-title">Business outcomes through design leadership.</h2>
+        <div class="about-feature--body gc-start-2 gc-span-13">
+          <p class="about-feature--eyebrow">Design leadership in practice</p>
+          <h2 class="section-title">Clarity and direction when <br class="about-title-break" />your stakes are on the line.</h2>
           <p>
-            I help leadership teams turn complexity into clear product direction, stronger decisions, and measurable progress.
+            Across 17+ years in product and design leadership, including my current role at feature[23], I have led work across product, program, and portfolio levels, helping organizations make better decisions earlier and execute with more confidence.
           </p>
           <p>
-            I work across product, program, and portfolio levels to help organizations use software as a business driver, improving investment clarity, cross-functional alignment, delivery performance, and long-term capability.
+            I work with executives, product leaders, and teams when the path forward is real but the organization needs sharper direction, stronger alignment, and better operating rhythm to get there.
+          </p>
+          <p>
+            My approach is strategic and tactical: define direction, build the systems and standards that support execution, and stay close enough to the work that teams can move faster without losing quality.
           </p>
         </div>
 
-        <div class="about-feature--media gc-start-14 gc-span-12">
-          <img src="/images/dan-right.png" alt="Dan Malarkey" class="round-radi-1" />
-        </div>
-
-        <div class="about-highlights gc-start-2 gc-span-24">
+        <div class="about-highlights gc-start-16 gc-span-10" aria-label="Design leadership proof points">
           {practiceStats.map((item) => (
             <article class="about-highlights--item">
-              <p class="about-highlights--value">{item.label}</p>
+              <p class="about-highlights--value">
+                {item.labelLines.map((line) => <span class="about-highlights--value-line">{line}</span>)}
+              </p>
               <p class="about-highlights--text">{item.text}</p>
             </article>
           ))}
@@ -177,22 +200,29 @@ const engagementItems = [
     <section class="section case-studies section-panel section-surface--dark section-transition-impact" data-star-density="0.82" data-star-brightness="0.82">
       <div class="dm-grid-l dm-grid-l--grid-sys case-intro case-intro--with-controls">
         <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Real business outcomes</h2>
-        <p class="gc-start-2 gc-span-18">Measured outcomes that improved growth, operating efficiency, and experience quality.</p>
+        <p class="gc-start-2 gc-span-18">Selected outcomes from client engagements and leadership work focused on growth, operating efficiency, and experience quality. Some examples are anonymized.</p>
         <div class="case-rail-controls gc-start-19 gc-span-7" aria-label="Case studies navigation">
           <div class="case-rail-progress" aria-live="polite">
             <p class="case-rail-count"><span data-case-current>1</span><span class="case-rail-sep">/</span><span data-case-total>{caseStudies.length}</span></p>
             <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
           </div>
-          <button type="button" class="case-rail-btn" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">Previous</button>
-          <button type="button" class="case-rail-btn" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">Next</button>
+          <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path d="M10.75 2.75 5.5 8l5.25 5.25" />
+            </svg>
+          </button>
+          <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path d="M5.25 2.75 10.5 8l-5.25 5.25" />
+            </svg>
+          </button>
         </div>
       </div>
 
       <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
         <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies">
         {caseStudies.map((item) => (
-          <article class="case-card">
-            <img src={item.image} alt={item.imageAlt} />
+          <MediaPanel className="case-card" image={item.image} imageAlt={item.imageAlt}>
             <div class="case-overlay">
               <div class="case-meta">
                 {item.logoImage ? (
@@ -200,18 +230,12 @@ const engagementItems = [
                 ) : (
                   <p class="case-logo">{item.logo}</p>
                 )}
-                <ul class="case-tags">
-                  {item.tags.map((tag) => <li>{tag}</li>)}
-                </ul>
+                <p class="case-role">{item.tags.join(' • ')}</p>
               </div>
-              <!--<p class="case-role">{item.role}</p>-->
               <h3 class="case-outcome">{item.outcome}</h3>
-                <ul class="case-tags">
-                    {item.tags.map((tag) => <li>{tag}</li>)}
-                </ul>
-              <!--<p class="case-summary">{item.text}</p>-->
+              <p class="case-summary">{item.text}</p>
             </div>
-          </article>
+          </MediaPanel>
         ))}
         </div>
       </div>
@@ -221,10 +245,21 @@ const engagementItems = [
       <div class="engagement-layout dm-grid-l dm-grid-l--grid-sys">
         <div class="engagement-layout--intro gc-start-2 gc-span-8">
           <h2 class="section-title">Ways to engage</h2>
-          <p>Support is structured to match your stage, from embedded leadership to focused transformation work.</p>
+          <p>Available for select advisory, consulting, and fractional leadership engagements based on the stage, scope, and urgency of the work.</p>
           <div class="engagement-orbit-mark" aria-hidden="true">
             <svg viewBox="0 0 220 220" role="presentation" focusable="false">
-              <circle class="orbit-core" cx="110" cy="110" r="10"></circle>
+              <defs>
+                <radialGradient id="orbitSunFill" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#fff4b1" />
+                  <stop offset="55%" stop-color="#ffd067" />
+                  <stop offset="100%" stop-color="#ff9f3f" />
+                </radialGradient>
+              </defs>
+
+              <circle class="orbit-sun-halo" cx="110" cy="110" r="26"></circle>
+              <circle class="orbit-sun-glow" cx="110" cy="110" r="18"></circle>
+              <circle class="orbit-sun-ring" cx="110" cy="110" r="14.5"></circle>
+              <circle class="orbit-core" cx="110" cy="110" r="11.5"></circle>
 
               <circle class="orbit-ring orbit-ring--one" cx="110" cy="110" r="30"></circle>
               <circle class="orbit-ring orbit-ring--two" cx="110" cy="110" r="50"></circle>
@@ -258,17 +293,9 @@ const engagementItems = [
       </div>
     </section>
 
-    <section class="section close-cta section-panel section-surface--dark" data-star-density="0.88" data-star-brightness="0.88">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="cta-panel gc-start-4 gc-span-20">
-          <p>
-            If you’re navigating growth, complexity, or change and need design leadership that strengthens both product and team performance, I’d welcome a conversation.
-          </p>
-          <a href="mailto:hello@example.com" class="cta-link">Start a Conversation</a>
-        </div>
-      </div>
-    </section>
   </main>
+
+  <HomeFooter />
 </Layout>
 
 <script is:inline>
@@ -436,7 +463,7 @@ const engagementItems = [
           const fromLeft = Math.random() > 0.5;
           const startX = fromLeft ? -120 : width + 120;
           const startY = Math.random() * (height * 0.45) + 20;
-          const speed = 4 + Math.random() * 2.2;
+          const speed = 2.8 + Math.random() * 1.6;
           const angle = fromLeft ? 0.35 + Math.random() * 0.25 : Math.PI - (0.35 + Math.random() * 0.25);
           shootingStars.push({
             x: startX,
@@ -528,6 +555,14 @@ const engagementItems = [
     const cards = Array.from(rail.querySelectorAll('.case-card'));
     const totalCards = cards.length;
     let activeIndex = 0;
+    const EDGE_EPSILON = 4;
+
+    const syncRailTailSpace = () => {
+      const firstCard = cards[0];
+      if (!(firstCard instanceof HTMLElement)) return;
+      const trailingSpace = Math.max(0, rail.clientWidth - firstCard.offsetWidth);
+      rail.style.setProperty('--size-case-rail-tail-space', `${trailingSpace}px`);
+    };
 
     const updateProgress = () => {
       if (currentNode) currentNode.textContent = `${activeIndex + 1}`;
@@ -538,14 +573,26 @@ const engagementItems = [
     };
 
     const updateActiveIndex = () => {
-      const railCenter = rail.scrollLeft + rail.clientWidth / 2;
+      if (rail.scrollLeft <= EDGE_EPSILON) {
+        activeIndex = 0;
+        updateProgress();
+        return;
+      }
+
+      const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+      if (rail.scrollLeft >= maxScroll - EDGE_EPSILON) {
+        activeIndex = Math.max(0, totalCards - 1);
+        updateProgress();
+        return;
+      }
+
+      const railStart = rail.scrollLeft;
       let closestIndex = 0;
       let closestDistance = Number.POSITIVE_INFINITY;
 
       cards.forEach((card, index) => {
         if (!(card instanceof HTMLElement)) return;
-        const center = card.offsetLeft + card.offsetWidth / 2;
-        const distance = Math.abs(center - railCenter);
+        const distance = Math.abs(card.offsetLeft - railStart);
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
@@ -557,25 +604,35 @@ const engagementItems = [
     };
 
     const updateButtons = () => {
-      const maxScroll = rail.scrollWidth - rail.clientWidth;
-      prevButton.toggleAttribute('disabled', rail.scrollLeft <= 4);
-      nextButton.toggleAttribute('disabled', rail.scrollLeft >= maxScroll - 4);
+      prevButton.removeAttribute('disabled');
+      nextButton.removeAttribute('disabled');
       updateActiveIndex();
     };
 
-    const scrollByCard = (direction) => {
-      const firstCard = rail.querySelector('.case-card');
-      if (!(firstCard instanceof HTMLElement)) return;
-      const cardWidth = firstCard.getBoundingClientRect().width;
-      const gap = 24;
-      rail.scrollBy({ left: direction * (cardWidth + gap), behavior: 'smooth' });
+    const scrollToIndex = (index) => {
+      const nextIndex = Math.max(0, Math.min(index, totalCards - 1));
+      const targetCard = cards[nextIndex];
+      if (!(targetCard instanceof HTMLElement)) return;
+      rail.scrollTo({ left: targetCard.offsetLeft, behavior: 'smooth' });
     };
 
-    prevButton.addEventListener('click', () => scrollByCard(-1));
-    nextButton.addEventListener('click', () => scrollByCard(1));
+    prevButton.addEventListener('click', () => {
+      updateActiveIndex();
+      const nextIndex = activeIndex <= 0 ? totalCards - 1 : activeIndex - 1;
+      scrollToIndex(nextIndex);
+    });
+    nextButton.addEventListener('click', () => {
+      updateActiveIndex();
+      const nextIndex = activeIndex >= totalCards - 1 ? 0 : activeIndex + 1;
+      scrollToIndex(nextIndex);
+    });
     rail.addEventListener('scroll', updateButtons, { passive: true });
-    window.addEventListener('resize', updateButtons);
+    window.addEventListener('resize', () => {
+      syncRailTailSpace();
+      updateButtons();
+    });
 
+    syncRailTailSpace();
     updateProgress();
     updateButtons();
   })();

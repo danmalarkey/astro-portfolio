@@ -4,7 +4,24 @@ interface Props {
     title?: string;
 }
 
-const currentPath = Astro.url.pathname;
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const normalizePath = (value: string) => {
+    const normalized = value.endsWith('/') && value !== '/' ? value.slice(0, -1) : value;
+    return normalized || '/';
+};
+const stripBasePath = (path: string, base: string) => {
+    const normalizedBase = base.endsWith('/') && base !== '/' ? base.slice(0, -1) : base;
+    if (normalizedBase !== '/' && path.startsWith(normalizedBase)) {
+        const stripped = path.slice(normalizedBase.length) || '/';
+        return stripped.startsWith('/') ? stripped : `/${stripped}`;
+    }
+    return path;
+};
+const currentPath = normalizePath(stripBasePath(Astro.url.pathname, baseUrl));
+const withBase = (path: string) => {
+    const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
+    return baseUrl + normalizedPath;
+};
 ---
 
 <div class="header">
@@ -14,25 +31,22 @@ const currentPath = Astro.url.pathname;
         <!--</div>-->
         <ul class="header-nav">
             <li>
-                <a href="/" class={`header-nav--link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
+                <a href={withBase('/')} class={`header-nav--link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
             </li>
             <li>
-                <a href="/work" class={`header-nav--link ${currentPath === '/work' ? 'active' : ''}`}>Work</a>
+                <a href={withBase('/work')} class={`header-nav--link ${currentPath === '/work' ? 'active' : ''}`}>Work</a>
             </li>
             <li>
-                <a href="/writing" class={`header-nav--link ${currentPath === '/writing' ? 'active' : ''}`}>Writing</a>
+                <a href={withBase('/library')} class={`header-nav--link ${currentPath === '/library' ? 'active' : ''}`}>Library</a>
             </li>
             <li>
-                <a href="/library" class={`header-nav--link ${currentPath === '/library' ? 'active' : ''}`}>Library</a>
+                <a href={withBase('/about')} class={`header-nav--link ${currentPath === '/about' ? 'active' : ''}`}>About</a>
             </li>
             <li>
-                <a href="/about" class={`header-nav--link ${currentPath === '/about' ? 'active' : ''}`}>About</a>
+                <a href={withBase('/blog')} class={`header-nav--link ${currentPath === '/blog' ? 'active' : ''}`}>Writing</a>
             </li>
-            <li>
-                <a href="/blog" class={`header-nav--link ${currentPath === '/blog' ? 'active' : ''}`}>Blog</a>
-            </li>
-            <li>
-                <a href="/contact" class={`header-nav--link ${currentPath === '/contact' ? 'active' : ''}`}>Contact</a>
+            <li class="header-nav--item header-nav--item--cta">
+                <a href="mailto:hello@danmalarkey.com" class="header-nav--link header-nav--link--cta">Work with me</a>
             </li>
         </ul>
     </header>
@@ -47,9 +61,9 @@ const currentPath = Astro.url.pathname;
     .header {
         display: flex;
         position: relative;
-        margin-top: var(--spacing-lg);
+        margin-top: var(--spacing-header-margin-top);
         justify-content: center;
-        height: calc(var(--spacing-2xl) + var(--spacing-md));
+        height: var(--size-header-shell-height);
         z-index: var(--z-index-floating-nav);
 
         header {
@@ -57,10 +71,9 @@ const currentPath = Astro.url.pathname;
             align-self: center;
             align-items: center;
             justify-content: center;
-            margin: var(--spacing-lg) auto 0 auto;
-            background-color: var(--color-background-surface);
-            background-color: var(--color-surface-glass-subtle);
-            padding: calc(var(--spacing-xs) * 0.5) var(--spacing-sm);
+            margin: var(--spacing-header-margin-top) auto 0 auto;
+            background-color: var(--color-header-surface);
+            padding: var(--spacing-header-panel-padding-block) var(--spacing-header-panel-padding-inline);
             color: var(--color-text-primary);
             border-radius: var(--radius-pill);
             position: fixed;
@@ -70,20 +83,20 @@ const currentPath = Astro.url.pathname;
             -webkit-backdrop-filter: blur(var(--size-header-blur)); /* Safari support */
 
             /* Optional: Border to define edges */
-            border-bottom: var(--size-border-thin) solid var(--color-border-on-dark-subtle);
-            box-shadow: 0 var(--spacing-lg) var(--spacing-2xl) var(--shadow-color-header);
+            border: var(--size-border-thin) solid var(--color-border-on-dark-subtle);
+            box-shadow: var(--shadow-header-floating);
         }
 
         @media (max-width: 62rem) {
-            margin-top: var(--spacing-md);
-            height: calc(var(--spacing-2xl) + var(--spacing-sm));
+            margin-top: var(--spacing-header-margin-top-mobile);
+            height: var(--size-header-shell-height-mobile);
 
             header {
                 width: calc(100% - var(--spacing-lg));
                 justify-content: flex-start;
                 overflow-x: auto;
                 overflow-y: hidden;
-                padding: calc(var(--spacing-xs) * 0.5) var(--spacing-xs);
+                padding: var(--spacing-header-panel-padding-block) calc(var(--spacing-xs) * 0.875);
                 scrollbar-width: none;
             }
 
@@ -93,7 +106,7 @@ const currentPath = Astro.url.pathname;
         }
 
         @media (max-width: 48rem) {
-            margin-top: var(--spacing-sm);
+            margin-top: var(--spacing-header-margin-top-mobile);
             height: var(--spacing-4xl);
         }
     }
@@ -108,13 +121,13 @@ const currentPath = Astro.url.pathname;
         .header-nav--link {
 			color: var(--color-text-muted);
             text-decoration: none;
-            padding: var(--spacing-xs) var(--spacing-sm);
+            padding: var(--spacing-xs) var(--spacing-header-link-padding-inline);
             background-color: transparent;
             border-radius: var(--radius-pill);
 
 
             &:hover {
-                background-color: var(--color-border-subtle-dark);
+                background-color: var(--color-header-link-hover);
              }
 
             &.active {
@@ -128,9 +141,55 @@ const currentPath = Astro.url.pathname;
             list-style: none;
         }
 
+        .header-nav--item--cta {
+            margin-left: calc(var(--spacing-xs) * 0.5);
+        }
+
+        .header-nav--link--cta {
+            color: var(--color-text-primary);
+            background: var(--color-surface-glass-soft);
+            border: var(--size-border-thin) solid var(--color-border-on-dark-soft);
+            box-shadow: inset 0 0.0625rem 0 rgba(255, 255, 255, 0.06);
+            font-weight: var(--font-weight-medium);
+            transition:
+                background-color var(--duration-transition-fast) var(--easing-standard),
+                border-color var(--duration-transition-fast) var(--easing-standard),
+                color var(--duration-transition-fast) var(--easing-standard),
+                box-shadow var(--duration-transition-fast) var(--easing-standard),
+                transform var(--duration-transition-fast) var(--easing-standard);
+
+            @media (hover: hover) {
+                &:hover {
+                    background: var(--gradient-site-footer-cta);
+                    color: var(--color-site-footer-cta-text);
+                    border-color: var(--color-site-footer-cta-border);
+                    box-shadow: var(--shadow-site-footer-cta-rest);
+                    transform: translateY(var(--motion-lift-subtle));
+                }
+            }
+
+            &:focus-visible {
+                background: var(--gradient-site-footer-cta);
+                color: var(--color-site-footer-cta-text);
+                border-color: var(--color-site-footer-cta-border-hover);
+                box-shadow: var(--shadow-site-footer-cta-rest), var(--shadow-site-footer-cta-focus);
+            }
+
+            &.active {
+                background: var(--color-surface-glass-soft);
+                color: var(--color-text-primary);
+                border-color: var(--color-border-on-dark-soft);
+                font-weight: var(--font-weight-medium);
+            }
+        }
+
         @media (max-width: 48rem) {
+            .header-nav--item--cta {
+                margin-left: calc(var(--spacing-xs) * 0.25);
+            }
+
             .header-nav--link {
-                padding: var(--spacing-xs) calc(var(--spacing-sm) - var(--spacing-xs));
+                padding: var(--spacing-xs) var(--spacing-header-link-padding-inline-mobile);
                 font-size: var(--size-label-sm);
             }
         }

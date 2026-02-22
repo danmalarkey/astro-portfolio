@@ -1,0 +1,18 @@
+---
+interface Props {
+  image: string;
+  imageAlt: string;
+  className?: string;
+}
+
+const { image, imageAlt, className = '' } = Astro.props as Props;
+---
+
+<article class={`media-panel ${className}`.trim()}>
+  <div class="media-panel-media">
+    <img src={image} alt={imageAlt} />
+  </div>
+  <div class="media-panel-body">
+    <slot />
+  </div>
+</article>
