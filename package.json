@@ -1,10 +1,12 @@
 {
-  "name": "wretched-wind",
+  "name": "portfolio",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "lint:font-weight": "./scripts/guard-font-weight.sh",
+    "lint:style-guards": "npm run lint:font-weight",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

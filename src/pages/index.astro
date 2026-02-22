@@ -4,37 +4,32 @@ import Layout from '../layouts/Layout.astro';
 
 const leverageCards = [
   {
-    title: 'Executives, founders, and product owners',
-    description: 'Clarifying product direction, aligning priorities, and ensuring design meaningfully supports business outcomes.',
+    // title: 'Executives, founders, and product owners',
+    title: 'Executives and product drivers',
+    description: 'Clarifying direction, aligning priorities, and ensuring design drives business outcomes.',
     bgClass: 'exec-bg'
   },
   {
     title: 'Product and engineering teams',
-    description: 'Strengthening collaboration, reducing delivery friction, and building shared patterns that scale.',
+    description: 'Improving collaboration, reducing delivery friction, and establishing patterns that scale.',
     bgClass: 'prod-bg'
   },
   {
     title: 'Designers and design leaders',
-    description: 'Elevating practice maturity, establishing standards, and increasing design’s strategic voice.',
+    description: 'Raising craft maturity, setting standards, and strengthening design’s strategic influence.',
     bgClass: 'design-bg'
   }
 ];
 
 const practiceStats = [
-  { label: '17+', text: 'Years in product and design leadership' },
-  { label: 'Startup to enterprise', text: 'Experience across organizational scale' },
-  { label: 'Built for scale', text: 'Products, teams, and standards designed for durability' }
-];
-
-const proofMetrics = [
-  { label: 'Conversion impact', value: '+250%', detail: 'Membership growth in first 6 months' },
-  { label: 'Workflow efficiency', value: '-46%', detail: 'Design-to-dev rework reduction' },
-  { label: 'Onboarding friction', value: '-38%', detail: 'Lower activation drop-off across key journeys' }
+  { label: 'Executive design partner', text: 'Trusted by leadership teams to align product direction and delivery' },
+  { label: 'Startup to enterprise', text: 'Led through early growth and complex organizational environments' },
+  { label: 'Portfolio-level leadership', text: 'Aligned product, program, and design decisions to real business outcomes' }
 ];
 
 const caseStudies = [
   {
-    image: '/images/img.png',
+    image: '/images/case-studies/home/vystar-bg-img.png',
     imageAlt: 'Banking customer using laptop at home',
     logo: 'VyStar',
     logoImage: '/images/case-logos/vystar.svg',
@@ -82,18 +77,18 @@ const caseStudies = [
 const engagementItems = [
   {
     title: 'Fractional design leadership',
-    text: 'Ongoing senior partnership for strategy, organizational alignment, and high-leverage product decisions.',
-    icon: 'orbit'
+    text: 'Embedded senior design leadership for strategy, organizational alignment, and critical product decisions.',
+    fit: 'Best for sustained leadership'
   },
   {
     title: 'Transformation program',
-    text: 'Focused 4–8 week engagement to diagnose friction, align teams, and establish a practical operating model.',
-    icon: 'pulse'
+    text: 'A focused 4–8 week engagement to diagnose friction, align teams, and reset delivery foundations.',
+    fit: 'Best for high-stakes inflection points'
   },
   {
     title: 'Advisory for leaders',
-    text: 'Targeted support for founders and product leaders navigating growth, change, or organization scaling.',
-    icon: 'signal'
+    text: 'Targeted guidance for founders and product leaders navigating growth, change, or scale.',
+    fit: 'Best for focused decision support'
   }
 ];
 ---
@@ -114,7 +109,7 @@ const engagementItems = [
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="intro-sub-list intro-sub-list--top">
             <span class="pill">
-              <span>Fractional chief product designer <span class="separator">•</span> 17+ years <span class="separator">•</span> Startup to enterprise</span>
+              <span>Chief product designer <span class="separator">•</span> 17+ Years <span class="separator">•</span> Startup to enterprise</span>
             </span>
           </div>
         </div>
@@ -125,7 +120,7 @@ const engagementItems = [
 
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <p class="intro-text">
-            I help businesses scale design capability, align teams, and build the foundations that support what’s next, whether that’s incremental improvement or meaningful transformation.
+            I help organizations scale design capability, align teams, and build the foundations for what’s next, from incremental improvement to meaningful transformation.
           </p>
         </div>
       </div>
@@ -135,7 +130,7 @@ const engagementItems = [
     <section class="section leverage section-panel section-surface--dark section-panel--hero-bridge" data-star-density="0.9" data-star-brightness="0.88">
       <div class="dm-grid-l dm-grid-l--grid-sys leadership-intro">
         <h2 class="section-title text-white gc-start-2 gc-span-22">Leadership across the organization.</h2>
-        <p class="gc-start-2 gc-span-18">Design is most effective when vision, execution, and the people responsible for both are aligned.</p>
+        <p class="gc-start-2 gc-span-18">Design is most effective when vision, execution, and the people are aligned.</p>
       </div>
 
       <div class="intro-cards col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys">
@@ -155,12 +150,12 @@ const engagementItems = [
     <section class="section about-panel-wrap section-panel section-surface--warm" data-star-density="0.7" data-star-brightness="0.68">
       <div class="about-feature dm-grid-l dm-grid-l--grid-sys">
         <div class="about-feature--body gc-start-2 gc-span-12">
-          <h2 class="section-title">Business success grounded in practice.</h2>
+          <h2 class="section-title">Business outcomes through design leadership.</h2>
           <p>
-            I’m a product and design leader who helps organizations bring clarity to complex problems and build design capability that scales, working closely with executives, product, and engineering teams to support what’s next.
+            I help leadership teams turn complexity into clear product direction, stronger decisions, and measurable progress.
           </p>
           <p>
-            I’ve led through early-stage growth, enterprise complexity, and moments of significant organizational change.
+            I work across product, program, and portfolio levels to help organizations use software as a business driver, improving investment clarity, cross-functional alignment, delivery performance, and long-term capability.
           </p>
         </div>
 
@@ -176,26 +171,13 @@ const engagementItems = [
             </article>
           ))}
         </div>
-        <div class="proof-intro gc-start-2 gc-span-24">
-          <h3>Outcomes tied to business movement.</h3>
-          <p>Measurable impact across growth-stage and enterprise contexts.</p>
-        </div>
-        <div class="proof-metrics gc-start-2 gc-span-24">
-          {proofMetrics.map((item) => (
-            <article class="proof-metric">
-              <p class="proof-metric--value">{item.value}</p>
-              <p>{item.label}</p>
-              <p class="proof-metric--detail">{item.detail}</p>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
 
     <section class="section case-studies section-panel section-surface--dark section-transition-impact" data-star-density="0.82" data-star-brightness="0.82">
       <div class="dm-grid-l dm-grid-l--grid-sys case-intro case-intro--with-controls">
-        <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Selected impact</h2>
-        <p class="gc-start-2 gc-span-18">Case-study style snapshots you can expand later with full story pages.</p>
+        <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Real business outcomes</h2>
+        <p class="gc-start-2 gc-span-18">Measured outcomes that improved growth, operating efficiency, and experience quality.</p>
         <div class="case-rail-controls gc-start-19 gc-span-7" aria-label="Case studies navigation">
           <div class="case-rail-progress" aria-live="polite">
             <p class="case-rail-count"><span data-case-current>1</span><span class="case-rail-sep">/</span><span data-case-total>{caseStudies.length}</span></p>
@@ -222,9 +204,12 @@ const engagementItems = [
                   {item.tags.map((tag) => <li>{tag}</li>)}
                 </ul>
               </div>
-              <p class="case-role">{item.role}</p>
+              <!--<p class="case-role">{item.role}</p>-->
               <h3 class="case-outcome">{item.outcome}</h3>
-              <p class="case-summary">{item.text}</p>
+                <ul class="case-tags">
+                    {item.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+              <!--<p class="case-summary">{item.text}</p>-->
             </div>
           </article>
         ))}
@@ -232,23 +217,44 @@ const engagementItems = [
       </div>
     </section>
 
-    <section class="section ways-to-engage section-panel section-surface--light" data-star-density="0.82" data-star-brightness="0.82">
-      <div class="dm-grid-l dm-grid-l--grid-sys section-head">
-        <h2 class="section-title gc-start-2 gc-span-16">Ways to engage</h2>
-        <p class="gc-start-2 gc-span-18">Here’s how support is structured in practice, from embedded leadership to focused change work.</p>
-      </div>
-      <div class="engagement-model dm-grid-l dm-grid-l--grid-sys">
+    <section class="section ways-to-engage section-panel section-surface--engage" data-star-density="0.82" data-star-brightness="0.82">
+      <div class="engagement-layout dm-grid-l dm-grid-l--grid-sys">
+        <div class="engagement-layout--intro gc-start-2 gc-span-8">
+          <h2 class="section-title">Ways to engage</h2>
+          <p>Support is structured to match your stage, from embedded leadership to focused transformation work.</p>
+          <div class="engagement-orbit-mark" aria-hidden="true">
+            <svg viewBox="0 0 220 220" role="presentation" focusable="false">
+              <circle class="orbit-core" cx="110" cy="110" r="10"></circle>
+
+              <circle class="orbit-ring orbit-ring--one" cx="110" cy="110" r="30"></circle>
+              <circle class="orbit-ring orbit-ring--two" cx="110" cy="110" r="50"></circle>
+              <circle class="orbit-ring orbit-ring--three" cx="110" cy="110" r="72"></circle>
+              <circle class="orbit-ring orbit-ring--four" cx="110" cy="110" r="94"></circle>
+
+              <g class="orbit-track orbit-track--one">
+                <circle class="orbit-planet orbit-planet--one" cx="110" cy="60" r="4"></circle>
+              </g>
+              <g class="orbit-track orbit-track--two">
+                <circle class="orbit-planet orbit-planet--two" cx="110" cy="38" r="4.5"></circle>
+              </g>
+              <g class="orbit-track orbit-track--three">
+                <circle class="orbit-planet orbit-planet--three" cx="110" cy="16" r="3.5"></circle>
+              </g>
+
+              <circle class="orbit-accent" cx="110" cy="110" r="117"></circle>
+            </svg>
+          </div>
+        </div>
+
+        <div class="engagement-model gc-start-10 gc-span-16">
         {engagementItems.map((item) => (
           <article class="engagement-model--item">
-            <div class="engagement-model--head">
-              <div class={`engagement-model--icon icon-${item.icon}`} aria-hidden="true">
-                <span></span>
-              </div>
-            </div>
             <h3>{item.title}</h3>
-            <p>{item.text}</p>
+            <p class="engagement-model--fit">{item.fit}</p>
+            <p class="engagement-model--body">{item.text}</p>
           </article>
         ))}
+        </div>
       </div>
     </section>
 
@@ -256,7 +262,7 @@ const engagementItems = [
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="cta-panel gc-start-4 gc-span-20">
           <p>
-            If you’re navigating growth, complexity, or change, and want design leadership that strengthens your product and your teams, I’d welcome a conversation.
+            If you’re navigating growth, complexity, or change and need design leadership that strengthens both product and team performance, I’d welcome a conversation.
           </p>
           <a href="mailto:hello@example.com" class="cta-link">Start a Conversation</a>
         </div>
@@ -300,7 +306,7 @@ const engagementItems = [
     let targetDensity = 1;
     let targetBrightness = 1;
     let sectionProfiles = [];
-    let shootingStar = null;
+    const shootingStars = [];
     let nextShootingStarAt = 0;
 
     const resize = () => {
@@ -345,14 +351,19 @@ const engagementItems = [
       const cloudCount = Math.max(3, Math.round(width / 430));
       for (let i = 0; i < cloudCount; i += 1) {
         const color = nebulaPalette[Math.floor(Math.random() * nebulaPalette.length)];
+        const baseX = width * (0.15 + Math.random() * 0.7);
+        const baseY = height * (0.06 + Math.random() * 0.42);
         nebulaClouds.push({
-          x: width * (0.15 + Math.random() * 0.7),
-          y: height * (0.06 + Math.random() * 0.42),
+          x: baseX,
+          y: baseY,
           radius: 180 + Math.random() * 280,
           alpha: 0.12 + Math.random() * 0.1,
           drift: 8 + Math.random() * 10,
           phase: Math.random() * Math.PI * 2,
-          color
+          color,
+          targetX: baseX,
+          targetY: baseY,
+          retargetAt: performance.now() + 8000 + Math.random() * 9000
         });
       }
     };
@@ -378,6 +389,15 @@ const engagementItems = [
       ctx.save();
       ctx.globalCompositeOperation = 'screen';
       for (const cloud of nebulaClouds) {
+        if (now >= cloud.retargetAt) {
+          cloud.targetX = width * (0.14 + Math.random() * 0.72);
+          cloud.targetY = height * (0.04 + Math.random() * 0.46);
+          cloud.retargetAt = now + 12000 + Math.random() * 18000;
+        }
+
+        cloud.x += (cloud.targetX - cloud.x) * 0.0014;
+        cloud.y += (cloud.targetY - cloud.y) * 0.0014;
+
         const cx = cloud.x + Math.sin(now * 0.00006 + cloud.phase) * cloud.drift;
         const cy = cloud.y + Math.cos(now * 0.00005 + cloud.phase) * cloud.drift * 0.5 + pointerOffsetY * 0.05;
         const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, cloud.radius);
@@ -410,25 +430,27 @@ const engagementItems = [
         ctx.fill();
       }
 
-      // Occasional shooting star for atmospheric motion.
+      // Frequent but controlled shooting stars for atmospheric motion.
       if (!prefersReducedMotion) {
-        if (!shootingStar && now >= nextShootingStarAt) {
+        if (now >= nextShootingStarAt && shootingStars.length < 2) {
           const fromLeft = Math.random() > 0.5;
           const startX = fromLeft ? -120 : width + 120;
           const startY = Math.random() * (height * 0.45) + 20;
-          const speed = 4.5 + Math.random() * 2.5;
+          const speed = 4 + Math.random() * 2.2;
           const angle = fromLeft ? 0.35 + Math.random() * 0.25 : Math.PI - (0.35 + Math.random() * 0.25);
-          shootingStar = {
+          shootingStars.push({
             x: startX,
             y: startY,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             life: 0,
             maxLife: 90 + Math.random() * 45
-          };
+          });
+          nextShootingStarAt = now + 1700 + Math.random() * 2600;
         }
 
-        if (shootingStar) {
+        for (let i = shootingStars.length - 1; i >= 0; i -= 1) {
+          const shootingStar = shootingStars[i];
           shootingStar.x += shootingStar.vx;
           shootingStar.y += shootingStar.vy;
           shootingStar.life += 1;
@@ -455,8 +477,7 @@ const engagementItems = [
             shootingStar.x > width + 240 ||
             shootingStar.y > height + 120
           ) {
-            shootingStar = null;
-            nextShootingStarAt = now + 5000 + Math.random() * 6000;
+            shootingStars.splice(i, 1);
           }
         }
       }
@@ -490,7 +511,7 @@ const engagementItems = [
     pointerX = width / 2;
     pointerY = height / 2;
     scrollY = window.scrollY;
-    nextShootingStarAt = performance.now() + 2600;
+    nextShootingStarAt = performance.now() + 1800;
     updateTargetsFromScroll();
     draw();
   })();
