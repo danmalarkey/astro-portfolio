@@ -50,3 +50,10 @@
   - tightened mobile hero spacing rhythm
   - improved title/body line lengths and availability line separation
 - Confirmed local build remains stable after mobile header/hero changes
+- Completed mobile hero hierarchy/spacing pass (`#2`) and mobile outcomes rail/card mobile pass (`#3`):
+  - added section-level mobile x-axis gutters (2rem) and hero-specific mobile x padding
+  - kept outcomes rail horizontal/off-edge on mobile instead of stacking
+  - tuned mobile hero credibility pill (shorter text + calmer styling)
+  - added mobile footer readability gradient behind `Best fit for` bullet list
+  - pinned mobile header CTA while nav links scroll, with restored styling parity
+- Added slower hover/background motion language for interactive elements (header CTA, footer CTA, rail controls)

@@ -224,13 +224,13 @@
   }
 
   .case-card {
-    flex-basis: 100%;
-    width: 100%;
+    flex-basis: min(calc(var(--spacing-4xl) * 5 + var(--spacing-lg)), 86vw);
+    width: auto;
     max-width: 100%;
     border-radius: 0;
 
     .media-panel-media img {
-      height: min(var(--size-media-panel-image-mobile), 56vw);
+      height: min(var(--size-media-panel-image-mobile), 58vw);
       min-height: var(--size-case-panel-image-mobile-min);
     }
 
