@@ -43,6 +43,7 @@ Document what is now standardized on the homepage and what remains system debt b
 - Prev/next controls wrap (`4 -> 1`, `1 -> 4`)
 - Rail progress index tracks left-edge alignment, not center alignment
 - Dynamic tail spacer allows last card to align correctly
+- Icon button controls use custom inline SVG triangles with hover/focus-visible states (no icon library dependency)
 
 ## 5. Footer Pattern (Homepage)
 
@@ -85,6 +86,14 @@ Implemented:
 - Hero spacing feels strongest
 - Homepage section intros are closer to the target now
 - Remaining pages (`about`, `blog`, etc.) still need the same rhythm rules
+
+### B1. Mobile rhythm and layout polish is now the immediate execution priority
+
+- Mobile layout quality is behind desktop after major homepage iteration
+- Priority order is tracked in GitHub issues:
+  - `#1` mobile header/nav
+  - `#2` mobile hero hierarchy/spacing
+  - `#3` mobile outcomes rail/cards
 
 ### C. Decorative density tuning is partial
 

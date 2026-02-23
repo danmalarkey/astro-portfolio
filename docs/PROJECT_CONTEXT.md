@@ -176,7 +176,6 @@ Implementation preferences (current):
 
 ## Current Known Follow-Ups
 
-- Create a real project README (replace Astro starter README)
 - Refine navigation IA (`Writing` vs `Blog`)
 - Strengthen landing page messaging for executive design leadership conversion
 - Define writing strategy/categories
@@ -186,3 +185,19 @@ Implementation preferences (current):
 - Build featured outcomes content/asset list using `docs/featured-outcomes-proof-matrix.md` and `docs/imagery-rubric.md`
 - Build real `Work`, `Library`, and `About` pages to replace current placeholder routes and nav dead-ends
 - Decide whether GitHub Pages should remain QA/staging-only or become the primary public deployment path
+- Execute mobile polish backlog first (`#1` mobile header/nav, `#2` hero spacing, `#3` outcomes rail/cards)
+
+## QA / Deployment (Current)
+
+- GitHub Pages is enabled and live for QA using GitHub Actions
+- QA URL (repo pages): `https://danmalarkey.github.io/astro-portfolio/`
+- Local development should remain rooted at `/` (no repo base path)
+- Current Astro config uses environment-aware base behavior:
+  - local/dev: `/`
+  - GitHub Actions QA build: `/astro-portfolio`
+
+## Delivery Workflow (Current)
+
+- GitHub issue backlog is active in `danmalarkey/astro-portfolio`
+- Initial project issues created: `#1`-`#9`
+- Start implementation work from issues in priority order and close issues as milestones complete
