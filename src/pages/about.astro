@@ -1,22 +1,259 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.astro";
+import HomeFooter from "../components/HomeFooter.astro";
+const isDev = import.meta.env.DEV;
+
+const proofHighlights = [
+  {
+    label: "Current role",
+    title: "Chief Product Designer at feature[23]",
+    text: "I lead design work across complex client engagements and help shape how design contributes to product direction, delivery quality, and business outcomes."
+  },
+  {
+    label: "Scope",
+    title: "Strategy through execution",
+    text: "I work across executive alignment, product direction, system design, team standards, and implementation-ready delivery patterns."
+  },
+  {
+    label: "Operating context",
+    title: "Growth, complexity, and change",
+    text: "Most of my strongest work happens when organizations need clarity, momentum, and better decisions under pressure."
+  }
+];
+
+const principles = [
+  {
+    title: "Direction before execution",
+    text: "The fastest teams still lose time when priorities are unclear. I help leaders clarify what matters, what changes, and what design needs to drive."
+  },
+  {
+    title: "Systems-led, people-first",
+    text: "Design scales when standards, decisions, and teams work together. The system should support people, not become more process overhead."
+  },
+  {
+    title: "Progress without chaos",
+    text: "I care about momentum, but not at the cost of quality, accessibility, or long-term maintainability. Speed should increase confidence, not debt."
+  }
+];
+
+const collaborationModes = [
+  {
+    title: "Executive advisory",
+    detail: "For leaders navigating product ambiguity, organizational change, or design investment decisions.",
+    note: "Placeholder: add engagement examples, cadence, and outcomes."
+  },
+  {
+    title: "Fractional design leadership",
+    detail: "For teams that need senior design leadership embedded in product direction, prioritization, and delivery partnership.",
+    note: "Placeholder: define what is included, what is not, and how engagements are structured."
+  },
+  {
+    title: "Transformation and reset work",
+    detail: "For organizations rebuilding workflows, teams, or systems where design needs to create alignment and restore momentum.",
+    note: "Placeholder: add before/after patterns and ideal engagement signals."
+  }
+];
+
+const localSignals = [
+  "Jacksonville, Florida",
+  "Available for select advisory and fractional engagements",
+  "Email-first outreach: hello@danmalarkey.com"
+];
+
+const beyondDesign = [
+  {
+    title: "Writing and field notes",
+    text: "A place to publish what I am learning about design leadership, product direction, systems, and AI in delivery as the work evolves.",
+    note: "This will connect to the Writing section and can include more personal perspective alongside practical frameworks."
+  },
+  {
+    title: "Library and recommendations",
+    text: "Books, references, and resources for designers building their careers and leaders learning where design creates leverage.",
+    note: "This is also the natural home for curated reading lists and recommendation notes over time."
+  },
+  {
+    title: "Play / lab work (future)",
+    text: "Experiments and personal builds that reflect how I think and what I enjoy making outside of client work.",
+    note: "Potential home for vinyl collection integrations, data-fed collections, and other curiosity-driven projects."
+  }
+];
 ---
-<Layout title="About Dan Malarkey | Product Design Leader">
-    <Header />
-    <main>
-        <section class="section">
-            <div class="dm-grid-l dm-grid-l--grid-sys">
-                <div class="gc-start-2 gc-span-18">
-                    <h1 class="section-title text-white">About</h1>
-                    <p>
-                        A deeper look at how I lead design work across executives, product teams, and design organizations is in progress.
-                    </p>
-                    <p class="small-text">
-                        The homepage currently carries the primary positioning and proof while this page is being developed.
-                    </p>
-                </div>
+
+<Layout title="About Dan Malarkey | Design Leadership in Practice">
+  <Header />
+  <main>
+    <section class="intro-mh intro-mh--about about-page-hero" id="about-top">
+      <div class="sky-burst" aria-hidden="true"></div>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="hero-shell gc-start-2 gc-span-24">
+          <div class="dm-grid-l dm-grid-l--grid-sys about-page-hero-layout about-page-mh-card">
+            <div class="gc-start-2 gc-span-12 about-page-hero-copy">
+              <h1 class="intro-title">The person behind the work, and how I lead when things get complicated.</h1>
             </div>
-        </section>
-    </main>
+            <div class="gc-start-15 gc-span-9 about-page-hero-side">
+              <div class="intro-sub-list intro-sub-list--top">
+                <span class="pill">
+                  <span class="pill-text-desktop">Chief Product Designer at feature[23] <span class="separator">•</span> Jacksonville, Florida <span class="separator">•</span> 17+ years</span>
+                  <span class="pill-text-mobile">Chief Product Designer at feature[23]</span>
+                </span>
+              </div>
+              <p class="intro-text">
+                I build clarity in complex product environments. At feature[23], I help lead product and design work across client engagements where direction, delivery quality, and business risk all need to be managed at the same time.
+              </p>
+              <p class="intro-text text-accent">Available for select advisory and fractional engagements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--warm about-page-section">
+      <div class="dm-grid-l dm-grid-l--grid-sys about-feature">
+        <div class="gc-start-2 gc-span-13 about-feature--body">
+          <p class="about-feature--eyebrow">Design leadership in practice</p>
+          <h2 class="section-title">
+            Clarity and direction when<span class="about-title-break"></span> product work gets complex.
+          </h2>
+          <p>
+            Across 17+ years in product and design leadership, I have worked across startups and larger organizations, helping teams make better decisions earlier and execute with more confidence. My strongest work sits at the intersection of strategy, systems, and execution.
+          </p>
+          <p>
+            I am most useful when teams have real momentum but need sharper direction, clearer operating rhythm, or stronger alignment across executives, product, engineering, and design. I tend to get pulled into moments where the stakes are high and ambiguity is expensive.
+          </p>
+          <p>
+            This portfolio is not meant to be a gallery of polished UI alone. I want it to show how I actually contribute: clarifying direction, improving decision quality, building design capability, and staying close enough to the work that teams can move without losing confidence.
+          </p>
+        </div>
+
+        <div class="gc-start-17 gc-span-9 about-highlights">
+          {proofHighlights.map((item) => (
+            <article class="about-highlights--item">
+              <p class="about-page-proof-label">{item.label}</p>
+              <p class="about-highlights--value">{item.title}</p>
+              <p class="about-highlights--text">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--warm about-page-section">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
+          <p class="section-intro-eyebrow">More than design</p>
+          <h2 class="section-title">This site also needs room for the things I am building and collecting for myself.</h2>
+          <p class="section-intro-body">
+            I do not want this portfolio to become a generic professional brochure. Over time, this page and related sections should also show the personal systems, recommendations, and experiments that reflect how I think outside of client work.
+          </p>
+          {isDev && (
+            <p class="section-intro-meta">
+              Dev note: this is where we can shape the boundary between market-facing credibility and personal depth without diluting the site’s primary conversion goal.
+            </p>
+          )}
+        </div>
+
+        <div class="gc-start-13 gc-span-9 about-page-collab-list" role="list" aria-label="More than design placeholders">
+          {beyondDesign.map((item) => (
+            <article class="about-page-collab-item" role="listitem">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              {isDev && <p class="about-page-collab-note">{item.note}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--aurora about-page-section">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-18 section-intro section-intro--compact">
+          <p class="section-intro-eyebrow">How I operate</p>
+          <h2 class="section-title">Principles that shape how I lead product and design work.</h2>
+          <p class="section-intro-body">
+            These are not brand phrases. They are the decision filters I use when teams need to move, align, and improve outcomes without creating delivery chaos.
+          </p>
+        </div>
+
+        <div class="gc-start-2 gc-span-18 about-page-principles" role="list">
+          {principles.map((item) => (
+            <article class="about-page-principle" role="listitem">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--light about-page-section">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
+          <p class="section-intro-eyebrow">How I help</p>
+          <h2 class="section-title">Ways teams can work with me.</h2>
+          <p class="section-intro-body">
+            The shape is here now so the right teams can quickly understand where I fit: advisory support, fractional leadership, and focused transformation work. We will tighten the exact engagement language as the offer evolves.
+          </p>
+          {isDev && (
+            <p class="section-intro-meta">
+              Dev note: add final engagement specifics here (cadence, scope boundaries, and examples of what each engagement type produces).
+            </p>
+          )}
+        </div>
+
+        <div class="gc-start-13 gc-span-9 about-page-collab-list" role="list">
+          {collaborationModes.map((item) => (
+            <article class="about-page-collab-item" role="listitem">
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+              {isDev && <p class="about-page-collab-note">{item.note}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--dark about-page-section">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
+          <p class="section-intro-eyebrow">Local + availability</p>
+          <h2 class="section-title text-white">Built for selective engagements, with room for real collaboration.</h2>
+          <p class="section-intro-body">
+            I am happy in my current role and not pursuing full-time positions. This site is focused on advisory, fractional leadership, and targeted consulting support for the right teams.
+          </p>
+        </div>
+        <div class="gc-start-13 gc-span-9 about-page-local-card" aria-label="Local and availability details">
+          <ul class="about-page-local-list">
+            {localSignals.map((item) => <li>{item}</li>)}
+          </ul>
+          {isDev && (
+            <p class="about-page-local-note">
+              Placeholder: add a short line on preferred engagement types, response expectations, and any scheduling preferences.
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {isDev && (
+    <details class="about-page-dev-support">
+      <summary aria-label="Toggle About page support notes">Support</summary>
+      <div class="about-page-dev-support-panel">
+        <p class="about-page-dev-support-title">About page support notes</p>
+        <ul>
+          <li>Hero uses homepage hero system classes for type rhythm consistency.</li>
+          <li>Interior visual direction here is nebula/surface only (no star canvas).</li>
+          <li>\"More than design\" is the current placeholder for personal/lab direction.</li>
+          <li>Engagement and local sections still need final launch copy tightening.</li>
+        </ul>
+      </div>
+    </details>
+  )}
+
+  <HomeFooter
+    eyebrow="Work with me"
+    title="If this sounds like the kind of design leadership your team needs, reach out."
+    body="I am available for select advisory and fractional engagements, especially where product direction, systems, and delivery alignment need senior design leadership."
+  />
 </Layout>

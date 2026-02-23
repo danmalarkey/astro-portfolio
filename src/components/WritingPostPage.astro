@@ -1,0 +1,112 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  type?: string;
+  audience?: string;
+  status?: string;
+  publishedLabel?: string;
+  canonicalPath?: string;
+  aliasRoute?: boolean;
+}
+
+const {
+  title,
+  description,
+  type = 'Essay',
+  audience = 'Execs / Product drivers',
+  status = 'Drafting',
+  publishedLabel = 'Working draft',
+  canonicalPath = '/writing',
+  aliasRoute = false
+} = Astro.props as Props;
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+---
+
+<section class="section section-panel section-surface--dark writing-post-shell">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-16 writing-post-head">
+      <p class="section-intro-eyebrow">Writing</p>
+      <h1 class="section-title text-white writing-post-title">{title}</h1>
+      <p class="writing-post-dek">{description}</p>
+      <div class="writing-post-meta" aria-label="Post metadata">
+        <p>{type}</p>
+        <p>{audience}</p>
+        <p>{status}</p>
+        <p>{publishedLabel}</p>
+      </div>
+      {aliasRoute && (
+        <p class="section-intro-meta writing-post-alias-note">
+          You are viewing the legacy <code>/blog</code> route. The canonical path for this post is <a href={withBase(canonicalPath)}>{canonicalPath}</a>.
+        </p>
+      )}
+    </div>
+
+    <aside class="gc-start-19 gc-span-6 writing-post-side" aria-label="Post summary">
+      <p class="writing-panel-title">Why this piece exists</p>
+      <p class="writing-panel-footnote">
+        This is a first-pass article template to establish a real reading experience for the Writing system before the content collection is implemented.
+      </p>
+      <ul class="writing-meta-list">
+        <li>Long-form article layout in the current design system</li>
+        <li>Supports exec, delivery, and design-leadership framing</li>
+        <li>Will become the basis for `/writing/[slug]` templates</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-panel section-surface--warm writing-post-body-shell">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <article class="gc-start-2 gc-span-16 writing-post-body" aria-label="Writing post content">
+      <div class="writing-post-body-block">
+        <p>
+          Product organizations do not usually fail because they have no ideas. They lose momentum because direction is vague, assumptions stay untested, and teams continue shipping into ambiguity. When that happens, design leadership is less about producing artifacts and more about improving decision quality.
+        </p>
+        <p>
+          In practice, this means clarifying the problem frame, exposing tradeoffs early, and helping leaders align on what the team is actually trying to prove. It also means staying close enough to delivery that strategic decisions become executable patterns instead of slide-deck intent.
+        </p>
+      </div>
+
+      <div class="writing-post-body-block">
+        <h2>What changes when design leadership is doing the right job</h2>
+        <p>
+          Teams move faster for a better reason: they have less confusion. Product and engineering spend less time reinterpreting intent. Stakeholders have a clearer understanding of what decisions are still open and what has already been decided.
+        </p>
+        <ul>
+          <li>Direction is explicit enough to guide sequencing and tradeoffs</li>
+          <li>Design artifacts support decisions, not just presentation</li>
+          <li>Cross-functional teams can move without waiting for constant translation</li>
+          <li>Leaders can see risk earlier and make better calls sooner</li>
+        </ul>
+      </div>
+
+      <div class="writing-post-body-block writing-post-body-block--callout">
+        <p class="writing-post-callout-label">Draft note</p>
+        <p>
+          This post is intentionally written as a live template and content sample. We can replace the content with a real essay, but the layout and reading rhythm should already feel like part of the site system.
+        </p>
+      </div>
+
+      <div class="writing-post-body-block">
+        <h2>Where this will evolve next</h2>
+        <p>
+          Once the writing content collection is in place, this template should support richer metadata, publish dates, update notes, and lightweight topic tagging. The visual goal is to stay readable, calm, and consistent with the rest of the site without turning the article into a generic blog theme.
+        </p>
+      </div>
+    </article>
+
+    <aside class="gc-start-19 gc-span-6 writing-post-outline" aria-label="Article outline">
+      <p class="writing-post-outline-title">In this post</p>
+      <ol>
+        <li>What slows teams down when direction is unclear</li>
+        <li>How design leadership improves decision quality</li>
+        <li>What changes in cross-functional delivery</li>
+        <li>How this template will evolve into the full writing system</li>
+      </ol>
+      <a class="site-footer-link writing-post-back-link" href={withBase('/writing')}>Back to Writing</a>
+    </aside>
+  </div>
+</section>

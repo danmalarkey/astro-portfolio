@@ -18,6 +18,7 @@ const stripBasePath = (path: string, base: string) => {
     return path;
 };
 const currentPath = normalizePath(stripBasePath(Astro.url.pathname, baseUrl));
+const isPathActive = (target: string) => currentPath === target || currentPath.startsWith(`${target}/`);
 const withBase = (path: string) => {
     const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
     return baseUrl + normalizedPath;
@@ -32,16 +33,16 @@ const withBase = (path: string) => {
                     <a href={withBase('/')} class={`header-nav--link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
                 </li>
                 <li>
-                    <a href={withBase('/work')} class={`header-nav--link ${currentPath === '/work' ? 'active' : ''}`}>Work</a>
+                    <a href={withBase('/work')} class={`header-nav--link ${isPathActive('/work') ? 'active' : ''}`}>Work</a>
                 </li>
                 <li>
-                    <a href={withBase('/library')} class={`header-nav--link ${currentPath === '/library' ? 'active' : ''}`}>Library</a>
+                    <a href={withBase('/library')} class={`header-nav--link ${isPathActive('/library') ? 'active' : ''}`}>Library</a>
                 </li>
                 <li>
-                    <a href={withBase('/about')} class={`header-nav--link ${currentPath === '/about' ? 'active' : ''}`}>About</a>
+                    <a href={withBase('/about')} class={`header-nav--link ${isPathActive('/about') ? 'active' : ''}`}>About</a>
                 </li>
                 <li>
-                    <a href={withBase('/writing')} class={`header-nav--link ${(currentPath === '/writing' || currentPath === '/blog') ? 'active' : ''}`}>Writing</a>
+                    <a href={withBase('/writing')} class={`header-nav--link ${(isPathActive('/writing') || isPathActive('/blog')) ? 'active' : ''}`}>Writing</a>
                 </li>
             </ul>
         </nav>

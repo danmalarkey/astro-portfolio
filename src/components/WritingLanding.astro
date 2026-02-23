@@ -7,6 +7,7 @@ interface WritingEntry {
   status: 'Planned' | 'Drafting' | 'In progress';
   summary: string;
   whyItMatters: string;
+  live?: boolean;
 }
 
 interface Props {
@@ -38,9 +39,10 @@ const entries: WritingEntry[] = [
     slug: 'design-leaders-when-direction-is-unclear',
     type: 'Essay',
     audience: 'Execs / Product drivers',
-    status: 'Planned',
+    status: 'Drafting',
     summary: 'A practical framework for clarifying decisions, reducing organizational drift, and giving teams a direction they can execute against.',
-    whyItMatters: 'Signals how Dan operates in high-stakes ambiguity, which is core to advisory and fractional work.'
+    whyItMatters: 'Signals how Dan operates in high-stakes ambiguity, which is core to advisory and fractional work.',
+    live: true
   },
   {
     title: 'Using AI to compress design-to-build cycles without creating chaos',
@@ -130,10 +132,12 @@ const entries: WritingEntry[] = [
             <p class="writing-entry-meta">{entry.type} <span aria-hidden="true">•</span> {entry.audience}</p>
             <p class={`writing-entry-status writing-entry-status--${entry.status.toLowerCase().replace(/\s+/g, '-')}`}>{entry.status}</p>
           </div>
-          <h3 class="writing-entry-title">{entry.title}</h3>
+          <h3 class="writing-entry-title">
+            {entry.live ? <a href={withBase(`/writing/${entry.slug}`)}>{entry.title}</a> : entry.title}
+          </h3>
           <p class="writing-entry-summary">{entry.summary}</p>
           <p class="writing-entry-why"><span>Why this matters:</span> {entry.whyItMatters}</p>
-          <p class="writing-entry-slug">Planned route: <code>/writing/{entry.slug}</code></p>
+          <p class="writing-entry-slug">{entry.live ? <>Live route: <code>/writing/{entry.slug}</code></> : <>Planned route: <code>/writing/{entry.slug}</code></>}</p>
         </article>
       ))}
     </div>
