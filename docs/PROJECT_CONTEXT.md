@@ -201,3 +201,7 @@ Implementation preferences (current):
 - GitHub issue backlog is active in `danmalarkey/astro-portfolio`
 - Initial project issues created: `#1`-`#9`
 - Start implementation work from issues in priority order and close issues as milestones complete
+- Writing route strategy (current):
+  - canonical path is `/writing`
+  - `/blog` remains as a transition/compatibility alias during IA migration
+  - header nav should point to `/writing`

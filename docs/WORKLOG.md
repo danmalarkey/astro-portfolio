@@ -62,3 +62,13 @@
 - Finalized homepage featured outcome set (`#4`) using anonymized CMD-aligned examples in `src/pages/index.astro`
 - Added `docs/homepage-outcome-asset-list.md` to drive imagery sourcing and art direction work (`#5` groundwork)
 - Implemented two-pass mobile starfield overscroll stabilization (`#10`) and documented remaining minor top-edge reveal as lower-priority polish
+- Completed `#8` system audit pass (targeted):
+  - implemented reusable `.section-intro` pattern (eyebrow + title + body + meta)
+  - applied shared intro rhythm to placeholder pages and new writing surfaces
+  - tokenized additional touched values (footer link borders, writing panel/card colors, section intro colors/sizing)
+  - normalized mobile spacing rhythm for writing panels/cards and section intros
+- Completed `#7` Writing architecture foundation:
+  - added canonical `/writing` route and shared `WritingLanding` component
+  - converted `/blog` into an alias/transition route using the same Writing experience
+  - updated header nav to point to `/writing` while treating `/blog` as active alias
+  - documented writing route strategy and content model direction in `docs/writing-architecture.md`

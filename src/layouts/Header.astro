@@ -41,7 +41,7 @@ const withBase = (path: string) => {
                     <a href={withBase('/about')} class={`header-nav--link ${currentPath === '/about' ? 'active' : ''}`}>About</a>
                 </li>
                 <li>
-                    <a href={withBase('/blog')} class={`header-nav--link ${currentPath === '/blog' ? 'active' : ''}`}>Writing</a>
+                    <a href={withBase('/writing')} class={`header-nav--link ${(currentPath === '/writing' || currentPath === '/blog') ? 'active' : ''}`}>Writing</a>
                 </li>
             </ul>
         </nav>

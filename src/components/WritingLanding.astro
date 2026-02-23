@@ -1,0 +1,141 @@
+---
+interface WritingEntry {
+  title: string;
+  slug: string;
+  type: 'Essay' | 'Note' | 'Field log';
+  audience: string;
+  status: 'Planned' | 'Drafting' | 'In progress';
+  summary: string;
+  whyItMatters: string;
+}
+
+interface Props {
+  aliasRoute?: boolean;
+}
+
+const { aliasRoute = false } = Astro.props as Props;
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const featuredTracks = [
+  {
+    title: 'Design leadership under pressure',
+    text: 'How to create clarity, align teams, and improve decision quality when product work gets complex or politically expensive.'
+  },
+  {
+    title: 'AI as a delivery multiplier',
+    text: 'Practical systems for using AI to compress cycles, improve handoff quality, and accelerate execution without lowering standards.'
+  },
+  {
+    title: 'Scaling product and design capability',
+    text: 'Operating models, standards, and team patterns that help organizations grow without creating delivery chaos.'
+  }
+];
+
+const entries: WritingEntry[] = [
+  {
+    title: 'What design leaders do when product direction is unclear',
+    slug: 'design-leaders-when-direction-is-unclear',
+    type: 'Essay',
+    audience: 'Execs / Product drivers',
+    status: 'Planned',
+    summary: 'A practical framework for clarifying decisions, reducing organizational drift, and giving teams a direction they can execute against.',
+    whyItMatters: 'Signals how Dan operates in high-stakes ambiguity, which is core to advisory and fractional work.'
+  },
+  {
+    title: 'Using AI to compress design-to-build cycles without creating chaos',
+    slug: 'ai-compress-design-build-cycles',
+    type: 'Essay',
+    audience: 'Product, engineering, and design leaders',
+    status: 'Drafting',
+    summary: 'A systems-level look at AI-assisted workflows that improve speed, implementation readiness, and quality control in product delivery.',
+    whyItMatters: 'Connects Dan\'s differentiator (AI acceleration) to business outcomes instead of hype.'
+  },
+  {
+    title: 'Design standards that actually improve delivery partnership',
+    slug: 'design-standards-improve-delivery-partnership',
+    type: 'Note',
+    audience: 'Design leaders',
+    status: 'Planned',
+    summary: 'Lessons from building repeatable standards that help product and engineering move faster instead of adding process overhead.',
+    whyItMatters: 'Supports the systems-led, people-first positioning and future hiring/leadership credibility.'
+  },
+  {
+    title: 'Field notes from rebuilding operational software in regulated environments',
+    slug: 'field-notes-regulated-operational-software',
+    type: 'Field log',
+    audience: 'Execs / Operators',
+    status: 'In progress',
+    summary: 'Patterns observed while rebuilding internal operations and member-facing platforms where compliance, speed, and confidence all matter.',
+    whyItMatters: 'Shows current, in-the-arena experience without exposing client-sensitive details.'
+  }
+];
+---
+
+<section class="section section-panel section-surface--dark writing-shell">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-12 section-intro section-intro--page">
+      <p class="section-intro-eyebrow">Writing</p>
+      <h1 class="section-title text-white">Notes, essays, and field observations from the work.</h1>
+      <p class="section-intro-body">
+        I use writing to clarify what I believe about design leadership, product direction, systems, and the practical use of AI in delivery.
+        This is where I publish frameworks, patterns, and lessons that help leaders make better decisions and teams execute with more confidence.
+      </p>
+      {aliasRoute && (
+        <p class="section-intro-meta">
+          You are viewing the legacy <code>/blog</code> route. <a href={withBase('/writing')}>Writing</a> is the canonical path going forward.
+        </p>
+      )}
+    </div>
+
+    <div class="gc-start-15 gc-span-5 writing-panel writing-panel--tracks">
+      <h2 class="writing-panel-title">What you will find here</h2>
+      <ul class="writing-track-list">
+        {featuredTracks.map((track) => (
+          <li class="writing-track-item">
+            <p class="writing-track-item-title">{track.title}</p>
+            <p class="writing-track-item-text">{track.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="gc-start-20 gc-span-6 writing-panel writing-panel--meta">
+      <h2 class="writing-panel-title">Publishing approach</h2>
+      <ul class="writing-meta-list">
+        <li>Outcome-first thinking, not abstract design hot takes</li>
+        <li>Exec, delivery, and design-leadership lenses in every post</li>
+        <li>Client-safe framing for active work and ongoing transformations</li>
+        <li>Short notes and longer essays in the same system</li>
+      </ul>
+      <p class="writing-panel-footnote">Work in progress now, but the information architecture and content model are in place.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-panel section-surface--warm writing-list-shell">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-18 section-intro section-intro--compact">
+      <p class="section-intro-eyebrow">Queue</p>
+      <h2 class="section-title">Publishing roadmap</h2>
+      <p class="section-intro-body">
+        These are the first pieces I plan to publish as the Writing section comes online. Each one is selected to support leaders looking for clearer direction, stronger systems, and faster product delivery.
+      </p>
+    </div>
+
+    <div class="gc-start-2 gc-span-18 writing-entry-list" role="list">
+      {entries.map((entry) => (
+        <article class="writing-entry" role="listitem">
+          <div class="writing-entry-header">
+            <p class="writing-entry-meta">{entry.type} <span aria-hidden="true">•</span> {entry.audience}</p>
+            <p class={`writing-entry-status writing-entry-status--${entry.status.toLowerCase().replace(/\s+/g, '-')}`}>{entry.status}</p>
+          </div>
+          <h3 class="writing-entry-title">{entry.title}</h3>
+          <p class="writing-entry-summary">{entry.summary}</p>
+          <p class="writing-entry-why"><span>Why this matters:</span> {entry.whyItMatters}</p>
+          <p class="writing-entry-slug">Planned route: <code>/writing/{entry.slug}</code></p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

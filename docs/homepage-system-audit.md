@@ -87,6 +87,11 @@ Implemented:
 - Homepage section intros are closer to the target now
 - Remaining pages (`about`, `blog`, etc.) still need the same rhythm rules
 
+Update (2026-02-23):
+
+- Introduced reusable `.section-intro` pattern (eyebrow/title/body/meta) and applied it to non-home placeholder/page surfaces (`Work`, `Library`, `Writing`)
+- Mobile spacing rhythm for these page intros now uses the same stack tokens used on the homepage
+
 ### B1. Mobile rhythm and layout polish is now the immediate execution priority
 
 - Mobile layout quality is behind desktop after major homepage iteration
@@ -111,5 +116,5 @@ Implemented:
 1. Tokenize remaining typography/decorative hard-codes in `src/styles/global.scss`
 2. Create reusable section intro spacing pattern (heading + body + optional controls)
 3. Normalize footer/header spacing and interaction states across pages
-4. Build page templates (`About`, `Writing`, `Work`) from the same layout/spacing primitives
+4. Continue building page templates (`About`, `Writing`, `Work`) from the same layout/spacing primitives
 5. Replace placeholder featured imagery using the proof matrix + imagery rubric docs
