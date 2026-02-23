@@ -235,6 +235,9 @@
   --color-site-footer-side-text: rgba(214, 232, 255, 0.82);
   --color-site-footer-side-heading: rgba(255, 255, 255, 0.92);
   --color-site-footer-side-bullet: rgba(241, 226, 24, 0.72);
+  --color-site-footer-link: rgba(255, 245, 170, 0.92);
+  --color-site-footer-link-hover: rgba(255, 249, 204, 0.98);
+  --color-site-footer-legal: rgba(214, 232, 255, 0.62);
   --gradient-site-footer-side-mobile-backdrop: linear-gradient(
     180deg,
     rgba(12, 15, 22, 0.78) 0%,
@@ -1684,6 +1687,46 @@ main {
       color: var(--color-site-footer-meta);
       font-size: var(--size-label-sm);
       letter-spacing: 0.01em;
+    }
+
+    .site-footer-utility {
+      display: grid;
+      gap: calc(var(--spacing-xs) * 0.65);
+      margin-top: calc(var(--spacing-xs) * 0.5);
+    }
+
+    .site-footer-location,
+    .site-footer-legal {
+      margin: 0;
+      font-size: var(--size-label-sm);
+      line-height: 1.35;
+    }
+
+    .site-footer-location {
+      color: var(--color-site-footer-side-text);
+    }
+
+    .site-footer-legal {
+      color: var(--color-site-footer-legal);
+    }
+
+    .site-footer-link {
+      color: var(--color-site-footer-link);
+      text-decoration: none;
+      width: fit-content;
+      font-size: var(--size-label-sm);
+      line-height: 1.25;
+      border-bottom: var(--size-border-thin) solid rgba(255, 245, 170, 0.28);
+      transition:
+        color var(--duration-transition-interactive-ui) var(--easing-standard),
+        border-color var(--duration-transition-interactive-ui) var(--easing-standard);
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--color-site-footer-link-hover);
+          border-color: rgba(255, 245, 170, 0.7);
+        }
+      }
     }
 
     .cta-link--footer {

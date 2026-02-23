@@ -6,6 +6,8 @@ interface Props {
   fitItems?: string[];
   ctaLabel?: string;
   email?: string;
+  linkedinUrl?: string;
+  locationLabel?: string;
 }
 
 const {
@@ -18,8 +20,11 @@ const {
     'Organizations investing in design capability and systems'
   ],
   ctaLabel = 'Work with me',
-  email = 'hello@danmalarkey.com'
+  email = 'hello@danmalarkey.com',
+  linkedinUrl = 'https://www.linkedin.com/in/danmalarkey/',
+  locationLabel = 'Jacksonville, Florida'
 } = Astro.props;
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer-home" data-star-density="0.88" data-star-brightness="0.88">
@@ -44,6 +49,11 @@ const {
             </svg>
           </a>
           <p class="cta-meta">Email: {email}</p>
+          <div class="site-footer-utility" aria-label="Footer details">
+            <p class="site-footer-location">{locationLabel}</p>
+            <a href={linkedinUrl} class="site-footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <p class="site-footer-legal">© {currentYear} Dan Malarkey. All rights reserved.</p>
+          </div>
         </aside>
       </div>
     </div>

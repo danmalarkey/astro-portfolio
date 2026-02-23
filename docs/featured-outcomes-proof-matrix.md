@@ -107,6 +107,20 @@ Aim for a balanced mix of 4 featured outcomes:
 
 This better matches Dan's positioning than a UI-only showcase.
 
+## Selected Homepage Set (Implemented)
+
+The homepage is currently using this selected set (anonymized labels):
+
+- Home insurance platform — Payment Reconciliation (`Systems`)
+- Restaurant operations platform — Billing & Payment Delivery (`Hybrid`)
+- Enterprise logistics platform — Shipment Workflow Migration (`Systems`)
+- Field operations reporting platform — KPI / Reporting Re-Architecture (`Hybrid`)
+
+Implementation note:
+
+- Homepage copy now reflects this selected set in `src/pages/index.astro`
+- Asset sourcing and art direction are tracked separately in `docs/homepage-outcome-asset-list.md`
+
 ## Attribution Guidance (Working Default)
 
 Until explicit approval is confirmed for naming client organizations on Dan's personal site:

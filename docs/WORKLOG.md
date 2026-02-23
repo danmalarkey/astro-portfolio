@@ -57,3 +57,8 @@
   - added mobile footer readability gradient behind `Best fit for` bullet list
   - pinned mobile header CTA while nav links scroll, with restored styling parity
 - Added slower hover/background motion language for interactive elements (header CTA, footer CTA, rail controls)
+- Added footer credibility/details content (`#11`): LinkedIn link, Jacksonville, Florida location signal, and copyright/all-rights-reserved line
+- Built `Work` and `Library` placeholder pages (`#6`) to remove nav dead ends
+- Finalized homepage featured outcome set (`#4`) using anonymized CMD-aligned examples in `src/pages/index.astro`
+- Added `docs/homepage-outcome-asset-list.md` to drive imagery sourcing and art direction work (`#5` groundwork)
+- Implemented two-pass mobile starfield overscroll stabilization (`#10`) and documented remaining minor top-edge reveal as lower-priority polish
