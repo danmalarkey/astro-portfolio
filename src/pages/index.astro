@@ -313,6 +313,7 @@ const engagementItems = [
       navigator.maxTouchPoints > 0 ||
       'ontouchstart' in window;
     const allowPointerParallax = !prefersReducedMotion && !isTouchLikeDevice;
+    const allowScrollParallax = !isTouchLikeDevice;
     const stars = [];
     const nebulaClouds = [];
     const starPalette = [
@@ -344,6 +345,8 @@ const engagementItems = [
     const getSafeScrollY = () => Math.max(window.scrollY || window.pageYOffset || 0, 0);
 
     const resize = () => {
+      const previousWidth = width;
+      const previousHeight = height;
       width = window.innerWidth;
       height = window.innerHeight;
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
@@ -361,6 +364,11 @@ const engagementItems = [
         const brightness = Number(section.getAttribute('data-star-brightness') || 1);
         return { start, end, density, brightness };
       });
+
+      return {
+        widthChanged: Math.abs(width - previousWidth) > 1,
+        heightChanged: Math.abs(height - previousHeight) > 1
+      };
     };
 
     const seedStars = () => {
@@ -414,7 +422,7 @@ const engagementItems = [
 
       const pointerOffsetX = allowPointerParallax ? (pointerX - width / 2) * 0.008 : 0;
       const pointerOffsetY = allowPointerParallax ? (pointerY - height / 2) * 0.01 : 0;
-      const scrollOffset = -(scrollY * 0.045);
+      const scrollOffset = allowScrollParallax ? -(scrollY * 0.045) : 0;
       const now = performance.now();
 
       currentDensity += (targetDensity - currentDensity) * 0.055;
@@ -534,9 +542,13 @@ const engagementItems = [
     }, { passive: true });
 
     window.addEventListener('resize', () => {
-      resize();
-      seedStars();
-      seedNebula();
+      const { widthChanged } = resize();
+      // Mobile pull-to-refresh and browser UI chrome changes can trigger noisy height-only resizes.
+      // Avoid reseeding the sky on those transient events so the background stays stable.
+      if (!isTouchLikeDevice || widthChanged) {
+        seedStars();
+        seedNebula();
+      }
       updateTargetsFromScroll();
       if (prefersReducedMotion) draw();
     });
