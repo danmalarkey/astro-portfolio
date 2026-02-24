@@ -65,6 +65,19 @@
     .leverage-card-description-line {
       display: block;
     }
+
+    .leverage-card-cta-row {
+      margin-top: var(--spacing-sm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+    }
+
+    .leverage-card-cta-link,
+    .leverage-card-cta-email {
+      font-size: var(--size-label-sm);
+    }
   }
 }
 
@@ -215,6 +228,10 @@
     .media-panel-media img {
       height: min(var(--size-media-panel-image-mobile), 60vw);
       min-height: var(--size-media-panel-image-mobile-min);
+    }
+
+    .leverage-card-cta-row {
+      gap: calc(var(--spacing-xs) * 1.25);
     }
   }
 

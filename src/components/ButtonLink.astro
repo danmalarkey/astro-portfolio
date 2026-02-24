@@ -1,0 +1,44 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'outline' | 'ghost';
+  className?: string;
+  target?: string;
+  rel?: string;
+  showArrow?: boolean;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  className = '',
+  target,
+  rel,
+  showArrow = false,
+  ariaLabel
+} = Astro.props as Props;
+
+const variantClass =
+  variant === 'outline'
+      ? 'ghost-link outline-link--button'
+      : variant === 'ghost'
+        ? 'ghost-link ghost-link--button'
+        : 'cta-link cta-link--primary';
+---
+
+<a
+  href={href}
+  class={`${variantClass} ${className}`.trim()}
+  target={target}
+  rel={rel}
+  aria-label={ariaLabel}
+>
+  <span><slot /></span>
+  {showArrow && (
+    <svg viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+      <path d="M4.75 9h8.5" />
+      <path d="M9.5 4.25 14.25 9 9.5 13.75" />
+    </svg>
+  )}
+</a>

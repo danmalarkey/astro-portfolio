@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
+---
+
+<Layout title="For Executives and Product Drivers | Dan Malarkey">
+  <Header />
+  <main>
+    <ActorAudiencePage
+      audienceTitle="Executives and product drivers"
+      heroTitle="Design leadership support for teams making high-stakes product decisions."
+      heroBody="I help leaders clarify direction, align priorities, and improve decision quality when product work gets complex, expensive, or politically difficult to move forward."
+      actorMailtoSubject="[Executives and product drivers] Advisory inquiry"
+      actorMailtoPrompt="executive or product leadership"
+      whatYouGet={[
+        { title: 'Direction-setting support', text: 'Clarify product priorities, strategic tradeoffs, and where design should drive outcomes instead of simply reacting to requests.' },
+        { title: 'Executive alignment', text: 'Create shared understanding across stakeholders so teams stop burning cycles on interpretation and conflicting expectations.' },
+        { title: 'Transformation guidance', text: 'Support for resets, rebuilds, and growth-stage changes where design leadership needs to improve confidence and pace.' }
+      ]}
+      idealFor={[
+        'Leaders navigating growth, change, or product ambiguity',
+        'Teams where delivery is moving but direction is drifting',
+        'Organizations investing in product/design capability' 
+      ]}
+      signals={[
+        'The team is shipping, but decisions are still getting reopened late.',
+        'Product, engineering, and design are not working from the same definition of success.',
+        'Leadership knows the direction matters, but the operating rhythm is weak.',
+        'A platform or experience transformation needs stronger design leadership than the team currently has.'
+      ]}
+    />
+  </main>
+</Layout>

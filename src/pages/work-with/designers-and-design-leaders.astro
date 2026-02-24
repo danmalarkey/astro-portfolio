@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
+---
+
+<Layout title="For Designers and Design Leaders | Dan Malarkey">
+  <Header />
+  <main>
+    <ActorAudiencePage
+      audienceTitle="Designers and design leaders"
+      heroTitle="Support for raising design maturity, standards, and strategic influence."
+      heroBody="I help design leaders strengthen craft quality, operating standards, and cross-functional influence so design can contribute more effectively to product and business decisions."
+      actorMailtoSubject="[Designers and design leaders] Leadership advisory"
+      actorMailtoPrompt="design leadership"
+      whatYouGet={[
+        { title: 'Operating model support', text: 'Help clarifying how design should work with product and engineering at your stage of growth.' },
+        { title: 'Standards and systems', text: 'Guidance on patterns, documentation, and quality bars that improve consistency without creating process drag.' },
+        { title: 'Leadership leverage', text: 'Support for increasing design influence in strategic decisions and communicating value in outcome-focused language.' }
+      ]}
+      idealFor={[
+        'Design leaders scaling teams or raising the quality bar',
+        'Principal/lead designers expanding strategic scope',
+        'Organizations that want design to influence decisions earlier'
+      ]}
+      signals={[
+        'Design quality varies across teams because standards are implicit.',
+        'Design is involved, but too late to shape product direction meaningfully.',
+        'Leaders need a stronger way to connect design work to business outcomes.',
+        'The team needs mentorship and systems thinking, not just artifact review.'
+      ]}
+    />
+  </main>
+</Layout>

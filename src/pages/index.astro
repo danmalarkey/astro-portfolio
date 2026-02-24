@@ -3,6 +3,16 @@ import Header from '../layouts/Header.astro';
 import Layout from '../layouts/Layout.astro';
 import MediaPanel from '../components/MediaPanel.astro';
 import HomeFooter from '../components/HomeFooter.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+const createActorMailto = (actor: string, prompt: string) => {
+  const params = new URLSearchParams();
+  params.set('subject', `[${actor}] Advisory inquiry`);
+  params.set('body', `Hi Dan,\n\nI'm reaching out as ${prompt} and would like to talk about design leadership support.\n\nContext:\n- Team/company:\n- What we're navigating:\n- What kind of support we need:\n\nThanks,`);
+  return `mailto:hello@danmalarkey.com?${params.toString()}`;
+};
 
 const leverageCards = [
   {
@@ -13,7 +23,9 @@ const leverageCards = [
       'a driver of business outcomes.'
     ],
     image: 'images/dan-right.png',
-    imageAlt: 'Executive product design leadership and strategy collaboration'
+    imageAlt: 'Executive product design leadership and strategy collaboration',
+    actorSlug: '/work-with/executives-and-product-drivers',
+    actorLabel: 'an executive or product leader'
   },
   {
     title: 'Product and engineering teams',
@@ -23,7 +35,9 @@ const leverageCards = [
       'patterns teams can ship with confidence.'
     ],
     image: 'images/img.png',
-    imageAlt: 'Cross-functional product and engineering collaboration'
+    imageAlt: 'Cross-functional product and engineering collaboration',
+    actorSlug: '/work-with/product-and-engineering-teams',
+    actorLabel: 'a product or engineering leader'
   },
   {
     title: 'Designers and design leaders',
@@ -33,7 +47,9 @@ const leverageCards = [
       'product and organizational decisions.'
     ],
     image: 'images/dan.png',
-    imageAlt: 'Design leadership and team development'
+    imageAlt: 'Design leadership and team development',
+    actorSlug: '/work-with/designers-and-design-leaders',
+    actorLabel: 'a design leader'
   }
 ];
 
@@ -174,6 +190,10 @@ const engagementItems = [
               <p>
                 {item.descriptionLines.map((line) => <span class="leverage-card-description-line">{line}</span>)}
               </p>
+              <div class="leverage-card-cta-row">
+                <ButtonLink variant="primary" className="leverage-card-cta-email" href={createActorMailto(item.title, item.actorLabel)}>Work with me</ButtonLink>
+                <ButtonLink variant="ghost" className="leverage-card-cta-link" href={withBase(item.actorSlug)}>See how I help</ButtonLink>
+              </div>
             </div>
           </MediaPanel>
         ))}

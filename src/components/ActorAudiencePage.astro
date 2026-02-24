@@ -1,0 +1,93 @@
+---
+import HomeFooter from './HomeFooter.astro';
+import ButtonLink from './ButtonLink.astro';
+
+interface Props {
+  audienceTitle: string;
+  heroTitle: string;
+  heroBody: string;
+  actorMailtoSubject: string;
+  actorMailtoPrompt: string;
+  whatYouGet: { title: string; text: string }[];
+  idealFor: string[];
+  signals: string[];
+  caveat?: string;
+}
+
+const {
+  audienceTitle,
+  heroTitle,
+  heroBody,
+  actorMailtoSubject,
+  actorMailtoPrompt,
+  whatYouGet,
+  idealFor,
+  signals,
+  caveat = 'This is a first-pass actor page shell. We can sharpen proof and language as the offer and case material evolve.'
+} = Astro.props as Props;
+
+const actorMailParams = new URLSearchParams();
+actorMailParams.set('subject', actorMailtoSubject);
+actorMailParams.set('body', `Hi Dan,\n\nI'm reaching out from the ${actorMailtoPrompt} side and would like to talk about design leadership support.\n\nContext:\n- Team/company:\n- What we're navigating:\n- Desired engagement shape:\n\nThanks,`);
+const actorMailto = `mailto:hello@danmalarkey.com?${actorMailParams.toString()}`;
+---
+
+<section class="section section-panel section-surface--dark actor-page-hero">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-14 section-intro section-intro--page">
+      <p class="section-intro-eyebrow">{audienceTitle}</p>
+      <h1 class="section-title text-white">{heroTitle}</h1>
+      <p class="section-intro-body">{heroBody}</p>
+      <p class="section-intro-meta">{caveat}</p>
+    </div>
+
+    <aside class="gc-start-18 gc-span-7 actor-page-hero-side" aria-label="Quick action and fit">
+      <p class="actor-page-side-title">Best fit for</p>
+      <ul class="actor-page-side-list">
+        {idealFor.map((item) => <li>{item}</li>)}
+      </ul>
+      <ButtonLink className="actor-page-cta" href={actorMailto} variant="primary" showArrow={true}>Work with me</ButtonLink>
+      <p class="actor-page-side-meta">Email will be pre-filled for this audience context.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-panel section-surface--warm actor-page-section">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-18 section-intro section-intro--compact">
+      <p class="section-intro-eyebrow">How I help</p>
+      <h2 class="section-title">What support can look like for this audience.</h2>
+      <p class="section-intro-body">These are the working blocks of value I tend to bring. We can tighten this to specific offers once we see which conversations emerge first.</p>
+    </div>
+
+    <div class="gc-start-2 gc-span-18 actor-page-grid" role="list">
+      {whatYouGet.map((item) => (
+        <article class="actor-page-card" role="listitem">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section-panel section-surface--aurora actor-page-section">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
+      <p class="section-intro-eyebrow">Signals</p>
+      <h2 class="section-title">When it usually makes sense to bring me in.</h2>
+      <p class="section-intro-body">These are common patterns where senior design leadership tends to create leverage quickly.</p>
+    </div>
+    <div class="gc-start-13 gc-span-11 actor-page-signals" role="list">
+      {signals.map((signal) => (
+        <div class="actor-page-signal" role="listitem">{signal}</div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<HomeFooter
+  eyebrow={audienceTitle}
+  title="If this sounds like your team, let’s talk about the work in front of you."
+  body="I’m available for select advisory and fractional engagements and can scope from a focused decision sprint to ongoing leadership support."
+/>
