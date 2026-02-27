@@ -1,0 +1,191 @@
+---
+interface FactItem {
+  label: string;
+  value: string;
+}
+
+interface OutcomeItem {
+  label: string;
+  value: string;
+}
+
+interface BlockItem {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  title: string;
+  dek: string;
+  eyebrow?: string;
+  clientLabel?: string;
+  roleLabel?: string;
+  statusLabel?: string;
+  facts?: FactItem[];
+  stakes?: string[];
+  beforeRows?: string[];
+  afterRows?: string[];
+  howRows?: string[];
+  outcomes?: OutcomeItem[];
+  approach?: BlockItem[];
+  evidenceNotes?: string[];
+}
+
+const {
+  title,
+  dek,
+  eyebrow = 'Case study',
+  clientLabel = 'Anonymized client (through feature[23])',
+  roleLabel = 'Design leadership and execution',
+  statusLabel = 'Case shell / content in progress',
+  facts = [],
+  stakes = [],
+  beforeRows = [],
+  afterRows = [],
+  howRows = [],
+  outcomes = [],
+  approach = [],
+  evidenceNotes = []
+} = Astro.props as Props;
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+---
+
+<section class="section section-panel section-surface--dark case-study-shell">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="gc-start-2 gc-span-16 case-study-head">
+      <p class="section-intro-eyebrow">{eyebrow}</p>
+      <h1 class="section-title text-white case-study-title">{title}</h1>
+      <p class="case-study-dek">{dek}</p>
+      <div class="case-study-meta" aria-label="Case study metadata">
+        <p>{clientLabel}</p>
+        <p>{roleLabel}</p>
+        <p>{statusLabel}</p>
+      </div>
+    </div>
+
+    <aside class="gc-start-19 gc-span-6 case-study-summary" aria-label="Executive summary">
+      <p class="writing-panel-title">Executive summary</p>
+      <p class="writing-panel-footnote">
+        Designed for fast scanning: what was at stake, what changed, how it changed, and what outcomes the business gained.
+      </p>
+      <ul class="writing-meta-list">
+        <li>Outcome-first framing for executives and product leadership</li>
+        <li>Role and attribution clarity for work through feature[23]</li>
+        <li>Expandable sections for deeper proof and artifacts later</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-panel section-surface--warm case-study-body-shell">
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <article class="gc-start-2 gc-span-16 case-study-body" aria-label="Case study content">
+      {facts.length > 0 && (
+        <section class="case-study-block">
+          <h2>Key facts</h2>
+          <div class="case-study-facts" role="list">
+            {facts.map((item) => (
+              <div class="case-study-fact" role="listitem">
+                <p class="case-study-fact-label">{item.label}</p>
+                <p class="case-study-fact-value">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {stakes.length > 0 && (
+        <section class="case-study-block">
+          <h2>Why this mattered</h2>
+          <ul class="case-study-list">
+            {stakes.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      )}
+
+      {(beforeRows.length > 0 || afterRows.length > 0 || howRows.length > 0) && (
+        <section class="case-study-block">
+          <h2>What changed</h2>
+          <div class="case-study-compare" role="list">
+            {beforeRows.length > 0 && (
+              <section class="case-study-compare-col" role="listitem" aria-label="Before">
+                <p class="case-study-compare-label">Before</p>
+                <ul class="case-study-list case-study-list--compact">
+                  {beforeRows.map((item) => <li>{item}</li>)}
+                </ul>
+              </section>
+            )}
+            {afterRows.length > 0 && (
+              <section class="case-study-compare-col" role="listitem" aria-label="After">
+                <p class="case-study-compare-label">After</p>
+                <ul class="case-study-list case-study-list--compact">
+                  {afterRows.map((item) => <li>{item}</li>)}
+                </ul>
+              </section>
+            )}
+          </div>
+          {howRows.length > 0 && (
+            <div class="case-study-how">
+              <p class="case-study-compare-label">How it changed</p>
+              <ul class="case-study-list case-study-list--compact">
+                {howRows.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
+
+      {approach.length > 0 && (
+        <section class="case-study-block">
+          <h2>Approach and decisions</h2>
+          <div class="case-study-approach" role="list">
+            {approach.map((item) => (
+              <article class="case-study-approach-item" role="listitem">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {outcomes.length > 0 && (
+        <section class="case-study-block">
+          <h2>Outcomes and evidence</h2>
+          <div class="case-study-outcomes" role="list">
+            {outcomes.map((item) => (
+              <article class="case-study-outcome" role="listitem">
+                <p class="case-study-outcome-label">{item.label}</p>
+                <p class="case-study-outcome-value">{item.value}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {evidenceNotes.length > 0 && (
+        <section class="case-study-block case-study-block--callout">
+          <p class="writing-post-callout-label">Artifact plan (placeholder)</p>
+          <ul class="case-study-list case-study-list--compact">
+            {evidenceNotes.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      )}
+    </article>
+
+    <aside class="gc-start-19 gc-span-6 case-study-outline" aria-label="Case study outline">
+      <p class="writing-post-outline-title">Scan this page</p>
+      <ol>
+        <li>Key facts and context</li>
+        <li>Why this mattered to the business</li>
+        <li>What changed and how it changed</li>
+        <li>Approach and decision framing</li>
+        <li>Outcomes and evidence</li>
+      </ol>
+      <a class="site-footer-link writing-post-back-link" href={withBase('/work')}>Back to Work</a>
+    </aside>
+  </div>
+</section>
+

@@ -35,6 +35,7 @@ p {
     font-size: var(--size-body-lg);
     font-weight: var(--font-weight-regular);
     font-weight: 300;
+    line-height: 142%;
 
     &.intro-text {
         @include grid.responsive-grid-column((
@@ -60,6 +61,8 @@ p {
 .section-title {
     margin-top: 0;
     font-size: var(--size-title-page-section);
+    font-family: var(--font-family-display);
+    line-height: 1.06;
 }
 
 @media (max-width: 62rem) {

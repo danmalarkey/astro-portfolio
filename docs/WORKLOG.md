@@ -72,3 +72,8 @@
   - converted `/blog` into an alias/transition route using the same Writing experience
   - updated header nav to point to `/writing` while treating `/blog` as active alias
   - documented writing route strategy and content model direction in `docs/writing-architecture.md`
+- Started `#20` Public-safe claims and attribution review:
+  - added `docs/public-safe-claims-attribution.md` with rules for attribution through `feature[23]`, anonymization defaults, metric confidence levels, role wording, and current-vs-active framing
+  - updated homepage outcomes intro copy to explicitly attribute client-engagement outcomes to work delivered through `feature[23]` (plus prior leadership work)
+  - updated `Work` page intro/meta copy to set anonymization + attribution expectations early
+  - added progress note to GitHub issue `#20`

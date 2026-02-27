@@ -46,12 +46,16 @@ const currentYear = new Date().getFullYear();
             {ctaLabel}
           </ButtonLink>
           <p class="cta-meta">Email: {email}</p>
-          <div class="site-footer-utility" aria-label="Footer details">
-            <p class="site-footer-location">{locationLabel}</p>
-            <a href={linkedinUrl} class="site-footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <p class="site-footer-legal">© {currentYear} Dan Malarkey. All rights reserved.</p>
-          </div>
         </aside>
+      </div>
+      <div class="dm-grid-l dm-grid-l--grid-sys site-footer-utility-row" aria-label="Footer details">
+        <div class="site-footer-utility-copy gc-start-2 gc-span-18">
+          <p class="site-footer-legal">© {currentYear} Dan Malarkey. All rights reserved.</p>
+          <p class="site-footer-location">Located in {locationLabel}.</p>
+        </div>
+        <div class="site-footer-utility-link-wrap gc-start-21 gc-span-4">
+          <a href={linkedinUrl} class="site-footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
       </div>
     </div>
   </div>

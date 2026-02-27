@@ -3,14 +3,21 @@ interface Props {
   image: string;
   imageAlt: string;
   className?: string;
+  stacked?: boolean;
 }
 
-const { image, imageAlt, className = '' } = Astro.props as Props;
+const { image, imageAlt, className = '', stacked = false } = Astro.props as Props;
 ---
 
 <article class={`media-panel ${className}`.trim()}>
-  <div class="media-panel-media">
-    <img src={image} alt={imageAlt} />
+  <div class={`media-panel-media ${stacked ? 'media-panel-media--stacked' : ''}`.trim()}>
+    {stacked && (
+      <div class="media-panel-stack" aria-hidden="true">
+        <img class="media-panel-stack-layer media-panel-stack-layer--back" src={image} alt="" />
+        <img class="media-panel-stack-layer media-panel-stack-layer--mid" src={image} alt="" />
+      </div>
+    )}
+    <img class={stacked ? 'media-panel-image--front' : ''} src={image} alt={imageAlt} />
   </div>
   <div class="media-panel-body">
     <slot />

@@ -139,9 +139,38 @@ const engagementItems = [
 ];
 
 const heroNeeds = [
-  'Clearer direction and alignment leaders can trust',
+  'Clearer direction and shared understanding leaders can align around',
   'Product vision translated from goals, constraints, and real team needs',
-  'Senior design leadership that stays strategic and can move into execution'
+  'Senior design leadership that can stay strategic and get into execution'
+];
+
+const beforeAfterColumns = [
+  {
+    label: 'Before',
+    rows: [
+      'Priorities are moving, but decision criteria are unclear',
+      'Design is active, but not shaping direction early enough',
+      'Teams are shipping, but alignment debt keeps compounding',
+      'Leadership feels momentum, but confidence in the path is uneven'
+    ]
+  },
+  {
+    label: 'After',
+    rows: [
+      'Decisions are clearer, easier to defend, and easier to execute',
+      'Design contributes to direction, not only execution',
+      'Teams have stronger operating rhythm and fewer avoidable loops',
+      'Leadership gets speed with better signal and less chaos'
+    ]
+  }
+];
+
+const howItChangesRows = [
+  'Clear decision criteria and tradeoff framing before execution starts',
+  'Goals and constraints translated into a clearer product vision teams can work from',
+  'Design involved earlier in direction-setting, not only interface delivery',
+  'Shared working patterns across leadership, product, engineering, and design',
+  'Systems and standards that reduce rework without adding process drag'
 ];
 
 const faqItems = [
@@ -151,11 +180,19 @@ const faqItems = [
   },
   {
     question: 'Do you only do leadership and strategy work?',
-    answer: 'No. I work across leadership and execution. I enjoy hands-on individual contributor work and building just as much as direction-setting and whiteboard work.'
+    answer: 'No. I work across leadership and execution. I enjoy hands-on individual contributor work and building just as much as direction-setting and whiteboard work, especially when staying close to the work improves outcomes.'
+  },
+  {
+    question: 'Do you code or work in the IDE when needed?',
+    answer: 'Yes. When the work benefits from it, I can move into the IDE and help build. I regularly work across product vision, flows, documentation, UI, and implementation support.'
   },
   {
     question: 'Can you work with internal product and engineering teams?',
     answer: 'Yes. That is a core part of how I work. I am most effective when design, product, and engineering leadership are aligned around the same decisions.'
+  },
+  {
+    question: 'Do you take on active transformations or in-flight work?',
+    answer: 'Yes. A lot of my strongest work happens when organizations are already moving and need clearer direction, stronger operating rhythm, or a reset.'
   },
   {
     question: 'What kinds of work are not a fit?',
@@ -164,7 +201,7 @@ const faqItems = [
 ];
 ---
 
-<Layout title="Dan Malarkey | Fractional Chief Product Designer">
+<Layout title="Dan Malarkey | Homepage v2 Exploration">
   <div class="site-sky" aria-hidden="true">
     <canvas id="site-stars"></canvas>
   </div>
@@ -269,7 +306,7 @@ const faqItems = [
       <div class="dm-grid-l dm-grid-l--grid-sys case-intro case-intro--with-controls">
         <p class="section-intro-eyebrow gc-start-2 gc-span-22">Proof</p>
         <h2 class="section-title case-title text-white gc-start-2 gc-span-16">Real business outcomes</h2>
-        <p class="gc-start-2 gc-span-18">Selected outcomes from client engagements delivered through feature[23] and prior leadership work, focused on growth, operating efficiency, and experience quality. Some examples are anonymized.</p>
+        <p class="gc-start-2 gc-span-18">Selected outcomes from client engagements and leadership work focused on growth, operating efficiency, and experience quality. Some examples are anonymized.</p>
         <div class="case-rail-controls gc-start-19 gc-span-7" aria-label="Case studies navigation">
           <div class="case-rail-progress" aria-live="polite">
             <p class="case-rail-count"><span data-case-current>1</span><span class="case-rail-sep">/</span><span data-case-total>{caseStudies.length}</span></p>
@@ -306,6 +343,38 @@ const faqItems = [
             </div>
           </MediaPanel>
         ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--warm home-v2-shift">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-8 section-intro section-intro--compact">
+          <p class="section-intro-eyebrow">What changes</p>
+          <h2 class="section-title">When design leadership is working, teams feel it in how decisions get made and how execution moves.</h2>
+          <p class="section-intro-body">
+            Outcomes matter, but the mechanism matters too. This section is here to explain how teams move from avoidable rework and alignment debt to clearer decisions and stronger execution confidence.
+          </p>
+        </div>
+        <div class="gc-start-10 gc-span-16">
+          <div class="about-a-rows home-v2-rows" role="list" aria-label="Before and after changes">
+            {beforeAfterColumns.map((column) => (
+              <section class="home-v2-before-after" role="listitem" aria-label={column.label}>
+                <p class="home-v2-before-after--label">{column.label}</p>
+                <ul class="home-v2-before-after--list">
+                  {column.rows.map((row) => <li>{row}</li>)}
+                </ul>
+              </section>
+            ))}
+          </div>
+          <div class="about-a-rows home-v2-rows home-v2-rows--how" role="list" aria-label="How this changes">
+            <section class="home-v2-before-after" role="listitem" aria-label="How this changes">
+              <p class="home-v2-before-after--label">How this changes</p>
+              <ul class="home-v2-before-after--list">
+                {howItChangesRows.map((row) => <li>{row}</li>)}
+              </ul>
+            </section>
+          </div>
         </div>
       </div>
     </section>
@@ -366,9 +435,9 @@ const faqItems = [
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="gc-start-2 gc-span-8 section-intro section-intro--compact">
           <p class="section-intro-eyebrow">Fit / FAQ</p>
-          <h2 class="section-title">A quick filter for whether this is the right fit.</h2>
+          <h2 class="section-title">Answer the questions that determine whether someone should actually reach out.</h2>
           <p class="section-intro-body">
-            Clear answers to the questions that usually determine whether someone should reach out.
+            This supports conversion quality. It helps the right people self-select and filters vague outreach without sounding defensive.
           </p>
         </div>
         <div class="gc-start-10 gc-span-16 about-a-rows home-v2-rows" role="list">
@@ -384,7 +453,10 @@ const faqItems = [
 
   </main>
 
-  <HomeFooter />
+  <HomeFooter
+    title="If this v2 direction feels stronger, we can fold the best parts into the live homepage."
+    body="This page is an evolution test using the existing homepage design. The next step is deciding which additions improve clarity and conversion without adding noise."
+  />
 </Layout>
 
 <script is:inline>

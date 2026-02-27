@@ -23,7 +23,7 @@ const {
   whatYouGet,
   idealFor,
   signals,
-  caveat = 'This is a first-pass actor page shell. We can sharpen proof and language as the offer and case material evolve.'
+  caveat = 'This page is a focused view of how I help this audience. We can sharpen proof and examples as case material and approvals evolve.'
 } = Astro.props as Props;
 
 const actorMailParams = new URLSearchParams();
@@ -57,7 +57,7 @@ const actorMailto = `mailto:hello@danmalarkey.com?${actorMailParams.toString()}`
     <div class="gc-start-2 gc-span-18 section-intro section-intro--compact">
       <p class="section-intro-eyebrow">How I help</p>
       <h2 class="section-title">What support can look like for this audience.</h2>
-      <p class="section-intro-body">These are the working blocks of value I tend to bring. We can tighten this to specific offers once we see which conversations emerge first.</p>
+      <p class="section-intro-body">These are the working blocks of value I tend to bring when teams need better thinking, clearer direction, and execution support that can hold up under pressure.</p>
     </div>
 
     <div class="gc-start-2 gc-span-18 actor-page-grid" role="list">
@@ -76,7 +76,7 @@ const actorMailto = `mailto:hello@danmalarkey.com?${actorMailParams.toString()}`
     <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
       <p class="section-intro-eyebrow">Signals</p>
       <h2 class="section-title">When it usually makes sense to bring me in.</h2>
-      <p class="section-intro-body">These are common patterns where senior design leadership tends to create leverage quickly.</p>
+      <p class="section-intro-body">These are common patterns where clarity, systems thinking, and senior design leadership create leverage quickly.</p>
     </div>
     <div class="gc-start-13 gc-span-11 actor-page-signals" role="list">
       {signals.map((signal) => (
@@ -89,5 +89,5 @@ const actorMailto = `mailto:hello@danmalarkey.com?${actorMailParams.toString()}`
 <HomeFooter
   eyebrow={audienceTitle}
   title="If this sounds like your team, let’s talk about the work in front of you."
-  body="I’m available for select advisory and fractional engagements and can scope from a focused decision sprint to ongoing leadership support."
+  body="I’m available for select advisory and fractional engagements and can scope from a focused decision sprint to ongoing leadership support. I also take on hands-on execution work when staying close to the work improves outcomes."
 />

@@ -83,101 +83,89 @@ const beyondDesign = [
 <Layout title="About Dan Malarkey | Design Leadership in Practice">
   <Header />
   <main>
-    <section class="intro-mh intro-mh--about about-page-hero" id="about-top">
+    <section class="section about-a-hero" id="about-top">
       <div class="sky-burst" aria-hidden="true"></div>
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="hero-shell gc-start-2 gc-span-24">
-          <div class="dm-grid-l dm-grid-l--grid-sys about-page-hero-layout about-page-mh-card">
-            <div class="gc-start-2 gc-span-12 about-page-hero-copy">
-              <h1 class="intro-title">The person behind the work, and how I lead when things get complicated.</h1>
-            </div>
-            <div class="gc-start-15 gc-span-9 about-page-hero-side">
-              <div class="intro-sub-list intro-sub-list--top">
-                <span class="pill">
-                  <span class="pill-text-desktop">Chief Product Designer at feature[23] <span class="separator">•</span> Jacksonville, Florida <span class="separator">•</span> 17+ years</span>
-                  <span class="pill-text-mobile">Chief Product Designer at feature[23]</span>
-                </span>
-              </div>
-              <p class="intro-text">
-                I build clarity in complex product environments. At feature[23], I help lead product and design work across client engagements where direction, delivery quality, and business risk all need to be managed at the same time.
+      <div class="dm-grid-l dm-grid-l--grid-sys about-a-hero-grid">
+        <article class="gc-start-2 gc-span-22 about-a-statement-card" aria-labelledby="about-a-statement-title">
+          <div class="about-a-statement-top">
+            <p class="about-a-kicker">About</p>
+            <div class="intro-sub-list intro-sub-list--top" aria-label="Role and location">
+              <p class="pill">
+                <span>Chief Product Designer at feature[23]</span>
+                <span class="separator" aria-hidden="true">/</span>
+                <span>Jacksonville, Florida</span>
+                <span class="separator" aria-hidden="true">/</span>
+                <span>17+ years</span>
               </p>
-              <p class="intro-text text-accent">Available for select advisory and fractional engagements.</p>
             </div>
           </div>
-        </div>
+
+          <div class="about-a-statement-grid">
+            <div class="about-a-statement-title-col">
+              <h1 class="about-a-display" id="about-a-statement-title">
+                Clarity and direction for product work that cannot afford confusion.
+              </h1>
+            </div>
+
+            <div class="about-a-statement-body-col">
+              <p class="about-a-statement-lead">
+                I help organizations move through complexity by improving decision quality, aligning teams, and building the design capability needed to sustain momentum.
+              </p>
+              <div class="about-a-statement-columns">
+                <p>
+                  At feature[23], I contribute across high-stakes client work where product direction, operational quality, and delivery confidence all need senior design leadership.
+                </p>
+                <p class="about-a-side-accent">Available for select advisory and fractional engagements.</p>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="section section-panel section-surface--warm about-page-section">
-      <div class="dm-grid-l dm-grid-l--grid-sys about-feature">
-        <div class="gc-start-2 gc-span-13 about-feature--body">
-          <p class="about-feature--eyebrow">Design leadership in practice</p>
-          <h2 class="section-title">
-            Clarity and direction when<span class="about-title-break"></span> product work gets complex.
-          </h2>
-          <p>
-            Across 17+ years in product and design leadership, I have worked across startups and larger organizations, helping teams make better decisions earlier and execute with more confidence. My strongest work sits at the intersection of strategy, systems, and execution.
-          </p>
-          <p>
-            I am most useful when teams have real momentum but need sharper direction, clearer operating rhythm, or stronger alignment across executives, product, engineering, and design. I tend to get pulled into moments where the stakes are high and ambiguity is expensive.
-          </p>
-          <p>
-            This portfolio is not meant to be a gallery of polished UI alone. I want it to show how I actually contribute: clarifying direction, improving decision quality, building design capability, and staying close enough to the work that teams can move without losing confidence.
-          </p>
-        </div>
-
-        <div class="gc-start-17 gc-span-9 about-highlights">
-          {proofHighlights.map((item) => (
-            <article class="about-highlights--item">
-              <p class="about-page-proof-label">{item.label}</p>
-              <p class="about-highlights--value">{item.title}</p>
-              <p class="about-highlights--text">{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-panel section-surface--warm about-page-section">
+    <section class="section section-panel section-surface--warm about-a-dossier">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
-          <p class="section-intro-eyebrow">More than design</p>
-          <h2 class="section-title">This site also needs room for the things I am building and collecting for myself.</h2>
-          <p class="section-intro-body">
-            I do not want this portfolio to become a generic professional brochure. Over time, this page and related sections should also show the personal systems, recommendations, and experiments that reflect how I think outside of client work.
-          </p>
-          {isDev && (
-            <p class="section-intro-meta">
-              Dev note: this is where we can shape the boundary between market-facing credibility and personal depth without diluting the site’s primary conversion goal.
+        <div class="gc-start-2 gc-span-3 about-a-index-col">
+          <p class="about-a-kicker">01 / Profile</p>
+        </div>
+        <div class="gc-start-6 gc-span-11 about-a-body-col">
+          <h2 class="section-title">The way I work is strategic, systems-led, and close to the work.</h2>
+          <div class="about-a-body-copy">
+            <p>
+              Across 17+ years in product and design leadership, I have worked across startups and larger organizations, helping teams make better decisions earlier and execute with more confidence. My strongest work sits at the intersection of strategy, systems, and execution.
             </p>
-          )}
+            <p>
+              I am most useful when teams have momentum but need sharper direction, stronger operating rhythm, or better alignment across executives, product, engineering, and design. I tend to get pulled into moments where ambiguity is expensive.
+            </p>
+            <p>
+              This site is not intended to be a gallery of polished UI alone. I want it to reflect how I actually contribute: clarifying direction, improving decision quality, building design capability, and staying close enough to the work that teams can move without losing confidence.
+            </p>
+          </div>
         </div>
-
-        <div class="gc-start-13 gc-span-9 about-page-collab-list" role="list" aria-label="More than design placeholders">
-          {beyondDesign.map((item) => (
-            <article class="about-page-collab-item" role="listitem">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-              {isDev && <p class="about-page-collab-note">{item.note}</p>}
+        <div class="gc-start-18 gc-span-7 about-a-proof-rail" aria-label="Profile proof points">
+          {proofHighlights.map((item, index) => (
+            <article class="about-a-proof-row">
+              <p class="about-a-proof-index">{String(index + 1).padStart(2, '0')}</p>
+              <div class="about-a-proof-content">
+                <p class="about-a-proof-label">{item.label}</p>
+                <p class="about-a-proof-title">{item.title}</p>
+                <p class="about-a-proof-text">{item.text}</p>
+              </div>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="section section-panel section-surface--aurora about-page-section">
+    <section class="section section-panel section-surface--dark about-a-principles">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="gc-start-2 gc-span-18 section-intro section-intro--compact">
-          <p class="section-intro-eyebrow">How I operate</p>
-          <h2 class="section-title">Principles that shape how I lead product and design work.</h2>
-          <p class="section-intro-body">
-            These are not brand phrases. They are the decision filters I use when teams need to move, align, and improve outcomes without creating delivery chaos.
-          </p>
+        <div class="gc-start-2 gc-span-3 about-a-index-col">
+          <p class="about-a-kicker">02 / Principles</p>
         </div>
-
-        <div class="gc-start-2 gc-span-18 about-page-principles" role="list">
-          {principles.map((item) => (
-            <article class="about-page-principle" role="listitem">
+        <div class="gc-start-6 gc-span-18 about-a-ruled-list" role="list">
+          {principles.map((item, index) => (
+            <article class="about-a-ruled-item" role="listitem">
+              <p class="about-a-ruled-number">{String(index + 1).padStart(2, '0')}</p>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </article>
@@ -186,51 +174,59 @@ const beyondDesign = [
       </div>
     </section>
 
-    <section class="section section-panel section-surface--light about-page-section">
+    <section class="section section-panel section-surface--light about-a-services">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
-          <p class="section-intro-eyebrow">How I help</p>
-          <h2 class="section-title">Ways teams can work with me.</h2>
-          <p class="section-intro-body">
-            The shape is here now so the right teams can quickly understand where I fit: advisory support, fractional leadership, and focused transformation work. We will tighten the exact engagement language as the offer evolves.
-          </p>
-          {isDev && (
-            <p class="section-intro-meta">
-              Dev note: add final engagement specifics here (cadence, scope boundaries, and examples of what each engagement type produces).
-            </p>
-          )}
+        <div class="gc-start-2 gc-span-3 about-a-index-col">
+          <p class="about-a-kicker">03 / Engagements</p>
         </div>
-
-        <div class="gc-start-13 gc-span-9 about-page-collab-list" role="list">
+        <div class="gc-start-6 gc-span-18 about-a-rows" role="list">
           {collaborationModes.map((item) => (
-            <article class="about-page-collab-item" role="listitem">
+            <article class="about-a-row" role="listitem">
               <h3>{item.title}</h3>
               <p>{item.detail}</p>
-              {isDev && <p class="about-page-collab-note">{item.note}</p>}
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="section section-panel section-surface--dark about-page-section">
+    <section class="section section-panel section-surface--warm about-a-beyond">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="gc-start-2 gc-span-10 section-intro section-intro--page">
-          <p class="section-intro-eyebrow">Local + availability</p>
-          <h2 class="section-title text-white">Built for selective engagements, with room for real collaboration.</h2>
+        <div class="gc-start-2 gc-span-3 about-a-index-col">
+          <p class="about-a-kicker">04 / More than design</p>
+        </div>
+        <div class="gc-start-6 gc-span-8 section-intro section-intro--compact">
+          <h2 class="section-title">The site should also hold the parts of my work that are personal, curious, and still useful.</h2>
           <p class="section-intro-body">
-            I am happy in my current role and not pursuing full-time positions. This site is focused on advisory, fractional leadership, and targeted consulting support for the right teams.
+            Writing, recommendations, and experiments can strengthen trust if they are structured intentionally and do not compete with the site’s primary purpose.
           </p>
         </div>
-        <div class="gc-start-13 gc-span-9 about-page-local-card" aria-label="Local and availability details">
-          <ul class="about-page-local-list">
+        <div class="gc-start-15 gc-span-9 about-a-rows" role="list" aria-label="More than design placeholders">
+          {beyondDesign.map((item) => (
+            <article class="about-a-row" role="listitem">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--dark about-a-local">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-3 about-a-index-col">
+          <p class="about-a-kicker">05 / Availability</p>
+        </div>
+        <div class="gc-start-6 gc-span-10 section-intro section-intro--compact">
+          <h2 class="section-title text-white">Selective engagements, not a full-time search.</h2>
+          <p class="section-intro-body">
+            I am happy in my current role. This site is for advisory, fractional leadership, and targeted consulting support where senior design leadership can improve clarity, alignment, and execution quality.
+          </p>
+        </div>
+        <div class="gc-start-17 gc-span-7 about-a-local-list-wrap">
+          <ul class="about-a-local-list">
             {localSignals.map((item) => <li>{item}</li>)}
           </ul>
-          {isDev && (
-            <p class="about-page-local-note">
-              Placeholder: add a short line on preferred engagement types, response expectations, and any scheduling preferences.
-            </p>
-          )}
         </div>
       </div>
     </section>
@@ -244,8 +240,9 @@ const beyondDesign = [
         <ul>
           <li>Hero uses homepage hero system classes for type rhythm consistency.</li>
           <li>Interior visual direction here is nebula/surface only (no star canvas).</li>
-          <li>\"More than design\" is the current placeholder for personal/lab direction.</li>
+          <li>"More than design" is the current placeholder for personal/lab direction.</li>
           <li>Engagement and local sections still need final launch copy tightening.</li>
+          <li>Collaboration rows and beyond-design rows intentionally hide dev filler notes in page flow.</li>
         </ul>
       </div>
     </details>

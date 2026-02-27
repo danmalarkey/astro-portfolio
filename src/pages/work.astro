@@ -1,6 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.astro";
+import ButtonLink from "../components/ButtonLink.astro";
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const workEntries = [
+  {
+    eyebrow: "Case study shell",
+    title: "Insurance platform transformation",
+    description: "Exec-first case study structure for a mission-critical platform transformation spanning internal operations and member-facing experience work.",
+    path: "/work/insurance-platform-transformation",
+    status: "Shell / public-safe draft"
+  }
+];
 ---
 
 <Layout title="Work | Dan Malarkey">
@@ -16,8 +30,28 @@ import Header from "../layouts/Header.astro";
             The homepage currently highlights the proof themes and business outcomes.
           </p>
           <p class="section-intro-meta">
-            This page will focus on decisions, systems, and business impact, not just polished UI outputs.
+            This page will focus on decisions, systems, and business impact, not just polished UI outputs. Some examples are anonymized and attributed to work delivered through feature[23] where relevant.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel section-surface--warm">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="gc-start-2 gc-span-24 about-a-rows work-list-rows" role="list" aria-label="Work entries">
+          {workEntries.map((entry) => (
+            <article class="work-list-row" role="listitem">
+              <div class="work-list-row-main">
+                <p class="section-intro-eyebrow">{entry.eyebrow}</p>
+                <h2 class="work-list-row-title">{entry.title}</h2>
+                <p class="work-list-row-description">{entry.description}</p>
+                <p class="work-list-row-meta">{entry.status}</p>
+              </div>
+              <div class="work-list-row-actions">
+                <ButtonLink href={withBase(entry.path)} variant="primary" showArrow={true}>Open case study</ButtonLink>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
