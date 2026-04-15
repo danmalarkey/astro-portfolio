@@ -2,14 +2,18 @@
 interface Props {
 	title?: string;
 	pageTitle?: string;
+	description?: string;
 }
 
 // 1. Import the global SCSS here.
 // Vite watches imports in the script section much better than @use in <style> tags.
 import '../styles/global.scss';
 
-const { title, pageTitle } = Astro.props as Props;
+const { title, pageTitle, description } = Astro.props as Props;
 const resolvedTitle = pageTitle ?? title ?? "Dan Malarkey";
+const resolvedDescription =
+	description ??
+	"Portfolio and writing platform for Dan Malarkey, focused on design leadership, product direction, and selective advisory work.";
 const inferredBaseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 ---
 
@@ -17,7 +21,7 @@ const inferredBaseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/as
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={resolvedDescription} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href={`${inferredBaseUrl}favicon.svg`} />
 		<meta name="generator" content={Astro.generator} />
