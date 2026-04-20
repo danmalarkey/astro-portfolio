@@ -19,3 +19,9 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# local design-reference screenshots
+docs/reference-assets/homepage-v3/*.png
+docs/reference-assets/homepage-v3/*.jpg
+docs/reference-assets/homepage-v3/*.jpeg
+docs/reference-assets/homepage-v3/*.webp

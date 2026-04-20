@@ -7,5 +7,8 @@ const isGitHubPagesBuild =
 // https://astro.build/config
 export default defineConfig({
   site: 'https://danmalarkey.github.io',
-  base: isGitHubPagesBuild ? '/astro-portfolio' : '/'
+  base: isGitHubPagesBuild ? '/astro-portfolio' : '/',
+  devToolbar: {
+    enabled: false
+  }
 });
