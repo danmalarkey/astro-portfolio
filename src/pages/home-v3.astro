@@ -71,24 +71,22 @@ const practiceStats = [
   }
 ];
 
-const heroNeeds = [
-  'Clearer direction and alignment leaders can trust',
-  'Product vision translated from goals, constraints, and real team needs',
-  'Senior design leadership that stays strategic and can move into execution'
-];
-
-const trustItems = [
+const needModes = [
   {
-    label: 'Current role',
-    value: 'Chief Product Designer at feature[23]'
+    title: 'Shared priorities teams can align around',
+    text: 'Less drift, cleaner decisions, and clearer alignment on what matters now.'
   },
   {
-    label: 'Experience',
-    value: '17+ years across product, design, and delivery'
+    title: 'Product vision translated into real direction',
+    text: 'Goals, constraints, and customer reality shaped into direction teams can actually build against.'
   },
   {
-    label: 'Operating range',
-    value: 'Strategy, systems, and hands-on execution'
+    title: 'Senior leadership that can move into execution',
+    text: 'Strategic design leadership that can stay high-level and still step into the work when momentum depends on it.'
+  },
+  {
+    title: 'Decision quality that holds under pressure',
+    text: 'Direction strong enough for leadership conversations and concrete enough for delivery teams to act on.'
   }
 ];
 
@@ -170,19 +168,19 @@ const supportAreas = [
 
 const engagementModels = [
   {
-    title: 'Fractional chief product design support',
-    fit: 'Best for ongoing leadership needs',
-    text: 'Embedded support for direction-setting, team alignment, critical design decisions, and design capability growth.'
+    title: 'Fractional design leadership',
+    fit: 'Best for sustained leadership',
+    text: 'Embedded leadership support for product direction, organizational alignment, and critical design decisions across teams.'
   },
   {
-    title: 'Advisory engagements',
+    title: 'Advisory and consulting engagements',
     fit: 'Best for high-stakes inflection points',
-    text: 'Senior perspective for product ambiguity, organizational change, or design investment decisions where clarity matters quickly.'
+    text: 'Targeted support for high-stakes decisions, product direction, and delivery friction where senior design leadership is needed quickly.'
   },
   {
     title: 'Transformation and reset work',
-    fit: 'Best for complexity, scale, or recovery',
-    text: 'Focused support for rebuilding workflows, reestablishing standards, and improving operating rhythm across teams.'
+    fit: 'Best for change, scale, or recovery',
+    text: 'Focused engagements to diagnose operational friction, realign teams, and establish stronger product and design foundations.'
   }
 ];
 
@@ -257,7 +255,25 @@ const writingEntries = [
       </section>
     </section>
 
-    <section class="home-v3-actors">
+    <section class="home-v3-bridge" aria-label="Operating range">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="home-v3-bridge-shell gc-start-1 gc-span-26">
+          <div class="home-v3-bridge-steps" data-home-v3-bridge>
+            <div class="home-v3-bridge-step home-v3-bridge-step--one" data-home-v3-bridge-step>
+              <h2 class="home-v3-bridge-title">Strategy.</h2>
+            </div>
+            <div class="home-v3-bridge-step home-v3-bridge-step--two" data-home-v3-bridge-step>
+              <h2 class="home-v3-bridge-title">Systems.</h2>
+            </div>
+            <div class="home-v3-bridge-step home-v3-bridge-step--three" data-home-v3-bridge-step>
+              <h2 class="home-v3-bridge-title">Clarity.</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-v3-actors" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-actors-intro">
         <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
           <p class="home-v3-section-label">Across the organization</p>
@@ -481,12 +497,13 @@ const writingEntries = [
                         <span>Maturity</span>
                         <strong>81</strong>
                       </div>
-                      <div class="home-v3-art-trend">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
+                      <svg class="home-v3-art-trend" viewBox="0 0 84 40" aria-hidden="true" focusable="false">
+                        <path class="home-v3-art-trend-line" d="M8 29 C 18 28, 24 24, 32 22 S 49 14, 58 15 S 69 21, 76 19" />
+                        <circle class="home-v3-art-trend-node" cx="8" cy="29" r="3.8" />
+                        <circle class="home-v3-art-trend-node" cx="32" cy="22" r="3.8" />
+                        <circle class="home-v3-art-trend-node" cx="58" cy="15" r="3.8" />
+                        <circle class="home-v3-art-trend-node" cx="76" cy="19" r="3.8" />
+                      </svg>
                     </div>
                   </>
                 )}
@@ -505,11 +522,11 @@ const writingEntries = [
       </div>
     </section>
 
-    <section class="home-v3-practice">
+    <section class="home-v3-practice" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-practice-intro">
         <div class="home-v3-section-head home-v3-section-head--practice gc-start-2 gc-span-14">
           <p class="home-v3-section-label">Leadership in practice</p>
-          <h2>Clarity and direction when stakes are on the line.</h2>
+          <h2>Clarity for moments that matter most.</h2>
           <p>
             Across 17+ years in product and design leadership, including my current role at feature[23], I have led work across product, program, and portfolio levels, helping organizations make better decisions earlier and execute with more confidence.
           </p>
@@ -530,16 +547,17 @@ const writingEntries = [
           </article>
         ))}
       </div>
+
     </section>
 
-    <section class="home-v3-outcomes home-v3-outcomes--rail">
+    <section class="home-v3-outcomes home-v3-outcomes--rail" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-outcomes-intro">
-        <p class="home-v3-section-label gc-start-2 gc-span-22">Proof</p>
-        <div class="home-v3-section-head home-v3-section-head--compact home-v3-outcomes-head gc-start-2 gc-span-16">
-          <h2 class="home-v3-outcomes-title">Real business outcomes</h2>
-          <p>Selected outcomes from client engagements and leadership work focused on growth, operating efficiency, and experience quality. Some examples are anonymized.</p>
+        <div class="home-v3-section-head home-v3-section-head--compact home-v3-outcomes-head gc-start-2 gc-span-14">
+          <p class="home-v3-section-label">Proof</p>
+          <h2>Real business outcomes</h2>
+          <p>Selected outcomes focused on growth, operating efficiency, and experience quality. Some details are anonymized.</p>
         </div>
-        <div class="case-rail-controls gc-start-19 gc-span-7" aria-label="Case studies navigation">
+        <div class="case-rail-controls gc-start-19 gc-span-5" aria-label="Case studies navigation">
           <div class="case-rail-progress" aria-live="polite">
             <p class="case-rail-count"><span data-case-current>1</span><span class="case-rail-sep">/</span><span data-case-total>{caseStudies.length}</span></p>
             <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
@@ -579,37 +597,65 @@ const writingEntries = [
       </div>
     </section>
 
-    <section class="home-v3-needs">
-      <div class="home-v3-section-head home-v3-section-head--compact">
-        <p class="home-v3-section-label">What teams usually need</p>
+    <section class="home-v3-engagements" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-engagements-intro">
+        <div class="home-v3-section-head gc-start-2 gc-span-14">
+          <p class="home-v3-section-label">Engagements</p>
+          <h2>Ways to engage</h2>
+          <p>Available for select advisory, consulting, and fractional leadership engagements based on the stage, scope, and urgency of the work.</p>
+        </div>
       </div>
 
-      <div class="home-v3-needs-grid" role="list">
-        {heroNeeds.map((item) => (
-          <article class="home-v3-needs-item" role="listitem">
-            <p>{item}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="home-v3-trust">
-      <div class="home-v3-section-head home-v3-section-head--compact">
-        <p class="home-v3-section-label">Trust</p>
-        <h2>Senior product design leadership with range.</h2>
-      </div>
-
-      <div class="home-v3-trust-grid" role="list">
-        {trustItems.map((item) => (
-          <article class="home-v3-trust-item" role="listitem">
-            <p class="home-v3-trust-label">{item.label}</p>
-            <p class="home-v3-trust-value">{item.value}</p>
-          </article>
-        ))}
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="home-v3-engagement-rows gc-start-2 gc-span-22" role="list" aria-label="Ways to engage">
+          {engagementModels.map((item, index) => (
+            <article class="home-v3-engagement-row" role="listitem">
+              <span class="home-v3-engagement-row-index">{String(index + 1).padStart(2, '0')}/</span>
+              <div class="home-v3-engagement-row-copy">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+              <span class="home-v3-engagement-row-fit">{item.fit}</span>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
 
-    <section class="home-v3-support">
+    <section class="home-v3-needs" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
+          <p class="home-v3-section-label">What teams usually need</p>
+        </div>
+      </div>
+
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <article class="home-v3-needs-panel gc-start-2 gc-span-22" aria-label="What teams usually need">
+          <div class="home-v3-needs-panel-top">
+            <p class="home-v3-needs-panel-kicker">Direction that holds under pressure</p>
+            <h3>Clearer direction and alignment leaders can trust</h3>
+            <p class="home-v3-needs-panel-lead">
+              Product vision translated from goals, constraints, and real team needs, with senior design leadership that stays strategic and can move into execution.
+            </p>
+          </div>
+
+          <div class="home-v3-needs-panel-grid" role="list" aria-label="Leadership needs">
+            {needModes.map((item) => (
+              <div class="home-v3-needs-panel-item" role="listitem">
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="home-v3-needs-panel-footer">
+            <p>Direction translated into decisions, systems, and execution.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-v3-support" data-home-v3-reveal>
       <div class="home-v3-support-copy">
         <p class="home-v3-section-label">How I help</p>
         <h2>Strategic enough for leadership, close enough to the work to matter.</h2>
@@ -628,24 +674,7 @@ const writingEntries = [
       </div>
     </section>
 
-    <section class="home-v3-engagements">
-      <div class="home-v3-section-head home-v3-section-head--compact">
-        <p class="home-v3-section-label">Engagements</p>
-        <h2>Clear ways to work together.</h2>
-      </div>
-
-      <div class="home-v3-engagement-grid" role="list">
-        {engagementModels.map((item) => (
-          <article class="home-v3-panel home-v3-engagement-card" role="listitem">
-            <p class="home-v3-card-label">{item.fit}</p>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="home-v3-writing">
+    <section class="home-v3-writing" data-home-v3-reveal>
       <div class="home-v3-writing-head">
         <p class="home-v3-section-label">Writing</p>
         <h2>A place to publish the thinking behind the work.</h2>
@@ -665,7 +694,7 @@ const writingEntries = [
       </div>
     </section>
 
-    <section class="home-v3-close">
+    <section class="home-v3-close" data-home-v3-reveal>
       <div class="home-v3-close-shell">
         <canvas id="home-v3-close-stars" aria-hidden="true"></canvas>
         <div class="home-v3-close-dome" aria-hidden="true"></div>
@@ -921,6 +950,61 @@ const writingEntries = [
     updateProgress();
     updateButtons();
   })();
+
+  (() => {
+    const bridge = document.querySelector('[data-home-v3-bridge]');
+    const steps = Array.from(document.querySelectorAll('[data-home-v3-bridge-step]'));
+    if (!(bridge instanceof HTMLElement) || !steps.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      steps.forEach((step) => step.classList.add('is-active'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target;
+          if (!(target instanceof HTMLElement)) return;
+          target.classList.toggle('is-active', entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.32,
+        rootMargin: '-4% 0px -4% 0px'
+      }
+    );
+
+    steps.forEach((step) => observer.observe(step));
+  })();
+
+  (() => {
+    const sections = Array.from(document.querySelectorAll('[data-home-v3-reveal]'));
+    if (!sections.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      sections.forEach((section) => section.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  })();
 </script>
 
 <style>
@@ -950,6 +1034,20 @@ const writingEntries = [
     min-height: 100vh;
     min-height: 100dvh;
     padding: 0;
+  }
+
+  [data-home-v3-reveal] {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 0.85s ease,
+      transform 0.95s ease;
+    will-change: opacity, transform;
+  }
+
+  [data-home-v3-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .home-v3-intro {
@@ -1014,9 +1112,9 @@ const writingEntries = [
   }
 
   .home-v3-trust,
+  .home-v3-bridge,
   .home-v3-needs,
   .home-v3-support,
-  .home-v3-engagements,
   .home-v3-writing,
   .home-v3-close {
     width: var(--home-v3-shell);
@@ -1038,6 +1136,113 @@ const writingEntries = [
 
   .home-v3-actors-intro {
     padding-inline: 0;
+  }
+
+  .home-v3-bridge {
+    position: relative;
+    min-height: 252vh;
+    padding-top: 1.5rem;
+  }
+
+  .home-v3-bridge-shell {
+    position: relative;
+    min-height: 100%;
+    padding: 0;
+  }
+
+  .home-v3-bridge-title {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    font-size: clamp(4.8rem, 10vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: -0.044rem;
+    color: transparent;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 253, 0.86) 11%, rgba(186, 194, 207, 0.42) 32%, rgba(86, 91, 101, 0.2) 56%, rgba(15, 17, 21, 0.96) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.16),
+      0 -1px 0 rgba(0, 0, 0, 0.5),
+      0 0.4rem 1rem rgba(0, 0, 0, 0.54);
+    opacity: 0.05;
+    transform: translate3d(0, 2.5rem, 0);
+    filter: blur(12px);
+    will-change: opacity, transform, filter;
+    transition:
+      opacity 0.6s ease,
+      transform 0.7s ease,
+      filter 0.7s ease;
+  }
+
+  .home-v3-bridge-steps {
+    position: relative;
+  }
+
+  .home-v3-bridge-step {
+    position: relative;
+    min-height: 84vh;
+  }
+
+  .home-v3-bridge-step::before {
+    content: '';
+    position: absolute;
+    inset: 18% 8% 16%;
+    pointer-events: none;
+    opacity: 0.18;
+    filter: blur(26px);
+    transition: opacity 0.7s ease, filter 0.7s ease;
+  }
+
+  .home-v3-bridge-step .home-v3-bridge-title {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .home-v3-bridge-step.is-active .home-v3-bridge-title {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+
+  .home-v3-bridge-step.is-active::before {
+    opacity: 0.42;
+    filter: blur(22px);
+  }
+
+  .home-v3-bridge-step--one .home-v3-bridge-title {
+    padding-left: 6%;
+  }
+
+  .home-v3-bridge-step--one::before {
+    background:
+      radial-gradient(circle at 28% 50%, rgba(111, 94, 255, 0.13), transparent 0 22rem),
+      radial-gradient(circle at 42% 54%, rgba(255, 255, 255, 0.03), transparent 0 11rem);
+  }
+
+  .home-v3-bridge-step--two .home-v3-bridge-title {
+    padding-left: 22%;
+  }
+
+  .home-v3-bridge-step--two::before {
+    background:
+      radial-gradient(circle at 48% 48%, rgba(111, 94, 255, 0.12), transparent 0 24rem),
+      radial-gradient(circle at 54% 54%, rgba(255, 255, 255, 0.028), transparent 0 12rem);
+  }
+
+  .home-v3-bridge-step--three .home-v3-bridge-title {
+    padding-left: 40%;
+  }
+
+  .home-v3-bridge-step--three::before {
+    background:
+      radial-gradient(circle at 66% 50%, rgba(111, 94, 255, 0.13), transparent 0 23rem),
+      radial-gradient(circle at 60% 54%, rgba(255, 255, 255, 0.03), transparent 0 11rem);
   }
 
   .home-v3-hero-frame {
@@ -1129,7 +1334,7 @@ const writingEntries = [
   .home-v3-close-content h2 {
     font-family: var(--home-v3-display);
     font-weight: 500;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.044rem;
     line-height: 0.94;
     margin: 0;
   }
@@ -1148,13 +1353,29 @@ const writingEntries = [
     font-size: clamp(3.35rem, 5.9vw, 6.1rem);
     margin-top: 0;
     line-height: 0.92;
-    letter-spacing: -0.09rem;
   }
 
   .home-v3-hero-primary {
     width: 100%;
     display: grid;
     align-content: end;
+  }
+
+  .home-v3-actors .home-v3-section-head h2 {
+    opacity: 0.08;
+    transform: translateY(1.1rem);
+    filter: blur(10px);
+    transition:
+      opacity 0.95s ease,
+      transform 1s ease,
+      filter 1s ease;
+    will-change: opacity, transform, filter;
+  }
+
+  .home-v3-actors.is-visible .home-v3-section-head h2 {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 
   .home-v3-hero-support {
@@ -1272,43 +1493,23 @@ const writingEntries = [
     pointer-events: none;
     border-radius: inherit;
     background:
-      linear-gradient(145deg, rgba(var(--actor-accent-rgb), 0.07), transparent 34%),
-      radial-gradient(circle at 82% 18%, rgba(var(--actor-accent-rgb), 0.12), transparent 16rem);
-    opacity: 0.22;
+      linear-gradient(145deg, rgba(var(--actor-accent-rgb), 0.05), transparent 32%),
+      radial-gradient(circle at 82% 18%, rgba(var(--actor-accent-rgb), 0.08), transparent 16rem);
+    opacity: 0.16;
     transition: opacity 0.35s ease;
   }
 
-  .home-v3-actor-card:hover {
-    transform: translateY(-0.18rem);
-    border-color: rgba(var(--actor-accent-soft-rgb), 0.16);
-    box-shadow:
-      0 1.4rem 3rem rgba(0, 0, 0, 0.34),
-      0 0 3rem rgba(var(--actor-accent-rgb), 0.1);
-  }
-
-  .home-v3-actor-card:hover::before {
-    opacity: 0.44;
-  }
-
-  .home-v3-actor-card--executive:hover::before {
-    background:
-      linear-gradient(145deg, rgba(var(--executive-gold-rgb), 0.14), transparent 36%),
-      radial-gradient(circle at 18% 18%, rgba(var(--executive-gold-rgb), 0.18), transparent 16rem);
-    opacity: 0.5;
-  }
-
-  .home-v3-actor-card--executive::after {
+  .home-v3-actor-card::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
-    padding: 2px;
+    padding: 1px;
     border-radius: inherit;
     background:
-      linear-gradient(90deg, rgba(var(--executive-gold-rgb), 0.96) 0%, rgba(var(--executive-gold-rgb), 0.56) 16%, rgba(var(--executive-gold-rgb), 0.2) 32%, rgba(var(--executive-gold-rgb), 0) 54%) 0 0 / 100% 2px no-repeat,
-      linear-gradient(180deg, rgba(var(--executive-gold-rgb), 0.96) 0%, rgba(var(--executive-gold-rgb), 0.56) 16%, rgba(var(--executive-gold-rgb), 0.2) 32%, rgba(var(--executive-gold-rgb), 0) 54%) 0 0 / 2px 100% no-repeat,
-      radial-gradient(circle at 0 0, rgba(var(--executive-gold-rgb), 1) 0%, rgba(var(--executive-gold-rgb), 0.5) 16%, rgba(var(--executive-gold-rgb), 0.14) 34%, rgba(var(--executive-gold-rgb), 0) 66%) 0 0 / 4.5rem 4.5rem no-repeat;
-    opacity: 0;
+      linear-gradient(321deg, rgba(255, 255, 255, 0) 68%, rgba(var(--actor-accent-soft-rgb), 0.14) 88%, rgba(var(--actor-accent-soft-rgb), 0.24) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008));
+    opacity: 0.26;
     pointer-events: none;
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
@@ -1318,11 +1519,37 @@ const writingEntries = [
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
     mask-composite: exclude;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.35s ease, background 0.35s ease;
+  }
+
+  .home-v3-actor-card:hover {
+    transform: translateY(-0.18rem);
+    border-color: rgba(var(--actor-accent-soft-rgb), 0.12);
+    box-shadow:
+      0 1.4rem 3rem rgba(0, 0, 0, 0.34),
+      0 0 3rem rgba(var(--actor-accent-rgb), 0.1);
+  }
+
+  .home-v3-actor-card:hover::before {
+    opacity: 0.34;
+  }
+
+  .home-v3-actor-card:hover::after {
+    background:
+      linear-gradient(321deg, rgba(255, 255, 255, 0) 64%, rgba(var(--actor-accent-soft-rgb), 0.28) 86%, rgba(var(--actor-accent-soft-rgb), 0.44) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012));
+    opacity: 0.84;
+  }
+
+  .home-v3-actor-card--executive:hover::before {
+    background:
+      linear-gradient(145deg, rgba(var(--executive-gold-rgb), 0.11), transparent 36%),
+      radial-gradient(circle at 18% 18%, rgba(var(--executive-gold-rgb), 0.14), transparent 16rem);
+    opacity: 0.42;
   }
 
   .home-v3-actor-card--executive:hover::after {
-    opacity: 0.95;
+    opacity: 0.9;
   }
 
   .home-v3-actor-card--executive {
@@ -1339,7 +1566,7 @@ const writingEntries = [
     background:
       linear-gradient(145deg, rgba(var(--actor-accent-rgb), 0.02), transparent 30%),
       radial-gradient(circle at 82% 18%, rgba(var(--actor-accent-rgb), 0.04), transparent 16rem);
-    opacity: 0.08;
+    opacity: 0.1;
   }
 
   .home-v3-actor-card--product:hover::before {
@@ -2051,36 +2278,31 @@ const writingEntries = [
   }
 
   .home-v3-art-trend {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: end;
-    gap: 0.35rem;
-    min-height: 3.6rem;
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    opacity: 0.38;
   }
 
-  .home-v3-art-trend span {
-    border-radius: 999rem;
-    background: linear-gradient(180deg, rgba(var(--actor-accent-soft-rgb), 0.96), rgba(var(--actor-accent-rgb), 0.16));
-    transform-origin: center bottom;
-    transform: scaleY(0.5);
-    opacity: 0.34;
-    transition: transform 0.42s ease, opacity 0.42s ease, box-shadow 0.42s ease;
+  .home-v3-art-trend-line,
+  .home-v3-art-trend-node {
+    vector-effect: non-scaling-stroke;
+    transition: opacity 0.42s ease, filter 0.42s ease, stroke 0.42s ease, fill 0.42s ease;
   }
 
-  .home-v3-art-trend span:nth-child(1) {
-    height: 38%;
+  .home-v3-art-trend-line {
+    fill: none;
+    stroke: rgba(var(--actor-accent-soft-rgb), 0.56);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
-  .home-v3-art-trend span:nth-child(2) {
-    height: 56%;
-  }
-
-  .home-v3-art-trend span:nth-child(3) {
-    height: 80%;
-  }
-
-  .home-v3-art-trend span:nth-child(4) {
-    height: 48%;
+  .home-v3-art-trend-node {
+    fill: rgba(var(--actor-accent-soft-rgb), 0.86);
+    stroke: rgba(9, 11, 15, 0.88);
+    stroke-width: 1.2;
   }
 
   .home-v3-art-card--product-flow {
@@ -2361,10 +2583,18 @@ const writingEntries = [
     box-shadow: 0 0 1rem rgba(var(--actor-accent-rgb), 0.2);
   }
 
-  .home-v3-actor-card--design:hover .home-v3-art-trend span {
-    transform: scaleY(1);
-    opacity: 1;
-    box-shadow: 0 0 1rem rgba(var(--actor-accent-rgb), 0.18);
+  .home-v3-actor-card--design:hover .home-v3-art-trend {
+    opacity: 0.72;
+  }
+
+  .home-v3-actor-card--design:hover .home-v3-art-trend-line {
+    stroke: rgba(var(--actor-accent-soft-rgb), 0.78);
+    filter: drop-shadow(0 0 0.45rem rgba(var(--actor-accent-rgb), 0.12));
+  }
+
+  .home-v3-actor-card--design:hover .home-v3-art-trend-node {
+    fill: rgba(var(--actor-accent-soft-rgb), 0.96);
+    filter: drop-shadow(0 0 0.4rem rgba(var(--actor-accent-rgb), 0.16));
   }
 
   .home-v3-actor-card--product .home-v3-actor-traces {
@@ -3294,24 +3524,257 @@ const writingEntries = [
     color: var(--home-v3-text);
   }
 
-  .home-v3-needs-grid {
+  .home-v3-engagement-rows {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .home-v3-engagement-row {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--spacing-sm);
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 1.15rem;
+    min-height: 0;
+    padding: 1.3rem 0 1.45rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease;
   }
 
-  .home-v3-needs-item {
-    border: 1px solid var(--home-v3-border-soft);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
-    border-radius: 1.5rem;
-    padding: var(--spacing-md);
-    box-shadow: var(--home-v3-shadow);
+  .home-v3-engagement-row::before {
+    content: '';
+    position: absolute;
+    inset: -24% -2% -22% 56%;
+    background: radial-gradient(ellipse 96% 62% at 100% 50%, rgba(208, 160, 88, 0.34) 0%, rgba(208, 160, 88, 0.17) 18%, rgba(208, 160, 88, 0.08) 34%, rgba(208, 160, 88, 0.03) 50%, rgba(8, 9, 12, 0) 72%);
+    filter: blur(20px);
+    opacity: 0;
+    transform: translate3d(4%, 0, 0);
+    transition:
+      opacity 0.34s ease,
+      transform 0.46s ease,
+      filter 0.46s ease;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .home-v3-needs-item p {
+  .home-v3-engagement-row::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 0 42%;
+    background: linear-gradient(270deg, rgba(236, 196, 118, 0.14) 0%, rgba(236, 196, 118, 0.08) 16%, rgba(255, 255, 255, 0.022) 34%, rgba(255, 255, 255, 0) 60%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    transition: opacity 0.34s ease;
+  }
+
+  .home-v3-engagement-row > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home-v3-engagement-row:hover {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 54%, rgba(255, 255, 255, 0.012) 74%, rgba(255, 255, 255, 0.024) 100%);
+  }
+
+  .home-v3-engagement-row:hover::before {
+    opacity: 0.46;
+    transform: translate3d(0, 0, 0);
+    filter: blur(14px);
+  }
+
+  .home-v3-engagement-row:hover::after {
+    opacity: 0.24;
+  }
+
+  .home-v3-engagement-row-index {
+    color: rgba(231, 235, 242, 0.52);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+
+  .home-v3-engagement-row-copy {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .home-v3-engagement-row-copy h3 {
     margin: 0;
-    color: var(--home-v3-text-muted);
+    color: var(--home-v3-text);
+    font-size: clamp(1.35rem, 2vw, 2.05rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .home-v3-engagement-row-copy p {
+    max-width: 38ch;
+    margin: 0;
+    color: rgba(231, 235, 242, 0.72);
+    font-size: 1rem;
+    letter-spacing: -0.015em;
+    line-height: 1.55;
+  }
+
+  .home-v3-engagement-row-fit {
+    align-self: start;
+    width: fit-content;
+    margin-top: 0.12rem;
+    padding: 0.42rem 0.72rem;
+    border-radius: 999rem;
+    border: 1px solid rgba(231, 235, 242, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(243, 246, 252, 0.88);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .home-v3-engagement-row:hover .home-v3-engagement-row-fit {
+    border-color: rgba(236, 196, 118, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(248, 244, 231, 0.94);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .home-v3-needs-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.6rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
+      rgba(8, 9, 12, 0.98);
+    box-shadow: 0 1.2rem 2.5rem rgba(0, 0, 0, 0.22);
+  }
+
+  .home-v3-needs-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.05), transparent 18%),
+      radial-gradient(circle at 78% 72%, rgba(122, 92, 255, 0.04), transparent 24%);
+    opacity: 0.8;
+  }
+
+  .home-v3-needs-panel-top,
+  .home-v3-needs-panel-grid,
+  .home-v3-needs-panel-footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home-v3-needs-panel-top {
+    padding: 1.75rem 1.85rem 1.9rem;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .home-v3-needs-panel-kicker {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.48);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .home-v3-needs-panel-top h3 {
+    max-width: 18ch;
+    margin: 0;
+    color: var(--home-v3-text);
+    font-size: clamp(1.9rem, 3vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .home-v3-needs-panel-lead {
+    max-width: 44ch;
+    margin: 0;
+    color: rgba(231, 235, 242, 0.72);
+    font-size: 1.04rem;
+    letter-spacing: -0.015em;
     line-height: 1.6;
+  }
+
+  .home-v3-needs-panel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .home-v3-needs-panel-item {
+    min-height: 9.5rem;
+    padding: 1.4rem 1.85rem 1.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+  }
+
+  .home-v3-needs-panel-item:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .home-v3-needs-panel-item h4 {
+    margin: 0;
+    color: var(--home-v3-text);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .home-v3-needs-panel-item p {
+    max-width: 34ch;
+    margin: 0;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    line-height: 1.55;
+  }
+
+  .home-v3-needs-panel-footer {
+    padding: 1.35rem 1.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .home-v3-needs-panel-footer p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.72);
+    font-size: 1rem;
+    letter-spacing: -0.015em;
+    line-height: 1.5;
   }
 
   .home-v3-window {
@@ -3319,6 +3782,36 @@ const writingEntries = [
     inset: 0;
     border-radius: inherit;
     overflow: hidden;
+    background:
+      linear-gradient(321deg, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.18) 88%, rgba(255, 255, 255, 0.32) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012));
+  }
+
+  .home-v3-window::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: calc(2rem - 1px);
+    background:
+      radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.08), transparent 34%),
+      linear-gradient(180deg, rgba(10, 10, 12, 0.9), rgba(5, 6, 8, 0.96));
+    -webkit-mask: linear-gradient(320deg, rgba(0, 0, 0, 0.76) 0%, rgb(0, 0, 0) 22%);
+    mask: linear-gradient(320deg, rgba(0, 0, 0, 0.76) 0%, rgb(0, 0, 0) 22%);
+    pointer-events: none;
+  }
+
+  .home-v3-window::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    z-index: 3;
+    border-radius: calc(2rem - 1px);
+    background:
+      radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.07), transparent 40%),
+      linear-gradient(321deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.014) 18%, transparent 34%);
+    opacity: 0.95;
+    pointer-events: none;
   }
 
   .home-v3-window-rays {
@@ -3489,6 +3982,10 @@ const writingEntries = [
     align-items: start;
   }
 
+  .home-v3-practice-trust {
+    padding-top: 1.5rem;
+  }
+
   .home-v3-practice-card {
     position: relative;
     min-height: 26rem;
@@ -3559,6 +4056,10 @@ const writingEntries = [
 
   .home-v3-practice-card--stack .home-v3-practice-visual {
     opacity: 0.96;
+  }
+
+  .home-v3-practice-card--blocks .home-v3-practice-visual {
+    opacity: 0.98;
   }
 
   .home-v3-practice-card--stack .home-v3-practice-visual-core {
@@ -3741,16 +4242,7 @@ const writingEntries = [
 
   .home-v3-outcomes-intro {
     margin-bottom: 2rem;
-  }
-
-  .home-v3-outcomes-title {
-    margin: 0;
-    color: var(--home-v3-text);
-    font-family: var(--home-v3-display);
-    font-size: clamp(2.1rem, 3.6vw, 3.5rem);
-    font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 0.94;
+    align-items: end;
   }
 
   .home-v3-outcomes .home-v3-section-head {
@@ -3810,7 +4302,6 @@ const writingEntries = [
   }
 
   .home-v3-trust-value,
-  .home-v3-engagement-card p,
   .home-v3-writing-card p,
   .home-v3-support-row p {
     color: var(--home-v3-text-muted);
@@ -3858,8 +4349,8 @@ const writingEntries = [
     margin-top: 0;
   }
 
-  .home-v3-engagement-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .home-v3-engagements-intro {
+    margin-bottom: 1.35rem;
   }
 
   .home-v3-writing {
@@ -3965,11 +4456,28 @@ const writingEntries = [
     }
 
     .home-v3-trust-grid,
-    .home-v3-needs-grid,
     .home-v3-outcome-grid,
-    .home-v3-engagement-grid,
     .home-v3-writing-grid {
       grid-template-columns: 1fr;
+    }
+
+    .home-v3-engagement-row {
+      grid-template-columns: 3rem minmax(0, 1fr);
+      align-items: start;
+      padding: 1.25rem 0;
+    }
+
+    .home-v3-engagement-row-fit {
+      grid-column: 2;
+    }
+
+    .home-v3-needs-panel-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .home-v3-needs-panel-item,
+    .home-v3-needs-panel-item:nth-child(2n) {
+      border-right: 0;
     }
   }
 
@@ -3994,9 +4502,9 @@ const writingEntries = [
     }
 
     .home-v3-trust,
+    .home-v3-bridge,
     .home-v3-needs,
     .home-v3-support,
-    .home-v3-engagements,
     .home-v3-writing,
     .home-v3-close {
       width: min(calc(100vw - 1.5rem), 84rem);
@@ -4076,12 +4584,71 @@ const writingEntries = [
       height: 110%;
     }
 
-    .home-v3-trust,
     .home-v3-support,
-    .home-v3-engagements,
     .home-v3-writing,
     .home-v3-close {
       padding-top: 4rem;
+    }
+
+    .home-v3-bridge {
+      min-height: 228vh;
+      padding-top: 1rem;
+    }
+
+    .home-v3-bridge-shell {
+      padding: 0 1.1rem;
+    }
+
+    .home-v3-bridge-title {
+      font-size: clamp(2.9rem, 12vw, 4.8rem);
+    }
+
+    .home-v3-bridge-step {
+      min-height: 76vh;
+    }
+
+    .home-v3-bridge-step--two .home-v3-bridge-title {
+      padding-left: 10%;
+    }
+
+    .home-v3-bridge-step--three .home-v3-bridge-title {
+      padding-left: 18%;
+    }
+
+    .home-v3-engagement-row {
+      gap: 0.75rem;
+      min-height: 0;
+    }
+
+    .home-v3-engagement-row-copy h3 {
+      font-size: 1.25rem;
+      max-width: none;
+    }
+
+    .home-v3-engagement-row-copy p {
+      font-size: 0.95rem;
+      max-width: none;
+    }
+
+    .home-v3-engagement-row-fit {
+      font-size: 0.92rem;
+    }
+
+    .home-v3-needs-panel-top,
+    .home-v3-needs-panel-item,
+    .home-v3-needs-panel-footer {
+      padding-inline: 1.2rem;
+    }
+
+    .home-v3-needs-panel-top h3 {
+      max-width: none;
+      font-size: 1.9rem;
+    }
+
+    .home-v3-needs-panel-lead,
+    .home-v3-needs-panel-footer p,
+    .home-v3-needs-panel-item p {
+      max-width: none;
     }
 
     .home-v3-footer {
