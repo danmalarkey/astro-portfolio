@@ -203,7 +203,7 @@
   --shadow-logo-drop: drop-shadow(0 0.125rem var(--spacing-xs) rgba(0, 0, 0, 0.35));
   --gradient-chip-surface-neutral: linear-gradient(150deg, rgba(255, 255, 255, 0.86), rgba(242, 242, 238, 0.78));
   --filter-media-image-soft: saturate(0.95);
-  --size-media-panel-image-desktop: 36rem;
+  --size-media-panel-image-desktop: 25rem;
   --size-media-panel-image-tablet: 28rem;
   --size-media-panel-image-mobile: 22rem;
   --size-media-panel-image-mobile-min: 16rem;
@@ -1134,6 +1134,10 @@ main {
   .engagement-grid {
     padding-top: var(--spacing-lg);
   }
+}
+
+.u-no-pt {
+  padding-top: 0 !important;
 }
 
 .section-transition-impact {
