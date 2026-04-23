@@ -10,7 +10,12 @@ import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
     <ActorAudiencePage
       audienceTitle="Executives and product drivers"
       heroTitle="Design leadership support for leaders who need clarity, alignment, and a stronger shared vision."
-      heroBody="I help executive and product leadership teams break down goals, constraints, and competing needs into clearer direction and product vision, then stay close enough to the work that the strategy becomes executable."
+      heroBody="I help executive and product leadership teams clarify product direction, align investment priorities, and make design a driver of business outcomes by turning goals, constraints, and competing needs into direction teams can actually execute."
+      heroSignals={[
+        { label: 'Direction', detail: 'Clarify what matters now' },
+        { label: 'Investment', detail: 'Sequence bets with more confidence' },
+        { label: 'Outcomes', detail: 'Tie design to business decisions' }
+      ]}
       actorMailtoSubject="[Executives and product drivers] Advisory inquiry"
       actorMailtoPrompt="executive or product leadership"
       whatYouGet={[
@@ -19,6 +24,7 @@ import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
         { title: 'Vision that can be executed', text: 'Translate goals and constraints into product vision and direction the team can actually build, not just agree with in a meeting.' }
       ]}
       idealFor={[
+        'Teams that need sharper product direction and clearer investment bets',
         'Leaders navigating growth, change, or product ambiguity',
         'Teams where delivery is moving but direction is drifting',
         'Organizations investing in product/design capability' 

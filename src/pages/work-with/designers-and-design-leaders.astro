@@ -10,7 +10,12 @@ import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
     <ActorAudiencePage
       audienceTitle="Designers and design leaders"
       heroTitle="Support for raising design maturity, standards, and strategic influence."
-      heroBody="I help design leaders strengthen craft quality, operating standards, and cross-functional influence so design can contribute more effectively to product and business decisions, while staying grounded in the actual work."
+      heroBody="I help design leaders raise craft maturity, establish stronger standards, and increase design influence in strategic product and organizational decisions while staying grounded in the actual work."
+      heroSignals={[
+        { label: 'Standards', detail: 'Set the quality bar' },
+        { label: 'Coaching', detail: 'Raise team judgment' },
+        { label: 'Influence', detail: 'Move design into earlier decisions' }
+      ]}
       actorMailtoSubject="[Designers and design leaders] Leadership advisory"
       actorMailtoPrompt="design leadership"
       whatYouGet={[
@@ -19,6 +24,7 @@ import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
         { title: 'Leadership leverage with execution credibility', text: 'Support for increasing design influence in strategic decisions while maintaining credibility through strong craft, systems thinking, and practical execution depth.' }
       ]}
       idealFor={[
+        'Organizations building stronger standards, coaching, and design influence',
         'Design leaders scaling teams or raising the quality bar',
         'Principal/lead designers expanding strategic scope',
         'Organizations that want design to influence decisions earlier'

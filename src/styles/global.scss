@@ -2388,6 +2388,39 @@ main {
   align-content: start;
 }
 
+.actor-page-hero-signals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--spacing-xs) * 0.85);
+  margin-top: var(--spacing-sm);
+  max-width: 54rem;
+}
+
+.actor-page-hero-signal {
+  border: var(--size-border-thin) solid var(--color-actor-page-side-border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  padding: calc(var(--spacing-xs) * 0.95) var(--spacing-sm);
+  display: grid;
+  gap: calc(var(--spacing-xs) * 0.3);
+  align-content: start;
+}
+
+.actor-page-hero-signal-label {
+  color: var(--color-actor-page-side-note);
+  font-size: var(--size-label-xs);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-semibold);
+}
+
+.actor-page-hero-signal-detail {
+  color: var(--color-text-on-dark-high);
+  font-size: var(--size-body-compact);
+  line-height: 1.35;
+}
+
 .actor-page-side-title {
   margin: 0;
   color: var(--color-actor-page-side-heading);
@@ -3870,6 +3903,10 @@ main {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .actor-page-hero-signals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .work-list-row,
   .case-study-compare {
     grid-template-columns: minmax(0, 1fr);
@@ -3971,6 +4008,7 @@ main {
   }
 
   .actor-page-hero-side,
+  .actor-page-hero-signal,
   .actor-page-card,
   .actor-page-signal {
     padding: var(--spacing-sm);
