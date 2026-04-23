@@ -10,7 +10,12 @@ import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
     <ActorAudiencePage
       audienceTitle="Product and engineering teams"
       heroTitle="Design leadership that improves delivery partnership, not just design output."
-      heroBody="I work with product and engineering teams to reduce delivery friction, improve implementation readiness, and create patterns teams can ship with confidence, while staying close enough to the work to help solve execution problems directly."
+      heroBody="I help product and engineering teams reduce delivery friction, improve collaboration, and create repeatable patterns teams can ship with confidence, while staying close enough to the work to help solve execution problems directly."
+      heroSignals={[
+        { label: 'Roadmap', detail: 'Reduce ambiguity earlier' },
+        { label: 'Handoffs', detail: 'Improve cross-functional flow' },
+        { label: 'Delivery', detail: 'Ship with confidence' }
+      ]}
       actorMailtoSubject="[Product and engineering teams] Design leadership support"
       actorMailtoPrompt="product or engineering leadership"
       whatYouGet={[
@@ -19,6 +24,7 @@ import ActorAudiencePage from '../../components/ActorAudiencePage.astro';
         { title: 'Hands-on problem solving when needed', text: 'A leadership partner who can get into the trenches, and when useful, move into the IDE to help close the gap between intent and implementation.' }
       ]}
       idealFor={[
+        'Teams slowed by delivery friction, ambiguity, or weak handoffs',
         'Teams dealing with delivery friction and repeated rework',
         'Products with systems-heavy workflows or operational complexity',
         'Organizations adopting AI-assisted delivery practices responsibly',

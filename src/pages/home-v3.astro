@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MediaPanel from '../components/MediaPanel.astro';
+import { writingRoadmapEntries } from '../data/writing-roadmap';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const homeV3BridgeVariant: 'legacy' | 'lite' = 'lite';
+const homeV3ActorsVariant: 'legacy' | 'concept' = 'concept';
+const homeV3ActorsConceptVariant: 'scene' | 'lane' = 'lane';
+const homeV3PracticeVariant: 'grid' | 'story-stack' | 'solid-cards' = 'grid';
+const homeV3ShiftVariant: 'contrast' | 'hidden' = 'hidden';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 const createActorMailto = (actor: string, prompt: string) => {
   const params = new URLSearchParams();
@@ -19,7 +25,15 @@ const leverageCards = [
       'investment priorities, and making design',
       'a driver of business outcomes.'
     ],
+    cardFit: 'For teams that need sharper product direction and clearer investment bets.',
     artType: 'executive',
+    conceptLabel: 'Strategic direction',
+    conceptSignals: ['Direction', 'Investment', 'Outcomes'],
+    laneRows: [
+      { label: 'Direction', detail: 'What matters now' },
+      { label: 'Investment', detail: 'Sequence bets' },
+      { label: 'Outcomes', detail: 'Business impact' }
+    ],
     image: 'images/dan-right.png',
     imageAlt: 'Executive product design leadership and strategy collaboration',
     actorSlug: '/work-with/executives-and-product-drivers',
@@ -32,7 +46,15 @@ const leverageCards = [
       'collaboration, and creating repeatable',
       'patterns teams can ship with confidence.'
     ],
+    cardFit: 'For teams slowed by delivery friction, ambiguity, or weak handoffs.',
     artType: 'product',
+    conceptLabel: 'Execution systems',
+    conceptSignals: ['Roadmap', 'Handoffs', 'Delivery'],
+    laneRows: [
+      { label: 'Roadmap', detail: 'Reduce ambiguity' },
+      { label: 'Handoffs', detail: 'Better flow' },
+      { label: 'Delivery', detail: 'Ship confidently' }
+    ],
     image: 'images/img.png',
     imageAlt: 'Cross-functional product and engineering collaboration',
     actorSlug: '/work-with/product-and-engineering-teams',
@@ -45,7 +67,15 @@ const leverageCards = [
       'and strengthening design influence in strategic',
       'product and organizational decisions.'
     ],
+    cardFit: 'For organizations building stronger standards, coaching, and design influence.',
     artType: 'design',
+    conceptLabel: 'Capability building',
+    conceptSignals: ['Standards', 'Coaching', 'Influence'],
+    laneRows: [
+      { label: 'Standards', detail: 'Quality bar' },
+      { label: 'Coaching', detail: 'Raise judgment' },
+      { label: 'Influence', detail: 'Earlier decisions' }
+    ],
     image: 'images/dan.png',
     imageAlt: 'Design leadership and team development',
     actorSlug: '/work-with/designers-and-design-leaders',
@@ -55,6 +85,7 @@ const leverageCards = [
 
 const practiceStats = [
   {
+    eyebrow: 'Current role',
     labelLines: ['Chief Product Designer', 'at feature[23]'],
     text: 'Built and scaled a design practice focused on repeatable client outcomes, team quality, and delivery partnership',
     visualType: 'rocket',
@@ -62,6 +93,7 @@ const practiceStats = [
     detailImage: withBase('images/home-v3/practice/practice-rocket-detail.png')
   },
   {
+    eyebrow: 'Experience',
     labelLines: ['17+ years across', 'product and design'],
     text: 'Hands-on leadership across startups and enterprise environments, from direction setting through implementation',
     visualType: 'telescope',
@@ -69,6 +101,7 @@ const practiceStats = [
     detailImage: withBase('images/home-v3/practice/practice-telescope-detail.png')
   },
   {
+    eyebrow: 'Operating model',
     labelLines: ['Systems-led, people-first', 'operating model'],
     text: 'Clarifies priorities, aligns teams, and builds standards that preserve momentum without creating chaos',
     visualType: 'helmet',
@@ -77,23 +110,33 @@ const practiceStats = [
   }
 ];
 
-const needModes = [
+const beforeAfterColumns = [
   {
-    title: 'Shared priorities teams can align around',
-    text: 'Less drift, cleaner decisions, and clearer alignment on what matters now.'
+    label: 'Before',
+    rows: [
+      'Priorities are moving, but decision criteria are unclear',
+      'Design is active, but not shaping direction early enough',
+      'Teams are shipping, but alignment debt keeps compounding',
+      'Leadership feels momentum, but confidence in the path is uneven'
+    ]
   },
   {
-    title: 'Product vision translated into real direction',
-    text: 'Goals, constraints, and customer reality shaped into direction teams can actually build against.'
-  },
-  {
-    title: 'Senior leadership that can move into execution',
-    text: 'Strategic design leadership that can stay high-level and still step into the work when momentum depends on it.'
-  },
-  {
-    title: 'Decision quality that holds under pressure',
-    text: 'Direction strong enough for leadership conversations and concrete enough for delivery teams to act on.'
+    label: 'After',
+    rows: [
+      'Decisions are clearer, easier to defend, and easier to execute',
+      'Design contributes to direction, not only execution',
+      'Teams have stronger operating rhythm and fewer avoidable loops',
+      'Leadership gets speed with better signal and less chaos'
+    ]
   }
+];
+
+const howItChangesRows = [
+  'Clear decision criteria and tradeoff framing before execution starts',
+  'Goals and constraints translated into a clearer product vision teams can work from',
+  'Design involved earlier in direction-setting, not only interface delivery',
+  'Shared working patterns across leadership, product, engineering, and design',
+  'Systems and standards that reduce rework without adding process drag'
 ];
 
 const caseStudies = [
@@ -157,21 +200,6 @@ const caseStudies = [
   }
 ];
 
-const supportAreas = [
-  {
-    title: 'Product direction under pressure',
-    text: 'Clarifying priorities, tradeoffs, and product vision when the stakes are high and ambiguity is expensive.'
-  },
-  {
-    title: 'Design systems and delivery partnership',
-    text: 'Building patterns, working norms, and design capability that help product and engineering move faster without lowering the bar.'
-  },
-  {
-    title: 'Fractional leadership that stays close to execution',
-    text: 'Supporting strategy and organizational alignment while still getting into the work when outcomes depend on it.'
-  }
-];
-
 const engagementModels = [
   {
     title: 'Fractional design leadership',
@@ -190,20 +218,10 @@ const engagementModels = [
   }
 ];
 
-const writingEntries = [
-  {
-    title: 'What design leaders do when product direction is unclear',
-    type: 'Essay',
-    summary: 'A practical framework for clarifying decisions, reducing drift, and giving teams direction they can execute against.',
-    href: withBase('/writing/design-leaders-when-direction-is-unclear')
-  },
-  {
-    title: 'Using AI to compress design-to-build cycles without creating chaos',
-    type: 'Drafting',
-    summary: 'How AI can improve speed and implementation readiness when it is used as a systems multiplier instead of a shortcut.',
-    href: withBase('/writing')
-  }
-];
+const featuredPractice = practiceStats[0];
+const supportingPractice = practiceStats.slice(1);
+const featuredWriting = writingRoadmapEntries[0];
+const supportingWriting = writingRoadmapEntries.slice(1);
 ---
 
 <Layout
@@ -263,38 +281,60 @@ const writingEntries = [
       </section>
     </section>
 
-    <section class="home-v3-bridge" aria-label="Operating range" data-home-v3-bridge>
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="home-v3-bridge-shell gc-start-1 gc-span-26">
-          <div class="home-v3-bridge-atmosphere" aria-hidden="true">
-            <span class="home-v3-bridge-beam"></span>
-            <span class="home-v3-bridge-beam-core"></span>
-            <span class="home-v3-bridge-haze home-v3-bridge-haze--one"></span>
-            <span class="home-v3-bridge-haze home-v3-bridge-haze--two"></span>
-            <span class="home-v3-bridge-haze home-v3-bridge-haze--three"></span>
-            <span class="home-v3-bridge-arc"></span>
-            <span class="home-v3-bridge-node home-v3-bridge-node--one"></span>
-            <span class="home-v3-bridge-node home-v3-bridge-node--two"></span>
-            <span class="home-v3-bridge-node home-v3-bridge-node--three"></span>
-            <span class="home-v3-bridge-node home-v3-bridge-node--four"></span>
-          </div>
-          <div class="home-v3-bridge-stage" data-home-v3-bridge-stage>
-            <div class="home-v3-bridge-bg" data-home-v3-bridge-bg aria-hidden="true"></div>
-            <div class="home-v3-bridge-words" aria-hidden="true">
-              <div class="home-v3-bridge-scene home-v3-bridge-scene--strategy" data-home-v3-bridge-scene="strategy">
-                <h2 class="home-v3-bridge-word" data-home-v3-bridge-word="strategy">Strategy.</h2>
-              </div>
-              <div class="home-v3-bridge-scene home-v3-bridge-scene--systems" data-home-v3-bridge-scene="systems">
-                <h2 class="home-v3-bridge-word" data-home-v3-bridge-word="systems">Systems.</h2>
-              </div>
-              <div class="home-v3-bridge-scene home-v3-bridge-scene--clarity" data-home-v3-bridge-scene="clarity">
-                <h2 class="home-v3-bridge-word" data-home-v3-bridge-word="clarity">Clarity.</h2>
+    {homeV3BridgeVariant === 'legacy' ? (
+      <section class="home-v3-bridge" aria-label="Operating range" data-home-v3-bridge>
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <div class="home-v3-bridge-shell gc-start-1 gc-span-26">
+            <div class="home-v3-bridge-atmosphere" aria-hidden="true">
+              <span class="home-v3-bridge-beam"></span>
+              <span class="home-v3-bridge-beam-core"></span>
+              <span class="home-v3-bridge-haze home-v3-bridge-haze--one"></span>
+              <span class="home-v3-bridge-haze home-v3-bridge-haze--two"></span>
+              <span class="home-v3-bridge-haze home-v3-bridge-haze--three"></span>
+              <span class="home-v3-bridge-arc"></span>
+              <span class="home-v3-bridge-node home-v3-bridge-node--one"></span>
+              <span class="home-v3-bridge-node home-v3-bridge-node--two"></span>
+              <span class="home-v3-bridge-node home-v3-bridge-node--three"></span>
+              <span class="home-v3-bridge-node home-v3-bridge-node--four"></span>
+            </div>
+            <div class="home-v3-bridge-stage" data-home-v3-bridge-stage>
+              <div class="home-v3-bridge-bg" data-home-v3-bridge-bg aria-hidden="true"></div>
+              <div class="home-v3-bridge-words" aria-hidden="true">
+                <div class="home-v3-bridge-scene home-v3-bridge-scene--strategy" data-home-v3-bridge-scene="strategy">
+                  <h2 class="home-v3-bridge-word" data-home-v3-bridge-word="strategy">Strategy.</h2>
+                </div>
+                <div class="home-v3-bridge-scene home-v3-bridge-scene--systems" data-home-v3-bridge-scene="systems">
+                  <h2 class="home-v3-bridge-word" data-home-v3-bridge-word="systems">Systems.</h2>
+                </div>
+                <div class="home-v3-bridge-scene home-v3-bridge-scene--clarity" data-home-v3-bridge-scene="clarity">
+                  <h2 class="home-v3-bridge-word" data-home-v3-bridge-word="clarity">Clarity.</h2>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    ) : (
+      <section class="home-v3-bridge-lite" aria-label="Operating range" data-home-v3-bridge-lite>
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <div class="home-v3-bridge-lite-shell gc-start-1 gc-span-26">
+            <div class="home-v3-bridge-lite-stage">
+              <div class="home-v3-bridge-lite-backdrop" aria-hidden="true"></div>
+              <div class="home-v3-bridge-lite-stars" aria-hidden="true"></div>
+              <div class="home-v3-bridge-lite-card home-v3-bridge-lite-card--strategy" data-home-v3-bridge-lite-card="strategy">
+                <h2 class="home-v3-bridge-lite-word">Strategy.</h2>
+              </div>
+              <div class="home-v3-bridge-lite-card home-v3-bridge-lite-card--systems" data-home-v3-bridge-lite-card="systems">
+                <h2 class="home-v3-bridge-lite-word">Systems.</h2>
+              </div>
+              <div class="home-v3-bridge-lite-card home-v3-bridge-lite-card--clarity" data-home-v3-bridge-lite-card="clarity">
+                <h2 class="home-v3-bridge-lite-word">Clarity.</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
 
     <section class="home-v3-actors" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-actors-intro">
@@ -305,6 +345,7 @@ const writingEntries = [
         </div>
       </div>
 
+      {homeV3ActorsVariant === 'legacy' && (
       <div class="home-v3-actor-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
         {leverageCards.map((item) => (
           <article class={`home-v3-actor-card home-v3-actor-card--${item.artType}`} role="listitem">
@@ -536,29 +577,127 @@ const writingEntries = [
               <h3>{item.title}</h3>
               <p>{item.descriptionLines.join(' ')}</p>
               <div class="home-v3-actions home-v3-actions--actor">
-                <a class="home-v3-button home-v3-button--solid home-v3-button--compact" href={createActorMailto(item.title, item.actorLabel)}>Work with me</a>
-                <a class="home-v3-actor-link" href={withBase(item.actorSlug)}>See how I help</a>
+                <a class="home-v3-button home-v3-button--compact home-v3-button--actor-primary" href={createActorMailto(item.title, item.actorLabel)}>Work with me</a>
+                <a class="home-v3-actor-link" href={withBase(item.actorSlug)}>How I help</a>
               </div>
             </div>
           </article>
         ))}
       </div>
+      )}
+
+      {homeV3ActorsVariant === 'concept' && homeV3ActorsConceptVariant === 'scene' && (
+      <div class="home-v3-actor-grid home-v3-actor-grid--concept col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+        {leverageCards.map((item) => (
+          <article class={`home-v3-actor-card-concept home-v3-actor-card-concept--${item.artType}`} role="listitem">
+            <div class="home-v3-actor-card-concept-media" aria-hidden="true">
+              <div class="home-v3-actor-card-concept-atmosphere"></div>
+              <div class="home-v3-actor-card-concept-stars"></div>
+              <div class={`home-v3-actor-card-concept-diagram home-v3-actor-card-concept-diagram--${item.artType}`}>
+                <span class="home-v3-actor-card-concept-path home-v3-actor-card-concept-path--a"></span>
+                <span class="home-v3-actor-card-concept-path home-v3-actor-card-concept-path--b"></span>
+                <span class="home-v3-actor-card-concept-path home-v3-actor-card-concept-path--c"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--a"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--b"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--c"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--focus"></span>
+                <span class="home-v3-actor-card-concept-focus-ring"></span>
+                <span class="home-v3-actor-card-concept-beam"></span>
+                {item.artType === 'design' ? (
+                  <div class="home-v3-actor-card-concept-board">
+                    {item.conceptSignals.map((signal, index) => (
+                      <span class={`home-v3-actor-card-concept-board-row home-v3-actor-card-concept-board-row--${index + 1}`}>{signal}</span>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="home-v3-actor-card-concept-tags">
+                    {item.conceptSignals.map((signal, index) => (
+                      <span class={`home-v3-actor-card-concept-tag home-v3-actor-card-concept-tag--${index + 1}`}>{signal}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div class="home-v3-actor-card-concept-copy">
+              <p class="home-v3-actor-card-concept-kicker">{item.conceptLabel}</p>
+              <h3>{item.title}</h3>
+              <p>{item.descriptionLines.join(' ')}</p>
+              <div class="home-v3-actions home-v3-actions--actor">
+                <a class="home-v3-button home-v3-button--compact home-v3-button--actor-primary" href={createActorMailto(item.title, item.actorLabel)}>Work with me</a>
+                <a class="home-v3-actor-link" href={withBase(item.actorSlug)}>How I help</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      )}
+
+      {homeV3ActorsVariant === 'concept' && homeV3ActorsConceptVariant === 'lane' && (
+      <div class="home-v3-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+        {leverageCards.map((item) => (
+          <article class={`home-v3-actor-lane home-v3-actor-lane--${item.artType}`} role="listitem">
+            <div class="home-v3-actor-lane-head">
+              <p class="home-v3-actor-lane-kicker">{item.conceptLabel}</p>
+              <span class="home-v3-actor-lane-dot" aria-hidden="true"></span>
+            </div>
+
+            <div class={`home-v3-actor-lane-scene home-v3-actor-card-concept--${item.artType}`} aria-hidden="true">
+              <div class="home-v3-actor-card-concept-atmosphere"></div>
+              <div class="home-v3-actor-card-concept-stars"></div>
+              <div class={`home-v3-actor-card-concept-diagram home-v3-actor-card-concept-diagram--${item.artType}`}>
+                <span class="home-v3-actor-card-concept-path home-v3-actor-card-concept-path--a"></span>
+                <span class="home-v3-actor-card-concept-path home-v3-actor-card-concept-path--b"></span>
+                <span class="home-v3-actor-card-concept-path home-v3-actor-card-concept-path--c"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--a"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--b"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--c"></span>
+                <span class="home-v3-actor-card-concept-node home-v3-actor-card-concept-node--focus"></span>
+                <span class="home-v3-actor-card-concept-focus-ring"></span>
+                <span class="home-v3-actor-card-concept-beam"></span>
+              </div>
+            </div>
+
+            <div class="home-v3-actor-lane-copy">
+              <h3>{item.title}</h3>
+              <p>{item.cardFit}</p>
+            </div>
+
+            <div class="home-v3-actor-lane-strip">
+              {item.laneRows.map((row, rowIndex) => (
+                <div class={`home-v3-actor-lane-metric home-v3-actor-lane-metric--${rowIndex + 1}`}>
+                  <span class="home-v3-actor-lane-metric-label">{row.label}</span>
+                  <span class="home-v3-actor-lane-metric-detail">{row.detail}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="home-v3-actor-lane-footer">
+              <div class="home-v3-actions home-v3-actions--actor home-v3-actions--actor-lane">
+                <a class="home-v3-button home-v3-button--compact home-v3-button--actor-primary" href={createActorMailto(item.title, item.actorLabel)}>Work with me</a>
+                <a class="home-v3-actor-link" href={withBase(item.actorSlug)}>How I help</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      )}
     </section>
 
     <section class="home-v3-practice" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-practice-intro">
         <div class="home-v3-section-head home-v3-section-head--practice gc-start-2 gc-span-14">
           <p class="home-v3-section-label">Leadership in practice</p>
-          <h2>Clarity for moments that matter most.</h2>
+          <h2>Clarity under pressure.</h2>
           <p>
-            Across 17+ years in product and design leadership, including my current role at feature[23], I have led work across product, program, and portfolio levels, helping organizations make better decisions earlier and execute with more confidence.
+            I work across product, program, and portfolio levels to help organizations make better decisions earlier and execute with more confidence.
           </p>
         </div>
       </div>
 
+      {homeV3PracticeVariant === 'grid' && (
       <div class="home-v3-practice-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys u-no-pt" role="list" aria-label="Design leadership proof points">
         {practiceStats.map((item) => (
-          <article class={`home-v3-practice-card home-v3-practice-card--${item.visualType}`} role="listitem">
+          <article class={`home-v3-practice-card home-v3-practice-card--grid home-v3-practice-card--${item.visualType}`} role="listitem">
             <div class="home-v3-practice-visual" aria-hidden="true">
               <div class="home-v3-practice-nebula"></div>
               <div class="home-v3-practice-glow"></div>
@@ -574,6 +713,108 @@ const writingEntries = [
           </article>
         ))}
       </div>
+      )}
+
+      {homeV3PracticeVariant !== 'grid' && (
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        {homeV3PracticeVariant === 'story-stack' && (
+        <div class="home-v3-practice-layout gc-start-2 gc-span-24" aria-label="Design leadership proof points">
+          <div class="home-v3-practice-story">
+            <div class="home-v3-practice-story-copy">
+              <h3>Leadership that stays strategic and close enough to execution to matter.</h3>
+              <p class="home-v3-practice-story-text">
+                Across product, program, and portfolio layers, I help teams get to clearer decisions, stronger systems, and more confident delivery.
+              </p>
+              <p class="home-v3-practice-story-note">
+                Strategic enough for leadership conversations. Close enough to the work that delivery quality, operating rhythm, and team momentum actually improve.
+              </p>
+            </div>
+
+            <div class="home-v3-practice-atmosphere" aria-hidden="true">
+              <span class="home-v3-practice-atmosphere-stars"></span>
+              <span class="home-v3-practice-atmosphere-glow"></span>
+              <span class="home-v3-practice-atmosphere-ring home-v3-practice-atmosphere-ring--one"></span>
+              <span class="home-v3-practice-atmosphere-ring home-v3-practice-atmosphere-ring--two"></span>
+              <span class="home-v3-practice-atmosphere-beam"></span>
+              <span class="home-v3-practice-atmosphere-node home-v3-practice-atmosphere-node--one"></span>
+              <span class="home-v3-practice-atmosphere-node home-v3-practice-atmosphere-node--two"></span>
+              <span class="home-v3-practice-atmosphere-node home-v3-practice-atmosphere-node--three"></span>
+            </div>
+          </div>
+
+          <div class="home-v3-practice-stack" role="list" aria-label="Leadership proof points">
+            <article class={`home-v3-panel home-v3-practice-proof home-v3-practice-proof--feature home-v3-practice-card home-v3-practice-card--${featuredPractice.visualType}`} role="listitem">
+              <div class="home-v3-practice-proof-copy">
+                <p class="home-v3-card-label">{featuredPractice.eyebrow}</p>
+                <p class="home-v3-practice-value">
+                  {featuredPractice.labelLines.map((line) => <span class="home-v3-practice-value-line">{line}</span>)}
+                </p>
+                <p class="home-v3-practice-text">{featuredPractice.text}</p>
+              </div>
+
+              <div class="home-v3-practice-proof-visual home-v3-practice-visual" aria-hidden="true">
+                <div class="home-v3-practice-nebula"></div>
+                <div class="home-v3-practice-glow"></div>
+                <div class="home-v3-practice-floor-glow"></div>
+                <div class="home-v3-practice-stars"></div>
+                <img class="home-v3-practice-icon home-v3-practice-icon--outline" src={featuredPractice.outlineImage} alt="" loading="lazy" decoding="async" />
+                <img class="home-v3-practice-icon home-v3-practice-icon--detail" src={featuredPractice.detailImage} alt="" loading="lazy" decoding="async" />
+              </div>
+            </article>
+
+            {supportingPractice.map((item) => (
+              <article class={`home-v3-panel home-v3-practice-proof home-v3-practice-proof--compact home-v3-practice-card home-v3-practice-card--${item.visualType}`} role="listitem">
+                <div class="home-v3-practice-proof-copy">
+                  <p class="home-v3-card-label">{item.eyebrow}</p>
+                  <p class="home-v3-practice-value">
+                    {item.labelLines.map((line) => <span class="home-v3-practice-value-line">{line}</span>)}
+                  </p>
+                  <p class="home-v3-practice-text">{item.text}</p>
+                </div>
+
+                <div class="home-v3-practice-proof-visual home-v3-practice-visual" aria-hidden="true">
+                  <div class="home-v3-practice-nebula"></div>
+                  <div class="home-v3-practice-glow"></div>
+                  <div class="home-v3-practice-floor-glow"></div>
+                  <div class="home-v3-practice-stars"></div>
+                  <img class="home-v3-practice-icon home-v3-practice-icon--outline" src={item.outlineImage} alt="" loading="lazy" decoding="async" />
+                  <img class="home-v3-practice-icon home-v3-practice-icon--detail" src={item.detailImage} alt="" loading="lazy" decoding="async" />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+        )}
+
+        {homeV3PracticeVariant === 'solid-cards' && (
+        <div class="home-v3-practice-solid-list gc-start-2 gc-span-24" role="list" aria-label="Leadership proof points">
+          {practiceStats.map((item, index) => (
+            <article class={`home-v3-panel home-v3-practice-solid-card home-v3-practice-card home-v3-practice-card--${item.visualType}`} role="listitem">
+              <div class="home-v3-practice-solid-copy">
+                <p class="home-v3-card-label">{item.eyebrow}</p>
+                <p class="home-v3-practice-value home-v3-practice-value--solid">
+                  {item.labelLines.map((line) => <span class="home-v3-practice-value-line">{line}</span>)}
+                </p>
+                <p class="home-v3-practice-text">{item.text}</p>
+              </div>
+
+              <div class={`home-v3-practice-solid-visual home-v3-practice-solid-visual--${index + 1}`} aria-hidden="true">
+                <div class="home-v3-practice-solid-haze"></div>
+                <div class="home-v3-practice-proof-visual home-v3-practice-visual">
+                  <div class="home-v3-practice-nebula"></div>
+                  <div class="home-v3-practice-glow"></div>
+                  <div class="home-v3-practice-floor-glow"></div>
+                  <div class="home-v3-practice-stars"></div>
+                  <img class="home-v3-practice-icon home-v3-practice-icon--outline" src={item.outlineImage} alt="" loading="lazy" decoding="async" />
+                  <img class="home-v3-practice-icon home-v3-practice-icon--detail" src={item.detailImage} alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        )}
+      </div>
+      )}
 
     </section>
 
@@ -650,75 +891,74 @@ const writingEntries = [
       </div>
     </section>
 
-    <section class="home-v3-needs" data-home-v3-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
-          <p class="home-v3-section-label">What teams usually need</p>
+    {homeV3ShiftVariant === 'contrast' && (
+    <section class="home-v3-shift" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-shift-layout">
+        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
+          <p class="home-v3-section-label">What changes</p>
+          <h2>When design leadership is working, teams feel it in how decisions get made and how execution moves.</h2>
+          <p>
+            Outcomes matter, but the mechanism matters too. This is where direction becomes easier to defend, execution becomes easier to trust, and teams stop paying avoidable alignment debt.
+          </p>
+        </div>
+
+        <div class="home-v3-shift-panels gc-start-11 gc-span-15">
+          <div class="home-v3-shift-pair" role="list" aria-label="Before and after changes">
+            {beforeAfterColumns.map((column) => (
+              <article class={`home-v3-panel home-v3-shift-card home-v3-shift-card--${column.label.toLowerCase()}`} role="listitem">
+                <p class="home-v3-card-label">{column.label}</p>
+                <ul class="home-v3-shift-list">
+                  {column.rows.map((row) => <li>{row}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <article class="home-v3-panel home-v3-shift-card home-v3-shift-card--how">
+            <p class="home-v3-card-label">How this changes</p>
+            <ul class="home-v3-shift-list home-v3-shift-list--how">
+              {howItChangesRows.map((row) => <li>{row}</li>)}
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    )}
+
+    <section class="home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-writing-layout">
+        <div class="home-v3-writing-head gc-start-2 gc-span-8">
+          <p class="home-v3-section-label">Writing</p>
+          <h2>Notes, essays, and field observations from the work.</h2>
+        </div>
+
+        <div class="home-v3-writing-note gc-start-12 gc-span-10">
+          <p class="home-v3-writing-intro-text">
+            Frameworks, practical essays, and field notes about product direction, systems, and design leadership inside real teams.
+          </p>
         </div>
       </div>
 
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <article class="home-v3-needs-panel gc-start-2 gc-span-22" aria-label="What teams usually need">
-          <div class="home-v3-needs-panel-top">
-            <p class="home-v3-needs-panel-kicker">Direction that holds under pressure</p>
-            <h3>Clearer direction and alignment leaders can trust</h3>
-            <p class="home-v3-needs-panel-lead">
-              Product vision translated from goals, constraints, and real team needs, with senior design leadership that stays strategic and can move into execution.
-            </p>
-          </div>
-
-          <div class="home-v3-needs-panel-grid" role="list" aria-label="Leadership needs">
-            {needModes.map((item) => (
-              <div class="home-v3-needs-panel-item" role="listitem">
-                <h4>{item.title}</h4>
-                <p>{item.text}</p>
-              </div>
+        <div class="home-v3-writing-rail-wrap gc-start-2 gc-span-24">
+          <div class="home-v3-writing-rail" role="list" aria-label="Writing roadmap">
+            {[featuredWriting, ...supportingWriting].map((entry, index) => (
+              <article class={`home-v3-writing-volume home-v3-writing-volume--${(index % 4) + 1}`} role="listitem">
+                <p class="home-v3-writing-volume-meta">{entry.type} <span aria-hidden="true">•</span> {entry.audience}</p>
+                <h3 class="home-v3-writing-volume-title">
+                  {entry.live ? <a href={withBase(`/writing/${entry.slug}`)}>{entry.title}</a> : entry.title}
+                </h3>
+                <p class="home-v3-writing-volume-summary">{entry.summary}</p>
+                <div class="home-v3-writing-volume-cover" aria-hidden="true">
+                  <span class="home-v3-writing-volume-spine"></span>
+                  <span class="home-v3-writing-volume-orbit"></span>
+                  <span class="home-v3-writing-volume-beam"></span>
+                  <span class="home-v3-writing-volume-glyph"></span>
+                </div>
+              </article>
             ))}
           </div>
-
-          <div class="home-v3-needs-panel-footer">
-            <p>Direction translated into decisions, systems, and execution.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="home-v3-support" data-home-v3-reveal>
-      <div class="home-v3-support-copy">
-        <p class="home-v3-section-label">How I help</p>
-        <h2>Strategic enough for leadership, close enough to the work to matter.</h2>
-        <p>
-          The value is not only visual output. It is better direction, better decisions, better systems, and better collaboration between product, engineering, and design.
-        </p>
-      </div>
-
-      <div class="home-v3-support-list" role="list">
-        {supportAreas.map((item) => (
-          <article class="home-v3-support-row" role="listitem">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="home-v3-writing" data-home-v3-reveal>
-      <div class="home-v3-writing-head">
-        <p class="home-v3-section-label">Writing</p>
-        <h2>A place to publish the thinking behind the work.</h2>
-        <p>
-          The homepage should sell the offer. Writing is where the perspective compounds over time.
-        </p>
-      </div>
-
-      <div class="home-v3-writing-grid" role="list">
-        {writingEntries.map((entry) => (
-          <article class="home-v3-panel home-v3-writing-card" role="listitem">
-            <p class="home-v3-card-label">{entry.type}</p>
-            <h3><a href={entry.href}>{entry.title}</a></h3>
-            <p>{entry.summary}</p>
-          </article>
-        ))}
+        </div>
       </div>
     </section>
 
@@ -1008,6 +1248,11 @@ const writingEntries = [
     }
 
     let frame = 0;
+    let bridgeStart = 0;
+    let totalScrollable = 1;
+    let targetProgress = 0;
+    let currentProgress = 0;
+    const usesCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
@@ -1055,14 +1300,7 @@ const writingEntries = [
       return { opacity, blur, y, scale };
     };
 
-    const updateBridge = () => {
-      frame = 0;
-
-      const rect = bridge.getBoundingClientRect();
-      const totalScrollable = Math.max(bridge.offsetHeight - bridgeShell.offsetHeight, 1);
-      const scrolled = clamp(-rect.top, 0, totalScrollable);
-      const bridgeProgress = totalScrollable > 0 ? scrolled / totalScrollable : 0;
-
+    const renderBridge = (bridgeProgress) => {
       const wordWindows = [
         { key: 'strategy', start: 0, end: 0.31 },
         { key: 'systems', start: 0.22, end: 0.56 },
@@ -1105,14 +1343,181 @@ const writingEntries = [
       });
     };
 
+    const measureBridge = () => {
+      const rect = bridge.getBoundingClientRect();
+      bridgeStart = rect.top + window.scrollY;
+      totalScrollable = Math.max(bridge.offsetHeight - bridgeShell.getBoundingClientRect().height, 1);
+    };
+
+    const readBridgeProgress = () => {
+      const scrolled = clamp(window.scrollY - bridgeStart, 0, totalScrollable);
+      return totalScrollable > 0 ? scrolled / totalScrollable : 0;
+    };
+
+    const updateBridge = () => {
+      frame = 0;
+      targetProgress = readBridgeProgress();
+
+      const delta = targetProgress - currentProgress;
+      const shouldSnap = Math.abs(delta) < 0.0008;
+      const smoothing = usesCoarsePointer ? 0.18 : 0.24;
+
+      currentProgress = shouldSnap ? targetProgress : currentProgress + (delta * smoothing);
+      renderBridge(currentProgress);
+
+      if (!shouldSnap) {
+        frame = window.requestAnimationFrame(updateBridge);
+      }
+    };
+
+    const handleBridgeResize = () => {
+      measureBridge();
+      targetProgress = readBridgeProgress();
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateBridge);
+    };
+
     const scheduleBridgeUpdate = () => {
       if (frame) return;
       frame = window.requestAnimationFrame(updateBridge);
     };
 
-    updateBridge();
+    measureBridge();
+    targetProgress = readBridgeProgress();
+    currentProgress = targetProgress;
+    renderBridge(currentProgress);
     window.addEventListener('scroll', scheduleBridgeUpdate, { passive: true });
-    window.addEventListener('resize', scheduleBridgeUpdate);
+    window.addEventListener('resize', handleBridgeResize);
+    window.addEventListener('orientationchange', handleBridgeResize);
+    window.visualViewport?.addEventListener('resize', handleBridgeResize);
+  })();
+
+  (() => {
+    const bridge = document.querySelector('[data-home-v3-bridge-lite]');
+    const bridgeShell = bridge?.querySelector('.home-v3-bridge-lite-shell');
+    const cards = Array.from(document.querySelectorAll('[data-home-v3-bridge-lite-card]'));
+    if (!(bridge instanceof HTMLElement) || !(bridgeShell instanceof HTMLElement) || cards.length !== 3) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      cards.forEach((card, index) => {
+        card.style.setProperty('--bridge-lite-opacity', index === 1 ? '1' : '0');
+        card.style.setProperty('--bridge-lite-shift-y', index === 1 ? '0px' : '24px');
+        card.style.setProperty('--bridge-lite-scale', index === 1 ? '1' : '0.985');
+      });
+      bridge.style.setProperty('--bridge-lite-field', '1');
+      return;
+    }
+
+    let frame = 0;
+    let bridgeStart = 0;
+    let totalScrollable = 1;
+    let targetProgress = 0;
+    let currentProgress = 0;
+
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+    const mapRange = (value, inMin, inMax, outMin, outMax) => {
+      const progress = (value - inMin) / (inMax - inMin);
+      const clamped = clamp(progress, 0, 1);
+      return outMin + (outMax - outMin) * clamped;
+    };
+
+    const getCardState = (
+      localProgress,
+      { enterEnd = 0.2, holdEnd = 0.76, enterY = 36, exitY = -24, enterScale = 0.97, exitScale = 1.01, exitOpacity = 0 } = {}
+    ) => {
+      let opacity = 0;
+      let y = enterY;
+      let scale = enterScale;
+
+      if (localProgress < enterEnd) {
+        opacity = mapRange(localProgress, 0, enterEnd, 0, 1);
+        y = mapRange(localProgress, 0, enterEnd, enterY, 0);
+        scale = mapRange(localProgress, 0, enterEnd, enterScale, 1);
+      } else if (localProgress < holdEnd) {
+        opacity = 1;
+        y = 0;
+        scale = 1;
+      } else {
+        opacity = mapRange(localProgress, holdEnd, 1, 1, exitOpacity);
+        y = mapRange(localProgress, holdEnd, 1, 0, exitY);
+        scale = mapRange(localProgress, holdEnd, 1, 1, exitScale);
+      }
+
+      return { opacity, y, scale };
+    };
+
+    const renderBridge = (progress) => {
+      const cardWindows = [
+        { start: 0, end: 0.31 },
+        { start: 0.2, end: 0.58 },
+        { start: 0.42, end: 1 }
+      ];
+
+      const cardStates = cardWindows.map(({ start, end }, index) => {
+        const localProgress = clamp((progress - start) / (end - start), 0, 1);
+        return getCardState(
+          localProgress,
+          index === 2 ? { enterEnd: 0.16, holdEnd: 0.992, enterY: 20, exitY: -4, enterScale: 0.986, exitScale: 1.001, exitOpacity: 0.22 } : undefined
+        );
+      });
+
+      bridge.style.setProperty('--bridge-lite-field', Math.max(...cardStates.map((state) => state.opacity)).toFixed(4));
+
+      cardStates.forEach((state, index) => {
+        const card = cards[index];
+        card.style.setProperty('--bridge-lite-opacity', state.opacity.toFixed(4));
+        card.style.setProperty('--bridge-lite-shift-y', `${state.y.toFixed(2)}px`);
+        card.style.setProperty('--bridge-lite-scale', state.scale.toFixed(4));
+      });
+    };
+
+    const measureBridge = () => {
+      const rect = bridge.getBoundingClientRect();
+      bridgeStart = rect.top + window.scrollY;
+      totalScrollable = Math.max(bridge.offsetHeight - bridgeShell.getBoundingClientRect().height, 1);
+    };
+
+    const readBridgeProgress = () => {
+      const scrolled = clamp(window.scrollY - bridgeStart, 0, totalScrollable);
+      return totalScrollable > 0 ? scrolled / totalScrollable : 0;
+    };
+
+    const updateBridge = () => {
+      frame = 0;
+      targetProgress = readBridgeProgress();
+
+      const delta = targetProgress - currentProgress;
+      const shouldSnap = Math.abs(delta) < 0.0008;
+      currentProgress = shouldSnap ? targetProgress : currentProgress + (delta * 0.22);
+      renderBridge(currentProgress);
+
+      if (!shouldSnap) {
+        frame = window.requestAnimationFrame(updateBridge);
+      }
+    };
+
+    const scheduleBridgeUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateBridge);
+    };
+
+    const handleBridgeResize = () => {
+      measureBridge();
+      targetProgress = readBridgeProgress();
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateBridge);
+    };
+
+    measureBridge();
+    targetProgress = readBridgeProgress();
+    currentProgress = targetProgress;
+    renderBridge(currentProgress);
+    window.addEventListener('scroll', scheduleBridgeUpdate, { passive: true });
+    window.addEventListener('resize', handleBridgeResize);
+    window.addEventListener('orientationchange', handleBridgeResize);
+    window.visualViewport?.addEventListener('resize', handleBridgeResize);
   })();
 
   (() => {
@@ -1288,9 +1693,8 @@ const writingEntries = [
 
   .home-v3-trust,
   .home-v3-bridge,
-  .home-v3-needs,
-  .home-v3-support,
-  .home-v3-writing,
+  .home-v3-bridge-lite,
+  .home-v3-shift,
   .home-v3-close {
     width: var(--home-v3-shell);
     margin: 0 auto;
@@ -1736,6 +2140,213 @@ const writingEntries = [
     transform-origin: right center;
   }
 
+  .home-v3-bridge-lite {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    --bridge-lite-scroll-height: 154vh;
+    min-height: var(--bridge-lite-scroll-height);
+    padding-top: 0;
+    --bridge-lite-field: 0;
+  }
+
+  .home-v3-bridge-lite > .dm-grid-l {
+    min-height: var(--bridge-lite-scroll-height);
+  }
+
+  .home-v3-bridge-lite-shell {
+    position: sticky;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    top: var(--home-v3-outer-gap);
+    min-height: calc(100vh - (var(--home-v3-outer-gap) * 2));
+    min-height: calc(100dvh - (var(--home-v3-outer-gap) * 2));
+    height: calc(100vh - (var(--home-v3-outer-gap) * 2));
+    height: calc(100dvh - (var(--home-v3-outer-gap) * 2));
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .home-v3-bridge-lite-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .home-v3-bridge-lite-stage::before {
+    content: '';
+    position: absolute;
+    inset: -8% -8% -14%;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 96% 78% at 50% 38%, rgba(32, 42, 78, 0.42) 0%, rgba(18, 24, 42, 0.18) 34%, rgba(6, 8, 12, 0) 72%),
+      linear-gradient(180deg, rgba(14, 18, 28, 0.92) 0%, rgba(7, 9, 14, 0.98) 72%, rgba(5, 7, 11, 1) 100%);
+  }
+
+  .home-v3-bridge-lite-stage::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 120% 92% at 50% 40%, rgba(255, 255, 255, 0.026) 0%, rgba(255, 255, 255, 0.012) 26%, rgba(255, 255, 255, 0) 56%),
+      radial-gradient(ellipse 128% 104% at 50% 50%, rgba(2, 3, 6, 0) 54%, rgba(2, 3, 6, 0.34) 74%, rgba(2, 3, 6, 0.82) 100%);
+    opacity: calc(0.76 + (var(--bridge-lite-field) * 0.14));
+  }
+
+  .home-v3-bridge-lite-backdrop,
+  .home-v3-bridge-lite-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .home-v3-bridge-lite-backdrop {
+    inset: -12% -10% -16%;
+    background:
+      radial-gradient(ellipse 82% 72% at 50% 42%, rgba(68, 94, 188, 0.2) 0%, rgba(68, 94, 188, 0.1) 34%, rgba(68, 94, 188, 0) 72%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, 0.008) 68%, rgba(255, 255, 255, 0) 100%);
+    opacity: calc(0.56 + (var(--bridge-lite-field) * 0.16));
+    transform: scale(calc(1 + (var(--bridge-lite-field) * 0.02)));
+    will-change: transform, opacity;
+  }
+
+  .home-v3-bridge-lite-stars {
+    inset: 8% 6% 12%;
+    background:
+      radial-gradient(circle at 9% 16%, rgba(236, 242, 255, 0.36) 0 0.12rem, transparent 0.18rem),
+      radial-gradient(circle at 18% 44%, rgba(214, 232, 255, 0.22) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 29% 24%, rgba(236, 242, 255, 0.34) 0 0.1rem, transparent 0.16rem),
+      radial-gradient(circle at 42% 58%, rgba(214, 232, 255, 0.18) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 55% 34%, rgba(236, 242, 255, 0.34) 0 0.09rem, transparent 0.15rem),
+      radial-gradient(circle at 68% 20%, rgba(214, 232, 255, 0.24) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 74% 62%, rgba(236, 242, 255, 0.28) 0 0.09rem, transparent 0.15rem),
+      radial-gradient(circle at 86% 28%, rgba(214, 232, 255, 0.28) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 92% 54%, rgba(236, 242, 255, 0.22) 0 0.08rem, transparent 0.14rem);
+    opacity: calc(0.2 + (var(--bridge-lite-field) * 0.38));
+  }
+
+  .home-v3-bridge-lite-card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    opacity: var(--bridge-lite-opacity, 0);
+    transform: translate3d(0, var(--bridge-lite-shift-y, 24px), 0) scale(var(--bridge-lite-scale, 0.985));
+    will-change: opacity, transform;
+    pointer-events: none;
+    isolation: isolate;
+  }
+
+  .home-v3-bridge-lite-card::before,
+  .home-v3-bridge-lite-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .home-v3-bridge-lite-card::before {
+    inset: 6% -8%;
+    opacity: calc(0.22 + (var(--bridge-lite-opacity, 0) * 0.78));
+  }
+
+  .home-v3-bridge-lite-card::after {
+    inset: 12% 0 8%;
+    opacity: calc(0.14 + (var(--bridge-lite-opacity, 0) * 0.5));
+  }
+
+  .home-v3-bridge-lite-card--strategy {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 9%;
+    padding-top: 11%;
+  }
+
+  .home-v3-bridge-lite-card--strategy::before {
+    background:
+      radial-gradient(ellipse at 24% 56%, rgba(146, 104, 255, 0.46) 0%, rgba(146, 104, 255, 0.2) 22%, rgba(94, 132, 255, 0.12) 42%, rgba(5, 7, 11, 0) 74%),
+      radial-gradient(ellipse at 34% 32%, rgba(224, 232, 255, 0.16) 0%, rgba(224, 232, 255, 0.05) 18%, rgba(224, 232, 255, 0) 44%);
+  }
+
+  .home-v3-bridge-lite-card--strategy::after {
+    background:
+      radial-gradient(circle at 16% 22%, rgba(240, 238, 255, 0.58) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 20% 40%, rgba(222, 228, 255, 0.42) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 28% 60%, rgba(216, 220, 255, 0.34) 0 0.08rem, transparent 0.14rem),
+      linear-gradient(90deg, transparent 0%, rgba(168, 138, 255, 0.12) 18%, rgba(110, 140, 255, 0.08) 38%, transparent 60%);
+  }
+
+  .home-v3-bridge-lite-card--systems {
+    justify-content: center;
+  }
+
+  .home-v3-bridge-lite-card--systems::before {
+    background:
+      radial-gradient(ellipse at 50% 52%, rgba(98, 124, 255, 0.52) 0%, rgba(98, 124, 255, 0.22) 24%, rgba(102, 170, 255, 0.12) 44%, rgba(5, 7, 11, 0) 76%),
+      radial-gradient(ellipse at 50% 30%, rgba(228, 238, 255, 0.14) 0%, rgba(228, 238, 255, 0.05) 18%, rgba(228, 238, 255, 0) 42%);
+  }
+
+  .home-v3-bridge-lite-card--systems::after {
+    background:
+      radial-gradient(circle at 42% 20%, rgba(234, 242, 255, 0.54) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 50% 30%, rgba(234, 242, 255, 0.62) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 58% 48%, rgba(208, 226, 255, 0.38) 0 0.08rem, transparent 0.14rem),
+      linear-gradient(90deg, transparent 14%, rgba(132, 176, 255, 0.08) 34%, rgba(102, 142, 255, 0.12) 50%, rgba(132, 176, 255, 0.08) 66%, transparent 86%);
+  }
+
+  .home-v3-bridge-lite-card--clarity {
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 9%;
+    padding-bottom: 13%;
+  }
+
+  .home-v3-bridge-lite-card--clarity::before {
+    background:
+      radial-gradient(ellipse at 76% 52%, rgba(128, 158, 255, 0.44) 0%, rgba(128, 158, 255, 0.18) 24%, rgba(114, 188, 255, 0.1) 42%, rgba(5, 7, 11, 0) 74%),
+      radial-gradient(ellipse at 66% 34%, rgba(228, 238, 255, 0.12) 0%, rgba(228, 238, 255, 0.04) 18%, rgba(228, 238, 255, 0) 42%);
+  }
+
+  .home-v3-bridge-lite-card--clarity::after {
+    background:
+      radial-gradient(circle at 66% 24%, rgba(236, 244, 255, 0.56) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 76% 42%, rgba(212, 226, 255, 0.42) 0 0.08rem, transparent 0.14rem),
+      radial-gradient(circle at 86% 58%, rgba(198, 214, 255, 0.32) 0 0.08rem, transparent 0.14rem),
+      linear-gradient(90deg, transparent 34%, rgba(146, 170, 255, 0.08) 56%, rgba(124, 186, 255, 0.1) 72%, transparent 100%);
+  }
+
+  .home-v3-bridge-lite-word {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: clamp(4.8rem, 10vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: -0.044rem;
+    color: transparent;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.995) 0%, rgba(248, 251, 255, 0.94) 18%, rgba(216, 223, 236, 0.86) 42%, rgba(120, 128, 145, 0.52) 74%, rgba(30, 34, 44, 0.84) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.2),
+      0 -1px 0 rgba(0, 0, 0, 0.34),
+      0 0.6rem 1.4rem rgba(0, 0, 0, 0.42);
+  }
+
+  .home-v3-bridge-lite-card--strategy .home-v3-bridge-lite-word {
+    text-align: left;
+  }
+
+  .home-v3-bridge-lite-card--clarity .home-v3-bridge-lite-word {
+    text-align: right;
+  }
+
   .home-v3-hero-frame {
     position: relative;
     overflow: hidden;
@@ -1983,6 +2594,46 @@ const writingEntries = [
     color: var(--home-v3-text);
   }
 
+  .home-v3-button--actor-primary {
+    background:
+      radial-gradient(circle at 14% 50%, rgba(var(--actor-cta-rgb, 160, 188, 255), 0.08), transparent 42%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 28%),
+      linear-gradient(180deg, rgba(22, 24, 30, 0.9), rgba(13, 15, 19, 0.98));
+    color: var(--home-v3-text);
+    -webkit-text-fill-color: var(--home-v3-text);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.08),
+      0 0.35rem 0.9rem rgba(0, 0, 0, 0.18);
+    transition:
+      background 0.28s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease,
+      transform 0.25s ease;
+  }
+
+  .home-v3 a.home-v3-button--actor-primary:link,
+  .home-v3 a.home-v3-button--actor-primary:visited,
+  .home-v3-button--actor-primary:link,
+  .home-v3-button--actor-primary:visited {
+    color: var(--home-v3-text);
+    -webkit-text-fill-color: var(--home-v3-text);
+  }
+
+  .home-v3-button--actor-primary:hover,
+  .home-v3-button--actor-primary:focus-visible {
+    border-color: rgba(var(--actor-cta-soft-rgb, 220, 230, 255), 0.34);
+    background:
+      linear-gradient(135deg, rgba(var(--actor-cta-soft-rgb, 220, 230, 255), 0.1), rgba(var(--actor-cta-rgb, 160, 188, 255), 0) 70%),
+      radial-gradient(circle at 18% 50%, rgba(var(--actor-cta-rgb, 160, 188, 255), 0.18), transparent 46%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 30%),
+      linear-gradient(180deg, rgba(20, 23, 30, 0.94), rgba(10, 12, 16, 1));
+    box-shadow:
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.12),
+      0 0 0 0.0625rem rgba(var(--actor-cta-rgb, 160, 188, 255), 0.14),
+      0 0 1.25rem rgba(var(--actor-cta-rgb, 160, 188, 255), 0.16);
+  }
+
   .home-v3-needs {
     padding-top: var(--spacing-xl);
   }
@@ -1999,6 +2650,8 @@ const writingEntries = [
   .home-v3-actor-card {
     --actor-accent-rgb: 160, 188, 255;
     --actor-accent-soft-rgb: 216, 226, 255;
+    --actor-cta-rgb: var(--actor-accent-rgb);
+    --actor-cta-soft-rgb: var(--actor-accent-soft-rgb);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -4030,7 +4683,7 @@ const writingEntries = [
   .home-v3-actor-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.18rem;
     color: var(--home-v3-text);
     font-size: 0.78rem;
     line-height: 1;
@@ -4038,13 +4691,976 @@ const writingEntries = [
 
   .home-v3-actor-link::after {
     content: '→';
+    display: inline-block;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-0.18rem);
     color: var(--home-v3-text-soft);
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: width 0.2s ease, opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
   }
 
-  .home-v3-actor-link:hover::after {
+  .home-v3-actor-link:hover::after,
+  .home-v3-actor-link:focus-visible::after {
+    width: 0.72rem;
+    opacity: 1;
     transform: translateX(0.1rem);
     color: var(--home-v3-text);
+  }
+
+  .home-v3-actor-lane-grid {
+    gap: 1rem;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .home-v3-actor-lane-grid > * {
+    min-width: 0;
+  }
+
+  .home-v3-actor-lane {
+    --actor-lane-rgb: 160, 188, 255;
+    --actor-lane-soft-rgb: 220, 230, 255;
+    --actor-cta-rgb: var(--actor-lane-rgb);
+    --actor-cta-soft-rgb: var(--actor-lane-soft-rgb);
+    position: relative;
+    min-width: 0;
+    min-height: 30rem;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    gap: 0;
+    padding: 1.3rem 1.3rem 0;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--home-v3-border-soft);
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(12, 14, 19, 0.98), rgba(7, 8, 11, 1)),
+      rgba(7, 8, 11, 1);
+    box-shadow: var(--home-v3-shadow);
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .home-v3-actor-lane::before,
+  .home-v3-actor-lane::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .home-v3-actor-lane::before {
+    background:
+      linear-gradient(145deg, rgba(var(--actor-lane-rgb), 0.08), transparent 36%),
+      radial-gradient(circle at 84% 16%, rgba(var(--actor-lane-rgb), 0.12), transparent 18rem);
+    opacity: 0.28;
+  }
+
+  .home-v3-actor-lane::after {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 18%, transparent 78%, rgba(255, 255, 255, 0.025) 100%);
+    opacity: 0.46;
+  }
+
+  .home-v3-actor-lane:hover {
+    transform: translateY(-0.18rem);
+    border-color: rgba(var(--actor-lane-soft-rgb), 0.12);
+    box-shadow:
+      0 1.4rem 3rem rgba(0, 0, 0, 0.34),
+      0 0 3rem rgba(var(--actor-lane-rgb), 0.1);
+  }
+
+  .home-v3-actor-lane--executive {
+    --actor-lane-rgb: 214, 178, 108;
+    --actor-lane-soft-rgb: 239, 224, 196;
+  }
+
+  .home-v3-actor-lane--product {
+    --actor-lane-rgb: 112, 145, 255;
+    --actor-lane-soft-rgb: 214, 223, 255;
+  }
+
+  .home-v3-actor-lane--design {
+    --actor-lane-rgb: 112, 214, 255;
+    --actor-lane-soft-rgb: 205, 242, 255;
+  }
+
+  .home-v3-actor-lane-head,
+  .home-v3-actor-lane-copy,
+  .home-v3-actor-lane-strip,
+  .home-v3-actor-lane-footer {
+    position: relative;
+    z-index: 2;
+  }
+
+  .home-v3-actor-lane-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.15rem;
+  }
+
+  .home-v3-actor-lane-kicker {
+    margin: 0;
+    color: rgba(var(--actor-lane-soft-rgb), 0.72);
+    font-size: 0.62rem;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .home-v3-actor-lane-dot {
+    position: relative;
+    flex: 0 0 auto;
+    width: 0.72rem;
+    height: 0.72rem;
+    border-radius: 50%;
+    background: rgba(var(--actor-lane-soft-rgb), 0.94);
+    box-shadow:
+      0 0 0 0.16rem rgba(var(--actor-lane-rgb), 0.1),
+      0 0 1.1rem rgba(var(--actor-lane-rgb), 0.18);
+  }
+
+  .home-v3-actor-lane-dot::after {
+    content: '';
+    position: absolute;
+    inset: -0.42rem;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--actor-lane-soft-rgb), 0.16);
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .home-v3-actor-lane-scene {
+    position: absolute;
+    inset: 3.6rem 0 5rem;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    transform: scale(1);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .home-v3-actor-lane-scene::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7, 8, 11, 0.22), rgba(7, 8, 11, 0.44) 28%, rgba(7, 8, 11, 0.72) 64%, rgba(7, 8, 11, 0.96) 100%);
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-atmosphere,
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-stars,
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-diagram {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-atmosphere {
+    inset: 0;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-stars {
+    inset: 9% 7% 14%;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-diagram {
+    inset: 0;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-path,
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-node,
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-focus-ring,
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-beam {
+    transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-path {
+    opacity: 0.22;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-node {
+    opacity: 0.32;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-node--focus,
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-focus-ring {
+    opacity: 0.26;
+  }
+
+  .home-v3-actor-lane-scene .home-v3-actor-card-concept-beam {
+    opacity: 0.16;
+  }
+
+  .home-v3-actor-lane-copy {
+    position: relative;
+    display: grid;
+    gap: 0.68rem;
+    align-content: start;
+    max-width: 29ch;
+    padding-bottom: 1.15rem;
+  }
+
+  .home-v3-actor-lane-copy h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+    max-width: 14ch;
+  }
+
+  .home-v3-actor-lane-copy > p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.84);
+    font-size: 0.84rem;
+    line-height: 1.42;
+    text-wrap: pretty;
+    max-width: 27ch;
+  }
+
+  .home-v3-actor-lane-strip {
+    position: relative;
+    z-index: 2;
+    margin: 0 -1.3rem 0;
+    padding: 0 1.3rem;
+    background: linear-gradient(180deg, rgba(7, 8, 11, 0), rgba(7, 8, 11, 0.44));
+  }
+
+  .home-v3-actor-lane-metric {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.55rem;
+    padding: 0.68rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .home-v3-actor-lane-metric:last-child {
+    border-bottom: 0;
+  }
+
+  .home-v3-actor-lane-metric-label {
+    color: rgba(var(--actor-lane-soft-rgb), 0.82);
+    font-size: 0.52rem;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .home-v3-actor-lane-metric-detail {
+    color: rgba(231, 235, 242, 0.66);
+    font-size: 0.7rem;
+    line-height: 1.2;
+    text-align: right;
+    white-space: nowrap;
+    text-wrap: nowrap;
+  }
+
+  .home-v3-actor-lane--executive .home-v3-actor-lane-metric--2 .home-v3-actor-lane-metric-detail,
+  .home-v3-actor-lane--product .home-v3-actor-lane-metric--3 .home-v3-actor-lane-metric-detail,
+  .home-v3-actor-lane--design .home-v3-actor-lane-metric--3 .home-v3-actor-lane-metric-detail {
+    color: rgba(var(--actor-lane-soft-rgb), 0.88);
+  }
+
+  .home-v3-actor-lane-footer {
+    display: flex;
+    align-items: center;
+    margin: 0 -1.3rem;
+    padding: 0.88rem 1.3rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background:
+      linear-gradient(180deg, rgba(7, 8, 11, 0.24), rgba(7, 8, 11, 0.84)),
+      rgba(7, 8, 11, 0.68);
+  }
+
+  .home-v3-actions--actor-lane {
+    justify-content: space-between;
+    padding-top: 0;
+    width: 100%;
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-dot::after {
+    opacity: 1;
+    animation: home-v3-actor-lane-dot-pulse 1.8s ease-in-out infinite;
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-scene {
+    opacity: 0.3;
+    transform: scale(1.015);
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-scene .home-v3-actor-card-concept-path {
+    opacity: 0.38;
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-scene .home-v3-actor-card-concept-node {
+    opacity: 0.5;
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-scene .home-v3-actor-card-concept-node--focus,
+  .home-v3-actor-lane:hover .home-v3-actor-lane-scene .home-v3-actor-card-concept-focus-ring {
+    opacity: 0.44;
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-scene .home-v3-actor-card-concept-beam {
+    opacity: 0.28;
+  }
+
+  .home-v3-actor-lane:hover .home-v3-actor-lane-metric {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @keyframes home-v3-actor-lane-dot-pulse {
+    0%,
+    100% {
+      transform: scale(0.84);
+      opacity: 0.5;
+    }
+
+    50% {
+      transform: scale(1.12);
+      opacity: 1;
+    }
+  }
+
+  .home-v3-actor-grid--concept {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .home-v3-actor-grid--concept > * {
+    min-width: 0;
+    grid-column: auto;
+  }
+
+  .home-v3-actor-card-concept {
+    --actor-concept-rgb: 160, 188, 255;
+    --actor-concept-soft-rgb: 220, 230, 255;
+    --actor-cta-rgb: var(--actor-concept-rgb);
+    --actor-cta-soft-rgb: var(--actor-concept-soft-rgb);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--home-v3-border-soft);
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(12, 14, 19, 0.98), rgba(7, 8, 11, 1)),
+      rgba(7, 8, 11, 1);
+    box-shadow: var(--home-v3-shadow);
+    min-height: 34.75rem;
+    display: block;
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .home-v3-actor-card-concept::before,
+  .home-v3-actor-card-concept::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .home-v3-actor-card-concept::before {
+    background:
+      linear-gradient(145deg, rgba(var(--actor-concept-rgb), 0.08), transparent 34%),
+      radial-gradient(circle at 82% 16%, rgba(var(--actor-concept-rgb), 0.12), transparent 18rem);
+    opacity: 0.3;
+  }
+
+  .home-v3-actor-card-concept::after {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 18%, transparent 78%, rgba(255, 255, 255, 0.025) 100%);
+    opacity: 0.46;
+  }
+
+  .home-v3-actor-card-concept:hover {
+    transform: translateY(-0.18rem);
+    border-color: rgba(var(--actor-concept-soft-rgb), 0.12);
+    box-shadow:
+      0 1.4rem 3rem rgba(0, 0, 0, 0.34),
+      0 0 3rem rgba(var(--actor-concept-rgb), 0.1);
+  }
+
+  .home-v3-actor-card-concept--executive {
+    --actor-concept-rgb: 214, 178, 108;
+    --actor-concept-soft-rgb: 239, 224, 196;
+  }
+
+  .home-v3-actor-card-concept--product {
+    --actor-concept-rgb: 112, 145, 255;
+    --actor-concept-soft-rgb: 214, 223, 255;
+  }
+
+  .home-v3-actor-card-concept--design {
+    --actor-concept-rgb: 112, 214, 255;
+    --actor-concept-soft-rgb: 205, 242, 255;
+  }
+
+  .home-v3-actor-card-concept-media {
+    position: absolute;
+    inset: 0 0 7.75rem;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.045), transparent 16rem),
+      radial-gradient(circle at 78% 76%, rgba(255, 255, 255, 0.02), transparent 18rem),
+      linear-gradient(180deg, rgba(13, 15, 20, 0.18), rgba(7, 8, 11, 0.76)),
+      rgba(7, 8, 11, 0.98);
+  }
+
+  .home-v3-actor-card-concept-media::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 34%;
+    background: linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.04) 22%, rgba(7, 8, 11, 0.2) 54%, rgba(7, 8, 11, 0.6) 100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .home-v3-actor-card-concept-atmosphere,
+  .home-v3-actor-card-concept-stars,
+  .home-v3-actor-card-concept-diagram {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .home-v3-actor-card-concept-atmosphere {
+    inset: 0;
+    z-index: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-atmosphere {
+    background:
+      radial-gradient(circle at 78% 26%, rgba(255, 225, 162, 0.16), transparent 12rem),
+      radial-gradient(circle at 58% 48%, rgba(214, 178, 108, 0.08), transparent 16rem),
+      linear-gradient(132deg, rgba(255, 222, 154, 0.08), transparent 34%);
+    opacity: 0.78;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-atmosphere {
+    background:
+      radial-gradient(circle at 76% 22%, rgba(152, 176, 255, 0.14), transparent 12rem),
+      radial-gradient(circle at 28% 44%, rgba(112, 145, 255, 0.08), transparent 16rem),
+      linear-gradient(132deg, rgba(132, 160, 255, 0.07), transparent 34%);
+    opacity: 0.72;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-atmosphere {
+    background:
+      radial-gradient(circle at 80% 22%, rgba(152, 233, 255, 0.12), transparent 12rem),
+      radial-gradient(circle at 30% 48%, rgba(112, 214, 255, 0.08), transparent 16rem),
+      linear-gradient(132deg, rgba(128, 214, 255, 0.07), transparent 34%);
+    opacity: 0.76;
+  }
+
+  .home-v3-actor-card-concept-stars {
+    inset: 9% 7% 14%;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 8% 18%, rgba(236, 242, 255, 0.28) 0 0.08rem, transparent 0.12rem),
+      radial-gradient(circle at 22% 36%, rgba(214, 232, 255, 0.2) 0 0.07rem, transparent 0.11rem),
+      radial-gradient(circle at 36% 22%, rgba(236, 242, 255, 0.24) 0 0.08rem, transparent 0.12rem),
+      radial-gradient(circle at 54% 58%, rgba(214, 232, 255, 0.18) 0 0.07rem, transparent 0.11rem),
+      radial-gradient(circle at 72% 28%, rgba(236, 242, 255, 0.22) 0 0.08rem, transparent 0.12rem),
+      radial-gradient(circle at 88% 54%, rgba(214, 232, 255, 0.18) 0 0.07rem, transparent 0.11rem);
+    opacity: 0.58;
+  }
+
+  .home-v3-actor-card-concept-diagram {
+    inset: 1.3rem 1.2rem 1.6rem;
+    z-index: 2;
+  }
+
+  .home-v3-actor-card-concept-diagram::before,
+  .home-v3-actor-card-concept-diagram::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .home-v3-actor-card-concept-diagram::before {
+    z-index: 0;
+  }
+
+  .home-v3-actor-card-concept-diagram::after {
+    z-index: 1;
+  }
+
+  .home-v3-actor-card-concept-path {
+    position: absolute;
+    z-index: 2;
+    height: 1px;
+    border-radius: 999rem;
+    background: linear-gradient(90deg, transparent 0%, rgba(var(--actor-concept-rgb), 0.16) 16%, rgba(var(--actor-concept-soft-rgb), 0.38) 52%, transparent 100%);
+    box-shadow: 0 0 1.1rem rgba(var(--actor-concept-rgb), 0.08);
+    opacity: 0.64;
+    transform-origin: left center;
+    transition: opacity 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  }
+
+  .home-v3-actor-card-concept-node,
+  .home-v3-actor-card-concept-focus-ring {
+    position: absolute;
+    z-index: 3;
+    border-radius: 50%;
+    transition: opacity 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  }
+
+  .home-v3-actor-card-concept-node {
+    width: 0.42rem;
+    height: 0.42rem;
+    background: rgba(var(--actor-concept-soft-rgb), 0.82);
+    box-shadow:
+      0 0 0 0.1rem rgba(var(--actor-concept-rgb), 0.08),
+      0 0 1rem rgba(var(--actor-concept-rgb), 0.12);
+    opacity: 0.84;
+  }
+
+  .home-v3-actor-card-concept-node--focus {
+    width: 0.64rem;
+    height: 0.64rem;
+    background: rgba(var(--actor-concept-soft-rgb), 0.96);
+    box-shadow:
+      0 0 0 0.18rem rgba(var(--actor-concept-rgb), 0.12),
+      0 0 1.6rem rgba(var(--actor-concept-rgb), 0.28);
+    opacity: 1;
+  }
+
+  .home-v3-actor-card-concept-focus-ring {
+    width: 3.1rem;
+    height: 3.1rem;
+    border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.14);
+    background: radial-gradient(circle at center, rgba(var(--actor-concept-rgb), 0.12), rgba(var(--actor-concept-rgb), 0) 66%);
+    filter: blur(0.2px);
+    opacity: 0.72;
+  }
+
+  .home-v3-actor-card-concept-beam {
+    position: absolute;
+    z-index: 2;
+    width: 0.12rem;
+    border-radius: 999rem;
+    background: linear-gradient(180deg, rgba(var(--actor-concept-soft-rgb), 0.48) 0%, rgba(var(--actor-concept-rgb), 0.12) 54%, rgba(var(--actor-concept-rgb), 0) 100%);
+    filter: blur(0.2rem);
+    opacity: 0.62;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .home-v3-actor-card-concept-tags {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+  }
+
+  .home-v3-actor-card-concept-tag {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.4rem;
+    padding: 0 0.56rem;
+    border-radius: 999rem;
+    border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.12);
+    background: rgba(10, 12, 18, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      0 0.7rem 1.2rem rgba(0, 0, 0, 0.18);
+    color: rgba(var(--actor-concept-soft-rgb), 0.82);
+    font-size: 0.56rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+  }
+
+  .home-v3-actor-card-concept-board {
+    position: absolute;
+    top: 17%;
+    left: 18%;
+    z-index: 4;
+    width: 54%;
+    display: grid;
+    gap: 0.62rem;
+    padding: 1rem;
+    border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.12);
+    border-radius: 1.28rem;
+    background:
+      linear-gradient(180deg, rgba(15, 18, 25, 0.92), rgba(9, 11, 18, 0.9)),
+      radial-gradient(circle at top left, rgba(var(--actor-concept-rgb), 0.12), transparent 8rem);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      0 1rem 1.6rem rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(10px);
+  }
+
+  .home-v3-actor-card-concept-board-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 2.35rem;
+    padding: 0.65rem 0.78rem;
+    border-radius: 0.92rem;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(var(--actor-concept-soft-rgb), 0.74);
+    font-size: 0.56rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .home-v3-actor-card-concept-board-row::after {
+    content: '';
+    width: 2.7rem;
+    height: 1px;
+    border-radius: 999rem;
+    background: linear-gradient(90deg, rgba(var(--actor-concept-rgb), 0.08), rgba(var(--actor-concept-soft-rgb), 0.34));
+    box-shadow: 0 0 0.85rem rgba(var(--actor-concept-rgb), 0.08);
+  }
+
+  .home-v3-actor-card-concept-board-row--3 {
+    color: rgba(var(--actor-concept-soft-rgb), 0.88);
+    background: rgba(var(--actor-concept-rgb), 0.08);
+    border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.08);
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-path--a {
+    top: 24%;
+    left: 18%;
+    width: 46%;
+    transform: rotate(14deg);
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-path--b {
+    top: 46%;
+    left: 18%;
+    width: 52%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-path--c {
+    top: 66%;
+    left: 18%;
+    width: 44%;
+    transform: rotate(-14deg);
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-node--a {
+    top: 22.9%;
+    left: 17%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-node--b {
+    top: 44.9%;
+    left: 17%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-node--c {
+    top: 64.9%;
+    left: 17%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-node--focus {
+    top: 43.5%;
+    left: 69.2%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-focus-ring {
+    top: 38.8%;
+    left: 64.9%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-beam {
+    top: 6%;
+    left: 70.1%;
+    height: 46%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-tag--1 {
+    top: 16%;
+    left: 4%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-tag--2 {
+    top: 38%;
+    left: 4%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-tag--3 {
+    top: 60%;
+    left: 7%;
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-diagram::before {
+    inset: 12% 8% 14% 44%;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.08);
+    transform: rotate(-10deg);
+  }
+
+  .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-diagram::after {
+    top: 12%;
+    left: 72%;
+    width: 8rem;
+    height: 8rem;
+    background: radial-gradient(circle at center, rgba(var(--actor-concept-rgb), 0.24), rgba(var(--actor-concept-rgb), 0) 72%);
+    filter: blur(12px);
+    opacity: 0.42;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-path--a {
+    top: 28%;
+    left: 12%;
+    width: 52%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-path--b {
+    top: 48%;
+    left: 26%;
+    width: 42%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-path--c {
+    top: 68%;
+    left: 40%;
+    width: 28%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-node--a {
+    top: 26.9%;
+    left: 11%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-node--b {
+    top: 46.9%;
+    left: 25%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-node--c {
+    top: 66.9%;
+    left: 39%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-node--focus {
+    top: 46.8%;
+    left: 75.8%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-focus-ring {
+    top: 41.8%;
+    left: 71.4%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-beam {
+    top: 28%;
+    left: 76.1%;
+    height: 41%;
+    opacity: 0.24;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-tag--1 {
+    top: 15%;
+    left: 10%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-tag--2 {
+    top: 15%;
+    left: 37%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-tag--3 {
+    top: 15%;
+    left: 66%;
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-diagram::before {
+    inset: 20% 6% 18% 70%;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.12);
+    background:
+      linear-gradient(180deg, rgba(16, 19, 28, 0.92), rgba(9, 11, 18, 0.92)),
+      radial-gradient(circle at top left, rgba(var(--actor-concept-rgb), 0.12), transparent 9rem);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      0 0.9rem 1.4rem rgba(0, 0, 0, 0.16);
+  }
+
+  .home-v3-actor-card-concept--product .home-v3-actor-card-concept-diagram::after {
+    inset: 28% 10% 26% 74%;
+    border-radius: 0.75rem;
+    background:
+      linear-gradient(180deg, rgba(var(--actor-concept-soft-rgb), 0.18), rgba(var(--actor-concept-rgb), 0.05)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+    opacity: 0.8;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-path--a {
+    top: 31%;
+    left: 59%;
+    width: 22%;
+    transform: rotate(6deg);
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-path--b {
+    top: 47%;
+    left: 60%;
+    width: 19%;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-path--c {
+    top: 63%;
+    left: 59%;
+    width: 22%;
+    transform: rotate(-6deg);
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-node--a {
+    top: 29.9%;
+    left: 58%;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-node--b {
+    top: 45.9%;
+    left: 59%;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-node--c {
+    top: 61.9%;
+    left: 58%;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-node--focus {
+    top: 45.3%;
+    left: 82%;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-focus-ring {
+    top: 40.6%;
+    left: 77.8%;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-beam {
+    top: 26%;
+    left: 82.25%;
+    height: 39%;
+    opacity: 0.22;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-diagram::before {
+    top: 18%;
+    left: 18%;
+    width: 56%;
+    height: 41%;
+    border-radius: 1.4rem;
+    background: radial-gradient(circle at 26% 34%, rgba(var(--actor-concept-rgb), 0.14), rgba(var(--actor-concept-rgb), 0) 72%);
+    filter: blur(18px);
+    opacity: 0.28;
+  }
+
+  .home-v3-actor-card-concept--design .home-v3-actor-card-concept-diagram::after {
+    top: 33%;
+    left: 74%;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(var(--actor-concept-rgb), 0.22), rgba(var(--actor-concept-rgb), 0) 70%);
+    filter: blur(12px);
+    opacity: 0.3;
+  }
+
+  .home-v3-actor-card-concept-copy {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 5;
+    display: grid;
+    gap: 0.64rem;
+    align-content: start;
+    width: min(34ch, calc(100% - 2.6rem));
+    padding: 1.3rem 1.3rem 1.18rem;
+    max-width: 34ch;
+    background: linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.16) 12%, rgba(7, 8, 11, 0.78) 42%, rgba(7, 8, 11, 0.98) 100%);
+  }
+
+  .home-v3-actor-card-concept-kicker {
+    margin: 0;
+    color: rgba(var(--actor-concept-soft-rgb), 0.74);
+    font-size: 0.62rem;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .home-v3-actor-card-concept-copy h3 {
+    margin: 0;
+    font-size: 1.46rem;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+    max-width: 15ch;
+    min-height: 2.4rem;
+  }
+
+  .home-v3-actor-card-concept-copy p:not(.home-v3-actor-card-concept-kicker) {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.86);
+    font-size: 0.89rem;
+    line-height: 1.46;
+    max-width: 32ch;
+    min-height: 4rem;
+    text-wrap: pretty;
+  }
+
+  .home-v3-actor-card-concept:hover .home-v3-actor-card-concept-atmosphere {
+    opacity: 0.94;
+    transform: scale(1.02);
+  }
+
+  .home-v3-actor-card-concept:hover .home-v3-actor-card-concept-path {
+    opacity: 0.94;
+    box-shadow: 0 0 1.4rem rgba(var(--actor-concept-rgb), 0.18);
+  }
+
+  .home-v3-actor-card-concept:hover .home-v3-actor-card-concept-focus-ring {
+    transform: scale(1.06);
+    opacity: 0.92;
+  }
+
+  .home-v3-actor-card-concept:hover .home-v3-actor-card-concept-beam {
+    opacity: 0.82;
+    transform: translateY(-0.15rem);
+  }
+
+  .home-v3-actor-card-concept:hover .home-v3-actor-card-concept-tag {
+    border-color: rgba(var(--actor-concept-soft-rgb), 0.2);
+    background: rgba(12, 14, 20, 0.82);
+    transform: translateY(-0.08rem);
+  }
+
+  @media (max-width: 96rem) {
+    .home-v3-actor-grid--concept {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-v3-actor-grid--concept > :last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 68rem) {
+    .home-v3-actor-grid--concept {
+      grid-template-columns: 1fr;
+    }
+
+    .home-v3-actor-grid--concept > :last-child {
+      grid-column: auto;
+    }
   }
 
   .home-v3-engagement-rows {
@@ -4499,12 +6115,11 @@ const writingEntries = [
     border-color: rgba(231, 235, 242, 0.032);
   }
 
-  .home-v3-needs,
   .home-v3-actors,
   .home-v3-trust,
   .home-v3-practice,
   .home-v3-outcomes,
-  .home-v3-support,
+  .home-v3-shift,
   .home-v3-engagements,
   .home-v3-writing {
     padding-top: 6rem;
@@ -4551,29 +6166,341 @@ const writingEntries = [
     align-items: start;
   }
 
+  .home-v3-practice-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(20rem, 0.96fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
   .home-v3-practice-trust {
     padding-top: 1.5rem;
   }
 
+  .home-v3-practice-story {
+    position: relative;
+    min-height: 100%;
+    padding: 1rem 0.4rem 1.2rem 0;
+    overflow: visible;
+    display: grid;
+    align-items: start;
+  }
+
+  .home-v3-practice-story-copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1rem;
+    max-width: 36rem;
+  }
+
+  .home-v3-practice-story-copy h3 {
+    margin: 0;
+    font-size: clamp(3rem, 4.4vw, 5rem);
+    line-height: 0.94;
+    letter-spacing: -0.065em;
+    text-wrap: balance;
+    max-width: 10ch;
+  }
+
+  .home-v3-practice-story-text,
+  .home-v3-practice-story-note {
+    margin: 0;
+    max-width: 35ch;
+    color: rgba(231, 235, 242, 0.78);
+    font-size: 1.02rem;
+    line-height: 1.66;
+  }
+
+  .home-v3-practice-story-note {
+    color: rgba(231, 235, 242, 0.6);
+    max-width: 37ch;
+  }
+
+  .home-v3-practice-atmosphere {
+    position: absolute;
+    left: -8%;
+    bottom: -8%;
+    width: min(36rem, 74%);
+    height: 21rem;
+    pointer-events: none;
+    opacity: 0.96;
+  }
+
+  .home-v3-practice-atmosphere-glow,
+  .home-v3-practice-atmosphere-ring,
+  .home-v3-practice-atmosphere-beam,
+  .home-v3-practice-atmosphere-node,
+  .home-v3-practice-atmosphere-stars {
+    position: absolute;
+  }
+
+  .home-v3-practice-atmosphere-stars {
+    inset: 18% 6% 4% 2%;
+    background:
+      radial-gradient(circle at 15% 24%, rgba(232, 241, 255, 0.76) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 32% 72%, rgba(214, 232, 255, 0.54) 0 0.9px, transparent 1.55px),
+      radial-gradient(circle at 46% 42%, rgba(195, 223, 255, 0.62) 0 1px, transparent 1.65px),
+      radial-gradient(circle at 62% 22%, rgba(232, 241, 255, 0.66) 0 0.95px, transparent 1.6px),
+      radial-gradient(circle at 74% 61%, rgba(214, 232, 255, 0.52) 0 0.9px, transparent 1.55px),
+      radial-gradient(circle at 88% 36%, rgba(232, 241, 255, 0.72) 0 1px, transparent 1.7px);
+    opacity: 0.54;
+    filter: blur(0.1px);
+  }
+
+  .home-v3-practice-atmosphere-glow {
+    left: 8%;
+    bottom: 0;
+    width: 60%;
+    height: 72%;
+    border-radius: 999px;
+    background:
+      radial-gradient(ellipse at center,
+        rgba(113, 177, 255, 0.32) 0%,
+        rgba(113, 177, 255, 0.16) 26%,
+        rgba(113, 177, 255, 0.04) 56%,
+        rgba(113, 177, 255, 0) 76%);
+    filter: blur(28px);
+  }
+
+  .home-v3-practice-atmosphere-ring {
+    border: 1px solid rgba(231, 235, 242, 0.12);
+    border-radius: 50%;
+  }
+
+  .home-v3-practice-atmosphere-ring--one {
+    left: 0;
+    bottom: 5%;
+    width: 68%;
+    height: 82%;
+    transform: rotate(-14deg);
+  }
+
+  .home-v3-practice-atmosphere-ring--two {
+    left: 22%;
+    bottom: 18%;
+    width: 42%;
+    height: 54%;
+    transform: rotate(18deg);
+    border-color: rgba(231, 235, 242, 0.08);
+  }
+
+  .home-v3-practice-atmosphere-beam {
+    left: 28%;
+    top: 4%;
+    width: 4.25rem;
+    height: 96%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+    filter: blur(12px);
+    opacity: 0.56;
+  }
+
+  .home-v3-practice-atmosphere-node {
+    width: 0.58rem;
+    height: 0.58rem;
+    border-radius: 999px;
+    background: rgba(231, 235, 242, 0.82);
+    box-shadow: 0 0 1rem rgba(160, 196, 255, 0.28);
+  }
+
+  .home-v3-practice-atmosphere-node--one {
+    left: 12%;
+    bottom: 28%;
+  }
+
+  .home-v3-practice-atmosphere-node--two {
+    left: 44%;
+    bottom: 46%;
+    width: 0.72rem;
+    height: 0.72rem;
+    background: rgba(244, 248, 255, 0.9);
+  }
+
+  .home-v3-practice-atmosphere-node--three {
+    left: 64%;
+    bottom: 20%;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: rgba(214, 232, 255, 0.7);
+  }
+
+  .home-v3-practice-solid-list {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .home-v3-practice-solid-card {
+    position: relative;
+    min-height: 0;
+    padding: 1.1rem clamp(6.75rem, 11vw, 8.75rem) 1.15rem 1.45rem;
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .home-v3-practice-solid-copy {
+    display: grid;
+    gap: 0.38rem;
+    align-content: start;
+    max-width: 54rem;
+  }
+
+  .home-v3-practice-value--solid {
+    font-size: 1.28rem;
+    line-height: 0.98;
+    max-width: 13ch;
+  }
+
+  .home-v3-practice-solid-visual {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    width: 5.9rem;
+    height: 6.45rem;
+    display: grid;
+    justify-items: end;
+    align-items: start;
+    pointer-events: none;
+  }
+
+  .home-v3-practice-solid-haze {
+    position: absolute;
+    inset: 4% 0 6% 20%;
+    border-radius: 999px;
+    background:
+      radial-gradient(ellipse at center,
+        rgba(113, 177, 255, 0.16) 0%,
+        rgba(113, 177, 255, 0.07) 34%,
+        rgba(113, 177, 255, 0) 72%);
+    filter: blur(20px);
+    opacity: 0.9;
+  }
+
+  .home-v3-practice-solid-visual .home-v3-practice-proof-visual {
+    --home-v3-practice-visual-w: 4.85rem;
+    --home-v3-practice-visual-h: 5.55rem;
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+  }
+
+  .home-v3-practice-solid-visual--1 .home-v3-practice-solid-haze {
+    inset-inline-start: 36%;
+  }
+
+  .home-v3-practice-solid-visual--2 .home-v3-practice-solid-haze {
+    inset-inline-start: 28%;
+    background:
+      radial-gradient(ellipse at center,
+        rgba(173, 192, 255, 0.15) 0%,
+        rgba(173, 192, 255, 0.06) 34%,
+        rgba(173, 192, 255, 0) 72%);
+  }
+
+  .home-v3-practice-solid-visual--3 .home-v3-practice-solid-haze {
+    inset-inline-start: 32%;
+    background:
+      radial-gradient(ellipse at center,
+        rgba(161, 214, 255, 0.14) 0%,
+        rgba(161, 214, 255, 0.05) 34%,
+        rgba(161, 214, 255, 0) 72%);
+  }
+
   .home-v3-practice-card {
     position: relative;
-    min-height: 26rem;
-    padding: 2.2rem 1.25rem 1.7rem;
+    min-height: 0;
     background: transparent;
     display: flex;
     flex-direction: column;
+  }
+
+  .home-v3-practice-card--grid {
+    min-height: 26rem;
+    padding: 2.2rem 1.25rem 1.7rem;
   }
 
   .home-v3-practice-card::before {
     content: none;
   }
 
+  .home-v3-practice-card--grid .home-v3-practice-visual {
+    --home-v3-practice-visual-w: 18.5rem;
+    --home-v3-practice-visual-h: 17.75rem;
+    margin: 0 auto 1.15rem;
+  }
+
+  .home-v3-practice-stack {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-rows: auto repeat(2, minmax(0, 1fr));
+  }
+
+  .home-v3-practice-proof {
+    min-height: 0;
+    height: 100%;
+    padding: 1.3rem 1.4rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.95rem;
+    align-items: center;
+  }
+
+  .home-v3-practice-proof--feature {
+    min-height: 16rem;
+    padding: 1.45rem 1.5rem;
+  }
+
+  .home-v3-practice-proof-copy {
+    display: grid;
+    gap: 0.52rem;
+    align-content: start;
+    max-width: none;
+  }
+
+  .home-v3-practice-proof--feature .home-v3-practice-value {
+    font-size: 1.62rem;
+    max-width: 12ch;
+  }
+
+  .home-v3-practice-proof--compact .home-v3-practice-value {
+    font-size: 1.14rem;
+    line-height: 1.02;
+    max-width: 14ch;
+  }
+
+  .home-v3-practice-proof--feature .home-v3-practice-text {
+    max-width: 52ch;
+  }
+
+  .home-v3-practice-proof--compact .home-v3-practice-text {
+    max-width: 52ch;
+  }
+
+  .home-v3-practice-solid-card .home-v3-practice-text {
+    max-width: 60ch;
+    margin-top: 0.52rem;
+  }
+
+  .home-v3-practice-proof-visual {
+    margin: 0;
+  }
+
+  .home-v3-practice-proof--feature .home-v3-practice-proof-visual {
+    --home-v3-practice-visual-w: 10.5rem;
+    --home-v3-practice-visual-h: 11.75rem;
+  }
+
+  .home-v3-practice-proof--compact .home-v3-practice-proof-visual {
+    --home-v3-practice-visual-w: 7.75rem;
+    --home-v3-practice-visual-h: 8.65rem;
+  }
+
   .home-v3-practice-visual {
     position: relative;
     flex: none;
-    height: 17.75rem;
-    margin: 0 auto 1.15rem;
-    width: min(100%, 18.5rem);
+    height: var(--home-v3-practice-visual-h, 17.75rem);
+    margin: 0;
+    width: min(100%, var(--home-v3-practice-visual-w, 18.5rem));
     display: grid;
     place-items: center;
     isolation: isolate;
@@ -4943,8 +6870,8 @@ const writingEntries = [
   }
 
   .home-v3-trust-value,
-  .home-v3-writing-card p,
-  .home-v3-support-row p {
+  .home-v3-writing-feature-card p,
+  .home-v3-writing-side-card p {
     color: var(--home-v3-text-muted);
     margin: 0;
     line-height: 1.65;
@@ -4955,63 +6882,314 @@ const writingEntries = [
   }
 
   .home-v3-panel h3,
-  .home-v3-support-row h3,
-  .home-v3-writing-card h3 {
+  .home-v3-writing-feature-card h3,
+  .home-v3-writing-side-card h3 {
     font-size: 1.4rem;
     line-height: 1.2;
     margin: 1rem 0 0.85rem;
-  }
-
-  .home-v3-support {
-    display: grid;
-    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-    gap: 1rem;
-    align-items: start;
-  }
-
-  .home-v3-support-copy {
-    display: grid;
-    gap: 1rem;
-    position: sticky;
-    top: 2rem;
-  }
-
-  .home-v3-support-list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .home-v3-support-row {
-    padding: 1.5rem 1.65rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
-  }
-
-  .home-v3-support-row h3 {
-    margin-top: 0;
   }
 
   .home-v3-engagements-intro {
     margin-bottom: 1.35rem;
   }
 
-  .home-v3-writing {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 1rem;
+  .home-v3-shift-layout,
+  .home-v3-writing-layout {
     align-items: start;
+  }
+
+  .home-v3-shift-panels,
+  .home-v3-writing-side {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .home-v3-shift-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .home-v3-shift-card {
+    padding: 1.45rem 1.65rem;
+  }
+
+  .home-v3-shift-card--how {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+  }
+
+  .home-v3-shift-list {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.88rem;
+  }
+
+  .home-v3-shift-list li {
+    position: relative;
+    padding-left: 1rem;
+    color: rgba(231, 235, 242, 0.76);
+    line-height: 1.56;
+  }
+
+  .home-v3-shift-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.74rem;
+    width: 0.34rem;
+    height: 0.34rem;
+    border-radius: 999px;
+    background: rgba(231, 235, 242, 0.52);
+    transform: translateY(-50%);
+  }
+
+  .home-v3-writing--editorial {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: 6rem 0 0;
+    padding: 5rem 0 5.25rem;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 28rem),
+      linear-gradient(180deg, #f4ede2 0%, #e8dece 100%);
+    border-top: 1px solid rgba(53, 37, 20, 0.08);
+    border-bottom: 1px solid rgba(53, 37, 20, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.36),
+      0 1.5rem 3rem rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+  }
+
+  .home-v3-writing--editorial::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(120, 94, 59, 0.06) 0%, rgba(120, 94, 59, 0) 26%),
+      radial-gradient(circle at 82% 22%, rgba(95, 74, 46, 0.08), rgba(95, 74, 46, 0) 16rem);
+    opacity: 0.9;
+  }
+
+  .home-v3-writing--editorial .home-v3-section-label,
+  .home-v3-writing--editorial .home-v3-writing-volume-meta {
+    color: rgba(61, 44, 24, 0.7);
+  }
+
+  .home-v3-writing--editorial .home-v3-writing-head h2,
+  .home-v3-writing--editorial .home-v3-writing-intro-text,
+  .home-v3-writing--editorial .home-v3-writing-head p:not(.home-v3-section-label) {
+    color: rgba(24, 20, 15, 0.9);
   }
 
   .home-v3-writing-head {
     display: grid;
+    gap: 0.85rem;
+  }
+
+  .home-v3-writing-note {
+    display: grid;
+    align-content: start;
+  }
+
+  .home-v3-writing-intro-text {
+    margin: 0;
+    max-width: 36rem;
+    color: var(--home-v3-text-muted);
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+
+  .home-v3-writing-rail-wrap {
+    position: relative;
+    z-index: 1;
+    margin-top: 1.6rem;
+  }
+
+  .home-v3-writing-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(17.5rem, 20.5rem);
     gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0 0 0.25rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
   }
 
-  .home-v3-writing-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .home-v3-writing-rail::-webkit-scrollbar {
+    display: none;
   }
 
-  .home-v3-writing-card h3 a:hover {
-    color: #ffffff;
+  .home-v3-writing-volume {
+    position: relative;
+    min-height: 24.5rem;
+    padding: 1.3rem 1.25rem 1.35rem;
+    border-radius: 1.35rem;
+    border: 1px solid rgba(76, 57, 34, 0.12);
+    background: linear-gradient(180deg, rgba(255, 252, 246, 0.84), rgba(255, 248, 239, 0.96));
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    gap: 0.72rem;
+    color: rgba(24, 20, 15, 0.94);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 0.7rem 1.4rem rgba(77, 54, 28, 0.08);
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+
+  .home-v3-writing-volume::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
+
+  .home-v3-writing-volume-meta {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+    color: rgba(91, 70, 46, 0.72);
+  }
+
+  .home-v3-writing-volume-title {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: rgba(18, 16, 12, 0.98);
+    font-size: clamp(1.5rem, 1.75vw, 1.95rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+    max-width: 10ch;
+  }
+
+  .home-v3-writing-volume-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .home-v3-writing-volume-summary {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: rgba(32, 25, 18, 0.72);
+    font-size: 0.9rem;
+    line-height: 1.52;
+    max-width: 26ch;
+  }
+
+  .home-v3-writing-volume-cover {
+    position: relative;
+    min-height: 9.5rem;
+    margin-top: 0.2rem;
+    border-radius: 1.05rem;
+    overflow: hidden;
+    border: 1px solid rgba(37, 29, 23, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      0 0.45rem 0.9rem rgba(77, 54, 28, 0.05);
+  }
+
+  .home-v3-writing-volume-spine {
+    position: absolute;
+    left: 0.95rem;
+    top: 0.9rem;
+    bottom: 0.9rem;
+    width: 1px;
+    background: rgba(60, 46, 32, 0.14);
+  }
+
+  .home-v3-writing-volume-orbit {
+    position: absolute;
+    left: 16%;
+    right: 16%;
+    top: 14%;
+    bottom: 14%;
+    border-radius: 50%;
+    border: 1px solid rgba(44, 36, 29, 0.12);
+    transform: rotate(-12deg);
+  }
+
+  .home-v3-writing-volume-beam {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4rem;
+    height: 100%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    filter: blur(16px);
+    opacity: 0.55;
+  }
+
+  .home-v3-writing-volume-glyph {
+    position: relative;
+    display: block;
+    position: absolute;
+    left: 1.4rem;
+    bottom: 1.35rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(44, 36, 29, 0.16);
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .home-v3-writing-volume--1 .home-v3-writing-volume-cover {
+    background: linear-gradient(180deg, rgba(226, 234, 249, 0.98), rgba(194, 207, 232, 0.96));
+  }
+
+  .home-v3-writing-volume--2 .home-v3-writing-volume-cover {
+    background: linear-gradient(180deg, rgba(234, 224, 246, 0.98), rgba(207, 190, 231, 0.96));
+  }
+
+  .home-v3-writing-volume--3 .home-v3-writing-volume-cover {
+    background: linear-gradient(180deg, rgba(241, 229, 216, 0.98), rgba(216, 188, 160, 0.96));
+  }
+
+  .home-v3-writing-volume--4 .home-v3-writing-volume-cover {
+    background: linear-gradient(180deg, rgba(223, 238, 236, 0.98), rgba(166, 198, 195, 0.96));
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .home-v3-writing-volume:hover {
+      transform: translateY(-0.16rem);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.86),
+        0 0.95rem 1.9rem rgba(77, 54, 28, 0.12);
+    }
+
+    .home-v3-writing-volume:hover .home-v3-writing-volume-cover {
+      transform: translateY(-0.08rem);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        0 0.7rem 1.4rem rgba(77, 54, 28, 0.08);
+    }
+
+    .home-v3-writing-volume-title a:hover {
+      color: rgba(10, 9, 7, 1);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .home-v3-writing-volume,
+    .home-v3-writing-volume-cover,
+    .home-v3-writing-volume-title a {
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        color 0.22s ease;
+    }
   }
 
   .home-v3-close {
@@ -5087,19 +7265,95 @@ const writingEntries = [
   }
 
   @media (max-width: 78rem) {
-    .home-v3-support,
-    .home-v3-writing {
-      grid-template-columns: 1fr;
-    }
-
-    .home-v3-support-copy {
-      position: static;
-    }
-
     .home-v3-trust-grid,
     .home-v3-outcome-grid,
     .home-v3-writing-grid {
       grid-template-columns: 1fr;
+    }
+
+    .home-v3-practice-layout,
+    .home-v3-shift .home-v3-section-head,
+    .home-v3-shift-panels,
+    .home-v3-writing-head,
+    .home-v3-writing-note,
+    .home-v3-writing-rail-wrap {
+      grid-column: 2 / span 24;
+    }
+
+    .home-v3-practice-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .home-v3-practice-solid-card {
+      padding-right: 7.5rem;
+    }
+
+    .home-v3-practice-solid-copy {
+      max-width: 42rem;
+    }
+
+    .home-v3-practice-value--solid {
+      font-size: clamp(1.22rem, 2.8vw, 1.45rem);
+      max-width: 14ch;
+    }
+
+    .home-v3-practice-solid-visual {
+      width: 5.35rem;
+      height: 5.9rem;
+      top: 0.95rem;
+      right: 0.9rem;
+    }
+
+    .home-v3-practice-solid-visual .home-v3-practice-proof-visual {
+      --home-v3-practice-visual-w: 4.35rem;
+      --home-v3-practice-visual-h: 4.95rem;
+    }
+
+    .home-v3-practice-story {
+      min-height: auto;
+      padding: 0 0 10rem;
+    }
+
+    .home-v3-practice-story-copy {
+      max-width: none;
+    }
+
+    .home-v3-practice-atmosphere {
+      left: -2%;
+      bottom: 0;
+      width: min(30rem, 80%);
+      height: 16rem;
+    }
+
+    .home-v3-practice-proof {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .home-v3-practice-proof--feature .home-v3-practice-proof-visual {
+      --home-v3-practice-visual-w: 9rem;
+      --home-v3-practice-visual-h: 10rem;
+    }
+
+    .home-v3-practice-proof--compact .home-v3-practice-proof-visual {
+      --home-v3-practice-visual-w: 7rem;
+      --home-v3-practice-visual-h: 7.75rem;
+    }
+
+    .home-v3-shift-pair {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-v3-writing-layout {
+      row-gap: 0.9rem;
+    }
+
+    .home-v3-writing-note {
+      align-content: start;
+    }
+
+    .home-v3-writing-rail {
+      grid-auto-columns: minmax(17rem, 21rem);
     }
 
     .home-v3-engagement-row {
@@ -5152,9 +7406,8 @@ const writingEntries = [
 
     .home-v3-trust,
     .home-v3-bridge,
-    .home-v3-needs,
-    .home-v3-support,
-    .home-v3-writing,
+    .home-v3-bridge-lite,
+    .home-v3-shift,
     .home-v3-close {
       width: min(calc(100vw - 1.5rem), 84rem);
     }
@@ -5212,6 +7465,140 @@ const writingEntries = [
       width: 100%;
     }
 
+    .home-v3-actor-lane-grid {
+      gap: 1rem;
+    }
+
+    .home-v3-actor-lane {
+      min-height: 28rem;
+      padding: 1.08rem 1.08rem 0;
+    }
+
+    .home-v3-actor-lane-scene {
+      inset: 3.25rem 0 4.6rem;
+    }
+
+    .home-v3-actor-lane-copy h3 {
+      max-width: 14ch;
+      font-size: 1.34rem;
+    }
+
+    .home-v3-actor-lane-copy > p {
+      font-size: 0.86rem;
+    }
+
+    .home-v3-actor-lane-strip {
+      margin-inline: -1.08rem;
+      padding-inline: 1.08rem;
+    }
+
+    .home-v3-actor-lane-footer {
+      margin-inline: -1.08rem;
+      padding: 0.8rem 1.08rem 0.94rem;
+    }
+
+    .home-v3-actor-lane-metric {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 0.3rem;
+      min-height: 0;
+      padding: 0.62rem 0;
+    }
+
+    .home-v3-actor-lane-metric-detail {
+      font-size: 0.68rem;
+      text-align: left;
+      text-wrap: pretty;
+      white-space: normal;
+    }
+
+    .home-v3-actor-lane-dot {
+      width: 0.66rem;
+      height: 0.66rem;
+    }
+
+    .home-v3-actions--actor-lane {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .home-v3-actor-grid--concept {
+      gap: 1rem;
+    }
+
+    .home-v3-actor-card-concept {
+      min-height: 32.75rem;
+    }
+
+    .home-v3-actor-card-concept-media {
+      inset: 0 0 8rem;
+    }
+
+    .home-v3-actor-card-concept-copy {
+      width: calc(100% - 2.35rem);
+      max-width: none;
+      padding: 1.16rem 1.16rem 1.08rem;
+    }
+
+    .home-v3-actor-card-concept-copy h3 {
+      max-width: 14ch;
+      min-height: 0;
+      font-size: 1.34rem;
+    }
+
+    .home-v3-actor-card-concept-copy p:not(.home-v3-actor-card-concept-kicker) {
+      min-height: 0;
+      max-width: 30ch;
+    }
+
+    .home-v3-actor-card-concept-tag {
+      min-height: 1.28rem;
+      padding: 0 0.48rem;
+      font-size: 0.52rem;
+    }
+
+    .home-v3-actor-card-concept-board {
+      top: 18%;
+      left: 14%;
+      width: 58%;
+      gap: 0.5rem;
+      padding: 0.82rem;
+    }
+
+    .home-v3-actor-card-concept-board-row {
+      min-height: 2rem;
+      padding: 0.55rem 0.64rem;
+      font-size: 0.5rem;
+    }
+
+    .home-v3-actor-card-concept-board-row::after {
+      width: 2rem;
+    }
+
+    .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-tag--1,
+    .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-tag--2,
+    .home-v3-actor-card-concept--executive .home-v3-actor-card-concept-tag--3 {
+      left: 6%;
+    }
+
+    .home-v3-actor-card-concept--product .home-v3-actor-card-concept-tag--1 {
+      left: 8%;
+    }
+
+    .home-v3-actor-card-concept--product .home-v3-actor-card-concept-tag--2 {
+      left: 34%;
+    }
+
+    .home-v3-actor-card-concept--product .home-v3-actor-card-concept-tag--3 {
+      left: 60%;
+    }
+
+    .home-v3-actor-card-concept--design .home-v3-actor-card-concept-tag--1,
+    .home-v3-actor-card-concept--design .home-v3-actor-card-concept-tag--2,
+    .home-v3-actor-card-concept--design .home-v3-actor-card-concept-tag--3 {
+      left: 24%;
+    }
+
     .home-v3-lead,
     .home-v3-section-head p:not(.home-v3-section-label),
     .home-v3-support-copy p,
@@ -5247,15 +7634,71 @@ const writingEntries = [
       height: 110%;
     }
 
-    .home-v3-support,
+    .home-v3-shift,
     .home-v3-writing,
     .home-v3-close {
       padding-top: 4rem;
     }
 
+    .home-v3-practice-proof--feature,
+    .home-v3-shift-card,
+    .home-v3-writing-volume {
+      padding: 1.35rem;
+    }
+
+    .home-v3-practice-story-copy h3 {
+      font-size: clamp(2.5rem, 10vw, 3.9rem);
+    }
+
+    .home-v3-practice-text,
+    .home-v3-practice-story-text,
+    .home-v3-practice-story-note,
+    .home-v3-writing-intro-text,
+    .home-v3-shift-list li {
+      font-size: 0.94rem;
+    }
+
+    .home-v3-writing--editorial {
+      margin-top: 4rem;
+      padding: 4rem 0 4.35rem;
+    }
+
+    .home-v3-writing-layout {
+      row-gap: 1.1rem;
+    }
+
+    .home-v3-writing-note {
+      gap: 0.75rem;
+    }
+
+    .home-v3-writing-rail {
+      grid-auto-columns: minmax(16rem, 84vw);
+    }
+
+    .home-v3-writing-volume {
+      min-height: 24.5rem;
+    }
+
+    .home-v3-writing-volume-title {
+      font-size: clamp(1.72rem, 8vw, 2.2rem);
+    }
+
+    .home-v3-writing-volume-summary {
+      max-width: none;
+    }
+
+    .home-v3-writing-intro-text {
+      max-width: none;
+    }
+
+    .home-v3-writing-volume-cover {
+      min-height: 9rem;
+    }
+
     .home-v3-bridge {
       width: 100%;
       --bridge-scroll-height: 188vh;
+      --bridge-scroll-height: 188svh;
       min-height: var(--bridge-scroll-height);
       padding-top: 0.35rem;
     }
@@ -5264,9 +7707,9 @@ const writingEntries = [
       position: sticky;
       top: 4.85rem;
       height: calc(100vh - 5.6rem);
-      height: calc(100dvh - 5.6rem);
+      height: calc(100svh - 5.6rem);
       min-height: calc(100vh - 5.6rem);
-      min-height: calc(100dvh - 5.6rem);
+      min-height: calc(100svh - 5.6rem);
       padding: 0 0.75rem;
     }
 
@@ -5335,6 +7778,56 @@ const writingEntries = [
       left: 72%;
     }
 
+    .home-v3-bridge-lite {
+      width: 100%;
+      --bridge-lite-scroll-height: 146vh;
+      --bridge-lite-scroll-height: 146svh;
+      min-height: var(--bridge-lite-scroll-height);
+      padding-top: 0.35rem;
+    }
+
+    .home-v3-bridge-lite-shell {
+      position: sticky;
+      top: 4.85rem;
+      height: calc(100vh - 5.6rem);
+      height: calc(100svh - 5.6rem);
+      min-height: calc(100vh - 5.6rem);
+      min-height: calc(100svh - 5.6rem);
+      padding: 0 0.75rem;
+    }
+
+    .home-v3-bridge-lite-stage {
+      border-radius: 1.5rem;
+    }
+
+    .home-v3-bridge-lite-stars {
+      inset: 10% 7% 12%;
+      opacity: calc(0.18 + (var(--bridge-lite-field) * 0.3));
+    }
+
+    .home-v3-bridge-lite-card--strategy,
+    .home-v3-bridge-lite-card--systems,
+    .home-v3-bridge-lite-card--clarity {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .home-v3-bridge-lite-card::before {
+      inset: 8% -14%;
+    }
+
+    .home-v3-bridge-lite-card::after {
+      inset: 12% -8% 10%;
+    }
+
+    .home-v3-bridge-lite-word {
+      max-width: 84vw;
+      font-size: clamp(3.25rem, 15vw, 4.8rem);
+      text-align: center;
+      text-wrap: balance;
+    }
+
     .home-v3-engagement-row {
       gap: 0.75rem;
       min-height: 0;
@@ -5352,6 +7845,57 @@ const writingEntries = [
 
     .home-v3-engagement-row-fit {
       font-size: 0.92rem;
+    }
+
+    .home-v3-practice-proof {
+      text-align: left;
+      justify-items: stretch;
+    }
+
+    .home-v3-practice-solid-card {
+      padding: 1.15rem 1.2rem 1.2rem;
+    }
+
+    .home-v3-practice-solid-visual {
+      position: relative;
+      top: auto;
+      right: auto;
+      width: auto;
+      height: auto;
+      justify-items: start;
+      margin-top: 0.1rem;
+      min-height: 6.6rem;
+    }
+
+    .home-v3-practice-solid-haze {
+      inset: 4% 34% 8% 0;
+    }
+
+    .home-v3-practice-solid-visual .home-v3-practice-proof-visual {
+      justify-self: start;
+      --home-v3-practice-visual-w: 6.15rem;
+      --home-v3-practice-visual-h: 6.9rem;
+    }
+
+    .home-v3-practice-story {
+      padding-bottom: 8.5rem;
+    }
+
+    .home-v3-practice-atmosphere {
+      left: -6%;
+      width: min(24rem, 92%);
+      height: 13rem;
+    }
+
+    .home-v3-practice-proof {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.8rem;
+    }
+
+    .home-v3-practice-proof--feature .home-v3-practice-proof-visual,
+    .home-v3-practice-proof--compact .home-v3-practice-proof-visual {
+      --home-v3-practice-visual-w: 8rem;
+      --home-v3-practice-visual-h: 8.8rem;
     }
 
     .home-v3-needs-panel-top,
