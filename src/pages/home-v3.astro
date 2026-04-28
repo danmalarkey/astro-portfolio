@@ -883,7 +883,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       </div>
 
       <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
-        <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies">
+        <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies" data-home-v3-edge-rail data-home-v3-rail-anchor>
           {caseStudies.map((item) => (
             <article class={`case-card home-v3-proof-card ${item.stacked ? 'home-v3-proof-card--stacked' : ''}`}>
               <div class="home-v3-proof-card-media">
@@ -903,14 +903,14 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="home-v3-outcomes-controls-row gc-start-2 gc-span-24">
           <div class="case-rail-controls" aria-label="Case studies navigation">
-            <div class="case-rail-progress" aria-live="polite">
-              <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
-            </div>
             <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">
               <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                 <path d="M10.75 2.75 5.5 8l5.25 5.25" />
               </svg>
             </button>
+            <div class="case-rail-progress" aria-live="polite">
+              <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
+            </div>
             <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">
               <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                 <path d="M5.25 2.75 10.5 8l-5.25 5.25" />
@@ -991,7 +991,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="home-v3-writing-rail-wrap gc-start-2 gc-span-24">
-          <div class="home-v3-writing-rail" role="list" aria-label="Writing roadmap">
+          <div class="home-v3-writing-rail" role="list" aria-label="Writing roadmap" data-home-v3-edge-rail>
             {[featuredWriting, ...supportingWriting].map((entry, index) => (
               <article class={`home-v3-writing-volume home-v3-writing-volume--${(index % 4) + 1}`} role="listitem">
                 <div class="home-v3-writing-volume-head">
@@ -1000,7 +1000,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
                 <h3 class="home-v3-writing-volume-title home-v3-card-title-text">
                   {entry.live ? <a href={withBase(`/writing/${entry.slug}`)}>{entry.title}</a> : entry.title}
                 </h3>
-                <p class="home-v3-writing-volume-summary home-v3-card-copy-text home-v3-card-copy-text--muted">{entry.summary}</p>
+                <div class="home-v3-writing-volume-art" aria-hidden="true"></div>
               </article>
             ))}
           </div>
@@ -1172,6 +1172,38 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   })();
 
   (() => {
+    const rails = Array.from(document.querySelectorAll('[data-home-v3-edge-rail]'));
+    if (!rails.length) return;
+
+    const syncEdgeRailWidths = () => {
+      rails.forEach((rail) => {
+        if (!(rail instanceof HTMLElement)) return;
+        const left = Math.max(0, rail.getBoundingClientRect().left);
+        rail.style.setProperty('--home-v3-rail-viewport-width', `${Math.max(0, window.innerWidth - left)}px`);
+      });
+    };
+
+    syncEdgeRailWidths();
+    window.addEventListener('resize', syncEdgeRailWidths);
+  })();
+
+  (() => {
+    const rail = document.querySelector('[data-home-v3-rail-anchor]');
+    const anchorSource = document.querySelector('.home-v3-outcomes-head');
+    if (!(rail instanceof HTMLElement) || !(anchorSource instanceof HTMLElement)) return;
+
+    const syncOutcomeRailAnchor = () => {
+      const railLeft = rail.getBoundingClientRect().left;
+      const anchorLeft = anchorSource.getBoundingClientRect().left;
+      const anchor = Math.max(0, anchorLeft - railLeft);
+      rail.style.setProperty('--home-v3-rail-anchor', `${anchor}px`);
+    };
+
+    syncOutcomeRailAnchor();
+    window.addEventListener('resize', syncOutcomeRailAnchor);
+  })();
+
+  (() => {
     const rail = document.getElementById('case-rail');
     const prevButton = document.querySelector('[data-case-prev]');
     const nextButton = document.querySelector('[data-case-next]');
@@ -1184,6 +1216,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     const totalCards = cards.length;
     let activeIndex = 0;
     const EDGE_EPSILON = 4;
+    const getCardRailOffset = (card) => card.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
+    const getRailAnchor = () => Number.parseFloat(getComputedStyle(rail).getPropertyValue('--home-v3-rail-anchor')) || 0;
 
     const syncRailTailSpace = () => {
       const firstCard = cards[0];
@@ -1214,13 +1248,13 @@ const supportingWriting = writingRoadmapEntries.slice(1);
         return;
       }
 
-      const railStart = rail.scrollLeft;
+      const railStart = rail.scrollLeft + getRailAnchor();
       let closestIndex = 0;
       let closestDistance = Number.POSITIVE_INFINITY;
 
       cards.forEach((card, index) => {
         if (!(card instanceof HTMLElement)) return;
-        const distance = Math.abs(card.offsetLeft - railStart);
+        const distance = Math.abs(getCardRailOffset(card) - railStart);
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
@@ -1241,7 +1275,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       const nextIndex = Math.max(0, Math.min(index, totalCards - 1));
       const targetCard = cards[nextIndex];
       if (!(targetCard instanceof HTMLElement)) return;
-      rail.scrollTo({ left: targetCard.offsetLeft, behavior: 'smooth' });
+      const anchor = nextIndex === 0 ? 0 : getRailAnchor();
+      rail.scrollTo({ left: Math.max(0, getCardRailOffset(targetCard) - anchor), behavior: 'smooth' });
     };
 
     prevButton.addEventListener('click', () => {
@@ -1919,7 +1954,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
     color: rgba(184, 192, 210, 0.52);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .home-v3-pillar-main {
@@ -2689,7 +2724,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     font-size: var(--home-v3-type-label);
     line-height: 1;
     letter-spacing: var(--home-v3-tracking-label);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .home-v3-section-label {
@@ -2699,7 +2734,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
     margin: 0;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .home-v3-kicker {
@@ -2713,7 +2748,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     line-height: 1.24;
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .home-v3-card-meta-text--ink {
@@ -2727,7 +2762,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     font-size: var(--home-v3-type-card-title);
     line-height: 1.02;
     letter-spacing: var(--home-v3-tracking-card);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     text-wrap: balance;
     max-width: none;
   }
@@ -2760,7 +2795,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-writing-head h2,
   .home-v3-close-content h2 {
     font-family: var(--home-v3-display);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-title);
     line-height: 0.98;
     margin: 0;
@@ -2858,7 +2893,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       0 0.5rem 1rem rgba(0, 0, 0, 0.12);
     font-size: var(--home-v3-type-body-sm);
     font-family: var(--font-family-body);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: var(--home-v3-tracking-text);
     white-space: nowrap;
@@ -3481,7 +3516,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   .home-v3-executive-surface-value {
     font-size: clamp(0.76rem, 0.88vw, 0.88rem);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     line-height: 1.02;
     letter-spacing: -0.02em;
     color: rgba(248, 247, 244, 0.34);
@@ -5113,7 +5148,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     line-height: 1;
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .home-v3-actor-lane-dot {
@@ -5254,7 +5289,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     line-height: 1;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .home-v3-actor-lane-metric-detail {
@@ -6037,7 +6072,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     z-index: 1;
     color: rgba(231, 235, 242, 0.52);
     font-size: var(--home-v3-type-label);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
     line-height: 1;
     padding-top: 0.1rem;
@@ -6062,7 +6097,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     background: rgba(255, 255, 255, 0.03);
     color: rgba(243, 246, 252, 0.88);
     font-size: var(--home-v3-type-label);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
     line-height: 1;
     white-space: nowrap;
@@ -6171,7 +6206,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     margin: 0;
     color: rgba(231, 235, 242, 0.48);
     font-size: var(--home-v3-type-label);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     letter-spacing: 0.12em;
     line-height: 1;
     text-transform: uppercase;
@@ -6182,7 +6217,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     margin: 0;
     color: var(--home-v3-text);
     font-size: var(--home-v3-type-title-md);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     letter-spacing: -0.05em;
     line-height: 0.98;
     text-wrap: balance;
@@ -6221,7 +6256,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     margin: 0;
     color: var(--home-v3-text);
     font-size: 1.08rem;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     letter-spacing: -0.03em;
     line-height: 1.15;
     text-wrap: balance;
@@ -7085,7 +7120,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     font-size: var(--home-v3-type-title-sm);
     line-height: 1.02;
     letter-spacing: var(--home-v3-tracking-card);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     text-wrap: pretty;
     max-width: none;
   }
@@ -7142,11 +7177,24 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   }
 
   .home-v3-outcomes--editorial .case-rail-track {
-    background: rgba(231, 235, 242, 0.12);
+    position: relative;
+    height: 0.28rem;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+      rgba(231, 235, 242, 0.1);
+    box-shadow:
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.08),
+      0 0.35rem 1rem rgba(0, 0, 0, 0.22);
   }
 
   .home-v3-outcomes--editorial .case-rail-track span {
-    background: linear-gradient(90deg, rgba(231, 196, 92, 0.88), rgba(245, 220, 126, 0.98));
+    border-radius: inherit;
+    background:
+      linear-gradient(90deg, rgba(214, 170, 67, 0.98), rgba(255, 234, 142, 1) 62%, rgba(255, 249, 204, 0.95));
+    box-shadow:
+      0 0 0.55rem rgba(245, 220, 126, 0.24),
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.42);
   }
 
   .home-v3-outcomes--editorial .case-rail-btn {
@@ -7183,7 +7231,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-outcomes-controls-row {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 1.15rem;
   }
 
   .home-v3-engagements-intro .home-v3-section-head p:not(.home-v3-section-label) {
@@ -7191,12 +7239,13 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   }
 
   .home-v3-outcomes--editorial .case-rail-controls {
-    gap: 0.85rem;
+    gap: 0.7rem;
     align-items: center;
+    justify-content: center;
   }
 
   .home-v3-outcomes--editorial .case-rail-progress {
-    min-width: 7rem;
+    min-width: clamp(8.5rem, 12vw, 13rem);
     display: flex;
     align-items: center;
   }
@@ -7260,11 +7309,11 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   }
 
   .home-v3-proof-card-role {
-    color: rgba(236, 200, 104, 0.84);
+    color: rgba(231, 235, 242, 0.56);
     font-size: 0.82rem;
     line-height: 1.4;
     letter-spacing: 0;
-    font-weight: 500;
+    font-weight: var(--font-weight-light);
     text-transform: none;
     opacity: 1;
     transform: none;
@@ -7279,6 +7328,24 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   .home-v3-outcomes .case-rail-wrap {
     padding-top: 0;
+  }
+
+  .home-v3-outcomes .case-rail {
+    --home-v3-rail-anchor: 0px;
+    gap: var(--spacing-md);
+    overflow-x: auto;
+    overflow-y: visible;
+    width: var(--home-v3-rail-viewport-width, 100%);
+    margin-left: calc(var(--home-v3-rail-anchor) * -0.5);
+    margin-right: 0;
+    padding: 0 0 var(--spacing-xs) var(--home-v3-rail-anchor);
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--home-v3-rail-anchor);
+  }
+
+  .home-v3-outcomes .case-rail .case-card {
+    flex: 0 0 clamp(22rem, 27vw, 32rem);
   }
 
   .home-v3-trust-grid {
@@ -7431,9 +7498,11 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-writing-rail {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(20rem, 22.5rem);
+    grid-auto-columns: minmax(20rem, 24vw);
     gap: var(--spacing-md);
     overflow-x: auto;
+    overflow-y: visible;
+    width: var(--home-v3-rail-viewport-width, 100%);
     overscroll-behavior-x: contain;
     padding: 0 0 0.25rem;
     scroll-snap-type: x proximity;
@@ -7446,20 +7515,22 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   .home-v3-writing-volume {
     position: relative;
-    min-height: 18.75rem;
-    padding: 1.35rem;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    isolation: isolate;
+    min-height: 24rem;
+    padding: 1.45rem;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(231, 235, 242, 0.1);
     background:
-      linear-gradient(180deg, rgba(18, 20, 27, 0.98), rgba(9, 10, 14, 1)),
-      rgba(9, 10, 14, 1);
+      linear-gradient(180deg, rgba(20, 22, 30, 0.98), rgba(6, 7, 11, 1)),
+      #06070b;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: 1rem;
     color: var(--home-v3-text);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 0.75rem 1.5rem rgba(0, 0, 0, 0.14);
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.03),
+      0 1.1rem 2.4rem rgba(0, 0, 0, 0.24);
     overflow: hidden;
     scroll-snap-align: start;
   }
@@ -7467,9 +7538,12 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-writing-volume::before {
     content: '';
     position: absolute;
-    inset: 0 0 auto;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    inset: 0;
+    z-index: 3;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0) 18%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 36%),
+      linear-gradient(180deg, rgba(5, 6, 10, 0) 36%, rgba(5, 6, 10, 0.34) 74%, rgba(5, 6, 10, 0.76) 100%);
     pointer-events: none;
   }
 
@@ -7477,38 +7551,112 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
     pointer-events: none;
-    opacity: 0.68;
+    border-radius: inherit;
+    background:
+      radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 16rem),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 42%);
+    opacity: 0.62;
   }
 
-  .home-v3-writing-volume--1::after {
-    background: radial-gradient(circle at 78% 22%, rgba(124, 156, 255, 0.14), rgba(124, 156, 255, 0) 34%);
+  .home-v3-writing-volume-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0.96;
+    transform: scale(1);
+    transform-origin: center bottom;
   }
 
-  .home-v3-writing-volume--2::after {
-    background: radial-gradient(circle at 72% 26%, rgba(152, 118, 255, 0.14), rgba(152, 118, 255, 0) 34%);
+  .home-v3-writing-volume-art::before,
+  .home-v3-writing-volume-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
 
-  .home-v3-writing-volume--3::after {
-    background: radial-gradient(circle at 76% 24%, rgba(214, 178, 108, 0.14), rgba(214, 178, 108, 0) 36%);
+  .home-v3-writing-volume--1 .home-v3-writing-volume-art {
+    background:
+      radial-gradient(circle at 74% 36%, rgba(140, 158, 255, 0.58), rgba(140, 158, 255, 0) 20%),
+      radial-gradient(circle at 37% 54%, rgba(229, 206, 122, 0.34), rgba(229, 206, 122, 0) 17%),
+      radial-gradient(ellipse at 52% 78%, rgba(129, 89, 255, 0.52), rgba(129, 89, 255, 0) 43%),
+      linear-gradient(152deg, rgba(19, 25, 55, 0), rgba(44, 55, 122, 0.7));
   }
 
-  .home-v3-writing-volume--4::after {
-    background: radial-gradient(circle at 80% 28%, rgba(112, 214, 255, 0.12), rgba(112, 214, 255, 0) 36%);
+  .home-v3-writing-volume--1 .home-v3-writing-volume-art::before {
+    background:
+      radial-gradient(ellipse at 48% 72%, rgba(255, 255, 255, 0.08) 0 9%, transparent 10%),
+      radial-gradient(ellipse at 48% 72%, transparent 0 22%, rgba(196, 211, 255, 0.16) 22.4% 22.9%, transparent 23.4%),
+      radial-gradient(ellipse at 48% 72%, transparent 0 36%, rgba(196, 211, 255, 0.12) 36.4% 36.9%, transparent 37.4%);
+    transform: rotate(-14deg) scale(1.24);
+  }
+
+  .home-v3-writing-volume--2 .home-v3-writing-volume-art {
+    background:
+      linear-gradient(110deg, transparent 0 18%, rgba(231, 235, 242, 0.13) 18.4% 18.7%, transparent 19.2% 100%),
+      repeating-linear-gradient(90deg, rgba(231, 235, 242, 0.085) 0 1px, transparent 1px 2.35rem),
+      repeating-linear-gradient(0deg, rgba(231, 235, 242, 0.055) 0 1px, transparent 1px 2.05rem),
+      radial-gradient(circle at 72% 38%, rgba(142, 190, 255, 0.36), rgba(142, 190, 255, 0) 24%),
+      linear-gradient(180deg, rgba(18, 48, 68, 0.36), rgba(7, 10, 16, 0));
+  }
+
+  .home-v3-writing-volume--2 .home-v3-writing-volume-art::before {
+    background:
+      linear-gradient(120deg, transparent 0 46%, rgba(255, 255, 255, 0.1) 46.3% 46.6%, transparent 47%),
+      linear-gradient(104deg, transparent 0 32%, rgba(111, 138, 255, 0.16) 32.3% 32.7%, transparent 33.1%);
+    transform: translateX(-8%) scale(1.12);
+  }
+
+  .home-v3-writing-volume--3 .home-v3-writing-volume-art {
+    background:
+      conic-gradient(from 224deg at 56% 75%, rgba(242, 226, 157, 0), rgba(242, 226, 157, 0.52), rgba(148, 99, 255, 0.48), rgba(66, 142, 255, 0.2), rgba(242, 226, 157, 0)),
+      radial-gradient(ellipse at 56% 78%, rgba(241, 226, 24, 0.24), rgba(241, 226, 24, 0) 30%),
+      linear-gradient(180deg, rgba(39, 25, 62, 0), rgba(15, 12, 24, 0.58));
+  }
+
+  .home-v3-writing-volume--3 .home-v3-writing-volume-art::before {
+    background:
+      linear-gradient(40deg, transparent 0 50%, rgba(255, 240, 168, 0.18) 50.4% 50.9%, transparent 51.3%);
+    filter: blur(0.4rem);
+  }
+
+  .home-v3-writing-volume--4 .home-v3-writing-volume-art {
+    background:
+      radial-gradient(ellipse at 48% 70%, rgba(231, 235, 242, 0.13) 0 18%, transparent 18.5%),
+      radial-gradient(ellipse at 48% 70%, transparent 0 30%, rgba(152, 191, 255, 0.22) 30.3% 30.8%, transparent 31.2%),
+      radial-gradient(ellipse at 48% 70%, transparent 0 46%, rgba(231, 235, 242, 0.15) 46.3% 46.8%, transparent 47.2%),
+      radial-gradient(circle at 64% 54%, rgba(112, 214, 255, 0.34), rgba(112, 214, 255, 0) 24%),
+      linear-gradient(150deg, rgba(12, 32, 54, 0.18), rgba(7, 9, 14, 0));
+  }
+
+  .home-v3-writing-volume--4 .home-v3-writing-volume-art::before {
+    background:
+      radial-gradient(circle at 50% 58%, rgba(255, 255, 255, 0.08), transparent 13%),
+      radial-gradient(circle at 50% 58%, transparent 0 24%, rgba(116, 150, 230, 0.12) 24.4% 24.9%, transparent 25.4%);
+    transform: scale(1.28);
   }
 
   .home-v3-writing-volume-head {
     position: relative;
-    z-index: 1;
+    z-index: 4;
     display: grid;
     gap: var(--spacing-xs);
   }
 
   .home-v3-writing-volume-meta,
-  .home-v3-writing-volume-title,
-  .home-v3-writing-volume-summary {
+  .home-v3-writing-volume-title {
     position: relative;
-    z-index: 1;
+    z-index: 4;
+  }
+
+  .home-v3-writing-volume-title {
+    max-width: none;
+    font-size: clamp(1.18rem, 1.28vw, 1.42rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
   }
 
   .home-v3-writing-volume-title a {
@@ -7517,16 +7665,19 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     text-decoration: none;
   }
 
-  .home-v3-writing-volume-summary {
-    margin-top: auto;
-  }
-
   @media (hover: hover) and (pointer: fine) {
     .home-v3-writing-volume:hover {
-      border-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(231, 235, 242, 0.2);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 0.95rem 1.9rem rgba(0, 0, 0, 0.18);
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+        0 1.4rem 2.8rem rgba(0, 0, 0, 0.28);
+    }
+
+    .home-v3-writing-volume:hover .home-v3-writing-volume-art,
+    .home-v3-writing-volume:focus-within .home-v3-writing-volume-art {
+      opacity: 0.82;
+      transform: scale(1.045);
     }
 
     .home-v3-writing-volume-title a:hover {
@@ -7536,10 +7687,13 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   @media (prefers-reduced-motion: no-preference) {
     .home-v3-writing-volume,
+    .home-v3-writing-volume-art,
     .home-v3-writing-volume-title a {
       transition:
         border-color 0.22s ease,
         box-shadow 0.22s ease,
+        opacity 0.22s ease,
+        transform 0.22s ease,
         color 0.22s ease;
     }
   }
@@ -7701,6 +7855,14 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-writing-rail {
       grid-auto-columns: minmax(17rem, 21rem);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+
+    .home-v3-outcomes .case-rail .case-card {
+      flex-basis: min(28rem, 42vw);
     }
 
     .home-v3-engagement-row {
@@ -8061,6 +8223,10 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       grid-auto-columns: minmax(17rem, 84vw);
     }
 
+    .home-v3-outcomes .case-rail .case-card {
+      flex-basis: min(24rem, 84vw);
+    }
+
     .home-v3-writing-volume {
       min-height: 18rem;
       gap: 0.85rem;
@@ -8078,7 +8244,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     }
 
     .home-v3-writing-volume .home-v3-card-title-text {
-      font-size: clamp(1.34rem, 7.2vw, 1.76rem);
+      font-size: clamp(1.2rem, 5.6vw, 1.42rem);
+      line-height: 1.08;
     }
 
     .home-v3-writing-volume .home-v3-card-copy-text {
