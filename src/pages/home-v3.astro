@@ -7,7 +7,6 @@ const homeV3BridgeVariant: 'legacy' | 'lite' | 'pillars' = 'pillars';
 const homeV3ActorsVariant: 'legacy' | 'concept' = 'concept';
 const homeV3ActorsConceptVariant: 'scene' | 'lane' = 'lane';
 const homeV3PracticeVariant: 'grid' | 'story-stack' | 'solid-cards' = 'grid';
-const homeV3ShiftVariant: 'contrast' | 'hidden' = 'hidden';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 const createActorMailto = (actor: string, prompt: string) => {
   const params = new URLSearchParams();
@@ -133,33 +132,34 @@ const bridgePillars = [
   }
 ];
 
-const beforeAfterColumns = [
+const teamNeedSignals = [
   {
-    label: 'Before',
-    rows: [
-      'Priorities are moving, but decision criteria are unclear',
-      'Design is active, but not shaping direction early enough',
-      'Teams are shipping, but alignment debt keeps compounding',
-      'Leadership feels momentum, but confidence in the path is uneven'
-    ]
+    label: 'Clarity',
+    text: 'Sharper criteria before execution starts.'
   },
   {
-    label: 'After',
-    rows: [
-      'Decisions are clearer, easier to defend, and easier to execute',
-      'Design contributes to direction, not only execution',
-      'Teams have stronger operating rhythm and fewer avoidable loops',
-      'Leadership gets speed with better signal and less chaos'
-    ]
+    label: 'Strategy',
+    text: 'A sequence teams can commit to.'
+  },
+  {
+    label: 'Systems',
+    text: 'Operating rhythm that reduces repeated clarification.'
   }
 ];
 
-const howItChangesRows = [
-  'Clear decision criteria and tradeoff framing before execution starts',
-  'Goals and constraints translated into a clearer product vision teams can work from',
-  'Design involved earlier in direction-setting, not only interface delivery',
-  'Shared working patterns across leadership, product, engineering, and design',
-  'Systems and standards that reduce rework without adding process drag'
+const changeSignals = [
+  {
+    title: 'Decisions become easier to defend.',
+    text: 'Vague priorities turn into clearer criteria, tradeoffs, and reasons teams can act on.'
+  },
+  {
+    title: 'Teams move with less alignment debt.',
+    text: 'Repeated clarification gives way to a stronger operating rhythm across product, engineering, and design.'
+  },
+  {
+    title: 'Design shapes direction earlier.',
+    text: 'Design moves upstream from interface delivery into product decisions before momentum hardens.'
+  }
 ];
 
 const caseStudies = [
@@ -238,6 +238,25 @@ const engagementModels = [
     title: 'Transformation and reset work',
     fit: 'Best for change, scale, or recovery',
     text: 'Focused engagements to diagnose operational friction, realign teams, and establish stronger product and design foundations.'
+  }
+];
+
+const fitQuestions = [
+  {
+    question: 'Is this for teams hiring full-time?',
+    answer: 'This is for select advisory, consulting, and fractional leadership engagements, not full-time hiring conversations.'
+  },
+  {
+    question: 'Is this only strategy work?',
+    answer: 'No. The strongest work connects direction to execution, especially when implementation details affect product quality or team momentum.'
+  },
+  {
+    question: 'Can this support internal teams?',
+    answer: 'Yes. This is strongest when executives, product leaders, engineering leaders, and design teams need to align around the same decisions.'
+  },
+  {
+    question: 'What work is not a fit?',
+    answer: 'Quick-turn identity work and low-leverage collateral are not the fit. Product direction, UX systems, design leadership, and implementation-focused product work are.'
   }
 ];
 
@@ -320,6 +339,20 @@ const supportingWriting = writingRoadmapEntries.slice(1);
                     <p class="home-v3-pillar-detail">{pillar.detail}</p>
                   </article>
                 ))}
+              </div>
+              <div class="home-v3-pillars-context" aria-label="Common team needs">
+                <div class="home-v3-pillars-context-head">
+                  <p class="home-v3-section-label">Teams usually come when</p>
+                  <h2>Direction is moving faster than alignment.</h2>
+                </div>
+                <div class="home-v3-pillars-context-grid">
+                  {teamNeedSignals.map((item) => (
+                    <div class="home-v3-pillars-context-item">
+                      <span>{item.label}</span>
+                      <p>{item.text}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -746,6 +779,9 @@ const supportingWriting = writingRoadmapEntries.slice(1);
           <p>
             I work across product, program, and portfolio levels to help organizations make better decisions earlier and execute with more confidence.
           </p>
+          <p>
+            Strategic enough for executive decisions, close enough to the work to improve delivery quality. I help teams define direction, build the standards that support execution, and keep momentum high without letting quality drift.
+          </p>
         </div>
       </div>
 
@@ -873,6 +909,30 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     </section>
 
+    <section class="home-v3-shift" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-shift-layout">
+        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
+          <p class="home-v3-section-label">What changes</p>
+          <h2>What changes when the work is working.</h2>
+          <p>
+            The point is not more process. It is better decision quality, cleaner handoffs, and a product organization that can move without dragging uncertainty behind it.
+          </p>
+        </div>
+
+        <div class="home-v3-shift-rows gc-start-11 gc-span-15" role="list" aria-label="What changes">
+          {changeSignals.map((item, index) => (
+            <article class="home-v3-shift-row" role="listitem">
+              <span class="home-v3-shift-row-index">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="home-v3-outcomes home-v3-outcomes--rail home-v3-outcomes--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-outcomes-intro">
         <div class="home-v3-section-head home-v3-section-head--compact home-v3-outcomes-head gc-start-2 gc-span-14">
@@ -947,40 +1007,6 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       </div>
     </section>
 
-    {homeV3ShiftVariant === 'contrast' && (
-    <section class="home-v3-shift" data-home-v3-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-shift-layout">
-        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
-          <p class="home-v3-section-label">What changes</p>
-          <h2>When design leadership is working, teams feel it in how decisions get made and how execution moves.</h2>
-          <p>
-            Outcomes matter, but the mechanism matters too. This is where direction becomes easier to defend, execution becomes easier to trust, and teams stop paying avoidable alignment debt.
-          </p>
-        </div>
-
-        <div class="home-v3-shift-panels gc-start-11 gc-span-15">
-          <div class="home-v3-shift-pair" role="list" aria-label="Before and after changes">
-            {beforeAfterColumns.map((column) => (
-              <article class={`home-v3-panel home-v3-shift-card home-v3-shift-card--${column.label.toLowerCase()}`} role="listitem">
-                <p class="home-v3-card-label">{column.label}</p>
-                <ul class="home-v3-shift-list">
-                  {column.rows.map((row) => <li>{row}</li>)}
-                </ul>
-              </article>
-            ))}
-          </div>
-
-          <article class="home-v3-panel home-v3-shift-card home-v3-shift-card--how">
-            <p class="home-v3-card-label">How this changes</p>
-            <ul class="home-v3-shift-list home-v3-shift-list--how">
-              {howItChangesRows.map((row) => <li>{row}</li>)}
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-    )}
-
     <section class="home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-writing-layout">
         <div class="home-v3-writing-head gc-start-2 gc-span-16">
@@ -1008,30 +1034,53 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       </div>
     </section>
 
-    <section class="home-v3-close" data-home-v3-reveal>
-      <div class="home-v3-close-shell">
-        <canvas id="home-v3-close-stars" aria-hidden="true"></canvas>
-        <div class="home-v3-close-dome" aria-hidden="true"></div>
-        <div class="home-v3-close-content">
-          <p class="home-v3-section-label">Work with me</p>
-          <h2>If your product organization needs sharper direction and stronger design leadership, let’s talk.</h2>
-          <div class="home-v3-actions home-v3-actions--close">
-            <a class="home-v3-button home-v3-button--solid" href="mailto:hello@danmalarkey.com">Start a conversation</a>
-            <a class="home-v3-button home-v3-button--ghost" href={withBase('/about')}>About Dan</a>
-          </div>
+    <section class="home-v3-fit" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-fit-layout">
+        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
+          <p class="home-v3-section-label">Fit / FAQ</p>
+          <h2>A quick filter for whether this is the right conversation.</h2>
+          <p>
+            A few direct answers for the people deciding whether to reach out.
+          </p>
+        </div>
+
+        <div class="home-v3-fit-rows gc-start-11 gc-span-15" role="list" aria-label="Fit and FAQ">
+          {fitQuestions.map((item) => (
+            <article class="home-v3-fit-row" role="listitem">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))}
         </div>
       </div>
+    </section>
 
+    <section class="home-v3-close" data-home-v3-reveal>
       <footer class="home-v3-footer">
-        <div>
-          <p class="home-v3-footer-title">Dan Malarkey</p>
-          <p class="home-v3-footer-copy">Product design leadership for organizations navigating complexity, change, and growth.</p>
-        </div>
-        <div class="home-v3-footer-links">
-          <a href={withBase('/work')}>Work</a>
-          <a href={withBase('/writing')}>Writing</a>
-          <a href={withBase('/library')}>Library</a>
-          <a href={withBase('/about')}>About</a>
+        <canvas id="home-v3-close-stars" aria-hidden="true"></canvas>
+        <div class="home-v3-footer-horizon" aria-hidden="true"></div>
+        <div class="home-v3-footer-inner">
+          <div class="home-v3-footer-main">
+            <a class="home-v3-footer-mark" href={withBase('/')} aria-label="Dan Malarkey">
+              <img src={withBase('/images/brand/d-logo-halfmoon.svg')} alt="" />
+            </a>
+            <p class="home-v3-section-label">Work with me</p>
+            <h2>Design leadership for organizations navigating growth, complexity, and change.</h2>
+            <p class="home-v3-footer-copy">
+              Available for select advisory, consulting, and fractional engagements where sharper direction and stronger product design leadership can move the work forward.
+            </p>
+            <div class="home-v3-actions home-v3-actions--footer">
+              <a class="home-v3-button home-v3-button--solid" href="mailto:hello@danmalarkey.com">Start a conversation</a>
+              <a class="home-v3-button home-v3-button--ghost" href={withBase('/about')}>About Dan</a>
+            </div>
+          </div>
+          <nav class="home-v3-footer-links" aria-label="Footer">
+            <a href={withBase('/work')}>Work</a>
+            <a href={withBase('/writing')}>Writing</a>
+            <a href={withBase('/library')}>Library</a>
+            <a href={withBase('/about')}>About</a>
+            <a href="https://www.linkedin.com/in/danmalarkey/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </nav>
         </div>
       </footer>
     </section>
@@ -1988,6 +2037,62 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     color: rgba(180, 188, 203, 0.8);
   }
 
+  .home-v3-pillars-context {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.5rem 1.35rem 1.35rem;
+    border-top: 1px solid rgba(231, 235, 242, 0.08);
+    background: rgba(3, 4, 7, 0.22);
+  }
+
+  .home-v3-pillars-context-head {
+    display: grid;
+    gap: 0.7rem;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .home-v3-pillars-context-head h2 {
+    max-width: 18ch;
+    margin: 0;
+    color: rgba(244, 247, 255, 0.88);
+    font-size: clamp(1.55rem, 2.2vw, 2.35rem);
+    line-height: 1.04;
+    letter-spacing: var(--home-v3-tracking-title);
+    text-wrap: balance;
+  }
+
+  .home-v3-pillars-context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .home-v3-pillars-context-item {
+    display: grid;
+    gap: 0.36rem;
+    padding: 0.9rem 0.95rem 0;
+    border-top: 1px solid rgba(231, 235, 242, 0.08);
+  }
+
+  .home-v3-pillars-context-item span {
+    color: rgba(231, 235, 242, 0.52);
+    font-size: var(--home-v3-type-label);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--home-v3-tracking-label);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .home-v3-pillars-context-item p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.72);
+    font-size: var(--home-v3-type-body-sm);
+    line-height: 1.45;
+  }
+
   .home-v3-bridge {
     position: relative;
     width: 100%;
@@ -2792,8 +2897,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-hero-copy h1,
   .home-v3-section-head h2,
   .home-v3-support-copy h2,
-  .home-v3-writing-head h2,
-  .home-v3-close-content h2 {
+  .home-v3-writing-head h2 {
     font-family: var(--home-v3-display);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-title);
@@ -6372,8 +6476,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-window-core,
   .home-v3-window-glow,
   .home-v3-window-haze,
-  .home-v3-window-orbit,
-  .home-v3-close-dome {
+  .home-v3-window-orbit {
     position: absolute;
     pointer-events: none;
   }
@@ -6448,7 +6551,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-outcomes,
   .home-v3-shift,
   .home-v3-engagements,
-  .home-v3-writing {
+  .home-v3-writing,
+  .home-v3-fit {
     padding-top: 6rem;
   }
 
@@ -6470,9 +6574,13 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   .home-v3-section-head h2,
   .home-v3-support-copy h2,
-  .home-v3-writing-head h2,
-  .home-v3-close-content h2 {
+  .home-v3-writing-head h2 {
     font-size: var(--home-v3-type-title-lg);
+  }
+
+  .home-v3-shift .home-v3-section-head h2 {
+    font-size: 2.25rem;
+    line-height: 1.18;
   }
 
   .home-v3-trust-grid,
@@ -7355,7 +7463,6 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-trust-item,
   .home-v3-panel,
   .home-v3-support-row,
-  .home-v3-close-shell,
   .home-v3-footer {
     border: 1px solid var(--home-v3-border-soft);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
@@ -7394,55 +7501,70 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   }
 
   .home-v3-shift-layout,
+  .home-v3-fit-layout,
   .home-v3-writing-layout {
     align-items: start;
   }
 
-  .home-v3-shift-panels,
+  .home-v3-shift-rows,
+  .home-v3-fit-rows,
   .home-v3-writing-side {
     display: grid;
-    gap: 1rem;
+    gap: 0;
   }
 
-  .home-v3-shift-pair {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+  .home-v3-shift-rows,
+  .home-v3-fit-rows {
+    border-top: 1px solid rgba(231, 235, 242, 0.08);
   }
 
-  .home-v3-shift-card {
-    padding: 1.45rem 1.65rem;
-  }
-
-  .home-v3-shift-card--how {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
-  }
-
-  .home-v3-shift-list {
-    list-style: none;
-    margin: 0.9rem 0 0;
-    padding: 0;
-    display: grid;
-    gap: 0.88rem;
-  }
-
-  .home-v3-shift-list li {
+  .home-v3-shift-row,
+  .home-v3-fit-row {
     position: relative;
-    padding-left: 1rem;
-    color: rgba(231, 235, 242, 0.76);
-    line-height: 1.56;
+    display: grid;
+    gap: var(--spacing-sm);
+    padding: 1.35rem 0 1.45rem;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.08);
   }
 
-  .home-v3-shift-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.74rem;
-    width: 0.34rem;
-    height: 0.34rem;
-    border-radius: 999px;
-    background: rgba(231, 235, 242, 0.52);
-    transform: translateY(-50%);
+  .home-v3-shift-row {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+
+  .home-v3-fit-row {
+    grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1fr);
+  }
+
+  .home-v3-shift-row-index {
+    color: rgba(231, 235, 242, 0.46);
+    font-size: var(--home-v3-type-label);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--home-v3-tracking-label);
+    line-height: 1;
+    padding-top: 0.25rem;
+  }
+
+  .home-v3-shift-row h3,
+  .home-v3-fit-row h3 {
+    margin: 0;
+    color: rgba(244, 247, 255, 0.94);
+    font-size: clamp(1.18rem, 1.45vw, 1.45rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .home-v3-shift-row p,
+  .home-v3-fit-row p {
+    max-width: 56ch;
+    margin: 0.42rem 0 0;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--home-v3-type-body);
+    line-height: 1.58;
+  }
+
+  .home-v3-fit-row p {
+    margin-top: 0;
   }
 
   .home-v3-writing--editorial {
@@ -7702,68 +7824,128 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     padding-top: 6rem;
   }
 
-  .home-v3-close-shell {
+  .home-v3-footer {
     position: relative;
     overflow: hidden;
-    min-height: 28rem;
-    margin-bottom: 1rem;
+    min-height: 33rem;
+    padding: 0;
+    border: 1px solid var(--home-v3-border-soft);
+    border-radius: 1.5rem;
     background:
-      radial-gradient(circle at top center, rgba(255, 255, 255, 0.08), transparent 18rem),
+      radial-gradient(ellipse 62% 44% at 50% 20%, rgba(231, 235, 242, 0.13), rgba(231, 235, 242, 0.026) 44%, transparent 70%),
       #050608;
+    box-shadow: var(--home-v3-shadow);
   }
 
-  .home-v3-close-dome {
-    top: -58%;
-    left: 50%;
-    width: 115%;
-    height: 140%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.02) 48%, rgba(0, 0, 0, 0) 72%);
-    opacity: 0.34;
+  .home-v3-footer::before,
+  .home-v3-footer::after,
+  .home-v3-footer-horizon {
+    content: '';
+    position: absolute;
+    pointer-events: none;
   }
 
-  .home-v3-close-content {
+  .home-v3-footer::before {
+    inset: auto 3% 0;
+    height: 46%;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255, 145, 62, 0.24), rgba(255, 145, 62, 0.08) 18%, rgba(255, 145, 62, 0) 42%),
+      linear-gradient(180deg, rgba(255, 158, 67, 0.12), rgba(3, 4, 7, 0.96) 44%);
+    filter: blur(0.2px);
+    opacity: 0.82;
+  }
+
+  .home-v3-footer::after {
+    left: 4%;
+    right: 4%;
+    bottom: 29%;
+    height: 0.13rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(255, 157, 78, 0.76) 20%, rgba(170, 230, 255, 0.5) 50%, rgba(255, 157, 78, 0.65) 80%, transparent);
+    box-shadow:
+      0 0 1.4rem rgba(255, 145, 62, 0.34),
+      0 0 2.2rem rgba(86, 185, 255, 0.16);
+    opacity: 0.75;
+  }
+
+  .home-v3-footer-horizon {
+    left: 9%;
+    right: 9%;
+    bottom: 0;
+    height: 37%;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255, 192, 96, 0.1), transparent 35%),
+      linear-gradient(180deg, rgba(37, 21, 10, 0.72), rgba(4, 4, 6, 1) 72%);
+    opacity: 0.9;
+  }
+
+  .home-v3-footer-inner {
     position: relative;
-    z-index: 1;
-    width: min(46rem, calc(100% - 3rem));
-    margin: 0 auto;
-    padding: 6rem 0 4.5rem;
-    text-align: center;
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) auto;
+    gap: 3rem;
+    align-items: start;
+    min-height: 33rem;
+    padding: 4rem 2.1rem 2rem;
+    z-index: 2;
+  }
+
+  .home-v3-footer-main {
     display: grid;
     gap: 1rem;
+    max-width: 43rem;
   }
 
-  .home-v3-actions--close {
-    justify-content: center;
+  .home-v3-footer-mark {
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0.35rem;
   }
 
-  .home-v3-footer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1.5rem;
-    box-shadow: none;
+  .home-v3-footer-mark img {
+    width: 1.35rem;
+    height: auto;
+    display: block;
   }
 
-  .home-v3-footer-title {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--home-v3-text-soft);
+  .home-v3-footer-main h2 {
+    max-width: 15ch;
+    margin: 0;
+    color: var(--home-v3-text);
+    font-size: clamp(2.4rem, 5vw, 5.2rem);
+    line-height: 0.96;
+    letter-spacing: var(--home-v3-tracking-title);
+    text-wrap: balance;
+  }
+
+  .home-v3-actions--footer {
+    margin-top: 0.45rem;
+    justify-content: flex-start;
   }
 
   .home-v3-footer-copy {
-    max-width: 34rem;
+    max-width: 45ch;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--home-v3-type-body);
+    line-height: 1.58;
   }
 
   .home-v3-footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
+    display: grid;
+    gap: 0.9rem;
+    min-width: 10rem;
+    padding-top: 0.75rem;
     color: var(--home-v3-text-muted);
+  }
+
+  .home-v3-footer-links a {
+    color: inherit;
+    text-decoration: none;
   }
 
   .home-v3-footer-links a:hover {
@@ -7779,7 +7961,9 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-practice-layout,
     .home-v3-shift .home-v3-section-head,
-    .home-v3-shift-panels,
+    .home-v3-shift-rows,
+    .home-v3-fit .home-v3-section-head,
+    .home-v3-fit-rows,
     .home-v3-writing-head,
     .home-v3-writing-rail-wrap {
       grid-column: 2 / span 24;
@@ -7845,7 +8029,9 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       --home-v3-practice-visual-h: 7.75rem;
     }
 
-    .home-v3-shift-pair {
+    .home-v3-pillars-context,
+    .home-v3-pillars-context-grid,
+    .home-v3-fit-row {
       grid-template-columns: minmax(0, 1fr);
     }
 
@@ -8189,12 +8375,12 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-shift,
     .home-v3-writing,
+    .home-v3-fit,
     .home-v3-close {
       padding-top: 4rem;
     }
 
     .home-v3-practice-proof--feature,
-    .home-v3-shift-card,
     .home-v3-writing-volume {
       padding: 1.35rem;
     }
@@ -8206,7 +8392,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     .home-v3-practice-text,
     .home-v3-practice-story-text,
     .home-v3-practice-story-note,
-    .home-v3-shift-list li {
+    .home-v3-shift-row p,
+    .home-v3-fit-row p {
       font-size: 1rem;
     }
 
@@ -8577,7 +8764,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-needs-panel-top,
     .home-v3-needs-panel-item,
-    .home-v3-needs-panel-footer {
+    .home-v3-needs-panel-footer,
+    .home-v3-pillars-context {
       padding-inline: 1.2rem;
     }
 
@@ -8592,14 +8780,21 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       max-width: none;
     }
 
-    .home-v3-footer {
-      flex-direction: column;
+    .home-v3-footer-inner {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: 34rem;
+      gap: 2rem;
+      padding: 3rem 1.2rem 1.4rem;
     }
 
-    .home-v3-close-content {
-      width: min(calc(100% - 2rem), 44rem);
-      padding-top: 4.5rem;
-      padding-bottom: 3.5rem;
+    .home-v3-footer-main h2 {
+      font-size: clamp(2.2rem, 11vw, 4rem);
+    }
+
+    .home-v3-footer-links {
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: 0.85rem 1.5rem;
+      padding-top: 0;
     }
   }
 </style>
