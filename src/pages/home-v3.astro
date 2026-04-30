@@ -113,52 +113,40 @@ const bridgePillars = [
     index: '1.0',
     tone: 'clarity',
     title: 'Clarity.',
-    headline: 'Make better decisions sooner.',
-    detail: 'Create shared understanding of what matters now.'
+    headline: 'Make better decisions sooner with clearer direction.',
+    body: 'Create shared understanding, clearer direction, and alignment leaders can trust.'
   },
   {
     index: '2.0',
     tone: 'strategy',
     title: 'Strategy.',
     headline: 'Align direction, priorities, and investment.',
-    detail: 'Turn competing inputs into a path teams can commit to.'
+    body: 'Turn competing inputs into a path teams can commit to.'
   },
   {
     index: '3.0',
     tone: 'systems',
     title: 'Systems.',
     headline: 'Build operating models that help teams execute.',
-    detail: 'Create the standards and rhythms that sustain momentum.'
-  }
-];
-
-const teamNeedSignals = [
-  {
-    label: 'Clarity',
-    text: 'Sharper criteria before execution starts.'
-  },
-  {
-    label: 'Strategy',
-    text: 'A sequence teams can commit to.'
-  },
-  {
-    label: 'Systems',
-    text: 'Operating rhythm that reduces repeated clarification.'
+    body: 'Create the standards and rhythms that sustain momentum.'
   }
 ];
 
 const changeSignals = [
   {
-    title: 'Decisions become easier to defend.',
-    text: 'Vague priorities turn into clearer criteria, tradeoffs, and reasons teams can act on.'
+    label: 'Before',
+    title: 'Momentum is real, but confidence is uneven.',
+    text: 'Priorities move faster than the criteria, ownership, and tradeoffs teams need to act with confidence.'
   },
   {
-    title: 'Teams move with less alignment debt.',
-    text: 'Repeated clarification gives way to a stronger operating rhythm across product, engineering, and design.'
+    label: 'After',
+    title: 'Decisions are clearer, easier to defend, and easier to execute.',
+    text: 'Teams get stronger signal, fewer avoidable loops, and a path leadership can stand behind.'
   },
   {
-    title: 'Design shapes direction earlier.',
-    text: 'Design moves upstream from interface delivery into product decisions before momentum hardens.'
+    label: 'How',
+    title: 'Direction becomes a working system.',
+    text: 'Goals, constraints, standards, and handoffs become explicit enough for product, engineering, and design to move together.'
   }
 ];
 
@@ -243,20 +231,20 @@ const engagementModels = [
 
 const fitQuestions = [
   {
-    question: 'Is this for teams hiring full-time?',
-    answer: 'This is for select advisory, consulting, and fractional leadership engagements, not full-time hiring conversations.'
+    question: 'When should a team reach out?',
+    answer: 'When direction is moving, the stakes are real, and leadership needs sharper decisions across product, design, and engineering.'
   },
   {
-    question: 'Is this only strategy work?',
-    answer: 'No. The strongest work connects direction to execution, especially when implementation details affect product quality or team momentum.'
+    question: 'What kinds of teams are a fit?',
+    answer: 'Executives, product leaders, engineering partners, and design teams working through growth, transformation, or complex delivery.'
   },
   {
-    question: 'Can this support internal teams?',
-    answer: 'Yes. This is strongest when executives, product leaders, engineering leaders, and design teams need to align around the same decisions.'
+    question: 'Is this strategy or execution support?',
+    answer: 'Both. The work is strongest when direction, standards, and implementation details stay connected.'
   },
   {
     question: 'What work is not a fit?',
-    answer: 'Quick-turn identity work and low-leverage collateral are not the fit. Product direction, UX systems, design leadership, and implementation-focused product work are.'
+    answer: 'Quick-turn identity work, low-leverage collateral, and isolated visual polish are not the fit. Product direction, UX systems, design leadership, and implementation-focused product work are.'
   }
 ];
 
@@ -264,6 +252,8 @@ const featuredPractice = practiceStats[0];
 const supportingPractice = practiceStats.slice(1);
 const featuredWriting = writingRoadmapEntries[0];
 const supportingWriting = writingRoadmapEntries.slice(1);
+const writingVisualVariants = ['quiet', 'quiet-violet', 'gradient-warm', 'quiet-blue', 'gradient-cool', 'quiet-ink'];
+const getWritingVisualVariant = (index: number) => writingVisualVariants[index % writingVisualVariants.length];
 ---
 
 <Layout
@@ -305,16 +295,12 @@ const supportingWriting = writingRoadmapEntries.slice(1);
             <div class="dm-grid-l dm-grid-l--grid-sys home-v3-hero-grid">
               <div class="home-v3-hero-copy gc-start-2 gc-span-16">
                 <div class="home-v3-hero-primary">
-                  <p class="home-v3-kicker">Design leadership</p>
                   <h1>For teams in motion.</h1>
                 </div>
                 <div class="home-v3-hero-support">
                   <p class="home-v3-lead">
                     I help executives, product leaders, and cross-functional teams bring clarity to complex product decisions, align execution, and build design capability that scales.
                   </p>
-                  <div class="home-v3-actions">
-                    <a class="home-v3-button home-v3-button--solid" href="mailto:hello@danmalarkey.com">Work with me</a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -324,10 +310,14 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     </section>
 
     {homeV3BridgeVariant === 'pillars' ? (
-      <section class="home-v3-pillars" aria-label="Clarity, strategy, and systems">
+      <section class="home-v3-pillars" aria-label="Clarity, strategy, and systems" data-home-v3-reveal>
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="home-v3-pillars-shell gc-start-2 gc-span-24">
-            <div class="home-v3-pillars-surface">
+            <div class="home-v3-pillars-head">
+              <p class="home-v3-section-label">Design leadership in practice</p>
+              <h2>Clarity and direction when <br />your stakes are on the line.</h2>
+            </div>
+            <div class="home-v3-pillars-surface" data-home-v3-reveal-late>
               <div class="home-v3-pillars-grid" role="list">
                 {bridgePillars.map((pillar) => (
                   <article class={`home-v3-pillar home-v3-pillar--${pillar.tone}`} role="listitem">
@@ -336,23 +326,9 @@ const supportingWriting = writingRoadmapEntries.slice(1);
                       <h2 class="home-v3-pillar-title">{pillar.title}</h2>
                       <p class="home-v3-pillar-headline">{pillar.headline}</p>
                     </div>
-                    <p class="home-v3-pillar-detail">{pillar.detail}</p>
+                    <p class="home-v3-pillar-body">{pillar.body}</p>
                   </article>
                 ))}
-              </div>
-              <div class="home-v3-pillars-context" aria-label="Common team needs">
-                <div class="home-v3-pillars-context-head">
-                  <p class="home-v3-section-label">Teams usually come when</p>
-                  <h2>Direction is moving faster than alignment.</h2>
-                </div>
-                <div class="home-v3-pillars-context-grid">
-                  {teamNeedSignals.map((item) => (
-                    <div class="home-v3-pillars-context-item">
-                      <span>{item.label}</span>
-                      <p>{item.text}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
@@ -777,10 +753,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
           <p class="home-v3-section-label">Leadership in practice</p>
           <h2>Clarity under pressure.</h2>
           <p>
-            I work across product, program, and portfolio levels to help organizations make better decisions earlier and execute with more confidence.
-          </p>
-          <p>
-            Strategic enough for executive decisions, close enough to the work to improve delivery quality. I help teams define direction, build the standards that support execution, and keep momentum high without letting quality drift.
+            I operate where direction and delivery meet: strategic enough for executive decisions, close enough to the work to define direction, strengthen execution standards, and move faster without letting quality drift.
           </p>
         </div>
       </div>
@@ -814,7 +787,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
             <div class="home-v3-practice-story-copy">
               <h3>Leadership that stays strategic and close enough to execution to matter.</h3>
               <p class="home-v3-practice-story-text">
-                Across product, program, and portfolio layers, I help teams get to clearer decisions, stronger systems, and more confident delivery.
+                I operate where direction and delivery meet: strategic enough for executive decisions, close enough to the work to define direction, strengthen execution standards, and move faster without letting quality drift.
               </p>
               <p class="home-v3-practice-story-note">
                 Strategic enough for leadership conversations. Close enough to the work that delivery quality, operating rhythm, and team momentum actually improve.
@@ -911,22 +884,25 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     <section class="home-v3-shift" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-shift-layout">
-        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
+        <div class="home-v3-shift-head gc-start-2 gc-span-22">
           <p class="home-v3-section-label">What changes</p>
-          <h2>What changes when the work is working.</h2>
+          <h2>
+            When design leadership is working, teams feel it in how decisions get made and how execution moves.
+          </h2>
           <p>
-            The point is not more process. It is better decision quality, cleaner handoffs, and a product organization that can move without dragging uncertainty behind it.
+            Outcomes matter, but the mechanism matters too: less avoidable rework, less alignment debt, and stronger confidence in the path.
           </p>
         </div>
 
-        <div class="home-v3-shift-rows gc-start-11 gc-span-15" role="list" aria-label="What changes">
+        <div class="home-v3-shift-cards gc-start-2 gc-span-24" role="list" aria-label="What changes">
           {changeSignals.map((item, index) => (
-            <article class="home-v3-shift-row" role="listitem">
-              <span class="home-v3-shift-row-index">{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
+            <article class={`home-v3-shift-card home-v3-shift-card--${index + 1}`} role="listitem">
+              <div class="home-v3-shift-card-meta">
+                <span class="home-v3-shift-row-index">{String(index + 1).padStart(2, '0')}</span>
+                <p class="home-v3-shift-card-label">{item.label}</p>
               </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
             </article>
           ))}
         </div>
@@ -983,7 +959,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     <section class="home-v3-engagements home-v3-engagements--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-engagements-intro">
-        <div class="home-v3-section-head gc-start-2 gc-span-14">
+        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
           <p class="home-v3-section-label">Engagements</p>
           <h2>Ways to engage</h2>
           <p>Available for select advisory, consulting, and fractional leadership engagements based on the stage, scope, and urgency of the work.</p>
@@ -1019,7 +995,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
         <div class="home-v3-writing-rail-wrap gc-start-2 gc-span-24">
           <div class="home-v3-writing-rail" role="list" aria-label="Writing roadmap" data-home-v3-edge-rail>
             {[featuredWriting, ...supportingWriting].map((entry, index) => (
-              <article class={`home-v3-writing-volume home-v3-writing-volume--${(index % 4) + 1}`} role="listitem">
+              <article class={`home-v3-writing-volume home-v3-writing-volume--${getWritingVisualVariant(index)}`} role="listitem">
                 <div class="home-v3-writing-volume-head">
                   <p class="home-v3-writing-volume-meta home-v3-card-meta-text">{entry.type}</p>
                 </div>
@@ -1046,10 +1022,15 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
         <div class="home-v3-fit-rows gc-start-11 gc-span-15" role="list" aria-label="Fit and FAQ">
           {fitQuestions.map((item) => (
-            <article class="home-v3-fit-row" role="listitem">
-              <h3>{item.question}</h3>
-              <p>{item.answer}</p>
-            </article>
+            <details class="home-v3-fit-row" role="listitem">
+              <summary>
+                <h3>{item.question}</h3>
+                <span class="home-v3-fit-row-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="home-v3-fit-row-answer">
+                <p>{item.answer}</p>
+              </div>
+            </details>
           ))}
         </div>
       </div>
@@ -1679,29 +1660,149 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   (() => {
     const sections = Array.from(document.querySelectorAll('[data-home-v3-reveal]'));
-    if (!sections.length) return;
+    const lateSections = Array.from(document.querySelectorAll('[data-home-v3-reveal-late]'));
+    if (!sections.length && !lateSections.length) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       sections.forEach((section) => section.classList.add('is-visible'));
+      lateSections.forEach((section) => section.classList.add('is-visible'));
       return;
     }
 
-    const observer = new IntersectionObserver(
+    const standardObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          standardObserver.unobserve(entry.target);
         });
       },
       {
-        threshold: 0.14,
-        rootMargin: '0px 0px -8% 0px'
+        threshold: 0.26,
+        rootMargin: '0px 0px -16% 0px'
       }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    const lateObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          lateObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: '0px 0px -12% 0px'
+      }
+    );
+
+    sections.forEach((section) => standardObserver.observe(section));
+    lateSections.forEach((section) => lateObserver.observe(section));
+  })();
+
+  (() => {
+    const rows = Array.from(document.querySelectorAll('.home-v3-fit-row'));
+    if (!rows.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const closeRow = (row) => {
+      const summary = row.querySelector('summary');
+      const answer = row.querySelector('.home-v3-fit-row-answer');
+      if (!answer || !row.open) return;
+
+      window.cancelAnimationFrame(row._fitAnimationFrame ?? 0);
+      if (row._fitTransitionEndHandler) {
+        answer.removeEventListener('transitionend', row._fitTransitionEndHandler);
+      }
+
+      if (prefersReducedMotion) {
+        row.open = false;
+        row.classList.remove('is-open', 'is-animating');
+        answer.style.height = '';
+        return;
+      }
+
+      row.classList.add('is-animating');
+      answer.style.height = `${answer.scrollHeight}px`;
+      row.classList.remove('is-open');
+
+      row._fitAnimationFrame = window.requestAnimationFrame(() => {
+        answer.style.height = '0px';
+      });
+
+      row._fitTransitionEndHandler = (event) => {
+        if (event.propertyName !== 'height') return;
+        answer.removeEventListener('transitionend', row._fitTransitionEndHandler);
+        row._fitTransitionEndHandler = null;
+        row.open = false;
+        row.classList.remove('is-animating');
+        answer.style.height = '';
+      };
+      answer.addEventListener('transitionend', row._fitTransitionEndHandler);
+    };
+
+    const openRow = (row) => {
+      const answer = row.querySelector('.home-v3-fit-row-answer');
+      if (!answer || row.open) return;
+
+      window.cancelAnimationFrame(row._fitAnimationFrame ?? 0);
+      if (row._fitTransitionEndHandler) {
+        answer.removeEventListener('transitionend', row._fitTransitionEndHandler);
+      }
+
+      row.open = true;
+
+      if (prefersReducedMotion) {
+        row.classList.add('is-open');
+        answer.style.height = '';
+        return;
+      }
+
+      row.classList.add('is-animating');
+      answer.style.height = '0px';
+
+      row._fitAnimationFrame = window.requestAnimationFrame(() => {
+        row.classList.add('is-open');
+        answer.style.height = `${answer.scrollHeight}px`;
+      });
+
+      row._fitTransitionEndHandler = (event) => {
+        if (event.propertyName !== 'height') return;
+        answer.removeEventListener('transitionend', row._fitTransitionEndHandler);
+        row._fitTransitionEndHandler = null;
+        row.classList.remove('is-animating');
+        answer.style.height = 'auto';
+      };
+      answer.addEventListener('transitionend', row._fitTransitionEndHandler);
+    };
+
+    rows.forEach((row) => {
+      const summary = row.querySelector('summary');
+      const answer = row.querySelector('.home-v3-fit-row-answer');
+      if (!summary || !answer) return;
+
+      if (row.open) {
+        row.classList.add('is-open');
+        answer.style.height = 'auto';
+      }
+
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (row.open) {
+          closeRow(row);
+          return;
+        }
+
+        rows.forEach((otherRow) => {
+          if (otherRow !== row) closeRow(otherRow);
+        });
+        openRow(row);
+      });
+    });
   })();
 </script>
 
@@ -1722,8 +1823,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     --home-v3-header-top: 2rem;
     --home-v3-header-inline: 4.25rem;
     --home-v3-nav-padding: 1rem;
-    --home-v3-brand-offset: 1rem;
-    --home-v3-brand-width: 1.72rem;
+    --home-v3-brand-offset: 0;
+    --home-v3-brand-width: 1.35rem;
     --home-v3-brand-width-scrolled: 0.68rem;
     --home-v3-type-label: 0.75rem;
     --home-v3-type-label-compact: 0.75rem;
@@ -1735,14 +1836,19 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     --home-v3-type-title-md: clamp(2.2rem, 3vw, 3.2rem);
     --home-v3-type-title-lg: clamp(2.9rem, 4.15vw, 4.4rem);
     --home-v3-type-title-xl: clamp(3.75rem, 6.2vw, 6.15rem);
+    --home-v3-type-section-title-compact: 2.25rem;
+    --home-v3-line-section-title-compact: 1.18;
     --home-v3-type-display: var(--home-v3-type-title-lg);
     --home-v3-type-hero: var(--home-v3-type-title-xl);
     --home-v3-type-card-title: var(--home-v3-type-title-sm);
+    --home-v3-type-card-title-compact: clamp(1.18rem, 1.45vw, 1.45rem);
     --home-v3-tracking-label: 0.11em;
     --home-v3-tracking-display: -0.025em;
     --home-v3-tracking-title: -0.025em;
     --home-v3-tracking-card: -0.018em;
     --home-v3-tracking-text: 0;
+    --home-v3-section-gap: 2.5rem;
+    --home-v3-panel-gap: 1.5rem;
     --home-v3-button-height: 3.125rem;
     --home-v3-button-height-compact: 2.25rem;
     --home-v3-button-padding-x: 1.28rem;
@@ -1767,8 +1873,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     opacity: 0;
     transform: translateY(2rem);
     transition:
-      opacity 0.85s ease,
-      transform 0.95s ease;
+      opacity 1.05s ease,
+      transform 1.15s ease;
     will-change: opacity, transform;
   }
 
@@ -1883,11 +1989,57 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-pillars {
     position: relative;
     width: 100%;
-    padding-top: 0.25rem;
+    padding: 10rem 0;
   }
 
   .home-v3-pillars-shell {
     position: relative;
+  }
+
+  .home-v3-pillars-head {
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+    max-width: 51rem;
+    margin: 0 auto 7rem;
+    text-align: center;
+  }
+
+  .home-v3-pillars-head .home-v3-section-label {
+    margin-bottom: 0.15rem;
+  }
+
+  .home-v3-pillars-head h2 {
+    margin: 0;
+    color: rgba(244, 247, 255, 0.92);
+    font-family: var(--home-v3-display);
+    font-size: 4.2vw;
+    font-weight: var(--font-weight-medium);
+    line-height: 0.92;
+    letter-spacing: var(--home-v3-tracking-title);
+    text-wrap: balance;
+  }
+
+  .home-v3-pillars-head .home-v3-section-label,
+  .home-v3-pillars-head h2,
+  .home-v3-pillars-surface {
+    opacity: 0;
+    transform: translateY(1.4rem);
+    transition:
+      opacity 1.04s ease,
+      transform 1.18s ease;
+    will-change: opacity, transform;
+  }
+
+  .home-v3-pillars.is-visible .home-v3-pillars-head .home-v3-section-label,
+  .home-v3-pillars.is-visible .home-v3-pillars-head h2,
+  .home-v3-pillars-surface.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .home-v3-pillars-head h2 {
+    transition-delay: 0.08s;
   }
 
   .home-v3-pillars-surface {
@@ -1988,7 +2140,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   .home-v3-pillar-main,
   .home-v3-pillar-title,
   .home-v3-pillar-headline,
-  .home-v3-pillar-detail {
+  .home-v3-pillar-body {
     position: relative;
     z-index: 1;
     margin: 0;
@@ -2028,69 +2180,14 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     color: rgba(230, 235, 244, 0.9);
   }
 
-  .home-v3-pillar-detail {
+  .home-v3-pillar-body {
     max-width: none;
     margin-top: auto;
+    padding-top: var(--home-v3-section-gap);
     font-size: var(--home-v3-type-body);
     line-height: 1.6;
     letter-spacing: var(--home-v3-tracking-text);
     color: rgba(180, 188, 203, 0.8);
-  }
-
-  .home-v3-pillars-context {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: 1.25rem;
-    padding: 1.5rem 1.35rem 1.35rem;
-    border-top: 1px solid rgba(231, 235, 242, 0.08);
-    background: rgba(3, 4, 7, 0.22);
-  }
-
-  .home-v3-pillars-context-head {
-    display: grid;
-    gap: 0.7rem;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .home-v3-pillars-context-head h2 {
-    max-width: 18ch;
-    margin: 0;
-    color: rgba(244, 247, 255, 0.88);
-    font-size: clamp(1.55rem, 2.2vw, 2.35rem);
-    line-height: 1.04;
-    letter-spacing: var(--home-v3-tracking-title);
-    text-wrap: balance;
-  }
-
-  .home-v3-pillars-context-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.65rem;
-  }
-
-  .home-v3-pillars-context-item {
-    display: grid;
-    gap: 0.36rem;
-    padding: 0.9rem 0.95rem 0;
-    border-top: 1px solid rgba(231, 235, 242, 0.08);
-  }
-
-  .home-v3-pillars-context-item span {
-    color: rgba(231, 235, 242, 0.52);
-    font-size: var(--home-v3-type-label);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
-    text-transform: uppercase;
-  }
-
-  .home-v3-pillars-context-item p {
-    margin: 0;
-    color: rgba(231, 235, 242, 0.72);
-    font-size: var(--home-v3-type-body-sm);
-    line-height: 1.45;
   }
 
   .home-v3-bridge {
@@ -2842,10 +2939,6 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     font-weight: var(--font-weight-medium);
   }
 
-  .home-v3-kicker {
-    margin-bottom: var(--spacing-xl);
-  }
-
   .home-v3-card-meta-text {
     margin: 0;
     color: inherit;
@@ -2896,6 +2989,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
   .home-v3-hero-copy h1,
   .home-v3-section-head h2,
+  .home-v3-shift-head h2,
   .home-v3-support-copy h2,
   .home-v3-writing-head h2 {
     font-family: var(--home-v3-display);
@@ -2927,21 +3021,44 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     align-content: end;
   }
 
-  .home-v3-actors .home-v3-section-head h2 {
-    opacity: 0.08;
-    transform: translateY(1.1rem);
-    filter: blur(10px);
+  .home-v3-actors .home-v3-section-label,
+  .home-v3-actors .home-v3-section-head h2,
+  .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label),
+  .home-v3-actors .home-v3-actor-lane {
+    opacity: 0;
+    transform: translateY(1.25rem);
     transition:
-      opacity 0.95s ease,
-      transform 1s ease,
-      filter 1s ease;
-    will-change: opacity, transform, filter;
+      opacity 0.9s ease,
+      transform 1s ease;
+    will-change: opacity, transform;
+  }
+
+  .home-v3-actors.is-visible .home-v3-section-label,
+  .home-v3-actors.is-visible .home-v3-section-head h2,
+  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label),
+  .home-v3-actors.is-visible .home-v3-actor-lane {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .home-v3-actors.is-visible .home-v3-section-head h2 {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
+    transition-delay: 0.08s;
+  }
+
+  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label) {
+    transition-delay: 0.16s;
+  }
+
+  .home-v3-actors.is-visible .home-v3-actor-lane:nth-child(1) {
+    transition-delay: 0.26s;
+  }
+
+  .home-v3-actors.is-visible .home-v3-actor-lane:nth-child(2) {
+    transition-delay: 0.36s;
+  }
+
+  .home-v3-actors.is-visible .home-v3-actor-lane:nth-child(3) {
+    transition-delay: 0.46s;
   }
 
   .home-v3-hero-support {
@@ -3104,7 +3221,11 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     box-shadow: var(--home-v3-shadow);
     min-height: 36rem;
     display: block;
-    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    transition:
+      opacity 0.9s ease,
+      transform 1s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease;
   }
 
   .home-v3-actor-card::before {
@@ -5182,7 +5303,11 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       linear-gradient(180deg, rgba(12, 14, 19, 0.98), rgba(7, 8, 11, 1)),
       rgba(7, 8, 11, 1);
     box-shadow: var(--home-v3-shadow);
-    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    transition:
+      opacity 0.9s ease,
+      transform 1s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease;
   }
 
   .home-v3-actor-lane::before,
@@ -5212,6 +5337,10 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     box-shadow:
       0 1.4rem 3rem rgba(0, 0, 0, 0.34),
       0 0 3rem rgba(var(--actor-lane-rgb), 0.1);
+  }
+
+  .home-v3-actors.is-visible .home-v3-actor-lane:hover {
+    transform: translateY(-0.18rem);
   }
 
   .home-v3-actor-lane--executive {
@@ -6578,9 +6707,12 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     font-size: var(--home-v3-type-title-lg);
   }
 
-  .home-v3-shift .home-v3-section-head h2 {
-    font-size: 2.25rem;
-    line-height: 1.18;
+  .home-v3-section-head--compact h2,
+  .home-v3-shift-head h2,
+  .home-v3-practice .home-v3-section-head h2,
+  .home-v3-writing-head h2 {
+    font-size: var(--home-v3-type-section-title-compact);
+    line-height: var(--home-v3-line-section-title-compact);
   }
 
   .home-v3-trust-grid,
@@ -7196,7 +7328,18 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     .home-v3-practice-glow,
     .home-v3-practice-floor-glow,
     .home-v3-practice-stars,
-    .home-v3-practice-icon {
+    .home-v3-practice-icon,
+    .home-v3-pillars-head .home-v3-section-label,
+    .home-v3-pillars-head h2,
+    .home-v3-pillars-surface,
+    .home-v3-actors .home-v3-section-label,
+    .home-v3-actors .home-v3-section-head h2,
+    .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label),
+    .home-v3-actors .home-v3-actor-lane,
+    .home-v3-fit-row,
+    .home-v3-fit-row-icon::before,
+    .home-v3-fit-row-icon::after,
+    .home-v3-fit-row-answer {
       transition: none;
     }
 
@@ -7506,33 +7649,144 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     align-items: start;
   }
 
-  .home-v3-shift-rows,
   .home-v3-fit-rows,
   .home-v3-writing-side {
     display: grid;
     gap: 0;
   }
 
-  .home-v3-shift-rows,
   .home-v3-fit-rows {
     border-top: 1px solid rgba(231, 235, 242, 0.08);
   }
 
-  .home-v3-shift-row,
   .home-v3-fit-row {
     position: relative;
-    display: grid;
-    gap: var(--spacing-sm);
-    padding: 1.35rem 0 1.45rem;
     border-bottom: 1px solid rgba(231, 235, 242, 0.08);
+    transition:
+      border-color 240ms ease,
+      background-color 240ms ease;
   }
 
-  .home-v3-shift-row {
-    grid-template-columns: 3.5rem minmax(0, 1fr);
+  .home-v3-fit-row.is-open {
+    border-bottom-color: rgba(231, 235, 242, 0.14);
+    background: rgba(255, 255, 255, 0.012);
   }
 
-  .home-v3-fit-row {
-    grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1fr);
+  .home-v3-fit-row summary {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.35rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .home-v3-fit-row summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .home-v3-fit-row summary:focus-visible {
+    outline: 1px solid rgba(231, 235, 242, 0.34);
+    outline-offset: 0.35rem;
+    border-radius: 0.25rem;
+  }
+
+  .home-v3-fit-row-icon {
+    position: relative;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.2rem;
+    opacity: 0.62;
+  }
+
+  .home-v3-fit-row-icon::before,
+  .home-v3-fit-row-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(231, 235, 242, 0.78);
+    transform: translateY(-50%);
+    transition:
+      opacity 240ms ease,
+      transform 240ms ease;
+  }
+
+  .home-v3-fit-row-icon::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .home-v3-fit-row.is-open .home-v3-fit-row-icon::after {
+    opacity: 0;
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  .home-v3-fit-row-answer {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-0.2rem);
+    transition:
+      height 340ms ease,
+      opacity 260ms ease,
+      transform 340ms ease;
+  }
+
+  .home-v3-fit-row-answer > p {
+    overflow: visible;
+  }
+
+  .home-v3-fit-row.is-open .home-v3-fit-row-answer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .home-v3-shift-head {
+    display: grid;
+    gap: 1rem;
+    max-width: 54rem;
+    margin-bottom: var(--home-v3-section-gap);
+  }
+
+  .home-v3-shift-head h2 {
+    max-width: 34ch;
+    color: rgba(244, 247, 255, 0.96);
+    text-wrap: balance;
+  }
+
+  .home-v3-shift-head p:not(.home-v3-section-label) {
+    max-width: 46rem;
+    margin: 0;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--home-v3-type-body);
+    line-height: 1.62;
+  }
+
+  .home-v3-shift-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--home-v3-panel-gap);
+    align-items: start;
+  }
+
+  .home-v3-shift-card {
+    position: relative;
+    display: grid;
+    gap: 0.85rem;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(231, 235, 242, 0.08);
+  }
+
+  .home-v3-shift-card-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 
   .home-v3-shift-row-index {
@@ -7541,20 +7795,30 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
     line-height: 1;
-    padding-top: 0.25rem;
+    padding-top: 0;
   }
 
-  .home-v3-shift-row h3,
+  .home-v3-shift-card h3,
   .home-v3-fit-row h3 {
     margin: 0;
     color: rgba(244, 247, 255, 0.94);
-    font-size: clamp(1.18rem, 1.45vw, 1.45rem);
+    font-size: var(--home-v3-type-card-title-compact);
     font-weight: var(--font-weight-medium);
     line-height: 1.1;
     text-wrap: balance;
   }
 
-  .home-v3-shift-row p,
+  .home-v3-shift-card-label {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.52);
+    font-size: var(--home-v3-type-label);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--home-v3-tracking-label);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .home-v3-shift-card p:not(.home-v3-shift-card-label),
   .home-v3-fit-row p {
     max-width: 56ch;
     margin: 0.42rem 0 0;
@@ -7564,7 +7828,9 @@ const supportingWriting = writingRoadmapEntries.slice(1);
   }
 
   .home-v3-fit-row p {
-    margin-top: 0;
+    max-width: 64ch;
+    margin: 0;
+    padding: 0 var(--spacing-lg) 1.45rem 0;
   }
 
   .home-v3-writing--editorial {
@@ -7700,65 +7966,69 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     pointer-events: none;
   }
 
-  .home-v3-writing-volume--1 .home-v3-writing-volume-art {
+  .home-v3-writing-volume--quiet .home-v3-writing-volume-art,
+  .home-v3-writing-volume--quiet-violet .home-v3-writing-volume-art,
+  .home-v3-writing-volume--quiet-blue .home-v3-writing-volume-art,
+  .home-v3-writing-volume--quiet-ink .home-v3-writing-volume-art {
+    opacity: 0.5;
     background:
-      radial-gradient(circle at 74% 36%, rgba(140, 158, 255, 0.58), rgba(140, 158, 255, 0) 20%),
-      radial-gradient(circle at 37% 54%, rgba(229, 206, 122, 0.34), rgba(229, 206, 122, 0) 17%),
-      radial-gradient(ellipse at 52% 78%, rgba(129, 89, 255, 0.52), rgba(129, 89, 255, 0) 43%),
-      linear-gradient(152deg, rgba(19, 25, 55, 0), rgba(44, 55, 122, 0.7));
+      radial-gradient(circle at 84% 22%, rgba(231, 235, 242, 0.045), transparent 14rem),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0) 42%);
   }
 
-  .home-v3-writing-volume--1 .home-v3-writing-volume-art::before {
+  .home-v3-writing-volume--quiet-violet .home-v3-writing-volume-art {
     background:
-      radial-gradient(ellipse at 48% 72%, rgba(255, 255, 255, 0.08) 0 9%, transparent 10%),
-      radial-gradient(ellipse at 48% 72%, transparent 0 22%, rgba(196, 211, 255, 0.16) 22.4% 22.9%, transparent 23.4%),
-      radial-gradient(ellipse at 48% 72%, transparent 0 36%, rgba(196, 211, 255, 0.12) 36.4% 36.9%, transparent 37.4%);
-    transform: rotate(-14deg) scale(1.24);
+      radial-gradient(circle at 72% 38%, rgba(119, 105, 214, 0.16), transparent 16rem),
+      linear-gradient(145deg, rgba(70, 61, 132, 0.08), rgba(255, 255, 255, 0) 46%);
   }
 
-  .home-v3-writing-volume--2 .home-v3-writing-volume-art {
+  .home-v3-writing-volume--quiet-blue .home-v3-writing-volume-art {
     background:
-      linear-gradient(110deg, transparent 0 18%, rgba(231, 235, 242, 0.13) 18.4% 18.7%, transparent 19.2% 100%),
-      repeating-linear-gradient(90deg, rgba(231, 235, 242, 0.085) 0 1px, transparent 1px 2.35rem),
-      repeating-linear-gradient(0deg, rgba(231, 235, 242, 0.055) 0 1px, transparent 1px 2.05rem),
-      radial-gradient(circle at 72% 38%, rgba(142, 190, 255, 0.36), rgba(142, 190, 255, 0) 24%),
-      linear-gradient(180deg, rgba(18, 48, 68, 0.36), rgba(7, 10, 16, 0));
+      radial-gradient(circle at 82% 28%, rgba(90, 154, 196, 0.14), transparent 16rem),
+      linear-gradient(145deg, rgba(45, 69, 96, 0.09), rgba(255, 255, 255, 0) 46%);
   }
 
-  .home-v3-writing-volume--2 .home-v3-writing-volume-art::before {
+  .home-v3-writing-volume--quiet-ink .home-v3-writing-volume-art {
     background:
-      linear-gradient(120deg, transparent 0 46%, rgba(255, 255, 255, 0.1) 46.3% 46.6%, transparent 47%),
-      linear-gradient(104deg, transparent 0 32%, rgba(111, 138, 255, 0.16) 32.3% 32.7%, transparent 33.1%);
-    transform: translateX(-8%) scale(1.12);
+      radial-gradient(circle at 30% 74%, rgba(231, 235, 242, 0.055), transparent 14rem),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0) 46%);
   }
 
-  .home-v3-writing-volume--3 .home-v3-writing-volume-art {
-    background:
-      conic-gradient(from 224deg at 56% 75%, rgba(242, 226, 157, 0), rgba(242, 226, 157, 0.52), rgba(148, 99, 255, 0.48), rgba(66, 142, 255, 0.2), rgba(242, 226, 157, 0)),
-      radial-gradient(ellipse at 56% 78%, rgba(241, 226, 24, 0.24), rgba(241, 226, 24, 0) 30%),
-      linear-gradient(180deg, rgba(39, 25, 62, 0), rgba(15, 12, 24, 0.58));
+  .home-v3-writing-volume--quiet .home-v3-writing-volume-art::before,
+  .home-v3-writing-volume--quiet-violet .home-v3-writing-volume-art::before,
+  .home-v3-writing-volume--quiet-blue .home-v3-writing-volume-art::before,
+  .home-v3-writing-volume--quiet-ink .home-v3-writing-volume-art::before {
+    background: none;
   }
 
-  .home-v3-writing-volume--3 .home-v3-writing-volume-art::before {
+  .home-v3-writing-volume--gradient-warm .home-v3-writing-volume-art {
     background:
-      linear-gradient(40deg, transparent 0 50%, rgba(255, 240, 168, 0.18) 50.4% 50.9%, transparent 51.3%);
-    filter: blur(0.4rem);
+      conic-gradient(from 210deg at 56% 76%, rgba(111, 87, 255, 0), rgba(111, 87, 255, 0.48), rgba(96, 136, 255, 0.38), rgba(236, 202, 128, 0.22), rgba(111, 87, 255, 0)),
+      radial-gradient(ellipse at 34% 48%, rgba(214, 177, 138, 0.26), rgba(214, 177, 138, 0) 26%),
+      radial-gradient(ellipse at 76% 38%, rgba(118, 138, 255, 0.34), rgba(118, 138, 255, 0) 32%),
+      linear-gradient(160deg, rgba(35, 34, 70, 0.88), rgba(8, 8, 16, 0.98));
   }
 
-  .home-v3-writing-volume--4 .home-v3-writing-volume-art {
+  .home-v3-writing-volume--gradient-warm .home-v3-writing-volume-art::before {
     background:
-      radial-gradient(ellipse at 48% 70%, rgba(231, 235, 242, 0.13) 0 18%, transparent 18.5%),
-      radial-gradient(ellipse at 48% 70%, transparent 0 30%, rgba(152, 191, 255, 0.22) 30.3% 30.8%, transparent 31.2%),
-      radial-gradient(ellipse at 48% 70%, transparent 0 46%, rgba(231, 235, 242, 0.15) 46.3% 46.8%, transparent 47.2%),
-      radial-gradient(circle at 64% 54%, rgba(112, 214, 255, 0.34), rgba(112, 214, 255, 0) 24%),
-      linear-gradient(150deg, rgba(12, 32, 54, 0.18), rgba(7, 9, 14, 0));
+      linear-gradient(42deg, transparent 0 42%, rgba(255, 255, 255, 0.12) 46%, transparent 53%),
+      radial-gradient(circle at 55% 78%, rgba(255, 255, 255, 0.1), transparent 24%);
+    filter: blur(0.55rem);
   }
 
-  .home-v3-writing-volume--4 .home-v3-writing-volume-art::before {
+  .home-v3-writing-volume--gradient-cool .home-v3-writing-volume-art {
     background:
-      radial-gradient(circle at 50% 58%, rgba(255, 255, 255, 0.08), transparent 13%),
-      radial-gradient(circle at 50% 58%, transparent 0 24%, rgba(116, 150, 230, 0.12) 24.4% 24.9%, transparent 25.4%);
-    transform: scale(1.28);
+      conic-gradient(from 32deg at 66% 70%, rgba(112, 218, 255, 0), rgba(112, 218, 255, 0.32), rgba(82, 102, 255, 0.42), rgba(55, 76, 120, 0.12), rgba(112, 218, 255, 0)),
+      radial-gradient(ellipse at 72% 36%, rgba(122, 190, 255, 0.34), rgba(122, 190, 255, 0) 28%),
+      radial-gradient(ellipse at 28% 62%, rgba(97, 112, 185, 0.34), rgba(97, 112, 185, 0) 34%),
+      linear-gradient(180deg, rgba(24, 39, 55, 0.84), rgba(7, 10, 16, 0.98));
+  }
+
+  .home-v3-writing-volume--gradient-cool .home-v3-writing-volume-art::before {
+    background:
+      linear-gradient(138deg, transparent 0 38%, rgba(255, 255, 255, 0.11) 45%, transparent 54%),
+      radial-gradient(circle at 66% 58%, rgba(255, 255, 255, 0.08), transparent 22%);
+    filter: blur(0.48rem);
   }
 
   .home-v3-writing-volume-head {
@@ -7960,8 +8230,8 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     }
 
     .home-v3-practice-layout,
-    .home-v3-shift .home-v3-section-head,
-    .home-v3-shift-rows,
+    .home-v3-shift-head,
+    .home-v3-shift-cards,
     .home-v3-fit .home-v3-section-head,
     .home-v3-fit-rows,
     .home-v3-writing-head,
@@ -7980,6 +8250,10 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-practice-solid-copy {
       max-width: 42rem;
+    }
+
+    .home-v3-pillars-head {
+      max-width: 51rem;
     }
 
   .home-v3-practice-value--solid {
@@ -8029,9 +8303,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       --home-v3-practice-visual-h: 7.75rem;
     }
 
-    .home-v3-pillars-context,
-    .home-v3-pillars-context-grid,
-    .home-v3-fit-row {
+    .home-v3-shift-cards {
       grid-template-columns: minmax(0, 1fr);
     }
 
@@ -8180,10 +8452,6 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-hero-copy h1 {
       font-size: clamp(2.85rem, 12vw, 4.4rem);
-    }
-
-    .home-v3-kicker {
-      margin-bottom: 0.9rem;
     }
 
     .home-v3-hero-copy {
@@ -8392,7 +8660,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     .home-v3-practice-text,
     .home-v3-practice-story-text,
     .home-v3-practice-story-note,
-    .home-v3-shift-row p,
+    .home-v3-shift-card p:not(.home-v3-shift-card-label),
     .home-v3-fit-row p {
       font-size: 1rem;
     }
@@ -8599,7 +8867,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
     }
 
     .home-v3-pillars {
-      padding-top: 0;
+      padding: 0;
     }
 
     .home-v3-pillars-surface {
@@ -8608,6 +8876,15 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-pillars-grid {
       grid-template-columns: 1fr;
+    }
+
+    .home-v3-pillars-head {
+      margin-bottom: 1.1rem;
+    }
+
+    .home-v3-pillars-head h2 {
+      font-size: clamp(2rem, 11vw, 2.9rem);
+      max-width: none;
     }
 
     .home-v3-pillar {
@@ -8644,7 +8921,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
       line-height: 1.12;
     }
 
-    .home-v3-pillar-detail {
+    .home-v3-pillar-body {
       max-width: none;
       margin-top: 0;
       font-size: 0.96rem;
@@ -8764,8 +9041,7 @@ const supportingWriting = writingRoadmapEntries.slice(1);
 
     .home-v3-needs-panel-top,
     .home-v3-needs-panel-item,
-    .home-v3-needs-panel-footer,
-    .home-v3-pillars-context {
+    .home-v3-needs-panel-footer {
       padding-inline: 1.2rem;
     }
 
