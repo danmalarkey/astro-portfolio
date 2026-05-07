@@ -15,7 +15,31 @@ const createActorMailto = (actor: string, prompt: string) => {
   return `mailto:hello@danmalarkey.com?${params.toString()}`;
 };
 
+const supportedOrganizations = ['Nike', 'Adidas', 'Spotify', 'Stripe', 'Linear', 'Figma'];
+const supportedOrganizationLoop = [...supportedOrganizations, ...supportedOrganizations];
+
 const leverageCards = [
+  {
+    title: 'AI-enabled product systems',
+    descriptionLines: [
+      'Designing AI workflows, prompt systems,',
+      'and product behavior with enough structure',
+      'to hold up in real use.'
+    ],
+    cardFit: 'For teams turning AI capability into useful product systems, not disconnected experiments.',
+    artType: 'ai',
+    conceptLabel: 'AI product systems',
+    conceptSignals: ['Workflow', 'Prompts', 'Behavior'],
+    laneRows: [
+      { label: 'Workflow', detail: 'Human control' },
+      { label: 'Prompts', detail: 'Reusable systems' },
+      { label: 'Behavior', detail: 'Product integrity' }
+    ],
+    image: 'images/home-v3/blueprint/operating-model-blueprint-transparent.png',
+    imageAlt: 'AI-enabled product systems blueprint',
+    actorSlug: '/work-with/ai-enabled-product-systems',
+    actorLabel: 'a product or AI systems leader'
+  },
   {
     title: 'Executives and product drivers',
     descriptionLines: [
@@ -134,19 +158,62 @@ const bridgePillars = [
 
 const changeSignals = [
   {
-    label: 'Before',
-    title: 'Momentum is real, but confidence is uneven.',
-    text: 'Priorities move faster than the criteria, ownership, and tradeoffs teams need to act with confidence.'
+    label: 'Leadership signal',
+    title: 'The product story becomes easier to defend.',
+    text: 'Executive conversations get sharper when the customer value, business tradeoffs, and delivery constraints connect in one coherent direction.'
   },
   {
-    label: 'After',
-    title: 'Decisions are clearer, easier to defend, and easier to execute.',
-    text: 'Teams get stronger signal, fewer avoidable loops, and a path leadership can stand behind.'
+    label: 'Decision quality',
+    title: 'Ambiguity turns into usable judgment.',
+    text: 'Teams get clearer criteria for what matters, what can wait, and where design quality has to protect the business.'
   },
   {
-    label: 'How',
-    title: 'Direction becomes a working system.',
-    text: 'Goals, constraints, standards, and handoffs become explicit enough for product, engineering, and design to move together.'
+    label: 'Execution drag',
+    title: 'Avoidable loops start to disappear.',
+    text: 'Product, design, and engineering spend less time reworking direction because the standards, handoffs, and decision rights are explicit.'
+  },
+  {
+    label: 'Operating leverage',
+    title: 'Design leadership becomes a system.',
+    text: 'Patterns, rituals, and product standards stop living in one person’s head and start helping the organization make better calls repeatedly.'
+  },
+  {
+    label: 'Team confidence',
+    title: 'People can move without guessing.',
+    text: 'Strong teams do better work when they are not decoding vague direction, defending the same points, or waiting for alignment to re-form.'
+  }
+];
+
+const operatingShifts = [
+  {
+    result: 'Conceptual integrity',
+    before: 'Product logic gets fragmented across strategy, UX, AI behavior, and implementation.',
+    mechanism: 'Core product systems stay consistent across concepts, workflows, behavior, interface expression, and implementation.',
+    after: ''
+  },
+  {
+    result: 'Sharper vision',
+    before: 'Vision moves faster than the criteria.',
+    mechanism: 'A sharper vision guides and connects business intent, customer value, constraints, and tradeoffs.',
+    after: ''
+  },
+  {
+    result: 'Defensible quality',
+    before: 'Quality depends on repeated persuasion.',
+    mechanism: 'Shared standards connect customer value, product logic, delivery cost, and quality judgment.',
+    after: ''
+  },
+  {
+    result: 'More integrated',
+    before: 'Handoffs rely on meetings and memory.',
+    mechanism: 'Shared rituals and artifacts keep product, design, engineering, workflows, and implementation aligned.',
+    after: ''
+  },
+  {
+    result: 'Winning teams',
+    before: 'Direction lives in a few senior people.',
+    mechanism: 'Visible constraints and decisions help teams move with confidence, clarity, and less drift between alignment points.',
+    after: ''
   }
 ];
 
@@ -231,6 +298,10 @@ const engagementModels = [
 
 const fitQuestions = [
   {
+    question: 'Are you looking for a full-time role?',
+    answer: 'No. I am happy in my current role at feature[23]. I am open to select advisory, consulting, and fractional leadership engagements.'
+  },
+  {
     question: 'When should a team reach out?',
     answer: 'When direction is moving, the stakes are real, and leadership needs sharper decisions across product, design, and engineering.'
   },
@@ -244,7 +315,7 @@ const fitQuestions = [
   },
   {
     question: 'What work is not a fit?',
-    answer: 'Quick-turn identity work, low-leverage collateral, and isolated visual polish are not the fit. Product direction, UX systems, design leadership, and implementation-focused product work are.'
+    answer: 'Quick-turn identity work, low-leverage collateral, and isolated visual polish are not the fit. I work best on product direction, UX systems, design leadership, and implementation-focused product work.'
   }
 ];
 
@@ -252,7 +323,7 @@ const featuredPractice = practiceStats[0];
 const supportingPractice = practiceStats.slice(1);
 const featuredWriting = writingRoadmapEntries[0];
 const supportingWriting = writingRoadmapEntries.slice(1);
-const writingVisualVariants = ['quiet', 'quiet-violet', 'gradient-warm', 'quiet-blue', 'gradient-cool', 'quiet-ink'];
+const writingVisualVariants = ['quiet', 'quiet-violet', 'quiet-blue', 'quiet-ink'];
 const getWritingVisualVariant = (index: number) => writingVisualVariants[index % writingVisualVariants.length];
 ---
 
@@ -268,11 +339,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
             <a class="home-v3-brand" href={withBase('/')} aria-label="Dan Malarkey">
               <img src={withBase('/images/brand/d-logo-halfmoon.svg')} alt="Dan Malarkey" />
             </a>
+            <span class="home-v3-header-availability" aria-label="Available for select engagements">
+              <span class="home-v3-header-availability-dot" aria-hidden="true"></span>
+              <span>Available for select engagements</span>
+            </span>
             <div class="home-v3-nav-links">
               <a href={withBase('/work')}>Work</a>
+              <a href={withBase('/library')}>Library</a>
               <a href={withBase('/about')}>About</a>
               <a href={withBase('/writing')}>Writing</a>
-              <a href="mailto:hello@danmalarkey.com" class="home-v3-nav-cta">Talk to me</a>
+              <a href="mailto:hello@danmalarkey.com" class="home-v3-nav-cta">Contact</a>
             </div>
           </nav>
         </div>
@@ -295,11 +371,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
             <div class="dm-grid-l dm-grid-l--grid-sys home-v3-hero-grid">
               <div class="home-v3-hero-copy gc-start-2 gc-span-16">
                 <div class="home-v3-hero-primary">
+                  <p class="home-v3-kicker">Chief Product Designer at feature[23]</p>
                   <h1>For teams in motion.</h1>
                 </div>
                 <div class="home-v3-hero-support">
                   <p class="home-v3-lead">
-                    I help executives, product leaders, and cross-functional teams bring clarity to complex product decisions, align execution, and build design capability that scales.
+                    I help executives, product leaders, and cross-functional teams bring clarity to complex product decisions, AI-enabled product systems, execution alignment, and design capability that scales.
                   </p>
                 </div>
               </div>
@@ -307,6 +384,26 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
           </div>
         </div>
       </section>
+    </section>
+
+    <section class="home-v3-client-trust" aria-label="Organizations I have supported" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="home-v3-client-trust-shell gc-start-3 gc-span-22">
+          <p class="home-v3-client-trust-label">Organizations I’ve supported</p>
+          <div class="home-v3-client-marquee" aria-hidden="true">
+            <div class="home-v3-client-marquee-track">
+              {supportedOrganizationLoop.map((organization) => (
+                <span class="home-v3-client-logo">{organization}</span>
+              ))}
+            </div>
+          </div>
+          <ul class="home-v3-client-trust-list sr-only">
+            {supportedOrganizations.map((organization) => (
+              <li>{organization}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
 
     {homeV3BridgeVariant === 'pillars' ? (
@@ -405,12 +502,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
           <p class="home-v3-section-label">Across the organization</p>
           <h2>Where it matters most.</h2>
-          <p>I support the people setting direction, the teams building product, and the design leaders scaling capability.</p>
+          <p>The same operating model shows up differently for the people setting direction, the teams building product, the design leaders scaling capability, and the AI systems shaping new product behavior.</p>
         </div>
       </div>
 
       {homeV3ActorsVariant === 'legacy' && (
-      <div class="home-v3-actor-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+      <div class="home-v3-actor-grid col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys" role="list">
         {leverageCards.map((item) => (
           <article class={`home-v3-actor-card home-v3-actor-card--${item.artType}`} role="listitem">
             <div class="home-v3-actor-card-media" aria-hidden="true">
@@ -651,7 +748,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       )}
 
       {homeV3ActorsVariant === 'concept' && homeV3ActorsConceptVariant === 'scene' && (
-      <div class="home-v3-actor-grid home-v3-actor-grid--concept col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+      <div class="home-v3-actor-grid home-v3-actor-grid--concept col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys" role="list">
         {leverageCards.map((item) => (
           <article class={`home-v3-actor-card-concept home-v3-actor-card-concept--${item.artType}`} role="listitem">
             <div class="home-v3-actor-card-concept-media" aria-hidden="true">
@@ -697,12 +794,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       )}
 
       {homeV3ActorsVariant === 'concept' && homeV3ActorsConceptVariant === 'lane' && (
-      <div class="home-v3-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+      <div class="home-v3-actor-lane-grid col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys" role="list">
         {leverageCards.map((item) => (
           <article class={`home-v3-actor-lane home-v3-actor-lane--${item.artType}`} role="listitem">
             <div class="home-v3-actor-lane-head">
               <p class="home-v3-actor-lane-kicker">{item.conceptLabel}</p>
-              <span class="home-v3-actor-lane-dot" aria-hidden="true"></span>
             </div>
 
             <div class={`home-v3-actor-lane-scene home-v3-actor-card-concept--${item.artType}`} aria-hidden="true">
@@ -745,6 +841,79 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         ))}
       </div>
       )}
+    </section>
+
+    <section class="home-v3-operating-shift" id="operating-shift" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-operating-shift-layout">
+        <div class="home-v3-operating-shift-head home-v3-section-head home-v3-section-head--compact gc-start-1 gc-span-12">
+          <p class="home-v3-section-label">Operating model</p>
+          <h2>Better product decisions come from better operating conditions.</h2>
+        </div>
+
+        <p class="home-v3-operating-shift-thesis gc-start-15 gc-span-11">
+          Conceptual integrity means the product’s core ideas stay coherent across workflows, behavior, interface expression, and implementation.
+        </p>
+
+        <div class="home-v3-operating-grid gc-start-1 gc-span-26" role="list" aria-label="Leadership shifts">
+          {operatingShifts.map((item, index) => (
+            <article class="home-v3-operating-grid-item" role="listitem">
+              <p class="home-v3-operating-grid-index">{String(index + 1).padStart(2, '0')}</p>
+              <div class="home-v3-operating-grid-copy">
+                <h3 class="home-v3-card-title-text home-v3-proof-card-title">{item.result}</h3>
+                <p class="home-v3-operating-grid-text">{item.mechanism}{item.after ? ` ${item.after}` : ''}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-v3-outcomes home-v3-outcomes--rail home-v3-outcomes--editorial" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-outcomes-intro">
+        <div class="home-v3-section-head home-v3-section-head--compact home-v3-outcomes-head gc-start-2 gc-span-14">
+          <p class="home-v3-section-label">Proof</p>
+          <h2>Real business outcomes</h2>
+          <p>Selected outcomes focused on growth, operating efficiency, and experience quality. Some details are anonymized.</p>
+        </div>
+      </div>
+
+      <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
+        <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies" data-home-v3-edge-rail data-home-v3-rail-anchor>
+          {caseStudies.map((item) => (
+            <article class={`case-card home-v3-proof-card ${item.stacked ? 'home-v3-proof-card--stacked' : ''}`}>
+              <div class="home-v3-proof-card-media">
+                <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
+                <div class="home-v3-proof-card-overlay">
+                  <div class="home-v3-proof-card-copy">
+                    <p class="home-v3-card-title-text home-v3-proof-card-title">{item.logo}</p>
+                    <p class="home-v3-card-copy-text home-v3-proof-card-role">{item.tags.join(' · ')}</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="home-v3-outcomes-controls-row gc-start-2 gc-span-24">
+          <div class="case-rail-controls" aria-label="Case studies navigation">
+            <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M10.75 2.75 5.5 8l5.25 5.25" />
+              </svg>
+            </button>
+            <div class="case-rail-progress" aria-live="polite">
+              <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
+            </div>
+            <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M5.25 2.75 10.5 8l-5.25 5.25" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="home-v3-practice" data-home-v3-reveal>
@@ -882,87 +1051,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     </section>
 
-    <section class="home-v3-shift" data-home-v3-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-shift-layout">
-        <div class="home-v3-shift-head gc-start-2 gc-span-22">
-          <p class="home-v3-section-label">What changes</p>
-          <h2>
-            When design leadership is working, teams feel it in how decisions get made and how execution moves.
-          </h2>
-          <p>
-            Outcomes matter, but the mechanism matters too: less avoidable rework, less alignment debt, and stronger confidence in the path.
-          </p>
-        </div>
-
-        <div class="home-v3-shift-cards gc-start-2 gc-span-24" role="list" aria-label="What changes">
-          {changeSignals.map((item, index) => (
-            <article class={`home-v3-shift-card home-v3-shift-card--${index + 1}`} role="listitem">
-              <div class="home-v3-shift-card-meta">
-                <span class="home-v3-shift-row-index">{String(index + 1).padStart(2, '0')}</span>
-                <p class="home-v3-shift-card-label">{item.label}</p>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="home-v3-outcomes home-v3-outcomes--rail home-v3-outcomes--editorial" data-home-v3-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-outcomes-intro">
-        <div class="home-v3-section-head home-v3-section-head--compact home-v3-outcomes-head gc-start-2 gc-span-14">
-          <p class="home-v3-section-label">Proof</p>
-          <h2>Real business outcomes</h2>
-          <p>Selected outcomes focused on growth, operating efficiency, and experience quality. Some details are anonymized.</p>
-        </div>
-      </div>
-
-      <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
-        <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies" data-home-v3-edge-rail data-home-v3-rail-anchor>
-          {caseStudies.map((item) => (
-            <article class={`case-card home-v3-proof-card ${item.stacked ? 'home-v3-proof-card--stacked' : ''}`}>
-              <div class="home-v3-proof-card-media">
-                <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
-                <div class="home-v3-proof-card-overlay">
-                  <div class="home-v3-proof-card-copy">
-                    <p class="home-v3-card-title-text home-v3-proof-card-title">{item.logo}</p>
-                    <p class="home-v3-card-copy-text home-v3-proof-card-role">{item.tags.join(' · ')}</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="home-v3-outcomes-controls-row gc-start-2 gc-span-24">
-          <div class="case-rail-controls" aria-label="Case studies navigation">
-            <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M10.75 2.75 5.5 8l5.25 5.25" />
-              </svg>
-            </button>
-            <div class="case-rail-progress" aria-live="polite">
-              <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
-            </div>
-            <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M5.25 2.75 10.5 8l-5.25 5.25" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="home-v3-engagements home-v3-engagements--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-engagements-intro">
         <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
           <p class="home-v3-section-label">Engagements</p>
           <h2>Ways to engage</h2>
-          <p>Available for select advisory, consulting, and fractional leadership engagements based on the stage, scope, and urgency of the work.</p>
         </div>
       </div>
 
@@ -983,33 +1076,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-writing-layout">
-        <div class="home-v3-writing-head gc-start-2 gc-span-16">
-          <p class="home-v3-section-label">Writing</p>
-          <h2>Notes, essays, and field observations from the work.</h2>
-        </div>
-      </div>
-
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="home-v3-writing-rail-wrap gc-start-2 gc-span-24">
-          <div class="home-v3-writing-rail" role="list" aria-label="Writing roadmap" data-home-v3-edge-rail>
-            {[featuredWriting, ...supportingWriting].map((entry, index) => (
-              <article class={`home-v3-writing-volume home-v3-writing-volume--${getWritingVisualVariant(index)}`} role="listitem">
-                <div class="home-v3-writing-volume-head">
-                  <p class="home-v3-writing-volume-meta home-v3-card-meta-text">{entry.type}</p>
-                </div>
-                <h3 class="home-v3-writing-volume-title home-v3-card-title-text">
-                  {entry.live ? <a href={withBase(`/writing/${entry.slug}`)}>{entry.title}</a> : entry.title}
-                </h3>
-                <div class="home-v3-writing-volume-art" aria-hidden="true"></div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="home-v3-fit" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-fit-layout">
         <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
@@ -1021,6 +1087,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         </div>
 
         <div class="home-v3-fit-rows gc-start-11 gc-span-15" role="list" aria-label="Fit and FAQ">
+          <p class="home-v3-fit-rows-label">Common questions</p>
           {fitQuestions.map((item) => (
             <details class="home-v3-fit-row" role="listitem">
               <summary>
@@ -1036,32 +1103,102 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
+    <section class="home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-writing-layout">
+        <div class="home-v3-writing-head gc-start-2 gc-span-16">
+          <h2>Curated thinking</h2>
+        </div>
+      </div>
+
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="home-v3-writing-rail-wrap gc-start-2 gc-span-24">
+          <div class="home-v3-writing-rail" role="list" aria-label="Writing roadmap" data-home-v3-edge-rail>
+            {[featuredWriting, ...supportingWriting].map((entry, index) => (
+              <article class={`home-v3-writing-volume home-v3-writing-volume--${getWritingVisualVariant(index)}`} role="listitem">
+                {entry.live ? (
+                  <a class="home-v3-writing-volume-link" href={withBase(`/writing/${entry.slug}`)}>
+                    <div class="home-v3-writing-volume-head">
+                      <p class="home-v3-writing-volume-meta home-v3-card-meta-text">{entry.type}</p>
+                    </div>
+                    <h3 class="home-v3-writing-volume-title home-v3-card-title-text">{entry.title}</h3>
+                    <p class="home-v3-writing-volume-summary">{entry.summary}</p>
+                    <div class="home-v3-writing-volume-art" aria-hidden="true"></div>
+                  </a>
+                ) : (
+                  <div class="home-v3-writing-volume-link" aria-disabled="true">
+                    <div class="home-v3-writing-volume-head">
+                      <p class="home-v3-writing-volume-meta home-v3-card-meta-text">{entry.type}</p>
+                    </div>
+                    <h3 class="home-v3-writing-volume-title home-v3-card-title-text">{entry.title}</h3>
+                    <p class="home-v3-writing-volume-summary">{entry.summary}</p>
+                    <div class="home-v3-writing-volume-art" aria-hidden="true"></div>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="home-v3-close" data-home-v3-reveal>
       <footer class="home-v3-footer">
-        <canvas id="home-v3-close-stars" aria-hidden="true"></canvas>
-        <div class="home-v3-footer-horizon" aria-hidden="true"></div>
         <div class="home-v3-footer-inner">
           <div class="home-v3-footer-main">
-            <a class="home-v3-footer-mark" href={withBase('/')} aria-label="Dan Malarkey">
-              <img src={withBase('/images/brand/d-logo-halfmoon.svg')} alt="" />
-            </a>
-            <p class="home-v3-section-label">Work with me</p>
-            <h2>Design leadership for organizations navigating growth, complexity, and change.</h2>
-            <p class="home-v3-footer-copy">
-              Available for select advisory, consulting, and fractional engagements where sharper direction and stronger product design leadership can move the work forward.
-            </p>
-            <div class="home-v3-actions home-v3-actions--footer">
-              <a class="home-v3-button home-v3-button--solid" href="mailto:hello@danmalarkey.com">Start a conversation</a>
-              <a class="home-v3-button home-v3-button--ghost" href={withBase('/about')}>About Dan</a>
+            <h2>Design leadership for teams navigating growth, complexity, and change.</h2>
+            <div class="home-v3-footer-main-lower">
+              <p class="home-v3-footer-copy">
+                Available for select advisory, consulting, and fractional leadership engagements where sharper direction and stronger product design leadership can move the work forward.
+              </p>
+              <div class="home-v3-actions home-v3-actions--footer">
+                <a class="home-v3-button home-v3-button--solid" href="mailto:hello@danmalarkey.com">Work with me</a>
+                <a class="home-v3-button home-v3-button--ghost" href="#book-a-call" aria-label="Book a call placeholder">Book a call</a>
+              </div>
             </div>
           </div>
-          <nav class="home-v3-footer-links" aria-label="Footer">
-            <a href={withBase('/work')}>Work</a>
-            <a href={withBase('/writing')}>Writing</a>
-            <a href={withBase('/library')}>Library</a>
-            <a href={withBase('/about')}>About</a>
-            <a href="https://www.linkedin.com/in/danmalarkey/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </nav>
+
+          <div class="home-v3-footer-directory">
+            <nav class="home-v3-footer-links" aria-label="Footer">
+              <div class="home-v3-footer-link-group home-v3-footer-link-group--services">
+                <p class="home-v3-card-meta-text">Services</p>
+                <a href={withBase('/work-with/executives-and-product-drivers')}>Product direction</a>
+                <a href={withBase('/work-with/product-and-engineering-teams')}>UX systems</a>
+                <a href={withBase('/work-with/designers-and-design-leaders')}>Design leadership</a>
+                <a href={withBase('/work-with/ai-enabled-product-systems')}>AI-enabled product systems</a>
+                <a href={withBase('/work-with/operating-model')}>Operating model</a>
+                <a href={withBase('/work')}>Implementation partnership</a>
+              </div>
+              <div class="home-v3-footer-link-group">
+                <p class="home-v3-card-meta-text">Explore</p>
+                <a href={withBase('/work')}>Work</a>
+                <a href={withBase('/library')}>Library</a>
+                <a href={withBase('/writing')}>Writing</a>
+              </div>
+              <div class="home-v3-footer-link-group">
+                <p class="home-v3-card-meta-text">Contact</p>
+                <a href={withBase('/about')}>About</a>
+                <a href="mailto:hello@danmalarkey.com">Email</a>
+              </div>
+              <div class="home-v3-footer-link-group">
+                <p class="home-v3-card-meta-text">Social</p>
+                <a class="home-v3-footer-social-link" href="https://www.linkedin.com/in/danmalarkey/" target="_blank" rel="noopener noreferrer">
+                  <span>LinkedIn</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a class="home-v3-footer-social-link" href="mailto:hello@danmalarkey.com">
+                  <span>Let's talk</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </nav>
+          </div>
+
+          <p class="home-v3-footer-wordmark" aria-hidden="true">DanMalarkey</p>
+
+          <div class="home-v3-footer-bottom">
+            <p>© 2026 Dan Malarkey</p>
+            <p>Jacksonville, Florida</p>
+          </div>
         </div>
       </footer>
     </section>
@@ -1198,7 +1335,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     };
 
     initStarfield('home-v3-stars', { count: 96, drift: 0.01 });
-    initStarfield('home-v3-close-stars', { count: 95, drift: 0.008 });
   })();
 
   (() => {
@@ -1803,6 +1939,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         openRow(row);
       });
     });
+
   })();
 </script>
 
@@ -1828,6 +1965,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-brand-width-scrolled: 0.68rem;
     --home-v3-type-label: 0.75rem;
     --home-v3-type-label-compact: 0.75rem;
+    --home-v3-font-size-xs: 0.9rem;
+    --home-v3-type-body-xs: var(--home-v3-font-size-xs);
     --home-v3-type-body-sm: 1rem;
     --home-v3-type-body: 1rem;
     --home-v3-type-body-lg: 1.125rem;
@@ -1849,8 +1988,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-tracking-text: 0;
     --home-v3-section-gap: 2.5rem;
     --home-v3-panel-gap: 1.5rem;
-    --home-v3-button-height: 3.125rem;
-    --home-v3-button-height-compact: 2.25rem;
+    --home-v3-button-padding-y: 0.98rem;
+    --home-v3-button-padding-y-compact: 0.64rem;
     --home-v3-button-padding-x: 1.28rem;
     --home-v3-button-padding-x-compact: 0.92rem;
     --home-v3-button-radius: 999rem;
@@ -1957,10 +2096,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-trust,
+  .home-v3-client-trust,
   .home-v3-pillars,
   .home-v3-bridge,
   .home-v3-bridge-lite,
   .home-v3-shift,
+  .home-v3-operating-shift,
   .home-v3-close {
     width: var(--home-v3-shell);
     margin: 0 auto;
@@ -1980,6 +2121,115 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-hero-layout {
     height: 100%;
     min-height: 100%;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .home-v3-client-trust {
+    position: relative;
+    z-index: 2;
+    padding: clamp(2.3rem, 4.6vw, 4.6rem) 0 clamp(2.8rem, 5.2vw, 5.4rem);
+  }
+
+  .home-v3-client-trust-shell {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.45rem);
+    justify-items: center;
+    overflow: hidden;
+  }
+
+  .home-v3-client-trust-label {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.82);
+    font-size: var(--home-v3-type-body-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+    letter-spacing: var(--home-v3-tracking-text);
+    opacity: 0;
+    transform: translateY(0.42rem);
+    transition:
+      opacity 720ms ease,
+      transform 760ms ease;
+  }
+
+  .home-v3-client-marquee {
+    position: relative;
+    width: min(100%, 54rem);
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition:
+      opacity 820ms ease 120ms,
+      transform 860ms ease 120ms;
+  }
+
+  .home-v3-client-trust.is-visible .home-v3-client-trust-label,
+  .home-v3-client-trust.is-visible .home-v3-client-marquee {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .home-v3-client-marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: clamp(2.2rem, 5vw, 5.2rem);
+    animation: home-v3-client-marquee 28s linear infinite;
+  }
+
+  .home-v3-client-marquee:hover .home-v3-client-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .home-v3-client-logo {
+    flex: 0 0 auto;
+    color: rgba(231, 235, 242, 0.42);
+    font-family: var(--home-v3-display);
+    font-size: clamp(1rem, 1.5vw, 1.35rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .home-v3-client-logo:nth-child(4n + 2),
+  .home-v3-client-logo:nth-child(4n + 6) {
+    color: rgba(231, 235, 242, 0.78);
+  }
+
+  @keyframes home-v3-client-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-50% - (clamp(2.2rem, 5vw, 5.2rem) / 2)));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-v3-client-trust-label,
+    .home-v3-client-marquee {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .home-v3-client-marquee-track {
+      animation: none;
+      transform: translateX(0);
+    }
   }
 
   .home-v3-actors-intro {
@@ -2835,13 +3085,15 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     box-shadow:
       inset 0 0 0 1px rgba(231, 235, 242, 0.05),
       0 1.25rem 3rem rgba(0, 0, 0, 0.16);
+    transform-origin: center;
+    animation: home-v3-window-frame-enter 980ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both;
   }
 
   .home-v3-nav {
     display: grid;
-    grid-template-columns: repeat(26, minmax(0, 1fr));
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
     align-items: center;
-    column-gap: 0.75rem;
+    column-gap: 0.88rem;
     width: 100%;
     padding: var(--home-v3-nav-padding);
     border-radius: 1rem;
@@ -2853,6 +3105,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       border-color 520ms ease,
       box-shadow 520ms ease,
       backdrop-filter 520ms ease;
+    animation: home-v3-masthead-enter 760ms ease 120ms both;
   }
 
   .home-v3-header.is-scrolled .home-v3-nav {
@@ -2870,9 +3123,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     align-items: center;
     justify-content: flex-start;
     line-height: 0;
-    grid-column: 1 / span 3;
+    grid-column: 1;
     justify-self: start;
+    align-self: center;
     margin-left: var(--home-v3-brand-offset);
+    animation: home-v3-masthead-item-enter 680ms ease 260ms both;
   }
 
   .home-v3-brand img {
@@ -2886,18 +3141,104 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: var(--home-v3-brand-width-scrolled);
   }
 
+  .home-v3-header-availability {
+    display: inline-flex;
+    grid-column: 2;
+    align-items: center;
+    gap: 0.46rem;
+    justify-self: start;
+    align-self: center;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.38rem 0.62rem;
+    border: 1px solid rgba(231, 235, 242, 0.1);
+    border-radius: 999rem;
+    background: rgba(255, 255, 255, 0.035);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 0.45rem 1.2rem rgba(0, 0, 0, 0.1);
+    color: rgba(231, 235, 242, 0.72);
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.15;
+    letter-spacing: 0;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-0.28rem);
+    pointer-events: none;
+    transition:
+      opacity 420ms ease,
+      transform 420ms ease,
+      border-color 420ms ease,
+      background 420ms ease;
+  }
+
+  .home-v3-header.is-scrolled .home-v3-header-availability {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .home-v3-header-availability-dot {
+    position: relative;
+    flex: 0 0 auto;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999rem;
+    background: rgba(165, 238, 194, 0.9);
+    box-shadow:
+      0 0 0 0.16rem rgba(105, 220, 150, 0.09),
+      0 0 0.95rem rgba(105, 220, 150, 0.28);
+  }
+
+  .home-v3-header-availability-dot::after {
+    content: '';
+    position: absolute;
+    inset: -0.32rem;
+    border-radius: inherit;
+    border: 1px solid rgba(165, 238, 194, 0.22);
+    opacity: 0;
+    transform: scale(0.72);
+    animation: home-v3-header-availability-pulse 2.4s ease-in-out infinite;
+  }
+
   .home-v3-nav-links {
     display: flex;
     align-items: center;
     gap: 0.72rem;
     color: var(--home-v3-text-muted);
     font-size: 0.82rem;
-    grid-column: 20 / span 7;
+    grid-column: 4;
     justify-self: end;
+    align-self: center;
   }
 
   .home-v3-nav-links a:hover {
     color: var(--home-v3-text);
+  }
+
+  .home-v3-nav-links a {
+    animation: home-v3-masthead-item-enter 620ms ease both;
+  }
+
+  .home-v3-nav-links a:nth-child(1) {
+    animation-delay: 340ms;
+  }
+
+  .home-v3-nav-links a:nth-child(2) {
+    animation-delay: 400ms;
+  }
+
+  .home-v3-nav-links a:nth-child(3) {
+    animation-delay: 460ms;
+  }
+
+  .home-v3-nav-links a:nth-child(4) {
+    animation-delay: 520ms;
+  }
+
+  .home-v3-nav-links a:nth-child(5) {
+    animation-delay: 580ms;
   }
 
   .home-v3-nav-cta {
@@ -2905,6 +3246,139 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding: 0;
     border: 0;
     background: transparent;
+  }
+
+  @keyframes home-v3-masthead-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-0.8rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes home-v3-masthead-item-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-0.28rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes home-v3-window-frame-enter {
+    from {
+      opacity: 0;
+      transform: translateY(1rem) scale(0.992);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes home-v3-window-field-enter {
+    from {
+      opacity: 0;
+      filter: saturate(0.82) brightness(0.86);
+    }
+
+    to {
+      opacity: 1;
+      filter: saturate(1) brightness(1);
+    }
+  }
+
+  @keyframes home-v3-window-rays-enter {
+    from {
+      opacity: 0;
+      transform: rotate(-22deg) translate3d(-1.4rem, -1rem, 0);
+    }
+
+    to {
+      opacity: 0.3;
+      transform: rotate(-22deg) translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes home-v3-window-light-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0.62;
+    }
+  }
+
+  @keyframes home-v3-window-core-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.86);
+    }
+
+    to {
+      opacity: 0.24;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes home-v3-window-glow-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes home-v3-window-orbit-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(2rem, 0, 0) scale(0.97);
+    }
+
+    to {
+      opacity: 0.96;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes home-v3-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.85rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-v3-nav,
+    .home-v3-brand,
+    .home-v3-nav-links a,
+    .home-v3-hero-frame,
+    .home-v3-window,
+    .home-v3-window-rays,
+    .home-v3-window-light-field,
+    .home-v3-window-core,
+    .home-v3-window-glow,
+    .home-v3-window-orbit,
+    .home-v3-hero-primary,
+    .home-v3-hero-support {
+      animation: none;
+    }
   }
 
   .home-v3-hero-grid {
@@ -2937,6 +3411,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     text-transform: uppercase;
     margin: 0;
     font-weight: var(--font-weight-medium);
+  }
+
+  .home-v3-kicker {
+    margin-bottom: var(--spacing-xl);
   }
 
   .home-v3-card-meta-text {
@@ -3019,11 +3497,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: 100%;
     display: grid;
     align-content: end;
+    animation: home-v3-hero-copy-enter 820ms ease 540ms both;
+  }
+
+  .home-v3-hero-support {
+    animation: home-v3-hero-copy-enter 820ms ease 680ms both;
   }
 
   .home-v3-actors .home-v3-section-label,
   .home-v3-actors .home-v3-section-head h2,
-  .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label),
+  .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
   .home-v3-actors .home-v3-actor-lane {
     opacity: 0;
     transform: translateY(1.25rem);
@@ -3035,7 +3518,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actors.is-visible .home-v3-section-label,
   .home-v3-actors.is-visible .home-v3-section-head h2,
-  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label),
+  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
   .home-v3-actors.is-visible .home-v3-actor-lane {
     opacity: 1;
     transform: translateY(0);
@@ -3045,7 +3528,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     transition-delay: 0.08s;
   }
 
-  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label) {
+  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability) {
     transition-delay: 0.16s;
   }
 
@@ -3061,6 +3544,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     transition-delay: 0.46s;
   }
 
+  .home-v3-actors.is-visible .home-v3-actor-lane:nth-child(4) {
+    transition-delay: 0.56s;
+  }
+
   .home-v3-hero-support {
     width: min(42rem, 100%);
     align-self: start;
@@ -3070,7 +3557,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-lead,
-  .home-v3-section-head p:not(.home-v3-section-label),
+  .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
   .home-v3-support-copy p,
   .home-v3-footer-copy,
   .home-v3-proof-line {
@@ -3104,8 +3591,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: var(--home-v3-button-height);
-    padding: 0 var(--home-v3-button-padding-x);
+    padding: var(--home-v3-button-padding-y) var(--home-v3-button-padding-x);
     border-radius: var(--home-v3-button-radius);
     border: 1px solid rgba(231, 235, 242, 0.1);
     background: rgba(255, 255, 255, 0.02);
@@ -5238,8 +5724,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-button--compact {
-    min-height: var(--home-v3-button-height-compact);
-    padding-inline: var(--home-v3-button-padding-x-compact);
+    padding: var(--home-v3-button-padding-y-compact) var(--home-v3-button-padding-x-compact);
     font-size: 0.78rem;
     border-radius: 1rem;
   }
@@ -5288,21 +5773,25 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --actor-lane-soft-rgb: 220, 230, 255;
     --actor-cta-rgb: var(--actor-lane-rgb);
     --actor-cta-soft-rgb: var(--actor-lane-soft-rgb);
+    --actor-lane-pad-x: clamp(1.55rem, 1.7vw, 1.85rem);
+    --actor-lane-pad-top: clamp(1.8rem, 2.15vw, 2.25rem);
     position: relative;
     min-width: 0;
-    min-height: 30rem;
+    min-height: clamp(27rem, 31vw, 29rem);
     display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    grid-template-rows: auto minmax(0, 0.95fr) auto auto;
     gap: 0;
-    padding: 1.3rem 1.3rem 0;
+    padding: var(--actor-lane-pad-top) var(--actor-lane-pad-x) 0;
     overflow: hidden;
     isolation: isolate;
     border: 1px solid var(--home-v3-border-soft);
     border-radius: 1.5rem;
     background:
-      linear-gradient(180deg, rgba(12, 14, 19, 0.98), rgba(7, 8, 11, 1)),
+      linear-gradient(180deg, rgba(15, 16, 21, 0.98), rgba(7, 8, 11, 1)),
       rgba(7, 8, 11, 1);
-    box-shadow: var(--home-v3-shadow);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 1.25rem 3rem rgba(0, 0, 0, 0.24);
     transition:
       opacity 0.9s ease,
       transform 1s ease,
@@ -5321,14 +5810,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-lane::before {
     background:
-      linear-gradient(145deg, rgba(var(--actor-lane-rgb), 0.08), transparent 36%),
-      radial-gradient(circle at 84% 16%, rgba(var(--actor-lane-rgb), 0.12), transparent 18rem);
-    opacity: 0.28;
+      linear-gradient(145deg, rgba(var(--actor-lane-rgb), 0.06), transparent 42%),
+      radial-gradient(circle at 84% 15%, rgba(var(--actor-lane-rgb), 0.09), transparent 16rem);
+    opacity: 0.3;
   }
 
   .home-v3-actor-lane::after {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 18%, transparent 78%, rgba(255, 255, 255, 0.025) 100%);
-    opacity: 0.46;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.052), transparent 16%, transparent 78%, rgba(255, 255, 255, 0.022) 100%),
+      linear-gradient(90deg, rgba(var(--actor-lane-soft-rgb), 0.18), transparent 32%);
+    opacity: 0.38;
   }
 
   .home-v3-actor-lane:hover {
@@ -5358,6 +5849,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --actor-lane-soft-rgb: 205, 242, 255;
   }
 
+  .home-v3-actor-lane--ai {
+    --actor-lane-rgb: 170, 126, 255;
+    --actor-lane-soft-rgb: 226, 213, 255;
+  }
+
   .home-v3-actor-lane-head,
   .home-v3-actor-lane-copy,
   .home-v3-actor-lane-strip,
@@ -5367,16 +5863,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-actor-lane-head {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-bottom: 1.15rem;
+    gap: 0.45rem;
+    padding-bottom: 0.74rem;
   }
 
   .home-v3-actor-lane-kicker {
     margin: 0;
-    color: rgba(var(--actor-lane-soft-rgb), 0.72);
+    width: fit-content;
+    color: rgba(var(--actor-lane-soft-rgb), 0.76);
     font-size: var(--home-v3-type-label-compact);
     line-height: 1;
     letter-spacing: var(--home-v3-tracking-label);
@@ -5384,34 +5880,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-weight: var(--font-weight-medium);
   }
 
-  .home-v3-actor-lane-dot {
-    position: relative;
-    flex: 0 0 auto;
-    width: 0.72rem;
-    height: 0.72rem;
-    border-radius: 50%;
-    background: rgba(var(--actor-lane-soft-rgb), 0.94);
-    box-shadow:
-      0 0 0 0.16rem rgba(var(--actor-lane-rgb), 0.1),
-      0 0 1.1rem rgba(var(--actor-lane-rgb), 0.18);
-  }
-
-  .home-v3-actor-lane-dot::after {
-    content: '';
-    position: absolute;
-    inset: -0.42rem;
-    border-radius: 50%;
-    border: 1px solid rgba(var(--actor-lane-soft-rgb), 0.16);
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
   .home-v3-actor-lane-scene {
     position: absolute;
-    inset: 3.6rem 0 5rem;
+    inset: 4.15rem 0 4.4rem;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.12;
+    opacity: 0.22;
     transform: scale(1);
     transition: opacity 0.35s ease, transform 0.35s ease;
   }
@@ -5420,7 +5894,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(7, 8, 11, 0.22), rgba(7, 8, 11, 0.44) 28%, rgba(7, 8, 11, 0.72) 64%, rgba(7, 8, 11, 0.96) 100%);
+    background: linear-gradient(180deg, rgba(7, 8, 11, 0.18), rgba(7, 8, 11, 0.36) 28%, rgba(7, 8, 11, 0.66) 66%, rgba(7, 8, 11, 0.94) 100%);
   }
 
   .home-v3-actor-lane-scene .home-v3-actor-card-concept-atmosphere,
@@ -5469,16 +5943,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-copy {
     position: relative;
     display: grid;
-    gap: 0.68rem;
+    gap: 0.52rem;
     align-content: start;
     max-width: 32ch;
-    padding-bottom: 1.15rem;
+    margin-top: 1.85rem;
+    padding-bottom: 0.9rem;
   }
 
   .home-v3-actor-lane-copy h3 {
     margin: 0;
-    font-size: var(--home-v3-type-title-sm);
-    line-height: 1;
+    font-size: clamp(1.42rem, 1.55vw, 1.72rem);
+    line-height: 1.02;
     letter-spacing: var(--home-v3-tracking-title);
     text-wrap: balance;
     max-width: none;
@@ -5487,8 +5962,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-copy > p {
     margin: 0;
     color: rgba(231, 235, 242, 0.84);
-    font-size: var(--home-v3-type-body-sm);
-    line-height: 1.52;
+    font-size: 0.92rem;
+    line-height: 1.48;
     letter-spacing: var(--home-v3-tracking-text);
     text-wrap: pretty;
     max-width: none;
@@ -5497,9 +5972,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-strip {
     position: relative;
     z-index: 2;
-    margin: 0 -1.3rem 0;
-    padding: 0 1.3rem;
-    background: linear-gradient(180deg, rgba(7, 8, 11, 0), rgba(7, 8, 11, 0.44));
+    margin: 0 calc(var(--actor-lane-pad-x) * -1);
+    padding: 0 var(--actor-lane-pad-x);
+    background:
+      linear-gradient(180deg, rgba(7, 8, 11, 0), rgba(7, 8, 11, 0.52)),
+      linear-gradient(90deg, rgba(var(--actor-lane-rgb), 0.035), transparent 62%);
   }
 
   .home-v3-actor-lane-metric {
@@ -5507,9 +5984,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.55rem;
-    min-height: 2.55rem;
-    padding: 0.68rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    min-height: 2.34rem;
+    padding: 0.56rem 0;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.06);
   }
 
   .home-v3-actor-lane-metric:last-child {
@@ -5537,18 +6014,19 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-lane--executive .home-v3-actor-lane-metric--2 .home-v3-actor-lane-metric-detail,
   .home-v3-actor-lane--product .home-v3-actor-lane-metric--3 .home-v3-actor-lane-metric-detail,
-  .home-v3-actor-lane--design .home-v3-actor-lane-metric--3 .home-v3-actor-lane-metric-detail {
+  .home-v3-actor-lane--design .home-v3-actor-lane-metric--3 .home-v3-actor-lane-metric-detail,
+  .home-v3-actor-lane--ai .home-v3-actor-lane-metric--3 .home-v3-actor-lane-metric-detail {
     color: rgba(var(--actor-lane-soft-rgb), 0.88);
   }
 
   .home-v3-actor-lane-footer {
     display: flex;
     align-items: center;
-    margin: 0 -1.3rem;
-    padding: 0.88rem 1.3rem 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0 calc(var(--actor-lane-pad-x) * -1);
+    padding: 0.78rem var(--actor-lane-pad-x) 0.88rem;
+    border-top: 1px solid rgba(231, 235, 242, 0.06);
     background:
-      linear-gradient(180deg, rgba(7, 8, 11, 0.24), rgba(7, 8, 11, 0.84)),
+      linear-gradient(180deg, rgba(7, 8, 11, 0.24), rgba(7, 8, 11, 0.9)),
       rgba(7, 8, 11, 0.68);
   }
 
@@ -5556,11 +6034,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     justify-content: space-between;
     padding-top: 0;
     width: 100%;
-  }
-
-  .home-v3-actor-lane:hover .home-v3-actor-lane-dot::after {
-    opacity: 1;
-    animation: home-v3-actor-lane-dot-pulse 1.8s ease-in-out infinite;
   }
 
   .home-v3-actor-lane:hover .home-v3-actor-lane-scene {
@@ -5587,19 +6060,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-lane:hover .home-v3-actor-lane-metric {
     border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  @keyframes home-v3-actor-lane-dot-pulse {
-    0%,
-    100% {
-      transform: scale(0.84);
-      opacity: 0.5;
-    }
-
-    50% {
-      transform: scale(1.12);
-      opacity: 1;
-    }
   }
 
   .home-v3-actor-grid--concept {
@@ -6528,6 +6988,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     background:
       linear-gradient(321deg, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.18) 88%, rgba(255, 255, 255, 0.32) 100%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012));
+    animation: home-v3-window-field-enter 1180ms ease 180ms both;
   }
 
   .home-v3-window::before {
@@ -6575,6 +7036,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     opacity: 0.3;
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.48) 30%, rgba(0, 0, 0, 0.16) 58%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.48) 30%, rgba(0, 0, 0, 0.16) 58%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
+    animation: home-v3-window-rays-enter 1400ms ease 420ms both;
   }
 
   .home-v3-hero-noise {
@@ -6617,6 +7079,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       radial-gradient(circle at 86% 18%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 20%),
       radial-gradient(circle at 72% 84%, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 20%);
     opacity: 0.62;
+    animation: home-v3-window-light-enter 1300ms ease 360ms both;
   }
 
   .home-v3-window-core {
@@ -6629,6 +7092,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       radial-gradient(ellipse at 18% 54%, rgba(231, 235, 242, 0.12), rgba(231, 235, 242, 0.045) 14%, rgba(231, 235, 242, 0.01) 28%, rgba(231, 235, 242, 0) 52%);
     filter: blur(14px);
     opacity: 0.24;
+    transform-origin: center;
+    animation: home-v3-window-core-enter 1450ms ease 520ms both;
   }
 
   .home-v3-window-glow {
@@ -6638,6 +7103,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       radial-gradient(ellipse at 88% 44%, rgba(231, 235, 242, 0.014), transparent 16rem),
       radial-gradient(circle at 22% 80%, rgba(231, 235, 242, 0.02), transparent 18rem);
     opacity: 0.4;
+    animation: home-v3-window-glow-enter 1500ms ease 460ms both;
   }
 
   .home-v3-window-haze {
@@ -6657,6 +7123,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       radial-gradient(ellipse at 18% 58%, rgba(12, 13, 16, 0.08), rgba(12, 13, 16, 0.4) 30%, rgba(6, 7, 10, 0.82) 58%, rgba(5, 6, 8, 0.99) 80%);
     box-shadow: inset 0 0 4rem rgba(255, 255, 255, 0.012);
     opacity: 0.96;
+    transform-origin: center;
+    animation: home-v3-window-orbit-enter 1500ms cubic-bezier(0.16, 1, 0.3, 1) 300ms both;
   }
 
   .home-v3-window-orbit::before,
@@ -6679,6 +7147,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-practice,
   .home-v3-outcomes,
   .home-v3-shift,
+  .home-v3-operating-shift,
   .home-v3-engagements,
   .home-v3-writing,
   .home-v3-fit {
@@ -6699,6 +7168,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-section-head--compact {
     max-width: 40rem;
+  }
+
+  .home-v3-section-head--compact h2 {
+    text-wrap: balance;
   }
 
   .home-v3-section-head h2,
@@ -7334,7 +7807,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-pillars-surface,
     .home-v3-actors .home-v3-section-label,
     .home-v3-actors .home-v3-section-head h2,
-    .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label),
+    .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
     .home-v3-actors .home-v3-actor-lane,
     .home-v3-fit-row,
     .home-v3-fit-row-icon::before,
@@ -7343,7 +7816,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       transition: none;
     }
 
-    .home-v3-bridge-haze {
+    .home-v3-bridge-haze,
+    .home-v3-header-availability-dot::after,
+    .home-v3-engagement-availability-dot,
+    .home-v3-engagement-availability::after {
       animation: none;
     }
   }
@@ -7359,6 +7835,24 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     100% {
       transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes home-v3-header-availability-pulse {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0.72);
+    }
+
+    42% {
+      opacity: 0.62;
+      transform: scale(1);
+    }
+
+    72% {
+      opacity: 0;
+      transform: scale(1.24);
     }
   }
 
@@ -7423,7 +7917,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-outcomes--editorial .home-v3-section-head h2,
-  .home-v3-outcomes--editorial .home-v3-section-head p:not(.home-v3-section-label) {
+  .home-v3-outcomes--editorial .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability) {
     color: var(--home-v3-text);
   }
 
@@ -7474,7 +7968,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: none;
   }
 
-  .home-v3-outcomes--editorial .home-v3-section-head p:not(.home-v3-section-label) {
+  .home-v3-outcomes--editorial .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability) {
     max-width: 38rem;
     color: rgba(231, 235, 242, 0.56);
   }
@@ -7485,8 +7979,47 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin-top: 1.15rem;
   }
 
-  .home-v3-engagements-intro .home-v3-section-head p:not(.home-v3-section-label) {
-    max-width: 50ch;
+  .home-v3-engagement-availability {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.46rem 0.72rem;
+    border: 1px solid rgba(170, 150, 255, 0.13);
+    border-radius: 999rem;
+    background: rgba(255, 255, 255, 0.026);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 0 0 1px rgba(190, 170, 255, 0.045);
+    color: rgba(231, 235, 242, 0.64);
+    font-size: 0.82rem;
+    line-height: 1.24;
+    letter-spacing: var(--home-v3-tracking-text);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .home-v3-engagement-availability > span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .home-v3-engagement-availability-dot {
+    flex: 0 0 auto;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999rem;
+    background: rgba(183, 164, 255, 0.82);
+    box-shadow:
+      0 0 0 0.18rem rgba(144, 111, 255, 0.075),
+      0 0 0.82rem rgba(144, 111, 255, 0.28);
+  }
+
+  .home-v3-engagement-availability::after {
+    content: none;
   }
 
   .home-v3-outcomes--editorial .case-rail-controls {
@@ -7605,8 +8138,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-trust-item,
   .home-v3-panel,
-  .home-v3-support-row,
-  .home-v3-footer {
+  .home-v3-support-row {
     border: 1px solid var(--home-v3-border-soft);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
     border-radius: 1.5rem;
@@ -7652,32 +8184,54 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-fit-rows,
   .home-v3-writing-side {
     display: grid;
-    gap: 0;
   }
 
   .home-v3-fit-rows {
-    border-top: 1px solid rgba(231, 235, 242, 0.08);
+    position: relative;
+    gap: 0.54rem;
+  }
+
+  .home-v3-fit-rows-label {
+    margin: 0 0 0.18rem;
+    color: rgba(231, 235, 242, 0.42);
+    font-size: var(--home-v3-type-label-compact);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--home-v3-tracking-label);
+    line-height: 1;
+    text-transform: uppercase;
   }
 
   .home-v3-fit-row {
     position: relative;
-    border-bottom: 1px solid rgba(231, 235, 242, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(231, 235, 242, 0.055);
+    border-radius: 0.72rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.006)),
+      rgba(9, 10, 14, 0.42);
     transition:
       border-color 240ms ease,
-      background-color 240ms ease;
+      background-color 240ms ease,
+      box-shadow 240ms ease;
   }
 
   .home-v3-fit-row.is-open {
-    border-bottom-color: rgba(231, 235, 242, 0.14);
-    background: rgba(255, 255, 255, 0.012);
+    border-color: rgba(231, 235, 242, 0.12);
+    background:
+      radial-gradient(ellipse at 78% 8%, rgba(118, 147, 255, 0.06), transparent 15rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
+      rgba(11, 12, 17, 0.68);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.028),
+      0 0.6rem 1.5rem rgba(0, 0, 0, 0.12);
   }
 
   .home-v3-fit-row summary {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: 1.2rem;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 1.35rem 0;
+    padding: 0.98rem 1.05rem;
     cursor: pointer;
     list-style: none;
   }
@@ -7688,8 +8242,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-fit-row summary:focus-visible {
     outline: 1px solid rgba(231, 235, 242, 0.34);
-    outline-offset: 0.35rem;
-    border-radius: 0.25rem;
+    outline-offset: -0.35rem;
+    border-radius: 0.72rem;
   }
 
   .home-v3-fit-row-icon {
@@ -7768,50 +8322,128 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-shift-cards {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(12rem, auto);
     gap: var(--home-v3-panel-gap);
-    align-items: start;
+    align-items: stretch;
   }
 
   .home-v3-shift-card {
     position: relative;
+    isolation: isolate;
     display: grid;
-    gap: 0.85rem;
-    padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(231, 235, 242, 0.08);
+    align-content: end;
+    min-height: 12rem;
+    padding: clamp(1.1rem, 1.55vw, 1.4rem);
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    background:
+      linear-gradient(152deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012) 42%, rgba(255, 255, 255, 0.02)) padding-box,
+      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(138deg, rgba(231, 235, 242, 0.2), rgba(143, 126, 210, 0.12) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.035),
+      0 1rem 2.2rem rgba(0, 0, 0, 0.14);
+    overflow: hidden;
   }
 
-  .home-v3-shift-card-meta {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    flex-wrap: nowrap;
-    white-space: nowrap;
+  .home-v3-shift-card::before,
+  .home-v3-shift-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
 
-  .home-v3-shift-row-index {
-    color: rgba(231, 235, 242, 0.46);
-    font-size: var(--home-v3-type-label);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
-    padding-top: 0;
+  .home-v3-shift-card::before {
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 28rem 14rem at 12% 6%, rgba(171, 154, 225, 0.095), rgba(171, 154, 225, 0) 58%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.012), rgba(255, 255, 255, 0));
+    opacity: 1;
+  }
+
+  .home-v3-shift-card::after {
+    z-index: 2;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background:
+      linear-gradient(135deg, rgba(231, 235, 242, 0.22), rgba(167, 151, 222, 0.1) 28%, rgba(231, 235, 242, 0.035) 68%) border-box;
+    -webkit-mask:
+      linear-gradient(#000 0 0) padding-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) padding-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+  }
+
+  .home-v3-shift-card--1 {
+    grid-column: span 3;
+    min-height: 16rem;
+  }
+
+  .home-v3-shift-card--2 {
+    grid-column: span 3;
+    min-height: 16rem;
+    background:
+      linear-gradient(152deg, rgba(167, 151, 222, 0.052), rgba(255, 255, 255, 0.012) 42%, rgba(255, 255, 255, 0.018)) padding-box,
+      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(138deg, rgba(231, 235, 242, 0.18), rgba(143, 126, 210, 0.12) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
+  }
+
+  .home-v3-shift-card--3,
+  .home-v3-shift-card--4,
+  .home-v3-shift-card--5 {
+    grid-column: span 2;
+  }
+
+  .home-v3-shift-card--3 {
+    background:
+      linear-gradient(32deg, rgba(167, 151, 222, 0.05), rgba(255, 255, 255, 0.012) 48%, rgba(255, 255, 255, 0.018)) padding-box,
+      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(138deg, rgba(231, 235, 242, 0.16), rgba(143, 126, 210, 0.105) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
+  }
+
+  .home-v3-shift-card--4 {
+    background:
+      linear-gradient(152deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012) 42%, rgba(91, 107, 154, 0.05)) padding-box,
+      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(138deg, rgba(231, 235, 242, 0.16), rgba(143, 126, 210, 0.105) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
+  }
+
+  .home-v3-shift-card--5 {
+    background:
+      linear-gradient(205deg, rgba(167, 151, 222, 0.055), rgba(255, 255, 255, 0.012) 42%, rgba(255, 255, 255, 0.018)) padding-box,
+      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(138deg, rgba(231, 235, 242, 0.16), rgba(143, 126, 210, 0.105) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
+  }
+
+  .home-v3-shift-card-copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.72rem;
+    max-width: 38rem;
   }
 
   .home-v3-shift-card h3,
   .home-v3-fit-row h3 {
     margin: 0;
     color: rgba(244, 247, 255, 0.94);
-    font-size: var(--home-v3-type-card-title-compact);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.1;
+    font-size: clamp(1.02rem, 1.18vw, 1.18rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.12;
+    letter-spacing: var(--home-v3-tracking-card);
     text-wrap: balance;
   }
 
   .home-v3-shift-card-label {
     margin: 0;
-    color: rgba(231, 235, 242, 0.52);
-    font-size: var(--home-v3-type-label);
+    color: rgba(231, 235, 242, 0.48);
+    font-size: var(--home-v3-type-label-compact);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
     line-height: 1;
@@ -7821,16 +8453,87 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-shift-card p:not(.home-v3-shift-card-label),
   .home-v3-fit-row p {
     max-width: 56ch;
-    margin: 0.42rem 0 0;
-    color: rgba(231, 235, 242, 0.68);
+    margin: 0.25rem 0 0;
+    color: rgba(231, 235, 242, 0.62);
     font-size: var(--home-v3-type-body);
-    line-height: 1.58;
+    line-height: 1.6;
+    letter-spacing: var(--home-v3-tracking-text);
+    text-wrap: pretty;
   }
 
   .home-v3-fit-row p {
     max-width: 64ch;
     margin: 0;
-    padding: 0 var(--spacing-lg) 1.45rem 0;
+    padding: 0 3.1rem 1.05rem 1.05rem;
+  }
+
+  .home-v3-operating-shift {
+    padding-top: 6.5rem;
+  }
+
+  .home-v3-operating-shift-layout {
+    align-items: start;
+    row-gap: 1.65rem;
+  }
+
+  .home-v3-operating-shift-head {
+    margin-bottom: 0;
+  }
+
+  .home-v3-operating-shift-thesis {
+    align-self: center;
+    max-width: 34rem;
+    margin: 1.55rem 0 0;
+    color: rgba(231, 235, 242, 0.64);
+    font-size: var(--home-v3-type-lead);
+    line-height: 1.48;
+    letter-spacing: var(--home-v3-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .home-v3-operating-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: start;
+    margin-top: 2.15rem;
+  }
+
+  .home-v3-operating-grid-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: clamp(14.25rem, 17vw, 17.5rem);
+    padding: 0 clamp(1.75rem, 2.2vw, 2.6rem) 0 clamp(1.35rem, 1.7vw, 1.9rem);
+    border-left: 1px solid rgba(231, 235, 242, 0.065);
+  }
+
+  .home-v3-operating-grid-item:last-child {
+    padding-right: 0;
+  }
+
+  .home-v3-operating-grid-index {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.36);
+    font-size: var(--home-v3-type-label-compact);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--home-v3-tracking-label);
+    line-height: 1;
+  }
+
+  .home-v3-operating-grid-copy {
+    display: grid;
+    gap: 0.72rem;
+    margin-top: auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .home-v3-operating-grid-text {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.7);
+    font-size: var(--home-v3-type-body-xs);
+    line-height: 1.56;
+    text-wrap: pretty;
   }
 
   .home-v3-writing--editorial {
@@ -7839,26 +8542,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: none;
     margin: 6rem 0 0;
     padding: 5rem 0 5.25rem;
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 28rem),
-      linear-gradient(180deg, rgba(10, 11, 15, 0.98), rgba(6, 7, 10, 1));
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 1.5rem 3rem rgba(0, 0, 0, 0.12);
     overflow: hidden;
-  }
-
-  .home-v3-writing--editorial::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 26%),
-      radial-gradient(circle at 82% 22%, rgba(106, 122, 255, 0.08), rgba(106, 122, 255, 0) 16rem);
-    opacity: 0.9;
   }
 
   .home-v3-writing--editorial .home-v3-section-label,
@@ -7874,7 +8558,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-writing-head {
     display: grid;
     gap: var(--spacing-sm);
-    max-width: none;
+    max-width: 44rem;
   }
 
   .home-v3-writing-rail-wrap {
@@ -7905,15 +8589,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: relative;
     isolation: isolate;
     min-height: 24rem;
-    padding: 1.45rem;
     border-radius: 1.15rem;
     border: 1px solid rgba(231, 235, 242, 0.1);
     background:
-      linear-gradient(180deg, rgba(20, 22, 30, 0.98), rgba(6, 7, 11, 1)),
+      linear-gradient(180deg, rgba(20, 22, 30, 0.3), rgba(6, 7, 11, 0.34)),
       #06070b;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
     color: var(--home-v3-text);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.06),
@@ -7923,29 +8603,39 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     scroll-snap-align: start;
   }
 
-  .home-v3-writing-volume::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0) 18%),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 36%),
-      linear-gradient(180deg, rgba(5, 6, 10, 0) 36%, rgba(5, 6, 10, 0.34) 74%, rgba(5, 6, 10, 0.76) 100%);
-    pointer-events: none;
+  .home-v3-writing-volume-link {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: inherit;
+    padding: 1.45rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .home-v3-writing-volume-link:focus-visible {
+    outline: 2px solid rgba(231, 235, 242, 0.5);
+    outline-offset: -0.45rem;
   }
 
   .home-v3-writing-volume::after {
     content: '';
     position: absolute;
-    inset: 0;
-    z-index: 1;
+    left: 1px;
+    right: 1px;
+    bottom: 0;
+    z-index: 5;
+    height: 1px;
+    border-radius: 999px;
     pointer-events: none;
-    border-radius: inherit;
     background:
-      radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 16rem),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 42%);
-    opacity: 0.62;
+      linear-gradient(90deg, transparent, rgba(231, 235, 242, 0.16) 14%, rgba(255, 255, 255, 0.62) 48%, rgba(139, 164, 255, 0.26) 72%, transparent);
+    box-shadow:
+      0 -0.5rem 1.2rem rgba(231, 235, 242, 0.055),
+      0 0 1rem rgba(105, 133, 255, 0.06);
+    opacity: 0.74;
   }
 
   .home-v3-writing-volume-art {
@@ -7964,6 +8654,18 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: absolute;
     inset: 0;
     pointer-events: none;
+  }
+
+  .home-v3-writing-volume-art::after {
+    background:
+      conic-gradient(from 210deg at 56% 76%, rgba(111, 87, 255, 0), rgba(111, 87, 255, 0.48), rgba(96, 136, 255, 0.38), rgba(236, 202, 128, 0.22), rgba(111, 87, 255, 0)),
+      radial-gradient(ellipse at 34% 48%, rgba(214, 177, 138, 0.26), rgba(214, 177, 138, 0) 26%),
+      radial-gradient(ellipse at 76% 38%, rgba(118, 138, 255, 0.34), rgba(118, 138, 255, 0) 32%),
+      linear-gradient(42deg, transparent 0 42%, rgba(255, 255, 255, 0.12) 46%, transparent 53%),
+      radial-gradient(circle at 55% 78%, rgba(255, 255, 255, 0.1), transparent 24%),
+      linear-gradient(160deg, rgba(35, 34, 70, 0.88), rgba(8, 8, 16, 0.98));
+    filter: blur(0.12rem);
+    opacity: 0;
   }
 
   .home-v3-writing-volume--quiet .home-v3-writing-volume-art,
@@ -8039,7 +8741,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-writing-volume-meta,
-  .home-v3-writing-volume-title {
+  .home-v3-writing-volume-title,
+  .home-v3-writing-volume-summary {
     position: relative;
     z-index: 4;
   }
@@ -8051,10 +8754,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     letter-spacing: -0.035em;
   }
 
-  .home-v3-writing-volume-title a {
-    display: inline;
-    color: inherit;
-    text-decoration: none;
+  .home-v3-writing-volume-summary {
+    display: -webkit-box;
+    margin: auto 0 0;
+    overflow: hidden;
+    color: rgba(231, 235, 242, 0.58);
+    font-size: var(--home-v3-type-body-xs);
+    line-height: 1.42;
+    letter-spacing: var(--home-v3-tracking-text);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -8072,7 +8782,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       transform: scale(1.045);
     }
 
-    .home-v3-writing-volume-title a:hover {
+    .home-v3-writing-volume:hover .home-v3-writing-volume-art::after,
+    .home-v3-writing-volume:focus-within .home-v3-writing-volume-art::after {
+      opacity: 1;
+    }
+
+    .home-v3-writing-volume-link:hover .home-v3-writing-volume-title,
+    .home-v3-writing-volume-link:focus-visible .home-v3-writing-volume-title {
       color: rgba(255, 255, 255, 1);
     }
   }
@@ -8080,7 +8796,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   @media (prefers-reduced-motion: no-preference) {
     .home-v3-writing-volume,
     .home-v3-writing-volume-art,
-    .home-v3-writing-volume-title a {
+    .home-v3-writing-volume-art::after,
+    .home-v3-writing-volume-title {
       transition:
         border-color 0.22s ease,
         box-shadow 0.22s ease,
@@ -8091,135 +8808,269 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-close {
+    position: relative;
     padding-top: 6rem;
+  }
+
+  .home-v3-close::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 68%;
+    width: min(78rem, 94vw);
+    height: 28rem;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 50% 70%, rgba(121, 154, 255, 0.22), rgba(121, 154, 255, 0.07) 34%, transparent 68%),
+      radial-gradient(ellipse at 50% 92%, rgba(231, 235, 242, 0.16), rgba(231, 235, 242, 0.038) 36%, transparent 72%);
+    filter: blur(18px);
+    opacity: 0.78;
+    z-index: 0;
   }
 
   .home-v3-footer {
     position: relative;
+    z-index: 1;
     overflow: hidden;
-    min-height: 33rem;
     padding: 0;
-    border: 1px solid var(--home-v3-border-soft);
-    border-radius: 1.5rem;
+    border: 1px solid rgba(231, 235, 242, 0.075);
+    border-radius: clamp(1.15rem, 2vw, 1.75rem);
     background:
-      radial-gradient(ellipse 62% 44% at 50% 20%, rgba(231, 235, 242, 0.13), rgba(231, 235, 242, 0.026) 44%, transparent 70%),
+      radial-gradient(ellipse 62% 38% at 50% 0%, rgba(231, 235, 242, 0.045), rgba(231, 235, 242, 0.012) 44%, transparent 72%),
+      linear-gradient(180deg, rgba(9, 10, 13, 0.68), rgba(5, 6, 8, 0.96) 74%),
       #050608;
-    box-shadow: var(--home-v3-shadow);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.026),
+      0 1.5rem 5rem rgba(0, 0, 0, 0.22);
   }
 
-  .home-v3-footer::before,
-  .home-v3-footer::after,
-  .home-v3-footer-horizon {
+  .home-v3-footer::before {
     content: '';
     position: absolute;
     pointer-events: none;
   }
 
   .home-v3-footer::before {
-    inset: auto 3% 0;
-    height: 46%;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    inset: 0;
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(255, 145, 62, 0.24), rgba(255, 145, 62, 0.08) 18%, rgba(255, 145, 62, 0) 42%),
-      linear-gradient(180deg, rgba(255, 158, 67, 0.12), rgba(3, 4, 7, 0.96) 44%);
-    filter: blur(0.2px);
-    opacity: 0.82;
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 100%);
+    background-size: 25% 100%;
+    opacity: 0.1;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.58), transparent 76%);
   }
 
   .home-v3-footer::after {
-    left: 4%;
-    right: 4%;
-    bottom: 29%;
-    height: 0.13rem;
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, rgba(255, 157, 78, 0.76) 20%, rgba(170, 230, 255, 0.5) 50%, rgba(255, 157, 78, 0.65) 80%, transparent);
-    box-shadow:
-      0 0 1.4rem rgba(255, 145, 62, 0.34),
-      0 0 2.2rem rgba(86, 185, 255, 0.16);
-    opacity: 0.75;
-  }
-
-  .home-v3-footer-horizon {
-    left: 9%;
-    right: 9%;
-    bottom: 0;
-    height: 37%;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    width: min(32rem, 54vw);
+    height: 1px;
+    transform: translateX(-50%);
+    pointer-events: none;
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(255, 192, 96, 0.1), transparent 35%),
-      linear-gradient(180deg, rgba(37, 21, 10, 0.72), rgba(4, 4, 6, 1) 72%);
-    opacity: 0.9;
+      linear-gradient(90deg, transparent, rgba(231, 235, 242, 0.2) 18%, rgba(255, 255, 255, 0.56) 50%, rgba(139, 164, 255, 0.22) 74%, transparent);
+    box-shadow:
+      0 0.05rem 1.25rem rgba(231, 235, 242, 0.09),
+      0 0 2rem rgba(105, 133, 255, 0.08);
+    opacity: 0.72;
+    z-index: 3;
   }
 
   .home-v3-footer-inner {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 0.75fr) auto;
-    gap: 3rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.45rem, 5vw, 5.8rem);
     align-items: start;
-    min-height: 33rem;
-    padding: 4rem 2.1rem 2rem;
+    min-height: clamp(25rem, 32vw, 31rem);
+    padding: clamp(3rem, 4.8vw, 4.5rem) clamp(1.4rem, 4vw, 4rem) 0;
     z-index: 2;
   }
 
   .home-v3-footer-main {
     display: grid;
-    gap: 1rem;
-    max-width: 43rem;
-  }
-
-  .home-v3-footer-mark {
-    display: inline-flex;
-    width: 2.25rem;
-    height: 2.25rem;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 0.35rem;
-  }
-
-  .home-v3-footer-mark img {
-    width: 1.35rem;
-    height: auto;
-    display: block;
+    grid-template-columns: minmax(0, 0.95fr) minmax(24rem, 0.62fr);
+    gap: clamp(2rem, 5vw, 5.2rem);
+    align-items: end;
+    max-width: none;
   }
 
   .home-v3-footer-main h2 {
-    max-width: 15ch;
     margin: 0;
     color: var(--home-v3-text);
-    font-size: clamp(2.4rem, 5vw, 5.2rem);
-    line-height: 0.96;
+    font-family: var(--home-v3-display);
+    font-size: clamp(2.35rem, 3.55vw, 4.1rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.98;
     letter-spacing: var(--home-v3-tracking-title);
     text-wrap: balance;
   }
 
+  .home-v3-footer-main-lower {
+    display: grid;
+    gap: 1.2rem;
+    justify-self: end;
+    max-width: 38rem;
+    padding-bottom: 0.3rem;
+  }
+
   .home-v3-actions--footer {
-    margin-top: 0.45rem;
+    margin-top: 0;
     justify-content: flex-start;
   }
 
   .home-v3-footer-copy {
     max-width: 45ch;
     color: rgba(231, 235, 242, 0.68);
-    font-size: var(--home-v3-type-body);
+    font-size: var(--home-v3-type-body-xs);
     line-height: 1.58;
+  }
+
+  .home-v3-footer-directory {
+    grid-column: 1 / -1;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1.2rem;
+    align-self: end;
+    margin-top: clamp(0.6rem, 1.5vw, 1.4rem);
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(231, 235, 242, 0.08);
+  }
+
+  .home-v3-footer-availability {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.2rem 0 0;
+    border-top: 1px solid rgba(231, 235, 242, 0.12);
+  }
+
+  .home-v3-footer-availability p {
+    margin: 0;
+  }
+
+  .home-v3-footer-availability a {
+    width: fit-content;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--home-v3-type-body-sm);
+    line-height: 1.4;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.2);
+  }
+
+  .home-v3-footer-availability a:hover {
+    color: var(--home-v3-text);
+    border-color: rgba(231, 235, 242, 0.58);
   }
 
   .home-v3-footer-links {
     display: grid;
-    gap: 0.9rem;
-    min-width: 10rem;
-    padding-top: 0.75rem;
+    grid-template-columns: minmax(14rem, 1.25fr) repeat(3, minmax(0, 0.72fr));
+    gap: clamp(1.25rem, 2.8vw, 2.6rem);
     color: var(--home-v3-text-muted);
   }
 
+  .home-v3-footer-link-group {
+    display: grid;
+    align-content: start;
+    gap: 0.64rem;
+    min-width: 0;
+  }
+
+  .home-v3-footer-link-group p {
+    margin: 0 0 0.3rem;
+    color: rgba(231, 235, 242, 0.38);
+    font-size: 0.68rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+  }
+
   .home-v3-footer-links a {
-    color: inherit;
+    width: fit-content;
+    max-width: 100%;
+    color: rgba(231, 235, 242, 0.58);
+    font-size: 0.92rem;
+    line-height: 1.32;
     text-decoration: none;
+    text-wrap: pretty;
+    transition:
+      color 0.22s ease,
+      background 0.22s ease,
+      border-color 0.22s ease,
+      transform 0.22s ease;
   }
 
   .home-v3-footer-links a:hover {
     color: var(--home-v3-text);
+  }
+
+  .home-v3-footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(100%, 12.4rem);
+    min-height: 2.15rem;
+    padding: 0 0.66rem;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 0.52rem;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .home-v3-footer-social-link:hover {
+    border-color: rgba(231, 235, 242, 0.16);
+    background: rgba(255, 255, 255, 0.055);
+    transform: translateY(-0.06rem);
+  }
+
+  .home-v3-footer-wordmark {
+    position: absolute;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: 0.58rem;
+    z-index: 0;
+    max-width: none;
+    margin: 0;
+    color: rgba(231, 235, 242, 0.07);
+    font-family: var(--home-v3-display);
+    font-size: clamp(7.5rem, 18vw, 22rem);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.085em;
+    line-height: 0.72;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: scaleX(1.08);
+    transform-origin: center bottom;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .home-v3-footer-bottom {
+    grid-column: 1 / -1;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 calc(clamp(1.4rem, 4vw, 4rem) * -1);
+    padding: 0.9rem clamp(1.4rem, 4vw, 4rem) 1rem;
+    border-top: 1px solid rgba(231, 235, 242, 0.08);
+    background:
+      linear-gradient(180deg, rgba(6, 7, 10, 0.78), rgba(5, 6, 8, 0.98)),
+      #050608;
+    color: rgba(231, 235, 242, 0.34);
+  }
+
+  .home-v3-footer-bottom p {
+    margin: 0;
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
   }
 
   @media (max-width: 78rem) {
@@ -8232,11 +9083,23 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-practice-layout,
     .home-v3-shift-head,
     .home-v3-shift-cards,
+    .home-v3-client-trust-shell,
+    .home-v3-operating-shift-head,
+    .home-v3-operating-shift-thesis,
+    .home-v3-operating-grid,
+    .home-v3-engagement-availability,
     .home-v3-fit .home-v3-section-head,
     .home-v3-fit-rows,
     .home-v3-writing-head,
     .home-v3-writing-rail-wrap {
       grid-column: 2 / span 24;
+    }
+
+    .home-v3-engagement-availability {
+      justify-self: start;
+      align-self: start;
+      margin: 0.2rem 0 0;
+      white-space: normal;
     }
 
     .home-v3-practice-layout {
@@ -8305,6 +9168,35 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-shift-cards {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-v3-shift-card,
+    .home-v3-shift-card--1,
+    .home-v3-shift-card--2,
+    .home-v3-shift-card--3,
+    .home-v3-shift-card--4,
+    .home-v3-shift-card--5 {
+      grid-column: 1;
+      grid-row: auto;
+      min-height: 17rem;
+    }
+
+    .home-v3-operating-shift-head,
+    .home-v3-operating-shift-thesis,
+    .home-v3-operating-grid {
+      max-width: 48rem;
+    }
+
+    .home-v3-operating-shift-head h2 {
+      max-width: 15ch;
+    }
+
+    .home-v3-operating-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-v3-operating-grid-item:nth-child(2n) {
+      border-right: 0;
     }
 
     .home-v3-writing-layout {
@@ -8377,10 +9269,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-trust,
+    .home-v3-client-trust,
     .home-v3-pillars,
     .home-v3-bridge,
     .home-v3-bridge-lite,
     .home-v3-shift,
+    .home-v3-operating-shift,
     .home-v3-close {
       width: min(calc(100vw - 2rem), 84rem);
     }
@@ -8436,6 +9330,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       width: 1.25rem;
     }
 
+    .home-v3-header-availability {
+      display: none;
+    }
+
     .home-v3-nav-cta {
       white-space: nowrap;
     }
@@ -8452,6 +9350,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-hero-copy h1 {
       font-size: clamp(2.85rem, 12vw, 4.4rem);
+    }
+
+    .home-v3-kicker {
+      margin-bottom: 0.9rem;
     }
 
     .home-v3-hero-copy {
@@ -8517,11 +9419,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       text-wrap: pretty;
       white-space: normal;
       max-width: 14ch;
-    }
-
-    .home-v3-actor-lane-dot {
-      width: 0.66rem;
-      height: 0.66rem;
     }
 
     .home-v3-actions--actor-lane {
@@ -8607,7 +9504,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-lead,
-    .home-v3-section-head p:not(.home-v3-section-label),
+    .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
     .home-v3-support-copy p,
     .home-v3-footer-copy,
     .home-v3-proof-line {
@@ -8642,14 +9539,18 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-shift,
+    .home-v3-operating-shift,
     .home-v3-writing,
     .home-v3-fit,
     .home-v3-close {
       padding-top: 4rem;
     }
 
-    .home-v3-practice-proof--feature,
-    .home-v3-writing-volume {
+    .home-v3-practice-proof--feature {
+      padding: 1.35rem;
+    }
+
+    .home-v3-writing-volume-link {
       padding: 1.35rem;
     }
 
@@ -8663,6 +9564,23 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-shift-card p:not(.home-v3-shift-card-label),
     .home-v3-fit-row p {
       font-size: 1rem;
+    }
+
+    .home-v3-operating-grid-text {
+      font-size: var(--home-v3-type-body-xs);
+    }
+
+    .home-v3-operating-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-v3-operating-grid-item {
+      border-right: 0;
+      padding: 1rem 0 1rem;
+    }
+
+    .home-v3-operating-grid-item + .home-v3-operating-grid-item {
+      border-top: 1px solid rgba(231, 235, 242, 0.08);
     }
 
     .home-v3-writing--editorial {
@@ -8684,6 +9602,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-writing-volume {
       min-height: 18rem;
+    }
+
+    .home-v3-writing-volume-link {
       gap: 0.85rem;
       padding: 1.15rem 1.05rem 1.2rem;
     }
@@ -9058,19 +9979,61 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-footer-inner {
       grid-template-columns: minmax(0, 1fr);
-      min-height: 34rem;
-      gap: 2rem;
-      padding: 3rem 1.2rem 1.4rem;
+      min-height: auto;
+      gap: 2.8rem;
+      padding: 3.2rem 1.2rem 0;
+    }
+
+    .home-v3-footer-main,
+    .home-v3-footer-directory {
+      min-height: auto;
+    }
+
+    .home-v3-footer-main {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.45rem;
+      align-items: start;
     }
 
     .home-v3-footer-main h2 {
-      font-size: clamp(2.2rem, 11vw, 4rem);
+      font-size: clamp(2.25rem, 8.4vw, 3.35rem);
+    }
+
+    .home-v3-footer-main-lower {
+      justify-self: start;
+      max-width: none;
+      padding-bottom: 0;
+    }
+
+    .home-v3-footer-copy {
+      max-width: none;
     }
 
     .home-v3-footer-links {
-      grid-template-columns: repeat(2, minmax(0, max-content));
-      gap: 0.85rem 1.5rem;
-      padding-top: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem 1.25rem;
     }
+
+    .home-v3-footer-link-group--services {
+      grid-column: 1 / -1;
+    }
+
+    .home-v3-footer-wordmark {
+      left: -0.06em;
+      right: -0.06em;
+      bottom: 1.9rem;
+      font-size: clamp(5rem, 34vw, 11rem);
+      letter-spacing: -0.085em;
+      line-height: 0.78;
+      transform: scaleX(1.08);
+    }
+
+    .home-v3-footer-bottom {
+      display: grid;
+      gap: 0.5rem;
+      margin-inline: -1.2rem;
+      padding: 0.9rem 1.2rem 1rem;
+    }
+
   }
 </style>

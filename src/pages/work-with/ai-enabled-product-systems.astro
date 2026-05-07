@@ -1,0 +1,588 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import HomeFooter from '../../components/HomeFooter.astro';
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const mailParams = new URLSearchParams();
+mailParams.set('subject', '[AI-enabled product systems] Advisory inquiry');
+mailParams.set('body', `Hi Dan,\n\nI'm reaching out about AI-enabled product systems and would like to talk through what we are building.\n\nContext:\n- Team/company:\n- Product or workflow:\n- Where AI is creating opportunity or friction:\n- Desired engagement shape:\n\nThanks,`);
+const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
+
+const systemBlocks = [
+  {
+    title: 'AI product direction',
+    text: 'Clarify where AI should create leverage, where it should stay out of the way, and what product behavior the team can actually defend.'
+  },
+  {
+    title: 'Prompt and workflow systems',
+    text: 'Design prompt structures, human-in-the-loop flows, and repeatable interaction patterns that make AI useful inside real work.'
+  },
+  {
+    title: 'Prototype-to-product execution',
+    text: 'Move from promising experiments into product surfaces, implementation constraints, quality standards, and team operating rhythms.'
+  }
+];
+
+const breakdownSignals = [
+  'Teams have AI experiments, but not a clear product point of view.',
+  'Prompt work lives in scattered docs instead of reusable systems.',
+  'The experience depends too much on magical demos and not enough on reliable user workflows.',
+  'Design, product, and engineering need shared standards for AI behavior, review, and escalation.',
+  'The team needs someone who can connect product judgment, UX systems, and implementation reality.'
+];
+
+const integrityBlocks = [
+  {
+    title: 'Product model',
+    text: 'Define what AI is allowed to do, what the user owns, and how the system should behave when confidence is limited.'
+  },
+  {
+    title: 'Behavior standards',
+    text: 'Create reusable rules for review, correction, escalation, empty states, failure, and human control.'
+  },
+  {
+    title: 'Implementation loop',
+    text: 'Keep prompt architecture, UX patterns, model behavior, and engineering constraints close enough to improve together.'
+  }
+];
+---
+
+<Layout
+  title="AI-enabled Product Systems | Dan Malarkey"
+  description="Advisory and product design support for AI-enabled product systems, prompt workflows, UX patterns, and implementation-focused product work."
+>
+  <Header />
+  <main class="ai-systems-page">
+    <section class="ai-systems-hero" aria-labelledby="ai-systems-title">
+      <div class="ai-systems-hero-grid dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-hero-copy gc-start-2 gc-span-11">
+          <p class="ai-systems-kicker">AI-enabled product systems</p>
+          <h1 id="ai-systems-title">Turn AI capability into product advantage.</h1>
+          <p>
+            I help teams design the workflows, prompt systems, UX patterns, and implementation loops that make AI useful inside real products.
+          </p>
+          <div class="ai-systems-actions" aria-label="AI-enabled product systems actions">
+            <a class="ai-systems-button ai-systems-button--primary" href={mailto}>Start a conversation</a>
+            <a class="ai-systems-button ai-systems-button--ghost" href="#book-a-call">Book a call</a>
+          </div>
+        </div>
+
+        <div class="ai-systems-blueprint gc-start-14 gc-span-12" aria-hidden="true">
+          <img
+            src={withBase('/images/home-v3/blueprint/operating-model-blueprint-transparent.png')}
+            alt=""
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-section ai-systems-section--tight" aria-labelledby="ai-systems-breaks">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-section-head gc-start-2 gc-span-9">
+          <p class="ai-systems-kicker">Where AI work breaks down</p>
+          <h2 id="ai-systems-breaks">The hard part is not adding AI. It is making the product behavior hold up.</h2>
+        </div>
+
+        <div class="ai-systems-signal-list gc-start-13 gc-span-11" role="list">
+          {breakdownSignals.map((signal) => (
+            <p role="listitem">{signal}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-section" aria-labelledby="ai-systems-design">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-section-head gc-start-2 gc-span-12">
+          <p class="ai-systems-kicker">What I help design</p>
+          <h2 id="ai-systems-design">Prompt systems, not prompt tricks.</h2>
+          <p>
+            The work is strongest when AI behavior, UX patterns, product judgment, and implementation constraints are designed together.
+          </p>
+        </div>
+
+        <div class="ai-systems-card-grid gc-start-2 gc-span-24" role="list">
+          {systemBlocks.map((item) => (
+            <article class="ai-systems-card" role="listitem">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-section ai-systems-integrity" aria-labelledby="ai-systems-integrity">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-section-head gc-start-2 gc-span-10">
+          <p class="ai-systems-kicker">Conceptual integrity for AI</p>
+          <h2 id="ai-systems-integrity">AI needs a coherent product model before it needs more features.</h2>
+          <p>
+            AI-enabled products break down when workflows, interface states, model behavior, and implementation rules drift apart.
+          </p>
+          <a class="ai-systems-text-link" href={withBase('/work-with/operating-model')}>Explore the operating model</a>
+        </div>
+
+        <div class="ai-systems-integrity-grid gc-start-14 gc-span-10" role="list">
+          {integrityBlocks.map((item) => (
+            <article class="ai-systems-integrity-card" role="listitem">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-band" aria-labelledby="ai-systems-output">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-band-copy gc-start-2 gc-span-10">
+          <p class="ai-systems-kicker">Output</p>
+          <h2 id="ai-systems-output">From promising demo to dependable product system.</h2>
+        </div>
+        <div class="ai-systems-band-points gc-start-14 gc-span-10">
+          <p>Clearer product bets around where AI belongs.</p>
+          <p>Reusable prompt and workflow patterns.</p>
+          <p>Interaction standards for review, control, and confidence.</p>
+          <p>Implementation support that keeps the system close to real product constraints.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-section ai-systems-cta-section" id="book-a-call" aria-labelledby="ai-systems-call">
+      <div class="ai-systems-callout">
+        <p class="ai-systems-kicker">Book a call</p>
+        <h2 id="ai-systems-call">Have an AI-enabled workflow or product system that needs sharper direction?</h2>
+        <p>
+          This is a placeholder until a scheduling link is wired in. For now, it opens a pre-filled email with the right context.
+        </p>
+        <a class="ai-systems-button ai-systems-button--primary" href={mailto}>Start a conversation</a>
+      </div>
+    </section>
+
+    <HomeFooter
+      eyebrow="AI-enabled product systems"
+      title="If the AI work needs stronger product judgment, let’s talk."
+      body="I’m available for select advisory, consulting, and fractional leadership engagements where AI, product direction, UX systems, and implementation need to move together."
+    />
+  </main>
+</Layout>
+
+<style lang="scss">
+  .ai-systems-page {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 74% 4%, rgba(94, 122, 188, 0.2), rgba(94, 122, 188, 0) 34rem),
+      radial-gradient(ellipse at 22% 10%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 24rem),
+      #050608;
+    color: rgba(245, 248, 255, 0.94);
+    overflow: hidden;
+  }
+
+  .ai-systems-hero {
+    position: relative;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    display: grid;
+    align-items: center;
+    padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .ai-systems-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(231, 235, 242, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(231, 235, 242, 0.03) 1px, transparent 1px);
+    background-size: 5rem 5rem;
+    mask-image: radial-gradient(ellipse at 68% 44%, #000, transparent 68%);
+    opacity: 0.72;
+  }
+
+  .ai-systems-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, #050608 0%, rgba(5, 6, 8, 0.96) 32%, rgba(5, 6, 8, 0.62) 48%, rgba(5, 6, 8, 0.12) 66%, rgba(5, 6, 8, 0) 100%),
+      radial-gradient(ellipse at 24% 54%, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 28rem);
+  }
+
+  .ai-systems-hero-grid,
+  .ai-systems-section > .dm-grid-l,
+  .ai-systems-band > .dm-grid-l {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-systems-hero-grid {
+    min-height: inherit;
+    align-items: center;
+  }
+
+  .ai-systems-hero-copy {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    gap: 1.35rem;
+    align-content: center;
+  }
+
+  .ai-systems-kicker {
+    margin: 0;
+    color: rgba(176, 204, 255, 0.82);
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .ai-systems-hero h1,
+  .ai-systems-section h2,
+  .ai-systems-band h2,
+  .ai-systems-callout h2 {
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .ai-systems-hero h1 {
+    max-width: 9ch;
+    font-size: clamp(4.4rem, 10vw, 9rem);
+    line-height: 0.88;
+  }
+
+  .ai-systems-hero-copy > p:not(.ai-systems-kicker),
+  .ai-systems-section-head > p:not(.ai-systems-kicker),
+  .ai-systems-callout > p:not(.ai-systems-kicker) {
+    max-width: 42rem;
+    margin: 0;
+    color: rgba(231, 235, 242, 0.72);
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+    line-height: 1.58;
+  }
+
+  .ai-systems-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.35rem;
+  }
+
+  .ai-systems-button {
+    display: inline-flex;
+    min-height: 2.85rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.25rem;
+    border: 1px solid rgba(231, 235, 242, 0.12);
+    border-radius: 999rem;
+    color: rgba(245, 248, 255, 0.9);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      background 0.22s ease;
+  }
+
+  .ai-systems-button:hover {
+    transform: translateY(-0.06rem);
+  }
+
+  .ai-systems-button--primary {
+    border-color: rgba(231, 235, 242, 0.38);
+    background: linear-gradient(180deg, rgba(248, 250, 255, 0.98), rgba(226, 233, 246, 0.96));
+    color: #08090c;
+  }
+
+  .ai-systems-button--ghost {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .ai-systems-button--ghost:hover {
+    border-color: rgba(231, 235, 242, 0.22);
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .ai-systems-text-link {
+    display: inline-flex;
+    width: fit-content;
+    margin-top: 0.1rem;
+    color: rgba(245, 248, 255, 0.88);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.22);
+    transition:
+      color 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .ai-systems-text-link:hover {
+    color: rgba(245, 248, 255, 1);
+    border-color: rgba(231, 235, 242, 0.62);
+  }
+
+  .ai-systems-blueprint {
+    position: absolute;
+    top: 50%;
+    right: clamp(-18rem, -12vw, -8rem);
+    z-index: 1;
+    width: min(64vw, 70rem);
+    min-height: 0;
+    aspect-ratio: 2 / 2.35;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .ai-systems-blueprint::before {
+    content: '';
+    position: absolute;
+    inset: 10% 2% 8%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(100, 138, 220, 0.22), rgba(100, 138, 220, 0) 68%);
+    filter: blur(24px);
+  }
+
+  .ai-systems-blueprint img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(78rem, 128%);
+    max-width: none;
+    height: auto;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 1.8rem 3.5rem rgba(0, 0, 0, 0.28));
+    opacity: 0.76;
+  }
+
+  .ai-systems-section {
+    padding: clamp(4.5rem, 8vw, 7rem) 0;
+  }
+
+  .ai-systems-section--tight {
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .ai-systems-section-head {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .ai-systems-section h2,
+  .ai-systems-band h2,
+  .ai-systems-callout h2 {
+    color: rgba(245, 248, 255, 0.96);
+    font-size: clamp(2.4rem, 5vw, 4.7rem);
+    line-height: 0.96;
+  }
+
+  .ai-systems-signal-list {
+    display: grid;
+    border-top: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  .ai-systems-signal-list p,
+  .ai-systems-band-points p {
+    margin: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.1);
+    color: rgba(231, 235, 242, 0.74);
+    font-size: clamp(1rem, 1.3vw, 1.18rem);
+    line-height: 1.45;
+  }
+
+  .ai-systems-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .ai-systems-card {
+    min-height: 17rem;
+    padding: 1.35rem;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 1rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.014)),
+      rgba(9, 11, 16, 0.86);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.035),
+      0 1rem 2.4rem rgba(0, 0, 0, 0.18);
+  }
+
+  .ai-systems-card h3 {
+    max-width: 12ch;
+    margin: 0 0 1.3rem;
+    color: rgba(245, 248, 255, 0.96);
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  .ai-systems-card p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.66);
+    line-height: 1.58;
+  }
+
+  .ai-systems-integrity {
+    position: relative;
+  }
+
+  .ai-systems-integrity::before {
+    content: '';
+    position: absolute;
+    inset: 8% auto auto 50%;
+    width: min(38rem, 62vw);
+    height: 24rem;
+    transform: translateX(-8%);
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(98, 137, 230, 0.13), transparent 68%);
+    filter: blur(18px);
+    opacity: 0.78;
+  }
+
+  .ai-systems-integrity-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .ai-systems-integrity-card {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  .ai-systems-integrity-card:last-child {
+    border-bottom: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  .ai-systems-integrity-card h3 {
+    margin: 0 0 0.45rem;
+    color: rgba(245, 248, 255, 0.95);
+    font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .ai-systems-integrity-card p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.64);
+    line-height: 1.55;
+  }
+
+  .ai-systems-band {
+    position: relative;
+    margin: clamp(2rem, 4vw, 3rem) auto;
+    width: min(calc(100vw - 2rem), 84rem);
+    padding: clamp(3rem, 6vw, 5.5rem) 0;
+    overflow: hidden;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(ellipse at 78% 24%, rgba(98, 137, 230, 0.18), transparent 44%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+      #07090d;
+  }
+
+  .ai-systems-band-copy,
+  .ai-systems-band-points {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .ai-systems-cta-section {
+    padding-top: clamp(4rem, 8vw, 7rem);
+  }
+
+  .ai-systems-callout {
+    display: grid;
+    gap: 1.1rem;
+    width: min(calc(100vw - 2rem), 64rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 4.2vw, 3.4rem);
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.025);
+    text-align: center;
+    justify-items: center;
+  }
+
+  .ai-systems-callout h2 {
+    max-width: 15ch;
+  }
+
+  .ai-systems-callout p:not(.ai-systems-kicker) {
+    max-width: 44rem;
+  }
+
+  @media (max-width: 78rem) {
+    .ai-systems-hero-copy,
+    .ai-systems-blueprint,
+    .ai-systems-section-head,
+    .ai-systems-signal-list,
+    .ai-systems-card-grid,
+    .ai-systems-integrity-grid,
+    .ai-systems-band-copy,
+    .ai-systems-band-points {
+      grid-column: 2 / span 24;
+    }
+
+    .ai-systems-hero {
+      min-height: auto;
+      padding-top: 6rem;
+    }
+
+    .ai-systems-hero::after {
+      background:
+        linear-gradient(180deg, #050608 0%, rgba(5, 6, 8, 0.82) 46%, rgba(5, 6, 8, 0.2) 100%);
+    }
+
+    .ai-systems-hero h1 {
+      max-width: 10ch;
+      font-size: clamp(3.4rem, 13vw, 6.4rem);
+    }
+
+    .ai-systems-blueprint {
+      position: relative;
+      top: auto;
+      right: auto;
+      width: auto;
+      min-height: clamp(30rem, 96vw, 44rem);
+      margin-top: 1.5rem;
+      aspect-ratio: auto;
+      transform: none;
+    }
+
+    .ai-systems-blueprint img {
+      width: min(42rem, 112%);
+      opacity: 0.82;
+    }
+
+    .ai-systems-card-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-systems-card {
+      min-height: 0;
+    }
+  }
+</style>

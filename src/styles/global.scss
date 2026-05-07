@@ -44,6 +44,7 @@
   --size-title-page-section: 2.5rem;
   --size-title-case: clamp(1.5rem, 3.2vw, 2rem);
   --size-radius-xxl: 999rem;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -620,7 +621,7 @@ main {
 }
 
 .section-intro-body {
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 .section-intro-meta {
@@ -794,7 +795,7 @@ main {
     line-height: 1.45;
     border-left: var(--size-border-thin) solid var(--color-border-on-dark-mid);
     padding-left: var(--spacing-sm);
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 }
 
@@ -813,7 +814,7 @@ main {
 
   p {
     margin-top: var(--spacing-section-copy-top);
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 }
 
@@ -1050,7 +1051,7 @@ main {
     color: var(--color-light-text-muted);
     font-size: var(--size-body-md);
     max-width: 60ch;
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 }
 
@@ -1193,7 +1194,7 @@ main {
     max-width: 32ch;
     position: relative;
     z-index: 1;
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 }
 
@@ -1368,7 +1369,7 @@ main {
 
   p {
     color: rgba(222, 232, 245, 0.78);
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 
   .engagement-model--item {
@@ -1635,7 +1636,7 @@ main {
   .leadership-intro p,
   .case-intro p {
     margin-top: var(--spacing-stack-tight);
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 
   .hero-shell .intro-sub-list .pill {
@@ -1749,7 +1750,7 @@ main {
   .section-head p,
   .leadership-intro p {
     max-width: 34ch;
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
   }
 
   .about-highlights {
@@ -1948,7 +1949,7 @@ main {
       margin: 0 0 var(--spacing-lg);
       color: var(--color-text-primary);
       max-width: var(--size-site-footer-max-width);
-        font-weight: 300;
+        font-weight: var(--font-weight-light);
     }
 
     .site-footer-main > p:not(.cta-eyebrow) {
@@ -2240,7 +2241,7 @@ main {
   color: var(--color-text-on-dark-high);
   font-size: var(--size-body-lg);
   line-height: 1.38;
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 .writing-post-meta {
@@ -2307,7 +2308,7 @@ main {
 .writing-post-body-block p {
   margin: 0;
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 .writing-post-body-block ul {

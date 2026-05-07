@@ -63,6 +63,7 @@ Use spacing tokens for margins, paddings, and gaps whenever practical.
 
 - Body font: Geist
 - Display/heading accent: Cal Sans
+- Font weight tokens: `--font-weight-light`, `--font-weight-regular`, `--font-weight-medium`, `--font-weight-semibold`, `--font-weight-bold`
 - Keep heading hierarchy semantic (`h1 -> h2 -> h3`)
 - Avoid fixed pixel typography; use REM and clamp patterns.
 
