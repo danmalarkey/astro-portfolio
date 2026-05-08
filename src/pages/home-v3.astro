@@ -1192,9 +1192,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
               </div>
             </nav>
           </div>
-
-          <p class="home-v3-footer-wordmark" aria-hidden="true">DanMalarkey</p>
-
           <div class="home-v3-footer-bottom">
             <p>© 2026 Dan Malarkey</p>
             <p>Jacksonville, Florida</p>
@@ -9063,29 +9060,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     transform: translateY(-0.06rem);
   }
 
-  .home-v3-footer-wordmark {
-    position: absolute;
-    left: -0.08em;
-    right: -0.08em;
-    bottom: 0.58rem;
-    z-index: 0;
-    max-width: none;
-    margin: 0;
-    color: rgba(231, 235, 242, 0.07);
-    font-family: var(--home-v3-display);
-    font-size: clamp(7.5rem, 18vw, 22rem);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: -0.085em;
-    line-height: 0.72;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    transform: scaleX(1.08);
-    transform-origin: center bottom;
-    pointer-events: none;
-    user-select: none;
-  }
-
   .home-v3-footer-bottom {
     grid-column: 1 / -1;
     position: relative;
@@ -9111,7 +9085,21 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-mobile-wordmark {
-    display: none;
+    display: block;
+    width: 100%;
+    margin: 1rem 0 -0.16em;
+    overflow: hidden;
+    color: rgba(231, 235, 242, 0.07);
+    font-family: var(--home-v3-display);
+    font-size: clamp(7.5rem, 18vw, 22rem);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.085em;
+    line-height: 0.72;
+    white-space: nowrap;
+    transform: translateX(-0.08em) scaleX(1.08);
+    transform-origin: left bottom;
+    pointer-events: none;
+    user-select: none;
   }
 
   @media (max-width: 78rem) {
@@ -10131,25 +10119,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       grid-column: 1 / -1;
     }
 
-    .home-v3-footer-wordmark {
-      display: none;
-    }
-
     .home-v3-mobile-wordmark {
-      display: block;
-      width: 100%;
-      margin: -0.5rem 0 -2.8rem;
-      color: rgba(231, 235, 242, 0.075);
-      font-family: var(--home-v3-display);
+      margin: 0.85rem 0 -2.65rem;
       font-size: clamp(5.75rem, 25vw, 9.6rem);
-      font-weight: var(--font-weight-medium);
-      letter-spacing: -0.085em;
-      line-height: 0.72;
-      white-space: nowrap;
       transform: translateX(-0.09em) scaleX(1.08);
-      transform-origin: left bottom;
-      pointer-events: none;
-      user-select: none;
     }
 
     .home-v3-footer-bottom {
