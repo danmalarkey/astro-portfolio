@@ -9087,7 +9087,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-mobile-wordmark {
     display: block;
     width: 100%;
-    margin: 1rem 0 -0.16em;
+    height: clamp(4rem, 9vw, 7rem);
+    margin: clamp(1.25rem, 2.6vw, 2rem) 0 0;
     overflow: hidden;
     color: rgba(231, 235, 242, 0.07);
     font-family: var(--home-v3-display);
@@ -9268,7 +9269,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   @media (max-width: 48rem) {
     .home-v3 {
-      padding: 0 0 2.5rem;
+      padding: 0;
       --home-v3-shell: min(100% - (var(--home-v3-mobile-section-gutter) * 2), 84rem);
       --home-v3-outer-gap: 0.75rem;
       --home-v3-header-top: var(--home-v3-mobile-page-gutter);
@@ -10120,7 +10121,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-mobile-wordmark {
-      margin: 0.85rem 0 -2.65rem;
+      height: clamp(2.85rem, 12vw, 4.7rem);
+      margin: 1.25rem 0 0;
       font-size: clamp(5.75rem, 25vw, 9.6rem);
       transform: translateX(-0.09em) scaleX(1.08);
     }
