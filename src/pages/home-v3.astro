@@ -9092,8 +9092,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-mobile-wordmark {
     display: block;
     width: 100%;
-    height: clamp(6rem, 13vw, 10.2rem);
-    margin: clamp(1.25rem, 2.6vw, 2rem) 0 clamp(-3rem, -2.6vw, -1.4rem);
+    height: clamp(6rem, 13vw, 15.2rem);
+    margin: clamp(0.25rem, 2.6vw, 2rem) 0 clamp(-3rem, -2.6vw, -1.4rem);
     overflow: visible;
     color: rgba(231, 235, 242, 0.105);
     font-family: var(--home-v3-display);
@@ -9105,6 +9105,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     transform: translate(-0.08em, -0.06em) scaleX(1.08);
     transform-origin: left bottom;
     pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
     user-select: none;
   }
 
