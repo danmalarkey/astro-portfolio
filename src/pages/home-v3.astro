@@ -2023,9 +2023,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-mobile-type-label-decorative: 0.75rem;
   }
 
+  :global(body:has(.home-v3)) {
+    background-color: #050608;
+  }
+
   .home-v3 {
     position: relative;
     isolation: isolate;
+    overflow: hidden;
     background:
       radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent 22rem),
       radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.025), transparent 28rem),
@@ -9089,7 +9094,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: 100%;
     height: clamp(6rem, 13vw, 10.2rem);
     margin: clamp(1.25rem, 2.6vw, 2rem) 0 clamp(-3rem, -2.6vw, -1.4rem);
-    overflow: hidden;
+    overflow: visible;
     color: rgba(231, 235, 242, 0.105);
     font-family: var(--home-v3-display);
     font-size: clamp(7.5rem, 18vw, 22rem);
@@ -10122,7 +10127,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-mobile-wordmark {
       height: clamp(5.35rem, 22vw, 7.1rem);
-      margin: 1.25rem 0 -2.35rem;
+      margin: 1.25rem 0 -2.85rem;
       font-size: clamp(5.75rem, 25vw, 9.6rem);
       transform: translate(-0.09em, -0.1em) scaleX(1.08);
     }
