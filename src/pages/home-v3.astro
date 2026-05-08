@@ -1201,6 +1201,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
           </div>
         </div>
       </footer>
+      <p class="home-v3-mobile-wordmark" aria-hidden="true">DanMalarkey</p>
     </section>
   </main>
 </Layout>
@@ -1223,15 +1224,37 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       const shootingStars = [];
       let nextShootingStarAt = 0;
 
+      const getBounds = () => {
+        const frame = canvas.closest('.home-v3-window') ?? canvas.parentElement;
+        const rect = frame?.getBoundingClientRect();
+
+        return {
+          width: Math.max(1, rect?.width || window.innerWidth),
+          height: Math.max(1, rect?.height || window.innerHeight)
+        };
+      };
+
       const resize = () => {
-        width = window.innerWidth;
-        height = window.innerHeight;
+        const previousWidth = width;
+        const previousHeight = height;
+        const bounds = getBounds();
+        width = bounds.width;
+        height = bounds.height;
         const ratio = Math.max(window.devicePixelRatio || 1, 1);
         canvas.width = Math.floor(width * ratio);
         canvas.height = Math.floor(height * ratio);
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        if (previousWidth > 0 && previousHeight > 0 && stars.length) {
+          const scaleX = width / previousWidth;
+          const scaleY = height / previousHeight;
+          stars.forEach((star) => {
+            star.x *= scaleX;
+            star.y *= scaleY;
+          });
+        }
       };
 
       const seed = () => {
@@ -1328,10 +1351,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       seed();
       draw();
       nextShootingStarAt = performance.now() + 1800;
-      window.addEventListener('resize', () => {
-        resize();
-        seed();
-      });
+      window.addEventListener('resize', resize);
     };
 
     initStarfield('home-v3-stars', { count: 96, drift: 0.01 });
@@ -1993,6 +2013,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-button-padding-x: 1.28rem;
     --home-v3-button-padding-x-compact: 0.92rem;
     --home-v3-button-radius: 999rem;
+    --home-v3-mobile-page-gutter: 1.25rem;
+    --home-v3-mobile-section-gutter: 1.5rem;
+    --home-v3-mobile-content-gutter: 1.25rem;
+    --home-v3-mobile-type-title-xl: clamp(3.25rem, 15vw, 4.25rem);
+    --home-v3-mobile-type-title-lg: clamp(2.35rem, 10vw, 3.25rem);
+    --home-v3-mobile-type-title-md: clamp(1.75rem, 7.8vw, 2.35rem);
+    --home-v3-mobile-type-title-sm: clamp(1.32rem, 5.5vw, 1.62rem);
+    --home-v3-mobile-type-body: 1rem;
+    --home-v3-mobile-type-body-sm: 0.9375rem;
+    --home-v3-mobile-type-label: 0.875rem;
+    --home-v3-mobile-type-label-decorative: 0.75rem;
   }
 
   .home-v3 {
@@ -3611,6 +3642,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       border-color 0.25s ease,
       box-shadow 0.25s ease,
       transform 0.25s ease;
+  }
+
+  .home-v3 a.home-v3-button,
+  .home-v3 button.home-v3-button,
+  .home-v3 input.home-v3-button {
+    font-size: max(1rem, var(--home-v3-type-body-sm));
   }
 
   .home-v3-button:hover {
@@ -9073,6 +9110,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     line-height: 1.4;
   }
 
+  .home-v3-mobile-wordmark {
+    display: none;
+  }
+
   @media (max-width: 78rem) {
     .home-v3-trust-grid,
     .home-v3-outcome-grid,
@@ -9193,10 +9234,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-operating-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.05rem 2rem;
     }
 
-    .home-v3-operating-grid-item:nth-child(2n) {
-      border-right: 0;
+    .home-v3-operating-grid-item {
+      border-left: 0;
+      padding-inline: 0;
     }
 
     .home-v3-writing-layout {
@@ -9238,10 +9281,28 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   @media (max-width: 48rem) {
     .home-v3 {
       padding: 0 0 2.5rem;
+      --home-v3-shell: min(100% - (var(--home-v3-mobile-section-gutter) * 2), 84rem);
+      --home-v3-outer-gap: 0.75rem;
+      --home-v3-header-top: var(--home-v3-mobile-page-gutter);
+      --home-v3-header-inline: var(--home-v3-outer-gap);
+      --home-v3-nav-padding: 0.72rem 0;
+      --home-v3-brand-width: 1.22rem;
+      --home-v3-brand-width-scrolled: 0.8rem;
+      --home-v3-type-body-xs: var(--home-v3-mobile-type-body-sm);
+      --home-v3-type-body-sm: var(--home-v3-mobile-type-body);
+      --home-v3-type-body: var(--home-v3-mobile-type-body);
+      --home-v3-type-lead: var(--home-v3-mobile-type-body);
+      --home-v3-type-card-title: var(--home-v3-mobile-type-title-sm);
+      --home-v3-type-title-sm: var(--home-v3-mobile-type-title-sm);
+      --home-v3-type-title-md: var(--home-v3-mobile-type-title-md);
+      --home-v3-type-title-lg: var(--home-v3-mobile-type-title-lg);
+      --home-v3-type-title-xl: var(--home-v3-mobile-type-title-xl);
+      --home-v3-type-hero: var(--home-v3-mobile-type-title-xl);
+      --home-v3-type-section-title-compact: var(--home-v3-mobile-type-title-md);
     }
 
     .home-v3 .dm-grid-l.dm-grid-l--grid-sys {
-      padding-inline: 1rem;
+      padding-inline: var(--home-v3-mobile-content-gutter);
     }
 
     .home-v3-intro {
@@ -9255,7 +9316,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-header {
       top: 0;
       padding: 0;
-      padding-inline: 0;
+      padding-inline: var(--home-v3-header-inline);
     }
 
     .home-v3-header-shell {
@@ -9268,28 +9329,25 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       padding-top: 3.15rem;
     }
 
-    .home-v3-trust,
-    .home-v3-client-trust,
-    .home-v3-pillars,
-    .home-v3-bridge,
-    .home-v3-bridge-lite,
-    .home-v3-shift,
-    .home-v3-operating-shift,
-    .home-v3-close {
-      width: min(calc(100vw - 2rem), 84rem);
-    }
-
     .home-v3-nav {
       display: flex;
       min-height: 0;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.55rem 0.8rem;
+      gap: 0.65rem;
+      padding: var(--home-v3-nav-padding);
+      border: 1px solid transparent;
       border-radius: 0;
-      border-left: 0;
-      border-right: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .home-v3-header.is-scrolled .home-v3-nav {
+      padding: 0.6rem 0.72rem;
+      border-radius: 1rem;
       border-color: rgba(231, 235, 242, 0.08);
       background: rgba(10, 12, 18, 0.68);
       box-shadow:
@@ -9308,7 +9366,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       justify-self: auto;
       overflow-x: auto;
       scrollbar-width: none;
-      font-size: 0.78rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
       min-width: 0;
     }
 
@@ -9326,12 +9384,29 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       margin-left: 0;
     }
 
+    .home-v3-header.is-scrolled .home-v3-brand {
+      margin-left: 0;
+    }
+
     .home-v3-brand img {
       width: 1.25rem;
     }
 
     .home-v3-header-availability {
-      display: none;
+      display: inline-flex;
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: min(13rem, 42vw);
+      padding: 0.34rem 0.54rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
+      overflow: hidden;
+    }
+
+    .home-v3-header-availability > span:last-child {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .home-v3-nav-cta {
@@ -9349,7 +9424,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-hero-copy h1 {
-      font-size: clamp(2.85rem, 12vw, 4.4rem);
+      font-size: var(--home-v3-mobile-type-title-xl);
     }
 
     .home-v3-kicker {
@@ -9381,13 +9456,18 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-actor-lane-copy h3 {
       max-width: none;
-      font-size: 1.42rem;
+      font-size: var(--home-v3-mobile-type-title-sm);
     }
 
     .home-v3-actor-lane-copy > p {
       max-width: none;
-      font-size: 0.96rem;
+      font-size: var(--home-v3-mobile-type-body-sm);
       line-height: 1.54;
+    }
+
+    .home-v3-actor-card-copy p,
+    .home-v3-actor-link {
+      font-size: var(--home-v3-mobile-type-label);
     }
 
     .home-v3-actor-lane-strip {
@@ -9410,11 +9490,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-actor-lane-metric-label {
-      font-size: 0.57rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
     }
 
     .home-v3-actor-lane-metric-detail {
-      font-size: 0.78rem;
+      font-size: var(--home-v3-mobile-type-label);
       text-align: right;
       text-wrap: pretty;
       white-space: normal;
@@ -9508,7 +9588,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-support-copy p,
     .home-v3-footer-copy,
     .home-v3-proof-line {
-      font-size: 1.04rem;
+      font-size: var(--home-v3-mobile-type-body);
     }
 
     .home-v3-hero-frame {
@@ -9555,7 +9635,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-practice-story-copy h3 {
-      font-size: clamp(2.5rem, 10vw, 3.9rem);
+      font-size: var(--home-v3-mobile-type-title-lg);
     }
 
     .home-v3-practice-text,
@@ -9563,7 +9643,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-practice-story-note,
     .home-v3-shift-card p:not(.home-v3-shift-card-label),
     .home-v3-fit-row p {
-      font-size: 1rem;
+      font-size: var(--home-v3-mobile-type-body);
     }
 
     .home-v3-operating-grid-text {
@@ -9572,11 +9652,22 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-operating-grid {
       grid-template-columns: minmax(0, 1fr);
+      gap: 0;
     }
 
     .home-v3-operating-grid-item {
+      justify-content: flex-start;
+      gap: 0.58rem;
+      min-height: 0;
+      border-left: 0;
       border-right: 0;
       padding: 1rem 0 1rem;
+    }
+
+    .home-v3-operating-grid-copy {
+      gap: 0.52rem;
+      margin-top: 0;
+      padding-bottom: 0;
     }
 
     .home-v3-operating-grid-item + .home-v3-operating-grid-item {
@@ -9610,22 +9701,23 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-proof-card-title {
-      font-size: clamp(1.4rem, 7.4vw, 1.8rem);
+      font-size: var(--home-v3-mobile-type-title-sm);
       max-width: none;
     }
 
     .home-v3-proof-card-role {
+      font-size: var(--home-v3-mobile-type-label);
       opacity: 1;
       transform: none;
     }
 
     .home-v3-writing-volume .home-v3-card-title-text {
-      font-size: clamp(1.2rem, 5.6vw, 1.42rem);
+      font-size: var(--home-v3-mobile-type-title-sm);
       line-height: 1.08;
     }
 
     .home-v3-writing-volume .home-v3-card-copy-text {
-      font-size: 0.94rem;
+      font-size: var(--home-v3-mobile-type-body-sm);
       line-height: 1.58;
     }
 
@@ -9634,7 +9726,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-bridge-lite {
-      width: min(calc(100vw - 2rem), 84rem);
+      width: var(--home-v3-shell);
       min-height: 0;
       padding-top: 0.75rem;
     }
@@ -9791,6 +9883,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       padding: 0;
     }
 
+    .home-v3-pillars > .dm-grid-l {
+      padding-inline: 0;
+    }
+
+    .home-v3-pillars-shell {
+      grid-column: 1 / -1;
+    }
+
     .home-v3-pillars-surface {
       border-radius: 1.45rem;
     }
@@ -9804,7 +9904,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-pillars-head h2 {
-      font-size: clamp(2rem, 11vw, 2.9rem);
+      font-size: var(--home-v3-mobile-type-title-md);
       max-width: none;
     }
 
@@ -9833,19 +9933,19 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-pillar-title {
       max-width: none;
-      font-size: clamp(2.2rem, 11.2vw, 2.9rem);
+      font-size: var(--home-v3-mobile-type-title-md);
     }
 
     .home-v3-pillar-headline {
       max-width: none;
-      font-size: 1.08rem;
+      font-size: var(--home-v3-mobile-type-body);
       line-height: 1.12;
     }
 
     .home-v3-pillar-body {
       max-width: none;
       margin-top: 0;
-      font-size: 0.96rem;
+      font-size: var(--home-v3-mobile-type-body-sm);
       line-height: 1.58;
     }
 
@@ -9885,7 +9985,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-practice-value {
-      font-size: 1.14rem;
+      font-size: var(--home-v3-mobile-type-title-sm);
     }
 
     .home-v3-practice-text {
@@ -9898,15 +9998,24 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-engagement-row .home-v3-card-title-text {
-      font-size: 1.25rem;
+      font-size: var(--home-v3-mobile-type-title-sm);
     }
 
     .home-v3-engagement-row .home-v3-card-copy-text {
-      font-size: 0.95rem;
+      font-size: var(--home-v3-mobile-type-body-sm);
     }
 
     .home-v3-engagement-row-fit {
-      font-size: 0.92rem;
+      max-width: 100%;
+      font-size: var(--home-v3-mobile-type-label);
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .home-v3-engagement-availability {
+      font-size: var(--home-v3-mobile-type-label);
+      white-space: normal;
     }
 
     .home-v3-practice-proof {
@@ -10014,18 +10123,33 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       gap: 1.5rem 1.25rem;
     }
 
+    .home-v3-footer-social-link {
+      font-size: 1rem;
+    }
+
     .home-v3-footer-link-group--services {
       grid-column: 1 / -1;
     }
 
     .home-v3-footer-wordmark {
-      left: -0.06em;
-      right: -0.06em;
-      bottom: 1.9rem;
-      font-size: clamp(5rem, 34vw, 11rem);
+      display: none;
+    }
+
+    .home-v3-mobile-wordmark {
+      display: block;
+      width: 100%;
+      margin: -0.5rem 0 -2.8rem;
+      color: rgba(231, 235, 242, 0.075);
+      font-family: var(--home-v3-display);
+      font-size: clamp(5.75rem, 25vw, 9.6rem);
+      font-weight: var(--font-weight-medium);
       letter-spacing: -0.085em;
-      line-height: 0.78;
-      transform: scaleX(1.08);
+      line-height: 0.72;
+      white-space: nowrap;
+      transform: translateX(-0.09em) scaleX(1.08);
+      transform-origin: left bottom;
+      pointer-events: none;
+      user-select: none;
     }
 
     .home-v3-footer-bottom {
