@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../layouts/Header.astro';
 import HomeFooter from '../../components/HomeFooter.astro';
+import Button from '../../components/Button.astro';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
@@ -67,31 +68,31 @@ const supportAreas = [
 >
   <Header />
   <main class="operating-model-page">
-    <section class="operating-model-hero" aria-labelledby="operating-model-title">
+    <section class="operating-model-hero" aria-labelledby="operating-model-title" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys operating-model-hero-grid">
-        <div class="operating-model-hero-copy gc-start-2 gc-span-13">
+        <div class="operating-model-hero-copy gc-start-2 gc-span-13" data-motion-item>
           <p class="operating-model-kicker">Operating model</p>
           <h1 id="operating-model-title">Coherent product work from strategy to shipped behavior.</h1>
         </div>
-        <div class="operating-model-hero-support gc-start-17 gc-span-8">
+        <div class="operating-model-hero-support gc-start-17 gc-span-8" data-motion-item>
           <p>
             Strong product work holds together. The product logic, workflows, system behavior, interface patterns, and implementation choices should reinforce the same underlying model.
           </p>
           <div class="operating-model-actions">
-            <a class="operating-model-button operating-model-button--primary" href={mailto}>Start a conversation</a>
-            <a class="operating-model-button operating-model-button--ghost" href={withBase('/work-with/ai-enabled-product-systems')}>AI-enabled systems</a>
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href={withBase('/work-with/ai-enabled-product-systems')} variant="ghost">AI-enabled systems</Button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="operating-model-section operating-model-section--compact" aria-labelledby="operating-model-integrity">
+    <section class="operating-model-section operating-model-section--compact" aria-labelledby="operating-model-integrity" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-10">
+        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
           <p class="operating-model-kicker">Conceptual integrity</p>
           <h2 id="operating-model-integrity">The product should behave like one system, not a set of disconnected decisions.</h2>
         </div>
-        <div class="operating-model-note gc-start-15 gc-span-9">
+        <div class="operating-model-note gc-start-15 gc-span-9" data-motion-item>
           <p>
             Working model: this page is intentionally a little more direct than the homepage. It is the place to keep expanding the operating language as the positioning gets sharper.
           </p>
@@ -99,13 +100,13 @@ const supportAreas = [
       </div>
     </section>
 
-    <section class="operating-model-band" aria-labelledby="operating-model-layers">
+    <section class="operating-model-band" aria-labelledby="operating-model-layers" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-8">
+        <div class="operating-model-section-head gc-start-2 gc-span-8" data-motion-item>
           <p class="operating-model-kicker">The layers</p>
           <h2 id="operating-model-layers">Alignment has to survive every layer of the work.</h2>
         </div>
-        <div class="operating-model-layer-stack gc-start-12 gc-span-12" role="list">
+        <div class="operating-model-layer-stack gc-start-12 gc-span-12" role="list" data-motion-item>
           {modelLayers.map((layer, index) => (
             <article class="operating-model-layer" role="listitem">
               <p>{String(index + 1).padStart(2, '0')}</p>
@@ -119,16 +120,16 @@ const supportAreas = [
       </div>
     </section>
 
-    <section class="operating-model-section" aria-labelledby="operating-model-drift">
+    <section class="operating-model-section" aria-labelledby="operating-model-drift" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-11">
+        <div class="operating-model-section-head gc-start-2 gc-span-11" data-motion-item>
           <p class="operating-model-kicker">What drift looks like</p>
           <h2 id="operating-model-drift">Most product fragmentation starts as small, reasonable local decisions.</h2>
           <p>
             Those decisions become expensive when terminology, workflows, interface behavior, and implementation logic start moving in different directions.
           </p>
         </div>
-        <div class="operating-model-card-grid gc-start-2 gc-span-24" role="list">
+        <div class="operating-model-card-grid gc-start-2 gc-span-24" role="list" data-motion-item>
           {driftPatterns.map((pattern) => (
             <article class="operating-model-card" role="listitem">
               <h3>{pattern.title}</h3>
@@ -139,13 +140,13 @@ const supportAreas = [
       </div>
     </section>
 
-    <section class="operating-model-section operating-model-section--split" aria-labelledby="operating-model-support">
+    <section class="operating-model-section operating-model-section--split" aria-labelledby="operating-model-support" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-10">
+        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
           <p class="operating-model-kicker">How I help</p>
           <h2 id="operating-model-support">Design leadership as an operating discipline.</h2>
         </div>
-        <div class="operating-model-support-list gc-start-15 gc-span-9" role="list">
+        <div class="operating-model-support-list gc-start-15 gc-span-9" role="list" data-motion-item>
           {supportAreas.map((area) => (
             <p role="listitem">{area}</p>
           ))}
@@ -262,37 +263,6 @@ const supportAreas = [
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
-  }
-
-  .operating-model-button {
-    display: inline-flex;
-    min-height: 2.85rem;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1.25rem;
-    border: 1px solid rgba(231, 235, 242, 0.12);
-    border-radius: 999rem;
-    color: rgba(245, 248, 255, 0.9);
-    font-weight: var(--font-weight-semibold);
-    text-decoration: none;
-    transition:
-      transform 0.22s ease,
-      border-color 0.22s ease,
-      background 0.22s ease;
-  }
-
-  .operating-model-button:hover {
-    transform: translateY(-0.06rem);
-  }
-
-  .operating-model-button--primary {
-    border-color: rgba(231, 235, 242, 0.38);
-    background: linear-gradient(180deg, rgba(248, 250, 255, 0.98), rgba(226, 233, 246, 0.96));
-    color: #08090c;
-  }
-
-  .operating-model-button--ghost {
-    background: rgba(255, 255, 255, 0.025);
   }
 
   .operating-model-section {
