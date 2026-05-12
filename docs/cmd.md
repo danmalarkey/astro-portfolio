@@ -521,6 +521,49 @@ Accelerate delivery of billing capabilities for multi-location restaurant brands
 
 * Reduced internal cycle time and accelerated client value.
 
+
+### Context
+
+Shokudo is a restaurant commerce and operations platform supporting:
+- online ordering
+- franchise operations
+- payment systems
+- restaurant administration workflows
+
+The platform integrates with systems such as:
+- Olo
+- Paytronix
+- Stripe
+
+and supports multi-location restaurant operations.
+
+---
+
+### My Role
+
+I worked directly with paying clients and internal teams to design and build operational systems supporting:
+- billing
+- payments
+- merchandise management
+- administrative workflows
+- franchise expansion
+
+My work combined:
+- product design
+- operational systems thinking
+- AI-assisted development workflows
+- Angular implementation
+
+---
+
+### Strategic Impact
+
+The platform evolved from primarily customer-facing ordering experiences into broader operational infrastructure supporting:
+- franchise operations
+- billing systems
+- administrative tooling
+- multi-location business scaling
+
 ---
 
 # Cross-Organizational Pattern: AI as Delivery Multiplier
@@ -637,6 +680,85 @@ It is a **productized delivery system** that defines how feature[23] builds, rev
 
 * Expanding system scalability while onboarding new design talent.
 
+### Context
+
+TMM operates large-scale operational systems supporting military shipment coordination, customer service operations, communications, and logistics management.
+
+The organization was undergoing migration and modernization efforts through the Janus platform and ServiceIQ ecosystem.
+
+Historically, many workflows were centralized into large monolithic operational screens that created complexity and friction across departments.
+
+---
+
+### My Role
+
+I played a key role in reframing how the organization approached Shipment Management and operational workflow design.
+
+My work focused on:
+- operational systems thinking
+- activity-centered workflow design
+- AI-assisted communications systems
+- role-based operational experiences
+- cross-department coordination workflows
+
+I worked directly with business stakeholders and operational teams to challenge legacy assumptions and redesign workflows around real activities instead of legacy software structures.
+
+---
+
+### Key Contributions
+
+#### Shipment Management Reframing
+
+- Pushed back against recreating legacy monolithic Shipment Management experiences
+- Reframed Shipment Management as:
+  - distributed operational activities
+  - department-centered workflows
+  - modular operational systems
+- Introduced concepts around:
+  - workspace systems
+  - role-based visibility
+  - operational customization
+  - AI-assisted retrieval
+
+#### Communications System Design
+
+Worked on ServiceIQ communications systems involving:
+- calls
+- text messaging
+- operational communication coordination
+
+Designed workflows supporting:
+- CSA ↔ Driver
+- CSA ↔ Military Member
+- CSA ↔ Military Member + spouse/group conversations
+
+Addressed complex operational challenges involving:
+- one organizational phone number
+- multiple shipments
+- overlapping operational conversations
+- communication continuity
+
+Introduced:
+- AI-assisted voicemail summaries
+- communication threading concepts
+- operational visibility into communication history
+- contextual communication workflows
+
+---
+
+### Strategic Impact
+
+The organization shifted away from rebuilding legacy operational interfaces and toward:
+- modular operational systems
+- activity-centered workflow models
+- AI-assisted operational tooling
+- scalable communications infrastructure
+
+The work also established foundational thinking around:
+- operational intelligence systems
+- conversational AI integration
+- workflow-centered product design
+
 ---
 
 ### Superior Fence & Rail (Fence360) — Commercial Platform (Ongoing)
@@ -654,6 +776,50 @@ It is a **productized delivery system** that defines how feature[23] builds, rev
 **Impact (Emerging)**
 
 * Driving executive-aligned product direction through rapid prototyping and iteration.
+
+### Context
+
+Fence360 supports operational workflows, reporting, analytics, commercial fencing initiatives, and business intelligence systems across franchise and leadership teams.
+
+The organization lacked meaningful drill-down analytics and actionable reporting capabilities across many operational and commercial workflows.
+
+---
+
+### My Role
+
+I worked directly with:
+- executive leadership
+- Franchise Advisory Council (FAC)
+- franchise owners
+- marketing stakeholders
+
+to define new approaches to:
+- commercial workflows
+- reporting systems
+- bid management
+- operational analytics
+
+My role focused heavily on:
+- workshop facilitation
+- systems thinking
+- reporting architecture
+- product direction
+- translating business ambiguity into structured product systems
+
+---
+
+### Strategic Impact
+
+The work helped transition reporting from:
+- passive visibility
+to
+- operational and strategic intelligence
+
+The organization began moving toward:
+- data-informed operational decision making
+- market analysis
+- performance analysis
+- improved visibility into commercial operations
 
 ---
 
@@ -674,6 +840,195 @@ It is a **productized delivery system** that defines how feature[23] builds, rev
 **Reference (Internal Prototypes)**
 
 * [https://thankful-coast-008869d0f.6.azurestaticapps.net/prototypes](https://thankful-coast-008869d0f.6.azurestaticapps.net/prototypes)
+
+### Context
+
+Trident Reciprocal is an insurance platform undergoing significant operational and product transformation across Member, Agent, Underwriting, Renewals, Billing, and Policy Management experiences.
+
+The organization rapidly scaled policy growth while simultaneously modernizing internal workflows and operational systems.
+
+The platform supports complex insurance operations including:
+- quoting
+- policy binding
+- renewals
+- mid-term endorsements
+- underwriting workflows
+- agent support workflows
+- payment and billing systems
+
+---
+
+### My Role
+
+I have served as the lead product and systems design partner across multiple core operational areas of the platform.
+
+My role has included:
+- defining product direction
+- designing operational workflows
+- facilitating alignment between Product Owners, engineering, and business stakeholders
+- integrating AI-assisted workflows into the product definition process
+- building scalable design systems and delivery infrastructure
+
+I also helped evolve the workflow between:
+- Product Owners
+- business stakeholders
+- design
+- engineering
+
+through AI-assisted prototyping and iterative system modeling.
+
+---
+
+### Strategic Impact
+
+The work helped establish:
+- faster ideation cycles
+- stronger alignment between business and engineering
+- scalable operational workflows
+- repeatable product delivery systems
+- AI-assisted collaboration models
+
+The platform evolved from isolated workflows toward interconnected operational systems designed around real organizational activities.
+
+
+
+
+
+
+---
+
+# EMERGING PRODUCT & SYSTEMS PATTERNS (2026)
+
+Across multiple organizations, a consistent pattern has emerged in my work:
+
+I am increasingly focused on designing operational intelligence systems rather than isolated application interfaces.
+
+This includes:
+
+- communication coordination systems
+- operational workflows
+- AI-assisted retrieval systems
+- activity-centered product models
+- cross-role collaboration systems
+- scalable product delivery infrastructure
+
+---
+
+## Operational Intelligence vs. Interface Design
+
+A recurring pattern in my work is separating:
+
+- retrieving information
+from
+- managing operational work
+
+This distinction has become especially important in AI-centric systems.
+
+Examples include:
+- shipment management (TMM)
+- underwriting workflows (Trident)
+- communications systems (TMM)
+- reporting and analytics (Fence360)
+
+The focus is no longer just:
+> “how does the interface work?”
+
+The focus is:
+> “how does the organization operate through software?”
+
+---
+
+## Reframing Organizational Problems
+
+A major part of my role is identifying when organizations are solving the wrong abstraction level.
+
+### Example — Shipment Management (TMM)
+
+The organization originally wanted to recreate a large monolithic “Shipment Management” screen from a legacy system.
+
+I pushed back heavily on this direction because:
+- the business already disliked the existing experience
+- recreating the same structure would recreate the same operational problems
+
+Instead, we reframed Shipment Management as:
+- a collection of operational activities
+- distributed across departments
+- focused on concepts and workflows relevant to those teams
+
+This shifted the initiative toward:
+- activity-centered design
+- modular workflows
+- AI-assisted retrieval and communication systems
+- operational efficiency by department
+
+This reframing significantly changed the direction of the platform.
+
+---
+
+## AI-Centric Workflow Evolution
+
+My work increasingly integrates AI directly into product workflows and operational systems.
+
+This includes:
+- AI-assisted communication summaries
+- conversational retrieval models
+- AI-generated product concepts
+- AI-assisted design and engineering workflows
+
+Across organizations, AI is evolving from:
+- experimentation
+to
+- operational infrastructure
+
+---
+
+## Distributed Product Definition
+
+A newer workflow pattern emerging in my work:
+
+- Product Owners prototype ideas using AI tools
+- Business stakeholders provide direct feedback early
+- Design refines and systemizes those concepts
+- Engineering receives more structured, validated direction
+
+This has significantly improved:
+- ideation velocity
+- alignment
+- iteration speed
+- product clarity
+
+Example:
+- Trident Reciprocal workflows
+- quoting
+- binding
+- renewals
+- endorsements
+- payment systems
+
+---
+
+## Designing Communication Systems Under Complexity
+
+TMM communications work introduced complex operational communication challenges:
+
+- one organizational number
+- many shipments
+- many participants
+- overlapping conversations
+- multiple communication channels
+
+Design work included:
+- communication threading
+- contextual relationship mapping
+- AI-assisted summarization
+- operational visibility into customer interactions
+
+This work focused less on messaging UI and more on:
+> coordination and continuity across operational systems
+
+---
+
+
 
 **Impact (Emerging)**
 

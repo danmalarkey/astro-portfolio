@@ -1,10 +1,10 @@
 ---
-import ButtonLink from './ButtonLink.astro';
+import Button from './Button.astro';
+
 interface Props {
   eyebrow?: string;
   title?: string;
   body?: string;
-  fitItems?: string[];
   ctaLabel?: string;
   email?: string;
   linkedinUrl?: string;
@@ -13,50 +13,368 @@ interface Props {
 
 const {
   eyebrow = 'Work with me',
-  title = 'Advisory and fractional design leadership for high-stakes product work.',
-  body = 'If you need experienced design leadership to clarify direction, align teams, and improve product outcomes, I am available for select advisory and fractional engagements.',
-  fitItems = [
-    'Executives and product leaders navigating change',
-    'Teams that need direction-setting and delivery alignment',
-    'Organizations investing in design capability and systems'
-  ],
+  title = 'Design leadership for teams navigating growth, complexity, and change.',
+  body = 'Available for select advisory, consulting, and fractional leadership engagements where sharper direction and stronger product design leadership can move the work forward.',
   ctaLabel = 'Work with me',
   email = 'hello@danmalarkey.com',
   linkedinUrl = 'https://www.linkedin.com/in/danmalarkey/',
   locationLabel = 'Jacksonville, Florida'
 } = Astro.props;
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer-home" data-star-density="0.88" data-star-brightness="0.88">
-  <div class="dm-grid-l dm-grid-l--grid-sys">
-    <div class="cta-panel site-footer-panel">
-      <div class="dm-grid-l dm-grid-l--grid-sys site-footer-layout">
-        <div class="site-footer-main gc-start-2 gc-span-14">
-          <p class="cta-eyebrow">{eyebrow}</p>
-          <h2 class="site-footer-title">{title}</h2>
+<section class="site-footer-section" data-motion-reveal>
+  <footer class="site-footer-new">
+    <div class="site-footer-new-inner">
+      <div class="site-footer-new-main">
+        <div>
+          <p class="site-footer-new-eyebrow">{eyebrow}</p>
+          <h2>{title}</h2>
+        </div>
+        <div class="site-footer-new-main-lower">
           <p>{body}</p>
+          <div class="site-footer-new-actions">
+            <Button href={`mailto:${email}`}>{ctaLabel}</Button>
+            <Button href={`mailto:${email}`} variant="ghost">Book a call</Button>
+          </div>
         </div>
-        <aside class="site-footer-side gc-start-17 gc-span-9" aria-label="Engagement fit">
-          <p class="site-footer-side-title">Best fit for</p>
-          <ul class="site-footer-side-list">
-            {fitItems.map((item) => <li>{item}</li>)}
-          </ul>
-          <ButtonLink href={`mailto:${email}`} variant="primary" className="cta-link--footer" showArrow={true}>
-            {ctaLabel}
-          </ButtonLink>
-          <p class="cta-meta">Email: {email}</p>
-        </aside>
       </div>
-      <div class="dm-grid-l dm-grid-l--grid-sys site-footer-utility-row" aria-label="Footer details">
-        <div class="site-footer-utility-copy gc-start-2 gc-span-18">
-          <p class="site-footer-legal">© {currentYear} Dan Malarkey. All rights reserved.</p>
-          <p class="site-footer-location">Located in {locationLabel}.</p>
-        </div>
-        <div class="site-footer-utility-link-wrap gc-start-21 gc-span-4">
-          <a href={linkedinUrl} class="site-footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
+
+      <div class="site-footer-new-directory">
+        <nav class="site-footer-new-links" aria-label="Footer">
+          <div class="site-footer-new-link-group site-footer-new-link-group--services">
+            <p>Services</p>
+            <a href={withBase('/work-with/executives-and-product-drivers')}>Product direction</a>
+            <a href={withBase('/work-with/product-and-engineering-teams')}>UX systems</a>
+            <a href={withBase('/work-with/designers-and-design-leaders')}>Design leadership</a>
+            <a href={withBase('/work-with/ai-enabled-product-systems')}>AI-enabled product systems</a>
+            <a href={withBase('/work-with/operating-model')}>Operating model</a>
+            <a href={withBase('/work')}>Implementation partnership</a>
+          </div>
+          <div class="site-footer-new-link-group">
+            <p>Explore</p>
+            <a href={withBase('/work')}>Work</a>
+            <a href={withBase('/library')}>Library</a>
+            <a href={withBase('/writing')}>Writing</a>
+          </div>
+          <div class="site-footer-new-link-group">
+            <p>Contact</p>
+            <a href={withBase('/about')}>About</a>
+            <a href={`mailto:${email}`}>Email</a>
+          </div>
+          <div class="site-footer-new-link-group">
+            <p>Social</p>
+            <Button
+              className="site-footer-new-social-link"
+              href={linkedinUrl}
+              variant="ghost"
+              size="compact"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+            </Button>
+            <Button className="site-footer-new-social-link" href={`mailto:${email}`} variant="ghost" size="compact">
+              <span>Let's talk</span>
+              <span aria-hidden="true">↗</span>
+            </Button>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer-new-bottom">
+        <p>© {currentYear} Dan Malarkey</p>
+        <p>{locationLabel}</p>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+  <p class="site-footer-wordmark" aria-hidden="true">DanMalarkey</p>
+</section>
+
+<style lang="scss">
+  .site-footer-section {
+    position: relative;
+    width: min(calc(100vw - var(--spacing-lg)), 84rem);
+    margin: clamp(3rem, 7vw, 6rem) auto var(--spacing-sm);
+  }
+
+  .site-footer-section::before {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    inset: auto 50% calc(100% - 7rem) auto;
+    width: min(54rem, 90vw);
+    height: 22rem;
+    transform: translateX(50%);
+    background:
+      radial-gradient(ellipse at 50% 68%, rgba(121, 154, 255, 0.2), rgba(121, 154, 255, 0.07) 34%, transparent 68%),
+      radial-gradient(ellipse at 50% 92%, rgba(231, 235, 242, 0.15), rgba(231, 235, 242, 0.04) 36%, transparent 72%);
+    filter: blur(1.125rem);
+    opacity: 0.82;
+  }
+
+  .site-footer-new {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: var(--size-border-thin) solid rgba(121, 154, 255, 0.12);
+    border-radius: clamp(1.15rem, 2vw, 1.75rem);
+    background:
+      radial-gradient(ellipse 62% 38% at 50% 0%, rgba(231, 235, 242, 0.045), rgba(231, 235, 242, 0.012) 44%, transparent 72%),
+      linear-gradient(180deg, rgba(9, 10, 13, 0.68), rgba(5, 6, 8, 0.96) 74%),
+      var(--ds-background);
+    box-shadow:
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.026),
+      0 1.5rem 5rem rgba(0, 0, 0, 0.22);
+  }
+
+  .site-footer-new::before,
+  .site-footer-new::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .site-footer-new::before {
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 0.0625rem, transparent 0.0625rem 100%);
+    background-size: 25% 100%;
+    opacity: 0.1;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.58), transparent 76%);
+  }
+
+  .site-footer-new::after {
+    top: 0;
+    left: 50%;
+    z-index: 3;
+    width: min(32rem, 54vw);
+    height: var(--size-border-thin);
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, rgba(121, 154, 255, 0.28) 18%, rgba(184, 207, 255, 0.58) 50%, rgba(121, 154, 255, 0.32) 74%, transparent);
+    box-shadow:
+      0 0.05rem 1.25rem rgba(121, 154, 255, 0.16),
+      0 0 2rem rgba(105, 133, 255, 0.12);
+    opacity: 0.78;
+  }
+
+  .site-footer-new-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: clamp(1.45rem, 5vw, 5.8rem);
+    min-height: clamp(25rem, 32vw, 31rem);
+    padding: clamp(3rem, 4.8vw, 4.5rem) clamp(1.4rem, 4vw, 4rem) 0;
+  }
+
+  .site-footer-new-main {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(24rem, 0.62fr);
+    gap: clamp(2rem, 5vw, 5.2rem);
+    align-items: end;
+  }
+
+  .site-footer-new-eyebrow {
+    margin: 0 0 var(--spacing-sm);
+    color: rgba(176, 204, 255, 0.78);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .site-footer-new-main h2 {
+    margin: 0;
+    color: var(--ds-text);
+    font-family: var(--font-family-display);
+    font-size: clamp(2.35rem, 3.55vw, 4.1rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.98;
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .site-footer-new-main-lower {
+    display: grid;
+    gap: 1.2rem;
+    justify-self: end;
+    max-width: 38rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .site-footer-new-main-lower p {
+    margin: 0;
+    max-width: 45ch;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--ds-type-body-xs);
+    line-height: 1.58;
+  }
+
+  .site-footer-new-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.72rem;
+  }
+
+  .site-footer-new-directory {
+    border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+    padding-top: 1.25rem;
+  }
+
+  .site-footer-new-links {
+    display: grid;
+    grid-template-columns: minmax(14rem, 1.25fr) repeat(3, minmax(0, 0.72fr));
+    gap: clamp(1.25rem, 2.8vw, 2.6rem);
+  }
+
+  .site-footer-new-link-group {
+    display: grid;
+    align-content: start;
+    gap: 0.64rem;
+    min-width: 0;
+  }
+
+  .site-footer-new-link-group p {
+    margin: 0 0 0.3rem;
+    color: rgba(231, 235, 242, 0.38);
+    font-size: 0.68rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .site-footer-new-links a {
+    width: fit-content;
+    max-width: 100%;
+    color: rgba(231, 235, 242, 0.58);
+    font-size: 0.92rem;
+    line-height: 1.32;
+    text-decoration: none;
+    text-wrap: pretty;
+    transition:
+      color var(--duration-transition-interactive-ui) var(--easing-standard),
+      border-color var(--duration-transition-interactive-ui) var(--easing-standard),
+      background var(--duration-transition-interactive-ui) var(--easing-standard),
+      transform var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .site-footer-new-links a:hover {
+    color: var(--ds-text);
+  }
+
+  .site-footer-new-links :global(.site-footer-new-social-link) {
+    justify-content: center;
+    gap: 0.62rem;
+    width: fit-content;
+  }
+
+  .site-footer-new-links :global(.site-footer-new-social-link:hover),
+  .site-footer-new-links :global(.site-footer-new-social-link:focus-visible) {
+    color: var(--ds-text);
+  }
+
+  .site-footer-new-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    margin: 0 calc(clamp(1.4rem, 4vw, 4rem) * -1);
+    padding: 0.9rem clamp(1.4rem, 4vw, 4rem) 1rem;
+    border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+    background:
+      linear-gradient(180deg, rgba(6, 7, 10, 0.78), rgba(5, 6, 8, 0.98)),
+      var(--ds-background);
+    color: rgba(231, 235, 242, 0.34);
+  }
+
+  .site-footer-new-bottom p {
+    margin: 0;
+    font-size: var(--ds-type-label);
+    line-height: 1.4;
+  }
+
+  .site-footer-wordmark {
+    display: block;
+    width: 100%;
+    height: clamp(6rem, 13vw, 15.2rem);
+    margin: clamp(0.25rem, 2.6vw, 2rem) 0 clamp(-3rem, -2.6vw, -1.4rem);
+    overflow: visible;
+    color: rgba(231, 235, 242, 0.105);
+    font-family: var(--font-family-display);
+    font-size: clamp(7.5rem, 18vw, 22rem);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.085em;
+    line-height: 0.72;
+    white-space: nowrap;
+    transform: translate(-0.08em, -0.06em) scaleX(1.08);
+    transform-origin: left bottom;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (max-width: 48rem) {
+    .site-footer-section {
+      width: calc(100vw - (var(--ds-mobile-content-gutter) * 2));
+    }
+
+    .site-footer-new-inner {
+      min-height: auto;
+      gap: 4.25rem;
+      padding: 3.8rem 1.2rem 0;
+    }
+
+    .site-footer-new-main {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: start;
+    }
+
+    .site-footer-new-main h2 {
+      font-size: clamp(2.25rem, 8.4vw, 3.35rem);
+    }
+
+    .site-footer-new-main-lower {
+      justify-self: start;
+      max-width: none;
+      padding-bottom: 0;
+    }
+
+    .site-footer-new-main-lower p {
+      max-width: none;
+    }
+
+    .site-footer-new-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.35rem 1.5rem;
+    }
+
+    .site-footer-new-link-group {
+      gap: 0.82rem;
+    }
+
+    .site-footer-new-link-group--services {
+      grid-column: 1 / -1;
+    }
+
+    .site-footer-new-bottom {
+      display: grid;
+      gap: 0.5rem;
+      margin-inline: -1.2rem;
+      padding: 0.9rem 1.2rem 1rem;
+    }
+
+    .site-footer-wordmark {
+      height: clamp(5.35rem, 22vw, 7.1rem);
+      margin: 1.25rem 0 -2.85rem;
+      font-size: clamp(5.75rem, 25vw, 9.6rem);
+      transform: translate(-0.09em, -0.1em) scaleX(1.08);
+    }
+  }
+</style>

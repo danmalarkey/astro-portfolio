@@ -1,0 +1,421 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import HomeFooter from '../../components/HomeFooter.astro';
+import Button from '../../components/Button.astro';
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const mailParams = new URLSearchParams();
+mailParams.set('subject', '[Operating model] Advisory inquiry');
+mailParams.set('body', `Hi Dan,\n\nI'm reaching out about operating model support and would like to talk through what we are building.\n\nContext:\n- Team/company:\n- Product or system:\n- Where the work is drifting or fragmenting:\n- Desired engagement shape:\n\nThanks,`);
+const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
+
+const modelLayers = [
+  {
+    title: 'Intent',
+    text: 'What the business and product are trying to make true, and why it matters now.'
+  },
+  {
+    title: 'Concepts',
+    text: 'The core objects, relationships, terms, rules, and constraints the product depends on.'
+  },
+  {
+    title: 'Activities',
+    text: 'The real work people are trying to accomplish, not just the sequence of screens they touch.'
+  },
+  {
+    title: 'Behavior',
+    text: 'How the system responds, enforces rules, handles exceptions, and earns trust over time.'
+  },
+  {
+    title: 'Expression',
+    text: 'How the interface, language, patterns, and implementation make the underlying model visible.'
+  }
+];
+
+const driftPatterns = [
+  {
+    title: 'Competing concepts',
+    text: 'The same product object means different things in different parts of the system.'
+  },
+  {
+    title: 'Workflow mismatch',
+    text: 'The product asks people to work in a way that does not match the actual activity.'
+  },
+  {
+    title: 'Behavior drift',
+    text: 'Similar actions create different outcomes, rules, or expectations across the experience.'
+  },
+  {
+    title: 'Interface overpromise',
+    text: 'The UI implies a system behavior that the product, data, or implementation cannot support.'
+  }
+];
+
+const supportAreas = [
+  'Frame the product model before the team locks into screens.',
+  'Clarify core concepts, workflows, decision rights, and system behavior.',
+  'Connect UX patterns to implementation constraints and product economics.',
+  'Catch drift early enough that it does not become rework, QA ambiguity, or maintenance cost.'
+];
+---
+
+<Layout
+  title="Operating Model | Dan Malarkey"
+  description="Operating model support for product teams that need stronger conceptual integrity, clearer workflows, and more coherent product execution."
+>
+  <Header />
+  <main class="operating-model-page">
+    <section class="operating-model-hero" aria-labelledby="operating-model-title" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys operating-model-hero-grid">
+        <div class="operating-model-hero-copy gc-start-2 gc-span-13" data-motion-item>
+          <p class="operating-model-kicker">Operating model</p>
+          <h1 id="operating-model-title">Coherent product work from strategy to shipped behavior.</h1>
+        </div>
+        <div class="operating-model-hero-support gc-start-17 gc-span-8" data-motion-item>
+          <p>
+            Strong product work holds together. The product logic, workflows, system behavior, interface patterns, and implementation choices should reinforce the same underlying model.
+          </p>
+          <div class="operating-model-actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href={withBase('/work-with/ai-enabled-product-systems')} variant="ghost">AI-enabled systems</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="operating-model-section operating-model-section--compact" aria-labelledby="operating-model-integrity" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
+          <p class="operating-model-kicker">Conceptual integrity</p>
+          <h2 id="operating-model-integrity">The product should behave like one system, not a set of disconnected decisions.</h2>
+        </div>
+        <div class="operating-model-note gc-start-15 gc-span-9" data-motion-item>
+          <p>
+            Working model: this page is intentionally a little more direct than the homepage. It is the place to keep expanding the operating language as the positioning gets sharper.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="operating-model-band" aria-labelledby="operating-model-layers" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="operating-model-section-head gc-start-2 gc-span-8" data-motion-item>
+          <p class="operating-model-kicker">The layers</p>
+          <h2 id="operating-model-layers">Alignment has to survive every layer of the work.</h2>
+        </div>
+        <div class="operating-model-layer-stack gc-start-12 gc-span-12" role="list" data-motion-item>
+          {modelLayers.map((layer, index) => (
+            <article class="operating-model-layer" role="listitem">
+              <p>{String(index + 1).padStart(2, '0')}</p>
+              <div>
+                <h3>{layer.title}</h3>
+                <span>{layer.text}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="operating-model-section" aria-labelledby="operating-model-drift" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="operating-model-section-head gc-start-2 gc-span-11" data-motion-item>
+          <p class="operating-model-kicker">What drift looks like</p>
+          <h2 id="operating-model-drift">Most product fragmentation starts as small, reasonable local decisions.</h2>
+          <p>
+            Those decisions become expensive when terminology, workflows, interface behavior, and implementation logic start moving in different directions.
+          </p>
+        </div>
+        <div class="operating-model-card-grid gc-start-2 gc-span-24" role="list" data-motion-item>
+          {driftPatterns.map((pattern) => (
+            <article class="operating-model-card" role="listitem">
+              <h3>{pattern.title}</h3>
+              <p>{pattern.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="operating-model-section operating-model-section--split" aria-labelledby="operating-model-support" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
+          <p class="operating-model-kicker">How I help</p>
+          <h2 id="operating-model-support">Design leadership as an operating discipline.</h2>
+        </div>
+        <div class="operating-model-support-list gc-start-15 gc-span-9" role="list" data-motion-item>
+          {supportAreas.map((area) => (
+            <p role="listitem">{area}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <HomeFooter
+      eyebrow="Operating model"
+      title="If the work needs to hold together across strategy, design, and build, let’s talk."
+      body="I’m available for select advisory, consulting, and fractional leadership engagements where stronger product judgment and clearer operating structure can move the work forward."
+    />
+  </main>
+</Layout>
+
+<style lang="scss">
+  .operating-model-page {
+    min-height: 100vh;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(99, 126, 188, 0.18), rgba(99, 126, 188, 0) 34rem),
+      radial-gradient(ellipse at 10% 18%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 22rem),
+      #050608;
+    color: rgba(245, 248, 255, 0.94);
+  }
+
+  .operating-model-hero {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: calc(86vh - 5rem);
+    min-height: calc(86dvh - 5rem);
+    padding: clamp(6.5rem, 12vw, 10rem) 0 clamp(4rem, 8vw, 7rem);
+  }
+
+  .operating-model-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(231, 235, 242, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(231, 235, 242, 0.03) 1px, transparent 1px);
+    background-size: 5rem 5rem;
+    mask-image: radial-gradient(ellipse at 55% 48%, #000, transparent 72%);
+    opacity: 0.48;
+  }
+
+  .operating-model-hero-grid,
+  .operating-model-section > .dm-grid-l,
+  .operating-model-band > .dm-grid-l {
+    position: relative;
+    z-index: 1;
+  }
+
+  .operating-model-hero-grid {
+    align-items: end;
+  }
+
+  .operating-model-hero-copy,
+  .operating-model-hero-support,
+  .operating-model-section-head,
+  .operating-model-note,
+  .operating-model-support-list {
+    display: grid;
+    gap: 1.1rem;
+    align-content: start;
+  }
+
+  .operating-model-kicker {
+    margin: 0;
+    color: rgba(176, 204, 255, 0.82);
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .operating-model-hero h1,
+  .operating-model-section h2,
+  .operating-model-band h2 {
+    margin: 0;
+    color: rgba(245, 248, 255, 0.97);
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .operating-model-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(4rem, 8.8vw, 8rem);
+    line-height: 0.9;
+  }
+
+  .operating-model-section h2,
+  .operating-model-band h2 {
+    font-size: clamp(2.3rem, 5vw, 4.7rem);
+    line-height: 0.97;
+  }
+
+  .operating-model-hero-support p,
+  .operating-model-section-head p:not(.operating-model-kicker),
+  .operating-model-note p,
+  .operating-model-support-list p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.58;
+  }
+
+  .operating-model-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .operating-model-section {
+    padding: clamp(4.5rem, 8vw, 7rem) 0;
+  }
+
+  .operating-model-section--compact {
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .operating-model-section--split {
+    padding-bottom: clamp(5rem, 9vw, 8rem);
+  }
+
+  .operating-model-note {
+    padding: 1.25rem;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .operating-model-band {
+    position: relative;
+    width: min(calc(100vw - 2rem), 84rem);
+    margin: clamp(1rem, 3vw, 2rem) auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 0;
+    overflow: hidden;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(ellipse at 76% 28%, rgba(98, 137, 230, 0.16), transparent 46%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+      #07090d;
+  }
+
+  .operating-model-layer-stack {
+    display: grid;
+    border-top: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  .operating-model-layer {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  .operating-model-layer p,
+  .operating-model-layer h3,
+  .operating-model-layer span {
+    margin: 0;
+  }
+
+  .operating-model-layer p {
+    color: rgba(231, 235, 242, 0.35);
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+  }
+
+  .operating-model-layer h3 {
+    color: rgba(245, 248, 255, 0.95);
+    font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+    line-height: 1.1;
+  }
+
+  .operating-model-layer span {
+    display: block;
+    margin-top: 0.45rem;
+    color: rgba(231, 235, 242, 0.64);
+    line-height: 1.5;
+  }
+
+  .operating-model-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .operating-model-card {
+    min-height: 15rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(231, 235, 242, 0.08);
+    border-radius: 1rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.014)),
+      rgba(9, 11, 16, 0.86);
+  }
+
+  .operating-model-card h3 {
+    max-width: 12ch;
+    margin: 0 0 1rem;
+    color: rgba(245, 248, 255, 0.96);
+    font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+
+  .operating-model-card p {
+    margin: 0;
+    color: rgba(231, 235, 242, 0.64);
+    line-height: 1.55;
+  }
+
+  .operating-model-support-list {
+    border-top: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  .operating-model-support-list p {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(231, 235, 242, 0.1);
+  }
+
+  @media (max-width: 78rem) {
+    .operating-model-hero-copy,
+    .operating-model-hero-support,
+    .operating-model-section-head,
+    .operating-model-note,
+    .operating-model-layer-stack,
+    .operating-model-card-grid,
+    .operating-model-support-list {
+      grid-column: 2 / span 24;
+    }
+
+    .operating-model-hero {
+      min-height: auto;
+      padding-top: 6rem;
+    }
+
+    .operating-model-hero-grid {
+      align-items: start;
+      row-gap: 1.8rem;
+    }
+
+    .operating-model-hero h1 {
+      max-width: 11ch;
+      font-size: clamp(3.25rem, 12vw, 6.2rem);
+    }
+
+    .operating-model-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .operating-model-card-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .operating-model-card {
+      min-height: 0;
+    }
+  }
+</style>

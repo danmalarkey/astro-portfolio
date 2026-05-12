@@ -1,7 +1,7 @@
 # Design System
 
 Version: 1.0  
-Last Updated: February 15, 2026
+Last Updated: May 11, 2026
 
 ## Purpose
 
@@ -23,7 +23,8 @@ Provide a single source of truth for visual decisions, interaction patterns, acc
 
 ## Color Tokens
 
-Defined in `src/styles/global.scss` under `:root`.
+Core site tokens are defined in `src/styles/global.scss` under `:root`.
+The landing-page language is captured as reusable foundation tokens in `src/styles/settings/_visual-language.scss`.
 
 - `--color-background-canvas`: Primary page background
 - `--color-background-surface`: Primary elevated surface
@@ -63,8 +64,23 @@ Use spacing tokens for margins, paddings, and gaps whenever practical.
 
 - Body font: Geist
 - Display/heading accent: Cal Sans
+- Font weight tokens: `--font-weight-light`, `--font-weight-regular`, `--font-weight-medium`, `--font-weight-semibold`, `--font-weight-bold`
 - Keep heading hierarchy semantic (`h1 -> h2 -> h3`)
 - Avoid fixed pixel typography; use REM and clamp patterns.
+
+## Visual Language Tokens
+
+The homepage establishes the current visual direction for the site. Treat these as foundation tokens, not page components.
+
+- `--ds-background`, `--ds-surface`, `--ds-surface-strong`
+- `--ds-border`, `--ds-border-soft`
+- `--ds-text`, `--ds-text-muted`, `--ds-text-soft`
+- `--ds-shell`, `--ds-outer-gap`, `--ds-section-gap`, `--ds-panel-gap`
+- `--ds-type-*` and `--ds-mobile-type-*`
+- `--ds-tracking-*`
+- `--ds-button-*`
+
+Use the `--ds-*` layer when carrying this language across remaining pages. Page-scoped aliases such as `--home-v3-*` may remain for compatibility, but new shared styling should reference the design-system tokens directly.
 
 ## Layout Rules
 

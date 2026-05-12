@@ -1,0 +1,53 @@
+:root {
+  --ds-background: #050608;
+  --ds-surface: rgba(255, 255, 255, 0.04);
+  --ds-surface-strong: rgba(255, 255, 255, 0.06);
+  --ds-border: rgba(231, 235, 242, 0.12);
+  --ds-border-soft: rgba(231, 235, 242, 0.08);
+  --ds-text: #e7ebf2;
+  --ds-text-muted: rgba(231, 235, 242, 0.72);
+  --ds-text-soft: rgba(231, 235, 242, 0.52);
+  --ds-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.32);
+
+  --ds-shell: min(84rem, calc(100vw - 3rem));
+  --ds-outer-gap: var(--spacing-sm);
+  --ds-section-gap: 2.5rem;
+  --ds-panel-gap: 1.5rem;
+
+  --ds-type-label: 0.75rem;
+  --ds-type-label-compact: 0.75rem;
+  --ds-type-body-xs: 0.9rem;
+  --ds-type-body-sm: 1rem;
+  --ds-type-body: 1rem;
+  --ds-type-body-lg: 1.125rem;
+  --ds-type-lead: clamp(1.125rem, 1.28vw, 1.25rem);
+  --ds-type-title-sm: clamp(1.5rem, 1.8vw, 1.9rem);
+  --ds-type-title-md: clamp(2.2rem, 3vw, 3.2rem);
+  --ds-type-title-lg: clamp(2.9rem, 4.15vw, 4.4rem);
+  --ds-type-title-xl: clamp(3.75rem, 6.2vw, 6.15rem);
+  --ds-type-section-title-compact: 2.25rem;
+  --ds-line-section-title-compact: 1.18;
+  --ds-tracking-label: 0.11em;
+  --ds-tracking-display: -0.025em;
+  --ds-tracking-title: -0.025em;
+  --ds-tracking-card: -0.018em;
+  --ds-tracking-text: 0;
+
+  --ds-button-padding-y: 0.98rem;
+  --ds-button-padding-y-compact: 0.64rem;
+  --ds-button-padding-x: 1.28rem;
+  --ds-button-padding-x-compact: 0.92rem;
+  --ds-button-radius: var(--radius-pill);
+
+  --ds-mobile-page-gutter: 1.25rem;
+  --ds-mobile-section-gutter: 1.5rem;
+  --ds-mobile-content-gutter: 1.25rem;
+  --ds-mobile-type-title-xl: clamp(3.25rem, 15vw, 4.25rem);
+  --ds-mobile-type-title-lg: clamp(2.35rem, 10vw, 3.25rem);
+  --ds-mobile-type-title-md: clamp(1.75rem, 7.8vw, 2.35rem);
+  --ds-mobile-type-title-sm: clamp(1.32rem, 5.5vw, 1.62rem);
+  --ds-mobile-type-body: 1rem;
+  --ds-mobile-type-body-sm: 0.9375rem;
+  --ds-mobile-type-label: 0.875rem;
+  --ds-mobile-type-label-decorative: 0.75rem;
+}
