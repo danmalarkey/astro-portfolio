@@ -1045,16 +1045,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
 
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="home-v3-engagement-rows gc-start-2 gc-span-22" role="list" aria-label="Ways to engage">
+        <div class="signal-row-list gc-start-2 gc-span-22" role="list" aria-label="Ways to engage">
           {engagementModels.map((item, index) => (
-            <article class="home-v3-engagement-row" role="listitem">
-              <span class="home-v3-engagement-row-stars" aria-hidden="true"></span>
-              <span class="home-v3-engagement-row-index">{String(index + 1).padStart(2, '0')}/</span>
-              <div class="home-v3-engagement-row-copy">
-                <h3 class="home-v3-card-title-text">{item.title}</h3>
-                <p class="home-v3-card-copy-text home-v3-card-copy-text--muted">{item.text}</p>
+            <article class="signal-row" role="listitem">
+              <span class="signal-row-stars" aria-hidden="true"></span>
+              <span class="signal-row-index">{String(index + 1).padStart(2, '0')}/</span>
+              <div class="signal-row-copy">
+                <h3 class="signal-row-title">{item.title}</h3>
+                <p class="signal-row-text">{item.text}</p>
               </div>
-              <span class="home-v3-engagement-row-fit">{item.fit}</span>
+              <span class="signal-row-badge">{item.fit}</span>
             </article>
           ))}
         </div>
@@ -1947,11 +1947,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-type-title-lg: var(--ds-type-title-lg);
     --home-v3-type-title-xl: var(--ds-type-title-xl);
     --home-v3-type-section-title-compact: var(--ds-type-section-title-compact);
+    --home-v3-type-card-title-compact: var(--ds-type-card-title-compact);
+    --home-v3-line-label: var(--ds-line-label);
+    --home-v3-line-card-title: var(--ds-line-card-title);
+    --home-v3-line-body: var(--ds-line-body);
+    --home-v3-line-body-compact: var(--ds-line-body-compact);
+    --home-v3-line-lead: var(--ds-line-lead);
     --home-v3-line-section-title-compact: var(--ds-line-section-title-compact);
     --home-v3-type-display: var(--home-v3-type-title-lg);
     --home-v3-type-hero: var(--home-v3-type-title-xl);
     --home-v3-type-card-title: var(--home-v3-type-title-sm);
-    --home-v3-type-card-title-compact: clamp(1.18rem, 1.45vw, 1.45rem);
     --home-v3-tracking-label: var(--ds-tracking-label);
     --home-v3-tracking-display: var(--ds-tracking-display);
     --home-v3-tracking-title: var(--ds-tracking-title);
@@ -3429,7 +3434,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: inherit;
     font-family: var(--font-family-body);
     font-size: var(--home-v3-type-card-title);
-    line-height: 1.02;
+    line-height: var(--home-v3-line-card-title);
     letter-spacing: var(--home-v3-tracking-card);
     font-weight: var(--font-weight-semibold);
     text-wrap: balance;
@@ -3444,7 +3449,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: inherit;
     font-size: var(--home-v3-type-body);
-    line-height: 1.6;
+    line-height: var(--home-v3-line-body);
     letter-spacing: var(--home-v3-tracking-text);
     text-wrap: pretty;
     max-width: 50ch;
@@ -6698,166 +6703,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
   }
 
-  .home-v3-engagement-rows {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .home-v3-engagement-row {
-    position: relative;
-    isolation: isolate;
-    display: grid;
-    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
-    align-items: start;
-    gap: var(--spacing-sm);
-    min-height: 0;
-    padding: var(--spacing-md) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-    transition: border-color 0.3s ease;
-  }
-
-  .home-v3-engagement-row::before,
-  .home-v3-engagement-row::after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-    opacity: 0;
-    transition:
-      opacity 0.34s ease,
-      transform 0.46s ease,
-      filter 0.46s ease;
-    z-index: 0;
-  }
-
-  .home-v3-engagement-row > .home-v3-engagement-row-stars {
-    position: absolute;
-    top: 54%;
-    left: 77%;
-    width: 17rem;
-    max-width: 26%;
-    height: 120%;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 18% 30%, rgba(232, 241, 255, 0.56) 0 0.72px, transparent 1.35px),
-      radial-gradient(circle at 32% 62%, rgba(214, 232, 255, 0.4) 0 0.64px, transparent 1.25px),
-      radial-gradient(circle at 54% 24%, rgba(232, 241, 255, 0.52) 0 0.7px, transparent 1.3px),
-      radial-gradient(circle at 68% 58%, rgba(214, 232, 255, 0.38) 0 0.62px, transparent 1.22px),
-      radial-gradient(circle at 84% 36%, rgba(232, 241, 255, 0.5) 0 0.68px, transparent 1.28px);
-    filter: blur(0.1px);
-    transform: translate3d(-50%, -50%, 0) scale(0.98);
-    transition:
-      opacity 0.34s ease,
-      transform 0.46s ease;
-  }
-
-  .home-v3-engagement-row:hover {
-    border-bottom-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .home-v3-engagement-row-index {
-    position: relative;
-    z-index: 1;
-    color: rgba(231, 235, 242, 0.52);
-    font-size: var(--home-v3-type-label);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
-    padding-top: 0.1rem;
-  }
-
-  .home-v3-engagement-row-copy {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: var(--spacing-xs);
-  }
-
-  .home-v3-engagement-row-fit {
-    position: relative;
-    z-index: 1;
-    align-self: start;
-    width: fit-content;
-    margin-top: 0.08rem;
-    padding: 0.5rem 0.78rem;
-    border-radius: 999rem;
-    border: 1px solid rgba(231, 235, 242, 0.12);
-    background: rgba(255, 255, 255, 0.03);
-    color: rgba(243, 246, 252, 0.88);
-    font-size: var(--home-v3-type-label);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
-    white-space: nowrap;
-    text-transform: uppercase;
-    transition:
-      border-color 0.3s ease,
-      background-color 0.3s ease,
-      color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .home-v3-engagement-row:hover .home-v3-engagement-row-fit {
-    border-color: rgba(231, 235, 242, 0.18);
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(248, 249, 252, 0.94);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  }
-
-  .home-v3-engagement-row::before {
-    top: 52%;
-    left: 76%;
-    width: 25rem;
-    max-width: 38%;
-    height: 170%;
-    transform: translate3d(-50%, -50%, 0) scale(0.96);
-    border-radius: 999px;
-    background:
-      radial-gradient(ellipse at 34% 42%, rgba(117, 170, 255, 0.16) 0%, rgba(117, 170, 255, 0.08) 20%, rgba(117, 170, 255, 0.02) 34%, rgba(117, 170, 255, 0) 62%),
-      radial-gradient(ellipse at 72% 54%, rgba(189, 225, 255, 0.12) 0%, rgba(189, 225, 255, 0.045) 18%, rgba(189, 225, 255, 0) 54%),
-      radial-gradient(ellipse at 56% 76%, rgba(135, 186, 255, 0.08) 0%, rgba(135, 186, 255, 0.026) 24%, rgba(135, 186, 255, 0) 48%);
-    filter: blur(34px);
-  }
-
-  .home-v3-engagement-row::after {
-    top: 56%;
-    left: 77%;
-    width: 18rem;
-    max-width: 28%;
-    height: 130%;
-    transform: translate3d(-50%, -50%, 0) scale(0.96);
-    border-radius: 999px;
-    background:
-      radial-gradient(ellipse at 42% 38%,
-        rgba(113, 177, 255, 0.24) 0%,
-        rgba(113, 177, 255, 0.12) 22%,
-        rgba(113, 177, 255, 0.045) 46%,
-        rgba(113, 177, 255, 0) 70%),
-      radial-gradient(ellipse at 58% 90%,
-        rgba(130, 188, 255, 0.12) 0%,
-        rgba(130, 188, 255, 0.05) 24%,
-        rgba(130, 188, 255, 0) 68%);
-    filter: blur(22px);
-  }
-
-  .home-v3-engagement-row:hover::before,
-  .home-v3-engagement-row:hover::after {
-    opacity: 0.78;
-    transform: translate3d(-50%, -50%, 0) scale(1);
-  }
-
-  .home-v3-engagement-row:hover > .home-v3-engagement-row-stars {
-    opacity: 0.72;
-    transform: translate3d(-50%, -50%, 0) scale(1);
-  }
-
-  .home-v3-engagement-row:hover::after {
-    filter: blur(24px);
-  }
-
   .home-v3-needs-panel {
     position: relative;
     overflow: hidden;
@@ -8077,8 +7922,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-proof-card-title {
     color: rgba(248, 248, 251, 0.98);
-    font-size: clamp(1.18rem, 1.36vw, 1.42rem);
-    line-height: 1.02;
+    font-size: var(--home-v3-type-card-title-compact);
+    line-height: var(--home-v3-line-card-title);
     max-width: none;
   }
 
@@ -8493,7 +8338,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 1.55rem 0 0;
     color: rgba(231, 235, 242, 0.64);
     font-size: var(--home-v3-type-lead);
-    line-height: 1.48;
+    line-height: var(--home-v3-line-lead);
     letter-spacing: var(--home-v3-tracking-text);
     text-wrap: pretty;
   }
@@ -8525,7 +8370,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-label-compact);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
   }
 
   .home-v3-operating-grid-copy {
@@ -8539,7 +8384,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.7);
     font-size: var(--home-v3-type-body-xs);
-    line-height: 1.56;
+    line-height: var(--home-v3-line-body-compact);
     text-wrap: pretty;
   }
 
@@ -8956,18 +8801,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-outcomes .case-rail .case-card {
       flex-basis: min(28rem, 42vw);
-    }
-
-    .home-v3-engagement-row {
-      grid-template-columns: 3rem minmax(0, 1fr);
-      align-items: start;
-      padding: 1.25rem 0;
-    }
-
-    .home-v3-engagement-row-fit {
-      grid-column: 2;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
     }
 
     .home-v3-needs-panel-grid {
@@ -9999,27 +9832,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-practice-text {
       line-height: 1.6;
-    }
-
-    .home-v3-engagement-row {
-      gap: 0.75rem;
-      min-height: 0;
-    }
-
-    .home-v3-engagement-row .home-v3-card-title-text {
-      font-size: var(--home-v3-mobile-type-title-sm);
-    }
-
-    .home-v3-engagement-row .home-v3-card-copy-text {
-      font-size: var(--home-v3-mobile-type-body-sm);
-    }
-
-    .home-v3-engagement-row-fit {
-      max-width: 100%;
-      font-size: 0.68rem;
-      line-height: 1;
-      overflow-wrap: anywhere;
-      white-space: nowrap;
     }
 
     .home-v3-engagement-availability {
