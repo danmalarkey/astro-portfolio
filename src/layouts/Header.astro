@@ -367,6 +367,7 @@ const serviceItems = [
       --site-header-top: var(--ds-mobile-page-gutter, 1.25rem);
       --site-header-inline: 0;
       --site-header-nav-padding: 0.72rem 0;
+      --site-header-mobile-margin: 0.75rem;
       --site-header-brand-width: 1.22rem;
       --site-header-brand-width-scrolled: 0.8rem;
     }
@@ -378,8 +379,9 @@ const serviceItems = [
       align-items: center;
       justify-content: space-between;
       gap: 0.65rem;
+      width: calc(100% - (var(--site-header-mobile-margin) * 2));
       padding: var(--site-header-nav-padding);
-      margin-inline: 0.75rem;
+      margin-inline: var(--site-header-mobile-margin);
       border-radius: 0;
       background: transparent;
       box-shadow: none;
@@ -434,6 +436,7 @@ const serviceItems = [
 
     .site-header-menu-toggle {
       display: inline-flex;
+      flex: 0 0 auto;
       align-items: center;
       justify-content: center;
       gap: 0.48rem;
