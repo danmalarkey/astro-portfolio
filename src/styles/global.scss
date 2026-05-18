@@ -615,9 +615,6 @@ main {
   padding: 0 var(--layout-gutter-desktop);
   font-size: var(--size-body-md);
   line-height: 1.6;
-    gap: var(--spacing-xl);
-    display: flex;
-    flex-direction: column;
 
   @media (max-width: 62rem) {
     width: 100%;

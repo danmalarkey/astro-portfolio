@@ -98,8 +98,8 @@ const currentYear = new Date().getFullYear();
 <style lang="scss">
   .site-footer-section {
     position: relative;
-    width: min(calc(100vw - var(--spacing-lg)), 84rem);
-    margin: clamp(3rem, 7vw, 6rem) auto var(--spacing-sm);
+    width: 100%;
+    margin: clamp(3rem, 7vw, 6rem) 0 var(--spacing-sm);
   }
 
   .site-footer-section::before {
@@ -120,6 +120,7 @@ const currentYear = new Date().getFullYear();
   .site-footer-new {
     position: relative;
     z-index: 1;
+    width: 100%;
     overflow: hidden;
     border: var(--size-border-thin) solid rgba(121, 154, 255, 0.12);
     border-radius: clamp(1.15rem, 2vw, 1.75rem);
@@ -166,7 +167,9 @@ const currentYear = new Date().getFullYear();
     z-index: 2;
     display: grid;
     gap: clamp(1.45rem, 5vw, 5.8rem);
+    width: min(calc(100vw - var(--spacing-lg)), 84rem);
     min-height: clamp(25rem, 32vw, 31rem);
+    margin: 0 auto;
     padding: clamp(3rem, 4.8vw, 4.5rem) clamp(1.4rem, 4vw, 4rem) 0;
   }
 
@@ -321,10 +324,11 @@ const currentYear = new Date().getFullYear();
 
   @media (max-width: 48rem) {
     .site-footer-section {
-      width: calc(100vw - (var(--ds-mobile-content-gutter) * 2));
+      width: 100%;
     }
 
     .site-footer-new-inner {
+      width: calc(100vw - (var(--ds-mobile-content-gutter) * 2));
       min-height: auto;
       gap: 4.25rem;
       padding: 3.8rem 1.2rem 0;
