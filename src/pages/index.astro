@@ -1049,7 +1049,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
           {engagementModels.map((item, index) => (
             <article class="signal-row" role="listitem">
               <span class="signal-row-stars" aria-hidden="true"></span>
-              <span class="signal-row-index">{String(index + 1).padStart(2, '0')}/</span>
+              <span class="signal-row-index">{String(index + 1).padStart(2, '0')}</span>
               <div class="signal-row-copy">
                 <h3 class="signal-row-title">{item.title}</h3>
                 <p class="signal-row-text">{item.text}</p>
@@ -8837,14 +8837,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3 .dm-grid-l.dm-grid-l--grid-sys {
-      padding-inline: var(--home-v3-mobile-content-gutter);
+      padding-inline: 0;
     }
 
     .home-v3-intro {
       display: block;
       height: auto;
       min-height: auto;
-      padding-top: var(--spacing-sm);
+      padding-top: 0;
       padding-bottom: 0;
     }
 
@@ -8859,9 +8859,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-hero {
-      height: auto;
-      min-height: auto;
-      padding-top: 3.15rem;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 0;
+    }
+
+    .home-v3-hero-layout {
+      padding: 0;
     }
 
     .home-v3-nav {
@@ -9287,6 +9294,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-actor-lane {
       min-height: 0;
+      gap: 1rem;
       padding: 1.14rem 1.1rem 0;
     }
 
@@ -9431,10 +9439,18 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-hero-frame {
-      min-height: calc(100vh - 8.4rem);
-      min-height: calc(100dvh - 8.4rem);
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
       padding: var(--spacing-sm);
-      border-radius: 1.5rem;
+      border-radius: 0;
+    }
+
+    .home-v3-window,
+    .home-v3-window::before,
+    .home-v3-window::after {
+      border-radius: 0;
     }
 
     .home-v3-window-core {
@@ -9791,14 +9807,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       grid-column: 1 / -1;
       grid-template-columns: none;
       grid-auto-flow: column;
-      grid-auto-columns: calc(100vw - (var(--home-v3-mobile-content-gutter) * 2));
+      grid-auto-columns: minmax(0, 100%);
       gap: 0.9rem;
-      margin-inline: calc(var(--home-v3-mobile-content-gutter) * -1);
-      padding-inline: var(--home-v3-mobile-content-gutter);
+      margin-inline: 0;
+      padding-inline: 0;
       overflow-x: auto;
       padding-bottom: 0.25rem;
       scroll-snap-type: x proximity;
-      scroll-padding-inline: var(--home-v3-mobile-content-gutter);
+      scroll-padding-inline: 0;
       scrollbar-width: none;
     }
 

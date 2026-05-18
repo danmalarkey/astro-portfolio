@@ -14,71 +14,156 @@ const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
 
 const modelLayers = [
   {
-    title: 'Intent',
-    text: 'What the business and product are trying to make true, and why it matters now.'
+    title: 'Business Intent',
+    text: 'What the organization is trying to make true, and why it matters now.',
+    focus: 'Clarity of direction and alignment on what matters.',
+    backgroundImage: '/images/op-model/business-intent-bg.png'
   },
   {
     title: 'Concepts',
-    text: 'The core objects, relationships, terms, rules, and constraints the product depends on.'
+    text: 'The core objects, relationships, rules, and constraints the product depends on.',
+    focus: 'Shared language, systems, rules, and understanding across teams.',
+    backgroundImage: '/images/op-model/concepts-bg.png'
   },
   {
     title: 'Activities',
-    text: 'The real work people are trying to accomplish, not just the sequence of screens they touch.'
+    text: 'The real work customers, operators, and teams are trying to accomplish.',
+    focus: 'Alignment around the real work people are trying to accomplish.',
+    backgroundImage: '/images/op-model/activities-bg.png'
+  },
+  {
+    title: 'Operations',
+    text: 'How workflows, responsibilities, and delivery models support the work.',
+    focus: 'Operational structures that support coherent delivery and scale.',
+    backgroundImage: '/images/op-model/operations-bg.png'
   },
   {
     title: 'Behavior',
-    text: 'How the system responds, enforces rules, handles exceptions, and earns trust over time.'
+    text: 'How the system responds, enforces rules, and builds trust over time.',
+    focus: 'Consistent expectations across workflows, decisions, and environments.',
+    backgroundImage: '/images/op-model/behavior-bg.png'
   },
   {
     title: 'Expression',
-    text: 'How the interface, language, patterns, and implementation make the underlying model visible.'
+    text: 'How the interface, language, patterns, and implementation make the model visible.',
+    focus: 'Interfaces and patterns that make complex systems understandable.',
+    backgroundImage: '/images/op-model/expression-bg.png'
   }
 ];
 
-const driftPatterns = [
+const stuckPatterns = [
   {
-    title: 'Competing concepts',
-    text: 'The same product object means different things in different parts of the system.'
+    icon: 'intent',
+    title: 'Intent gets diluted',
+    text: 'Business priorities lose coherence through delivery.'
   },
   {
-    title: 'Workflow mismatch',
-    text: 'The product asks people to work in a way that does not match the actual activity.'
+    icon: 'models',
+    title: 'Teams operate from different models',
+    text: 'The work looks aligned before the thinking is.'
   },
   {
-    title: 'Behavior drift',
-    text: 'Similar actions create different outcomes, rules, or expectations across the experience.'
+    icon: 'direction',
+    title: 'Direction outpaces understanding',
+    text: 'Product strategy evolves faster than organizational alignment.'
   },
   {
-    title: 'Interface overpromise',
-    text: 'The UI implies a system behavior that the product, data, or implementation cannot support.'
+    icon: 'workflow',
+    title: 'Workflows mirror the org chart',
+    text: 'Internal structure shapes the experience more than real user activity.'
+  },
+  {
+    icon: 'behavior',
+    title: 'Behavior becomes inconsistent',
+    text: 'Similar interactions produce different expectations and outcomes.'
+  },
+  {
+    icon: 'local',
+    title: 'Teams optimize locally',
+    text: 'Individual decisions improve delivery while weakening overall coherence.'
   }
 ];
 
 const supportAreas = [
-  'Frame the product model before the team locks into screens.',
-  'Clarify core concepts, workflows, decision rights, and system behavior.',
-  'Connect UX patterns to implementation constraints and product economics.',
-  'Catch drift early enough that it does not become rework, QA ambiguity, or maintenance cost.'
+  {
+    title: 'Strategic priorities stay visible',
+    text: 'Business goals continue shaping decisions beyond planning conversations.'
+  },
+  {
+    title: 'Operational friction decreases',
+    text: 'Organizations spend less energy compensating for conflicting assumptions and disconnected workflows.'
+  },
+  {
+    title: 'Decisions become easier to sustain',
+    text: 'Leaders can make changes without destabilizing the broader operating environment.'
+  },
+  {
+    title: 'Products behave more consistently',
+    text: 'Customer experience, operational capability, and implementation move in the same direction.'
+  },
+  {
+    title: 'Organizations gain clearer momentum',
+    text: 'Direction becomes easier to maintain as products, systems, and responsibilities evolve.'
+  }
+];
+
+const outputs = [
+  {
+    title: 'Product model maps',
+    text: 'Define concepts, relationships, rules, and business logic.'
+  },
+  {
+    title: 'Workflow and activity models',
+    text: 'Clarify how work actually moves through the organization.'
+  },
+  {
+    title: 'Operating principles',
+    text: 'Connect strategy to delivery decisions teams can act on.'
+  },
+  {
+    title: 'Decision frameworks',
+    text: 'Support product, design, engineering, and operational tradeoffs.'
+  },
+  {
+    title: 'UX system patterns',
+    text: 'Tie interface patterns to implementation and operational realities.'
+  },
+  {
+    title: 'Operating standards',
+    text: 'Establish standards for terminology, behavior, accessibility, and quality.'
+  },
+  {
+    title: 'Alignment artifacts',
+    text: 'Reduce organizational drift over time.'
+  }
 ];
 ---
 
 <Layout
   title="Operating Model | Dan Malarkey"
-  description="Operating model support for product teams that need stronger conceptual integrity, clearer workflows, and more coherent product execution."
+  description="Operating model support for organizations that need stronger business clarity, product coherence, and aligned product execution."
 >
   <Header />
   <main class="operating-model-page">
-    <section class="operating-model-hero" aria-labelledby="operating-model-title" data-motion-reveal>
+    <section class="operating-model-hero" aria-labelledby="operating-model-title" data-operating-model-parallax>
+      <div class="operating-model-hero-rays" aria-hidden="true"></div>
+      <div class="operating-model-hero-light" aria-hidden="true"></div>
+      <div class="operating-model-hero-blueprint" aria-hidden="true">
+        <img
+          src={withBase('/images/home-v3/blueprint/operating-model-blueprint-transparent.png')}
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+      </div>
       <div class="dm-grid-l dm-grid-l--grid-sys operating-model-hero-grid">
-        <div class="operating-model-hero-copy gc-start-2 gc-span-13" data-motion-item>
+        <div class="operating-model-hero-copy gc-start-2 gc-span-13">
           <p class="operating-model-kicker">Operating model</p>
-          <h1 id="operating-model-title">Coherent product work from strategy to shipped behavior.</h1>
-        </div>
-        <div class="operating-model-hero-support gc-start-17 gc-span-8" data-motion-item>
+          <h1 id="operating-model-title">Products reflect the organizations behind them.</h1>
           <p>
-            Strong product work holds together. The product logic, workflows, system behavior, interface patterns, and implementation choices should reinforce the same underlying model.
+            Strong product work reflects aligned business intent, operational capability, and shared understanding. Product logic, workflows, system behavior, interface patterns, and implementation decisions should reinforce the same underlying model.
           </p>
-          <div class="operating-model-actions">
+          <div class="operating-model-actions" aria-label="Operating model actions">
             <Button href={mailto}>Start a conversation</Button>
             <Button href={withBase('/work-with/ai-enabled-product-systems')} variant="ghost">AI-enabled systems</Button>
           </div>
@@ -86,33 +171,98 @@ const supportAreas = [
       </div>
     </section>
 
-    <section class="operating-model-section operating-model-section--compact" aria-labelledby="operating-model-integrity" data-motion-reveal>
+    <section class="operating-model-section operating-model-section--signal" aria-labelledby="operating-model-signal" data-motion-reveal>
+      <div class="operating-model-signal-visual" aria-hidden="true">
+        <img
+          src={withBase('/images/op-model/noise-to-sig.png')}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
-          <p class="operating-model-kicker">Conceptual integrity</p>
-          <h2 id="operating-model-integrity">The product should behave like one system, not a set of disconnected decisions.</h2>
-        </div>
-        <div class="operating-model-note gc-start-15 gc-span-9" data-motion-item>
+        <div class="operating-model-signal-copy gc-start-10 gc-span-11" data-motion-item>
+          <p class="operating-model-kicker">Operating clarity</p>
+          <h2 id="operating-model-signal">Separate the signal from the noise.</h2>
           <p>
-            Working model: this page is intentionally a little more direct than the homepage. It is the place to keep expanding the operating language as the positioning gets sharper.
+            Strong operating models help organizations distinguish between short-term delivery pressure and the decisions that fundamentally shape operational success, product vision, and team alignment.
+          </p>
+          <p>
+            The work goes beyond interfaces. It is aligning business goals, user activities, behaviors, workflows, and constraints that shape the entire journey.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="operating-model-band" aria-labelledby="operating-model-layers" data-motion-reveal>
+    <section class="operating-model-section operating-model-section--stuck" aria-labelledby="operating-model-stuck" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-8" data-motion-item>
-          <p class="operating-model-kicker">The layers</p>
-          <h2 id="operating-model-layers">Alignment has to survive every layer of the work.</h2>
+        <div class="operating-model-section-head operating-model-stuck-head gc-start-2 gc-span-12" data-motion-item>
+          <p class="operating-model-kicker">Where alignment starts to break down</p>
+          <h2 id="operating-model-stuck">Drift starts long before the interface.</h2>
         </div>
-        <div class="operating-model-layer-stack gc-start-12 gc-span-12" role="list" data-motion-item>
-          {modelLayers.map((layer, index) => (
-            <article class="operating-model-layer" role="listitem">
-              <p>{String(index + 1).padStart(2, '0')}</p>
+        <p class="operating-model-thesis gc-start-15 gc-span-10" data-motion-item>
+          Product fragmentation rarely happens all at once. It usually begins earlier—when business goals, operating assumptions, user activities, and delivery decisions start moving in different directions. By the time it reaches the interface, the underlying model is already under strain.
+        </p>
+        <div class="operating-model-stuck-list gc-start-2 gc-span-24" role="list" aria-label="Where operating model work gets stuck" data-motion-item>
+          {stuckPatterns.map((pattern) => (
+            <article class="operating-model-stuck-item" role="listitem">
+              <div class="operating-model-drift-icon" aria-hidden="true">
+                {pattern.icon === 'intent' && (
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <path d="M24 6v36" />
+                    <path d="M6 24h36" />
+                    <circle cx="24" cy="24" r="6" />
+                    <circle class="operating-model-drift-icon-fill" cx="24" cy="24" r="2" />
+                  </svg>
+                )}
+                {pattern.icon === 'models' && (
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <rect x="8" y="14" width="14" height="14" />
+                    <rect x="26" y="20" width="14" height="14" />
+                    <path d="M22 21h4" />
+                    <path d="M15 28v8h18v-2" />
+                  </svg>
+                )}
+                {pattern.icon === 'direction' && (
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <path d="M7 34l10-12 8 8 16-20" />
+                    <path d="M34 10h7v7" />
+                  </svg>
+                )}
+                {pattern.icon === 'workflow' && (
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <rect x="19" y="6" width="10" height="10" />
+                    <rect x="6" y="32" width="10" height="10" />
+                    <rect x="19" y="32" width="10" height="10" />
+                    <rect x="32" y="32" width="10" height="10" />
+                    <path d="M24 16v8M11 32v-8h26v8M24 24v8" />
+                  </svg>
+                )}
+                {pattern.icon === 'behavior' && (
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <path d="M24 7a17 17 0 0 1 16.2 11.8" />
+                    <path d="M41 24a17 17 0 0 1-10 15.5" stroke-dasharray="5 5" />
+                    <path d="M24 41A17 17 0 0 1 7.8 29.2" />
+                    <path d="M7 24A17 17 0 0 1 17 8.5" stroke-dasharray="5 5" />
+                  </svg>
+                )}
+                {pattern.icon === 'local' && (
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <circle class="operating-model-drift-icon-fill" cx="12" cy="12" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="24" cy="12" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="36" cy="12" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="12" cy="24" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="24" cy="24" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="36" cy="24" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="12" cy="36" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="24" cy="36" r="2.5" />
+                    <circle class="operating-model-drift-icon-fill" cx="36" cy="36" r="2.5" />
+                  </svg>
+                )}
+              </div>
               <div>
-                <h3>{layer.title}</h3>
-                <span>{layer.text}</span>
+                <h3>{pattern.title}</h3>
+                <p>{pattern.text}</p>
               </div>
             </article>
           ))}
@@ -120,22 +270,81 @@ const supportAreas = [
       </div>
     </section>
 
-    <section class="operating-model-section" aria-labelledby="operating-model-drift" data-motion-reveal>
+    <section class="operating-model-band" aria-labelledby="operating-model-layers" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-11" data-motion-item>
-          <p class="operating-model-kicker">What drift looks like</p>
-          <h2 id="operating-model-drift">Most product fragmentation starts as small, reasonable local decisions.</h2>
-          <p>
-            Those decisions become expensive when terminology, workflows, interface behavior, and implementation logic start moving in different directions.
-          </p>
+        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
+          <p class="operating-model-kicker">Maintain trajectory</p>
+          <h2 id="operating-model-layers">Hold alignment through execution.</h2>
         </div>
-        <div class="operating-model-card-grid gc-start-2 gc-span-24" role="list" data-motion-item>
-          {driftPatterns.map((pattern) => (
-            <article class="operating-model-card" role="listitem">
-              <h3>{pattern.title}</h3>
-              <p>{pattern.text}</p>
-            </article>
-          ))}
+        <p class="operating-model-layer-thesis gc-start-15 gc-span-9" data-motion-item>
+          Every decision shapes the path forward. These six dimensions must stay aligned to keep the organization moving in the right direction.
+        </p>
+        <div
+          class="operating-model-layer-system gc-start-2 gc-span-24"
+          data-operating-model-layers
+          data-active-layer="0"
+          data-motion-item
+        >
+          <div class="operating-model-layer-track" role="tablist" aria-label="Operating model layers">
+            {modelLayers.map((layer, index) => (
+              <button
+                class="operating-model-layer-step"
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`operating-model-layer-panel-${index}`}
+                id={`operating-model-layer-tab-${index}`}
+                data-layer-index={index}
+                data-layer-bg={withBase(layer.backgroundImage)}
+              >
+                <span class="operating-model-layer-step-node" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <circle class="operating-model-layer-step-node-track" cx="12" cy="12" r="8" />
+                    <circle class="operating-model-layer-step-node-progress" cx="12" cy="12" r="8" pathLength="1" />
+                  </svg>
+                </span>
+                <span class="operating-model-layer-step-index">{String(index + 1).padStart(2, '0')}</span>
+                <span class="operating-model-layer-step-title">{layer.title}</span>
+              </button>
+            ))}
+          </div>
+          <div class="operating-model-layer-card">
+            <div class="operating-model-layer-backgrounds" aria-hidden="true">
+              {modelLayers.map((layer, index) => (
+                <div
+                  class="operating-model-layer-background"
+                  data-layer-background={index}
+                  aria-hidden={index === 0 ? 'false' : 'true'}
+                  style={`background-image: url('${withBase(layer.backgroundImage)}')`}
+                ></div>
+              ))}
+            </div>
+            <div class="operating-model-layer-panels">
+              {modelLayers.map((layer, index) => (
+                <article
+                  class="operating-model-layer-panel"
+                  id={`operating-model-layer-panel-${index}`}
+                  role="tabpanel"
+                  aria-labelledby={`operating-model-layer-tab-${index}`}
+                  data-layer-panel={index}
+                  aria-hidden={index === 0 ? 'false' : 'true'}
+                >
+                  <div class="operating-model-layer-panel-top">
+                    <span class="operating-model-layer-panel-index">{String(index + 1).padStart(2, '0')}</span>
+                    <h3>{layer.title}</h3>
+                    <p>{layer.text}</p>
+                  </div>
+                  {'focus' in layer && (
+                    <div class="operating-model-layer-focus">
+                      <span>Focus</span>
+                      {layer.focus && <p>{layer.focus}</p>}
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+            <div class="operating-model-layer-card-visual" aria-hidden="true"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -143,12 +352,40 @@ const supportAreas = [
     <section class="operating-model-section operating-model-section--split" aria-labelledby="operating-model-support" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
-          <p class="operating-model-kicker">How I help</p>
-          <h2 id="operating-model-support">Design leadership as an operating discipline.</h2>
+          <p class="operating-model-kicker">Clarity improves</p>
+          <h2 id="operating-model-support">When organizations maintain direction.</h2>
         </div>
-        <div class="operating-model-support-list gc-start-15 gc-span-9" role="list" data-motion-item>
-          {supportAreas.map((area) => (
-            <p role="listitem">{area}</p>
+        <p class="operating-model-clarity-thesis gc-start-15 gc-span-9" data-motion-item>
+          Organizations operate more effectively when business priorities, operational realities, product behavior, and decision-making continue reinforcing the same direction over time.
+        </p>
+        <div class="operating-model-clarity-grid gc-start-2 gc-span-24" role="list" data-motion-item>
+          {supportAreas.map((area, index) => (
+            <article class="operating-model-clarity-card" role="listitem">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{area.title}</h3>
+              <p>{area.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="operating-model-band" aria-labelledby="operating-model-outputs" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="operating-model-band-copy gc-start-2 gc-span-9" data-motion-item>
+          <p class="operating-model-kicker">Outputs</p>
+          <h2 id="operating-model-outputs">The work becomes useful when teams can make better decisions with it.</h2>
+        </div>
+        <p class="operating-model-band-thesis gc-start-15 gc-span-8" data-motion-item>
+          The output is not theater. It is a practical operating layer teams can use when executive priorities, product direction, design patterns, and implementation choices need to stay connected.
+        </p>
+        <div class="operating-model-output-list gc-start-2 gc-span-24" role="list" data-motion-item>
+          {outputs.map((output, index) => (
+            <article class="operating-model-output-card" role="listitem">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{output.title}</h3>
+              <p>{output.text}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -156,73 +393,155 @@ const supportAreas = [
 
     <HomeFooter
       eyebrow="Operating model"
-      title="If the work needs to hold together across strategy, design, and build, let’s talk."
-      body="I’m available for select advisory, consulting, and fractional leadership engagements where stronger product judgment and clearer operating structure can move the work forward."
+      title="If the organization behind the product needs to become more coherent, let’s talk."
+      body="I’m available for select advisory, consulting, and fractional leadership engagements where stronger organizational clarity, product thinking, and operating structure can move the work forward."
     />
   </main>
 </Layout>
 
 <style lang="scss">
   .operating-model-page {
+    --operating-model-bg: var(--ds-background);
+    --operating-model-surface: var(--ds-surface);
+    --operating-model-surface-strong: var(--ds-surface-strong);
+    --operating-model-border: var(--ds-border);
+    --operating-model-border-soft: var(--ds-border-soft);
+    --operating-model-text: var(--ds-text);
+    --operating-model-text-muted: var(--ds-text-muted);
+    --operating-model-text-soft: var(--ds-text-soft);
+    --operating-model-accent: rgba(176, 204, 255, 0.88);
+    --operating-model-orbit-accent: rgba(191, 215, 255, 0.98);
+    --operating-model-warm: rgba(255, 244, 170, 0.9);
+    --operating-model-glow: 111, 162, 232;
+    --operating-model-orbit-glow: 111, 162, 232;
+    --operating-model-layer-crossfade-duration: 880ms;
+    --operating-model-layer-exit-duration: 540ms;
+    --operating-model-layer-enter-delay: 210ms;
+
     min-height: 100vh;
+    padding-inline: 0;
     overflow: hidden;
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(99, 126, 188, 0.18), rgba(99, 126, 188, 0) 34rem),
-      radial-gradient(ellipse at 10% 18%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 22rem),
-      #050608;
-    color: rgba(245, 248, 255, 0.94);
+      radial-gradient(ellipse at 82% 4%, rgba(94, 122, 188, 0.2), rgba(94, 122, 188, 0) 34rem),
+      radial-gradient(ellipse at 14% 8%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 24rem),
+      var(--operating-model-bg);
+    color: var(--operating-model-text);
   }
 
   .operating-model-hero {
+    --operating-model-parallax-soft: 0rem;
+    --operating-model-parallax-medium: 0rem;
+    --operating-model-parallax-strong: 0rem;
+    --operating-model-parallax-blueprint-x: 0rem;
+
     position: relative;
+    isolation: isolate;
     display: grid;
-    align-items: end;
-    min-height: calc(86vh - 5rem);
-    min-height: calc(86dvh - 5rem);
-    padding: clamp(6.5rem, 12vw, 10rem) 0 clamp(4rem, 8vw, 7rem);
+    align-items: center;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(5rem, 9vw, 8rem);
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--operating-model-bg) 0%, var(--operating-model-bg) 46%, rgba(7, 16, 27, 0.82) 100%);
   }
 
-  .operating-model-hero::before {
-    content: '';
+  .operating-model-hero-light {
     position: absolute;
-    inset: 0;
+    top: 8%;
+    right: -40%;
+    z-index: 0;
+    width: min(118vw, 84rem);
+    height: min(84vh, 48rem);
+    border-radius: var(--radius-pill);
     pointer-events: none;
-    background-image:
-      linear-gradient(rgba(231, 235, 242, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(231, 235, 242, 0.03) 1px, transparent 1px);
-    background-size: 5rem 5rem;
-    mask-image: radial-gradient(ellipse at 55% 48%, #000, transparent 72%);
-    opacity: 0.48;
+    background:
+      radial-gradient(
+        ellipse at 62% 42%,
+        rgba(191, 215, 255, 0.28) 0%,
+        rgba(var(--operating-model-glow), 0.15) 28%,
+        rgba(var(--operating-model-glow), 0.06) 52%,
+        transparent 76%
+      );
+    filter: blur(34px);
+    opacity: 0.78;
+    transform: translate3d(0, var(--operating-model-parallax-soft), 0) rotate(-35deg);
+  }
+
+  .operating-model-hero-rays {
+    --operating-model-rays-opacity: 0.42;
+
+    position: absolute;
+    top: -8rem;
+    left: -10rem;
+    z-index: 0;
+    width: min(100rem, 118vw);
+    height: 78rem;
+    transform: translate3d(0, var(--operating-model-parallax-medium), 0) rotate(-22deg);
+    transform-origin: top left;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.18) 13%, rgba(255, 255, 255, 0.045) 15.5%, transparent 19%),
+      linear-gradient(90deg, transparent 18%, rgba(176, 204, 255, 0.14) 21%, rgba(176, 204, 255, 0.04) 23.5%, transparent 28%),
+      linear-gradient(90deg, transparent 29%, rgba(255, 255, 255, 0.1) 32%, rgba(255, 255, 255, 0.03) 34.5%, transparent 39%);
+    filter: blur(8px);
+    opacity: var(--operating-model-rays-opacity);
+    mix-blend-mode: screen;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.44) 32%, rgba(0, 0, 0, 0.14) 60%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
+    animation: operating-model-rays-enter 1400ms ease 280ms both;
+  }
+
+  .operating-model-hero-blueprint {
+    position: absolute;
+    top: 50%;
+    right: -12%;
+    z-index: 1;
+    width: min(46vw, 36rem);
+    pointer-events: none;
+    opacity: 0.16;
+    transform: translate3d(var(--operating-model-parallax-blueprint-x), calc(-48% + var(--operating-model-parallax-strong)), 0) rotate(-8deg);
+    filter: drop-shadow(0 0 3rem rgba(var(--operating-model-glow), 0.12));
+    mix-blend-mode: screen;
+  }
+
+  .operating-model-hero-blueprint img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .operating-model-hero-grid,
   .operating-model-section > .dm-grid-l,
   .operating-model-band > .dm-grid-l {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .operating-model-hero-grid {
-    align-items: end;
+    min-height: inherit;
+    align-items: center;
   }
 
   .operating-model-hero-copy,
-  .operating-model-hero-support,
   .operating-model-section-head,
-  .operating-model-note,
-  .operating-model-support-list {
+  .operating-model-band-copy {
     display: grid;
-    gap: 1.1rem;
+    gap: var(--ds-panel-gap);
     align-content: start;
+  }
+
+  .operating-model-hero-copy {
+    position: relative;
+    z-index: 4;
+    animation: operating-model-hero-copy-enter 820ms ease 420ms both;
   }
 
   .operating-model-kicker {
     margin: 0;
-    color: rgba(176, 204, 255, 0.82);
-    font-size: 0.72rem;
+    color: var(--operating-model-accent);
+    font-size: var(--ds-type-label);
     font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.14em;
-    line-height: 1;
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
     text-transform: uppercase;
   }
 
@@ -230,192 +549,1012 @@ const supportAreas = [
   .operating-model-section h2,
   .operating-model-band h2 {
     margin: 0;
-    color: rgba(245, 248, 255, 0.97);
     font-family: var(--font-family-display);
     font-weight: var(--font-weight-medium);
-    letter-spacing: -0.045em;
+    letter-spacing: var(--ds-tracking-title);
     text-wrap: balance;
   }
 
   .operating-model-hero h1 {
     max-width: 12ch;
-    font-size: clamp(4rem, 8.8vw, 8rem);
-    line-height: 0.9;
+    color: var(--operating-model-text);
+    font-size: var(--ds-type-title-xl);
+    line-height: var(--ds-line-card-title);
   }
 
   .operating-model-section h2,
   .operating-model-band h2 {
-    font-size: clamp(2.3rem, 5vw, 4.7rem);
-    line-height: 0.97;
+    color: rgba(245, 248, 255, 0.96);
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
   }
 
-  .operating-model-hero-support p,
-  .operating-model-section-head p:not(.operating-model-kicker),
-  .operating-model-note p,
-  .operating-model-support-list p {
+  .operating-model-hero-copy > p:not(.operating-model-kicker),
+  .operating-model-section-head > p:not(.operating-model-kicker),
+  .operating-model-thesis,
+  .operating-model-layer-thesis,
+  .operating-model-clarity-thesis,
+  .operating-model-band-thesis {
+    max-width: 43rem;
     margin: 0;
-    color: rgba(231, 235, 242, 0.68);
-    font-size: clamp(1rem, 1.35vw, 1.2rem);
-    line-height: 1.58;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    text-wrap: pretty;
+  }
+
+  .operating-model-thesis,
+  .operating-model-layer-thesis,
+  .operating-model-clarity-thesis,
+  .operating-model-band-thesis {
+    align-self: center;
   }
 
   .operating-model-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: calc(var(--spacing-xs) * 1.5);
+    margin-top: calc(var(--spacing-xs) * 0.25);
   }
 
   .operating-model-section {
     padding: clamp(4.5rem, 8vw, 7rem) 0;
   }
 
-  .operating-model-section--compact {
-    padding-top: clamp(2rem, 4vw, 3.5rem);
+  .operating-model-section--stuck > .dm-grid-l,
+  .operating-model-band > .dm-grid-l {
+    row-gap: var(--spacing-2xl);
   }
 
   .operating-model-section--split {
-    padding-bottom: clamp(5rem, 9vw, 8rem);
+    padding-bottom: clamp(4.5rem, 8vw, 7rem);
   }
 
-  .operating-model-note {
-    padding: 1.25rem;
-    border: 1px solid rgba(231, 235, 242, 0.08);
-    border-radius: 0.9rem;
-    background: rgba(255, 255, 255, 0.025);
+  .operating-model-stuck-head h2 {
+    max-width: 15ch;
+  }
+
+  .operating-model-stuck-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--spacing-xl);
+    margin-top: var(--spacing-sm);
+  }
+
+  .operating-model-stuck-item {
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    align-content: start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) 0;
+    border-bottom: var(--size-border-thin) solid var(--operating-model-border-soft);
+  }
+
+  .operating-model-drift-icon {
+    display: grid;
+    place-items: center;
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
+    color: var(--operating-model-accent);
+    opacity: 0.78;
+  }
+
+  .operating-model-drift-icon svg {
+    display: block;
+    width: 2.25rem;
+    height: 2.25rem;
+    overflow: visible;
+  }
+
+  .operating-model-drift-icon path,
+  .operating-model-drift-icon rect,
+  .operating-model-drift-icon circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .operating-model-drift-icon .operating-model-drift-icon-fill {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .operating-model-output-card span {
+    margin: 0;
+    color: var(--operating-model-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+  }
+
+  .operating-model-stuck-item h3 {
+    margin: 0;
+    color: var(--operating-model-text);
+    font-size: var(--ds-type-card-title-compact);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .operating-model-stuck-item p {
+    margin: var(--spacing-xs) 0 0;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+    text-wrap: pretty;
+  }
+
+  .operating-model-section--signal {
+    position: relative;
+    padding-block: clamp(5rem, 11vw, 9rem);
+    overflow: hidden;
+  }
+
+  .operating-model-signal-visual {
+    position: absolute;
+    top: 44%;
+    z-index: 0;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0.84;
+    transform: translateY(-50%);
+  }
+
+  .operating-model-signal-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .operating-model-signal-copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--ds-panel-gap);
+    margin-top: 6rem;
+    text-align: left;
+  }
+
+  .operating-model-signal-copy::before {
+    content: '';
+    position: absolute;
+    inset: -18% auto auto 62%;
+    width: min(34rem, 42vw);
+    height: min(34rem, 42vw);
+    pointer-events: none;
+    border: var(--size-border-thin) solid rgba(176, 204, 255, 0.1);
+    border-radius: var(--radius-pill);
+    opacity: 0.62;
+    mask-image: linear-gradient(120deg, transparent 0 16%, #000 44%, transparent 78%);
+  }
+
+  .operating-model-signal-copy h2 {
+    max-width: 13ch;
+  }
+
+  .operating-model-signal-copy p:not(.operating-model-kicker) {
+    max-width: 52rem;
+    margin: 0;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    text-wrap: pretty;
   }
 
   .operating-model-band {
     position: relative;
-    width: min(calc(100vw - 2rem), 84rem);
-    margin: clamp(1rem, 3vw, 2rem) auto;
-    padding: clamp(3.5rem, 7vw, 6rem) 0;
-    overflow: hidden;
-    border: 1px solid rgba(231, 235, 242, 0.08);
-    border-radius: 1.25rem;
-    background:
-      radial-gradient(ellipse at 76% 28%, rgba(98, 137, 230, 0.16), transparent 46%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
-      #07090d;
-  }
-
-  .operating-model-layer-stack {
-    display: grid;
-    border-top: 1px solid rgba(231, 235, 242, 0.1);
-  }
-
-  .operating-model-layer {
-    display: grid;
-    grid-template-columns: 3.2rem minmax(0, 1fr);
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(231, 235, 242, 0.1);
-  }
-
-  .operating-model-layer p,
-  .operating-model-layer h3,
-  .operating-model-layer span {
+    width: 100%;
     margin: 0;
+    padding: clamp(3rem, 6vw, 5.5rem) 0;
   }
 
-  .operating-model-layer p {
-    color: rgba(231, 235, 242, 0.35);
-    font-size: 0.72rem;
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.14em;
-  }
+  .operating-model-layer-system {
+    --operating-model-layer-duration: 18s;
 
-  .operating-model-layer h3 {
-    color: rgba(245, 248, 255, 0.95);
-    font-size: clamp(1.15rem, 1.8vw, 1.55rem);
-    line-height: 1.1;
-  }
-
-  .operating-model-layer span {
-    display: block;
-    margin-top: 0.45rem;
-    color: rgba(231, 235, 242, 0.64);
-    line-height: 1.5;
-  }
-
-  .operating-model-card-grid {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
+    grid-template-columns: minmax(14rem, 0.34fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 5.5rem);
+    align-items: stretch;
+    margin-top: clamp(2.25rem, 5vw, 4.5rem);
+  }
+
+  .operating-model-layer-track {
+    position: relative;
+    display: grid;
+    align-content: center;
+    gap: 0;
+  }
+
+  .operating-model-layer-track::before {
+    content: '';
+    position: absolute;
+    top: 2.625rem;
+    bottom: 2.625rem;
+    left: 0.75rem;
+    width: var(--size-border-thin);
+    pointer-events: none;
+    background: color-mix(in srgb, var(--operating-model-accent) 34%, transparent);
+    opacity: 0.42;
+    transform: translateX(-50%);
+  }
+
+  .operating-model-layer-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.5rem 3rem minmax(0, 1fr);
+    gap: var(--spacing-xs);
+    align-items: center;
+    min-height: 5.25rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--operating-model-text-soft);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .operating-model-layer-step-node {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: currentColor;
+  }
+
+  .operating-model-layer-step-node svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform: rotate(-90deg);
+  }
+
+  .operating-model-layer-step-node-track,
+  .operating-model-layer-step-node-progress {
+    fill: var(--operating-model-bg);
+    stroke: currentColor;
+    stroke-linecap: round;
+  }
+
+  .operating-model-layer-step-node-track {
+    stroke-width: 1.35;
+    opacity: 0.5;
+  }
+
+  .operating-model-layer-step-node-progress {
+    stroke: var(--operating-model-orbit-accent);
+    stroke-width: 2.35;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+
+  .operating-model-layer-step-index {
+    color: currentColor;
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+  }
+
+  .operating-model-layer-step-title {
+    color: currentColor;
+    font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--ds-tracking-card);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .operating-model-layer-step[aria-selected='true'] {
+    color: var(--operating-model-text);
+  }
+
+  .operating-model-layer-step[aria-selected='true'] .operating-model-layer-step-index {
+    color: var(--operating-model-accent);
+  }
+
+  .operating-model-layer-step[aria-selected='true'] .operating-model-layer-step-node {
+    filter:
+      drop-shadow(0 0 0.45rem rgba(var(--operating-model-orbit-glow), 0.5))
+      drop-shadow(0 0 0.95rem rgba(var(--operating-model-orbit-glow), 0.28));
+  }
+
+  .operating-model-layer-step[aria-selected='true'] .operating-model-layer-step-node-progress {
+    opacity: 1;
+    animation: operating-model-layer-progress var(--operating-model-layer-duration) linear forwards;
+  }
+
+  .operating-model-layer-card {
+    position: relative;
+    display: grid;
+    min-height: clamp(28rem, 44vw, 39rem);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--operating-model-border);
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(90deg, rgba(7, 9, 13, 0.96) 0%, rgba(7, 9, 13, 0.84) 31%, rgba(7, 9, 13, 0.5) 53%, rgba(7, 9, 13, 0.16) 100%),
+      radial-gradient(circle at 72% 48%, rgba(var(--operating-model-glow), 0.12), transparent 18rem),
+      linear-gradient(180deg, var(--operating-model-surface-strong), rgba(255, 255, 255, 0.012)),
+      rgba(7, 9, 13, 0.86);
+    background-position:
+      center,
+      center,
+      center,
+      center;
+    background-repeat: no-repeat;
+    background-size:
+      cover,
+      cover,
+      cover,
+      cover;
+  }
+
+  .operating-model-layer-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(7, 9, 13, 0.96) 0%, rgba(7, 9, 13, 0.84) 31%, rgba(7, 9, 13, 0.5) 53%, rgba(7, 9, 13, 0.16) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035), transparent 32%),
+      radial-gradient(circle at 34% 45%, rgba(var(--operating-model-glow), 0.08), transparent 16rem);
+    opacity: 0.8;
+  }
+
+  .operating-model-layer-backgrounds,
+  .operating-model-layer-background,
+  .operating-model-layer-card-visual {
+    position: relative;
+    z-index: 1;
+  }
+
+  .operating-model-layer-backgrounds,
+  .operating-model-layer-background {
+    position: absolute;
+    inset: 0;
+  }
+
+  .operating-model-layer-backgrounds {
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .operating-model-layer-background {
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity var(--operating-model-layer-crossfade-duration) ease;
+  }
+
+  .operating-model-layer-background[aria-hidden='false'] {
+    opacity: 0.4;
+  }
+
+  .operating-model-layer-panels,
+  .operating-model-layer-card-visual {
+    position: relative;
+    z-index: 2;
+  }
+
+  .operating-model-layer-panels {
+    display: grid;
+    min-height: 100%;
+  }
+
+  .operating-model-layer-panel {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+    max-width: 28rem;
+    min-height: 100%;
+    opacity: 0;
+    transform: translateY(0.35rem);
+    transition:
+      opacity var(--operating-model-layer-crossfade-duration) ease,
+      transform var(--operating-model-layer-crossfade-duration) ease;
+    pointer-events: none;
+  }
+
+  .operating-model-layer-panel[data-layer-panel-state='leaving'] {
+    opacity: 0;
+    transform: translateY(-0.45rem);
+    transition-duration: var(--operating-model-layer-exit-duration);
+    transition-delay: 0ms;
+  }
+
+  .operating-model-layer-panel[aria-hidden='false'],
+  .operating-model-layer-panel[data-layer-panel-state='active'] {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: var(--operating-model-layer-enter-delay);
+    pointer-events: auto;
+  }
+
+  .operating-model-layer-system:not([data-layer-ready='true']) .operating-model-layer-panel[aria-hidden='false'] {
+    transition-delay: 0ms;
+  }
+
+  .operating-model-layer-panel-index {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--operating-model-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+  }
+
+  .operating-model-layer-panel h3 {
+    margin: 0;
+    color: var(--operating-model-text);
+    font-size: var(--ds-type-title-sm);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .operating-model-layer-panel p {
+    margin: var(--spacing-sm) 0 0;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    text-wrap: pretty;
+  }
+
+  .operating-model-layer-focus {
+    width: min(100%, 22rem);
+    padding-top: var(--spacing-lg);
+    border-top: var(--size-border-thin) solid color-mix(in srgb, var(--operating-model-accent) 22%, transparent);
+  }
+
+  .operating-model-layer-focus span {
+    display: block;
+    color: var(--operating-model-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+    text-transform: uppercase;
+  }
+
+  .operating-model-layer-focus p {
+    margin-top: var(--spacing-sm);
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-body);
+    line-height: var(--ds-line-body);
+  }
+
+  .operating-model-layer-card-visual {
+    display: none;
+    min-height: 100%;
+    border-radius: var(--radius-md);
+    opacity: 0;
+  }
+
+  @keyframes operating-model-layer-progress {
+    from {
+      stroke-dashoffset: 1;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .operating-model-clarity-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--spacing-sm);
     margin-top: clamp(2rem, 4vw, 3.5rem);
   }
 
-  .operating-model-card {
-    min-height: 15rem;
-    padding: 1.25rem;
-    border: 1px solid rgba(231, 235, 242, 0.08);
-    border-radius: 1rem;
+  .operating-model-clarity-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: clamp(21rem, 25vw, 26rem);
+    padding: var(--spacing-md);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--operating-model-border-soft);
+    border-radius: var(--radius-md);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.014)),
-      rgba(9, 11, 16, 0.86);
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--operating-model-text) 2.8%, transparent),
+        color-mix(in srgb, var(--operating-model-text) 0.8%, transparent)
+      ),
+      color-mix(in srgb, var(--operating-model-bg) 88%, black);
   }
 
-  .operating-model-card h3 {
-    max-width: 12ch;
-    margin: 0 0 1rem;
-    color: rgba(245, 248, 255, 0.96);
-    font-size: clamp(1.3rem, 1.8vw, 1.8rem);
-    line-height: 1.04;
-    letter-spacing: -0.035em;
+  .operating-model-clarity-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 0 42%, rgba(0, 0, 0, 0.32) 100%),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--operating-model-text) 2.2%, transparent) 0 0.0625rem,
+        transparent 0.0625rem 100%
+      );
+    background-size: auto, 50% 100%;
+    opacity: 0.2;
   }
 
-  .operating-model-card p {
+  .operating-model-clarity-card::after {
+    content: '';
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    width: 64%;
+    height: 42%;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        circle at 20% 38%,
+        color-mix(in srgb, var(--operating-model-text) 13%, transparent) 0 0.08rem,
+        transparent 0.12rem
+      ),
+      radial-gradient(
+        circle at 42% 28%,
+        color-mix(in srgb, var(--operating-model-accent) 14%, transparent) 0 0.07rem,
+        transparent 0.11rem
+      ),
+      radial-gradient(
+        circle at 64% 52%,
+        color-mix(in srgb, var(--operating-model-text) 9%, transparent) 0 0.065rem,
+        transparent 0.1rem
+      ),
+      linear-gradient(90deg, color-mix(in srgb, var(--operating-model-accent) 4.5%, transparent), transparent 72%);
+    filter: blur(0.15px);
+    opacity: 0.24;
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.78) 58%, transparent 100%);
+  }
+
+  .operating-model-clarity-card:nth-child(2)::after {
+    width: 70%;
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--operating-model-text) 3.5%, transparent) 0 0.0625rem,
+        transparent 0.0625rem 0.875rem
+      ),
+      linear-gradient(90deg, color-mix(in srgb, var(--operating-model-accent) 5%, transparent), transparent 76%);
+  }
+
+  .operating-model-clarity-card:nth-child(3)::after {
+    border-radius: var(--radius-pill);
+    background:
+      radial-gradient(ellipse at 54% 52%, transparent 0 42%, color-mix(in srgb, var(--operating-model-text) 8%, transparent) 43% 45%, transparent 46%),
+      radial-gradient(ellipse at 54% 52%, transparent 0 62%, color-mix(in srgb, var(--operating-model-accent) 8%, transparent) 63% 65%, transparent 66%);
+  }
+
+  .operating-model-clarity-card:nth-child(4)::after {
+    background:
+      linear-gradient(135deg, transparent 0 34%, color-mix(in srgb, var(--operating-model-accent) 8%, transparent) 34% 35%, transparent 35%),
+      radial-gradient(circle at 28% 64%, color-mix(in srgb, var(--operating-model-accent) 14%, transparent) 0 0.08rem, transparent 0.12rem),
+      radial-gradient(circle at 52% 44%, color-mix(in srgb, var(--operating-model-text) 10%, transparent) 0 0.07rem, transparent 0.11rem);
+  }
+
+  .operating-model-clarity-card:nth-child(5)::after {
+    width: 58%;
+    background:
+      radial-gradient(circle at center, color-mix(in srgb, var(--operating-model-text) 9%, transparent) 0 0.07rem, transparent 0.11rem) 0 0 / 1rem 1rem,
+      radial-gradient(ellipse at 74% 34%, color-mix(in srgb, var(--operating-model-accent) 8%, transparent), transparent 58%);
+  }
+
+  .operating-model-clarity-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .operating-model-clarity-card span {
     margin: 0;
-    color: rgba(231, 235, 242, 0.64);
-    line-height: 1.55;
+    color: var(--operating-model-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
   }
 
-  .operating-model-support-list {
-    border-top: 1px solid rgba(231, 235, 242, 0.1);
+  .operating-model-clarity-card h3 {
+    max-width: 13ch;
+    margin: var(--spacing-xs) 0 0;
+    color: var(--operating-model-text);
+    font-size: var(--ds-type-card-title-compact);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
   }
 
-  .operating-model-support-list p {
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(231, 235, 242, 0.1);
+  .operating-model-clarity-card p {
+    max-width: 28ch;
+    margin: calc(var(--spacing-sm) * 1.2) 0 0;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-body-xs);
+    line-height: var(--ds-line-body-compact);
+    text-wrap: pretty;
+  }
+
+  .operating-model-output-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .operating-model-output-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: 16rem;
+    padding: var(--spacing-md);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--operating-model-border-soft);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(circle at 20% 14%, rgba(176, 204, 255, 0.11), transparent 12rem),
+      linear-gradient(180deg, var(--operating-model-surface-strong), rgba(255, 255, 255, 0.012)),
+      rgba(7, 9, 13, 0.84);
+  }
+
+  .operating-model-output-card::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 42%;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
+  }
+
+  .operating-model-output-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .operating-model-output-card h3 {
+    max-width: 14ch;
+    margin: var(--spacing-xs) 0 0;
+    color: var(--operating-model-text);
+    font-size: var(--ds-type-card-title-compact);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .operating-model-output-card p {
+    max-width: 32ch;
+    margin: var(--spacing-sm) 0 0;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+    text-wrap: pretty;
   }
 
   @media (max-width: 78rem) {
     .operating-model-hero-copy,
-    .operating-model-hero-support,
     .operating-model-section-head,
-    .operating-model-note,
-    .operating-model-layer-stack,
-    .operating-model-card-grid,
-    .operating-model-support-list {
+    .operating-model-thesis,
+    .operating-model-layer-thesis,
+    .operating-model-clarity-thesis,
+    .operating-model-signal-copy,
+    .operating-model-stuck-list,
+    .operating-model-layer-system,
+    .operating-model-clarity-grid,
+    .operating-model-band-copy,
+    .operating-model-band-thesis,
+    .operating-model-output-list {
       grid-column: 2 / span 24;
     }
 
     .operating-model-hero {
-      min-height: auto;
+      min-height: 90vh;
+      min-height: 90svh;
       padding-top: 6rem;
-    }
-
-    .operating-model-hero-grid {
-      align-items: start;
-      row-gap: 1.8rem;
     }
 
     .operating-model-hero h1 {
       max-width: 11ch;
-      font-size: clamp(3.25rem, 12vw, 6.2rem);
+      font-size: var(--ds-mobile-type-title-xl);
     }
 
-    .operating-model-card-grid {
+    .operating-model-hero-rays {
+      --operating-model-rays-opacity: 0.32;
+
+      top: -7rem;
+      left: -15rem;
+      width: 76rem;
+      height: 58rem;
+    }
+
+    .operating-model-hero-blueprint {
+      right: -16%;
+      width: min(58vw, 32rem);
+      opacity: 0.16;
+    }
+
+    .operating-model-output-list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .operating-model-stuck-item {
+      min-height: 13rem;
     }
   }
 
   @media (max-width: 48rem) {
-    .operating-model-card-grid {
+    .operating-model-page {
+      --operating-model-mobile-gutter: var(--ds-mobile-content-gutter);
+    }
+
+    .operating-model-hero-copy,
+    .operating-model-section-head,
+    .operating-model-thesis,
+    .operating-model-layer-thesis,
+    .operating-model-clarity-thesis,
+    .operating-model-stuck-list,
+    .operating-model-signal-copy,
+    .operating-model-layer-system,
+    .operating-model-clarity-grid,
+    .operating-model-band-copy,
+    .operating-model-band-thesis,
+    .operating-model-output-list {
+      grid-column: 1 / -1;
+      margin-inline: var(--operating-model-mobile-gutter);
+    }
+
+    .operating-model-signal-copy {
+      margin-top: 0;
+    }
+
+    .operating-model-hero {
+      min-height: 92vh;
+      min-height: 92svh;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .operating-model-hero-rays {
+      --operating-model-rays-opacity: 0.22;
+
+      top: -8rem;
+      left: -18rem;
+      width: 52rem;
+      height: 44rem;
+    }
+
+    .operating-model-hero-blueprint {
+      top: 68%;
+      right: -34%;
+      width: min(92vw, 24rem);
+      opacity: 0.12;
+      transform: translate3d(var(--operating-model-parallax-blueprint-x), calc(-50% + var(--operating-model-parallax-strong)), 0) rotate(-8deg);
+    }
+
+    .operating-model-section {
+      padding: clamp(3.25rem, 12vw, 4.5rem) 0;
+    }
+
+    .operating-model-section h2,
+    .operating-model-band h2 {
+      font-size: var(--ds-mobile-type-title-lg);
+    }
+
+    .operating-model-hero-copy > p:not(.operating-model-kicker),
+    .operating-model-section-head > p:not(.operating-model-kicker),
+    .operating-model-thesis,
+    .operating-model-layer-thesis,
+    .operating-model-clarity-thesis,
+    .operating-model-band-thesis,
+    .operating-model-signal-copy p:not(.operating-model-kicker) {
+      font-size: var(--ds-mobile-type-body);
+    }
+
+    .operating-model-stuck-list,
+    .operating-model-clarity-grid,
+    .operating-model-output-list {
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .operating-model-card {
+    .operating-model-layer-system {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-xl);
+    }
+
+    .operating-model-layer-track {
+      align-content: start;
+    }
+
+    .operating-model-layer-card {
+      min-height: 28rem;
+      padding: var(--spacing-md);
+    }
+
+    .operating-model-clarity-card {
+      min-height: 14rem;
+    }
+
+    .operating-model-layer-card-visual {
       min-height: 0;
+    }
+
+    .operating-model-layer-visual-panel img {
+      width: min(100%, 22rem);
+    }
+
+    .operating-model-stuck-list {
+      gap: 0;
+    }
+
+    .operating-model-stuck-item {
+      grid-template-columns: 2.8rem minmax(0, 1fr);
+      min-height: 0;
+      padding: 1.2rem 0;
+    }
+
+    .operating-model-drift-icon {
+      width: var(--spacing-xl);
+      height: var(--spacing-xl);
+    }
+
+    .operating-model-drift-icon svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .operating-model-signal-copy h2 {
+      font-size: var(--ds-mobile-type-title-lg);
+    }
+
+    .operating-model-output-card {
+      min-height: 13rem;
+    }
+  }
+
+  @keyframes operating-model-rays-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(-1.4rem, calc(-1rem + var(--operating-model-parallax-medium)), 0) rotate(-22deg);
+    }
+
+    to {
+      opacity: var(--operating-model-rays-opacity);
+      transform: translate3d(0, var(--operating-model-parallax-medium), 0) rotate(-22deg);
+    }
+  }
+
+  @keyframes operating-model-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.85rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .operating-model-hero-copy,
+    .operating-model-hero-rays,
+    .operating-model-layer-step[aria-selected='true']::after {
+      animation: none;
     }
   }
 </style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('[data-operating-model-parallax]');
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const layerSystem = document.querySelector<HTMLElement>('[data-operating-model-layers]');
+
+  if (hero && !motionQuery.matches) {
+    let frame = 0;
+
+    const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
+    const updateHeroParallax = () => {
+      frame = 0;
+
+      const rect = hero.getBoundingClientRect();
+      const progress = clamp((rect.top * -1) / Math.max(rect.height, 1), 0, 1);
+
+      hero.style.setProperty('--operating-model-parallax-soft', `${progress * 1.8}rem`);
+      hero.style.setProperty('--operating-model-parallax-medium', `${progress * 3.2}rem`);
+      hero.style.setProperty('--operating-model-parallax-strong', `${progress * 6.5}rem`);
+      hero.style.setProperty('--operating-model-parallax-blueprint-x', `${progress * -2.4}rem`);
+    };
+
+    const scheduleHeroParallax = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateHeroParallax);
+    };
+
+    updateHeroParallax();
+    window.addEventListener('scroll', scheduleHeroParallax, { passive: true });
+    window.addEventListener('resize', scheduleHeroParallax);
+  }
+
+  if (layerSystem) {
+    const layerTabs = Array.from(layerSystem.querySelectorAll<HTMLButtonElement>('[data-layer-index]'));
+    const layerPanels = Array.from(layerSystem.querySelectorAll<HTMLElement>('[data-layer-panel]'));
+    const layerBackgrounds = Array.from(layerSystem.querySelectorAll<HTMLElement>('[data-layer-background]'));
+    const layerDuration = 18000;
+    const layerTransitionDuration = 1100;
+    let activeLayer = 0;
+    let layerTimer: number | undefined;
+    let layerTransitionTimer: number | undefined;
+
+    const setActiveLayer = (index: number) => {
+      const previousLayer = activeLayer;
+      activeLayer = index;
+      layerSystem.dataset.activeLayer = String(index);
+
+      layerTabs.forEach((tab, tabIndex) => {
+        tab.setAttribute('aria-selected', String(tabIndex === index));
+      });
+
+      window.clearTimeout(layerTransitionTimer);
+
+      layerPanels.forEach((panel, panelIndex) => {
+        if (panelIndex === index) {
+          panel.setAttribute('aria-hidden', 'false');
+          panel.dataset.layerPanelState = 'active';
+          return;
+        }
+
+        if (panelIndex === previousLayer && previousLayer !== index) {
+          panel.setAttribute('aria-hidden', 'true');
+          panel.dataset.layerPanelState = 'leaving';
+          return;
+        }
+
+        panel.setAttribute('aria-hidden', 'true');
+        panel.dataset.layerPanelState = 'inactive';
+      });
+
+      layerTransitionTimer = window.setTimeout(() => {
+        layerPanels.forEach((panel, panelIndex) => {
+          if (panelIndex !== activeLayer) {
+            panel.dataset.layerPanelState = 'inactive';
+          }
+        });
+      }, layerTransitionDuration);
+
+      layerBackgrounds.forEach((background, backgroundIndex) => {
+        background.setAttribute('aria-hidden', String(backgroundIndex !== index));
+      });
+    };
+
+    const startLayerTimer = () => {
+      if (motionQuery.matches || layerTabs.length < 2) return;
+      window.clearInterval(layerTimer);
+      layerTimer = window.setInterval(() => {
+        setActiveLayer((activeLayer + 1) % layerTabs.length);
+      }, layerDuration);
+    };
+
+    layerTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        setActiveLayer(Number(tab.dataset.layerIndex ?? 0));
+        startLayerTimer();
+      });
+    });
+
+    setActiveLayer(activeLayer);
+    layerSystem.dataset.layerReady = 'true';
+    startLayerTimer();
+  }
+</script>
