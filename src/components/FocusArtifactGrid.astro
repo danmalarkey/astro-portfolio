@@ -1,0 +1,146 @@
+---
+interface ArtifactItem {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  items: ArtifactItem[];
+  backgrounds?: string[];
+  className?: string;
+  titleSize?: 'compact' | 'large';
+}
+
+const { items, backgrounds = [], className, titleSize = 'compact' } = Astro.props as Props;
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+---
+
+<div class:list={['focus-artifact-grid', `focus-artifact-grid--${titleSize}-titles`, className]} role="list" data-motion-item>
+  {items.map((item, index) => (
+    <article
+      class:list={['focus-artifact-card', backgrounds[index] && 'focus-artifact-card--image']}
+      role="listitem"
+      style={backgrounds[index] ? `--focus-artifact-bg: url('${withBase(backgrounds[index])}')` : undefined}
+    >
+      <span>{String(index + 1).padStart(2, '0')}</span>
+      <h3>{item.title}</h3>
+      <p>{item.text}</p>
+    </article>
+  ))}
+</div>
+
+<style>
+  .focus-artifact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .focus-artifact-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: clamp(17rem, 22vw, 20rem);
+    padding: clamp(1.35rem, 2.6vw, 2rem);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--focus-pattern-border, var(--ds-border-soft));
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(circle at 76% 16%, rgba(var(--focus-pattern-glow, 111, 162, 232), 0.1), transparent 12rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.008)),
+      var(--focus-pattern-surface, var(--ds-surface));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.022),
+      0 1rem 2.4rem rgba(0, 0, 0, 0.12);
+  }
+
+  .focus-artifact-card--image {
+    background:
+      linear-gradient(180deg, rgba(7, 9, 13, 0.1) 0%, rgba(7, 9, 13, 0.16) 44%, rgba(7, 9, 13, 0.86) 100%),
+      var(--focus-artifact-bg),
+      rgba(7, 9, 13, 0.84);
+    background-position: center;
+    background-size: cover;
+    transition:
+      border-color var(--duration-transition-interactive-ui) var(--easing-standard),
+      background var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .focus-artifact-card--image:hover {
+    border-color: rgba(176, 204, 255, 0.18);
+    background:
+      linear-gradient(180deg, rgba(7, 9, 13, 0.04) 0%, rgba(7, 9, 13, 0.12) 44%, rgba(7, 9, 13, 0.82) 100%),
+      var(--focus-artifact-bg),
+      rgba(7, 9, 13, 0.88);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .focus-artifact-card--image::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 52%;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.3)),
+      radial-gradient(ellipse at 20% 100%, rgba(var(--focus-pattern-glow, 111, 162, 232), 0.08), transparent 18rem);
+  }
+
+  .focus-artifact-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .focus-artifact-card > span {
+    margin: 0;
+    color: var(--focus-pattern-accent, rgba(176, 204, 255, 0.88));
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .focus-artifact-card h3 {
+    max-width: 16ch;
+    margin: var(--spacing-sm) 0 0;
+    color: var(--focus-pattern-text, var(--ds-text));
+    font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .focus-artifact-grid--large-titles .focus-artifact-card h3 {
+    font-size: var(--ds-type-title-lg);
+  }
+
+  .focus-artifact-card p {
+    max-width: 32ch;
+    margin: calc(var(--spacing-sm) * 1.15) 0 0;
+    color: var(--focus-pattern-text-muted, var(--ds-text-muted));
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 78rem) {
+    .focus-artifact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .focus-artifact-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .focus-artifact-card {
+      min-height: 14rem;
+    }
+  }
+</style>

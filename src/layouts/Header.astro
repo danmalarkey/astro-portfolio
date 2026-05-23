@@ -17,17 +17,17 @@ const isPathActive = (target: string) => currentPath === target || currentPath.s
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 
 const navItems = [
-  { href: '/work', label: 'Work', active: isPathActive('/work') || isPathActive('/work-with') },
+  { href: '/work', label: 'Work', active: isPathActive('/work') },
   { href: '/library', label: 'Library', active: isPathActive('/library') },
   { href: '/about', label: 'About', active: isPathActive('/about') },
   { href: '/writing', label: 'Writing', active: isPathActive('/writing') || isPathActive('/blog') }
 ];
 
-const serviceItems = [
-  { href: '/work-with/executives-and-product-drivers', label: 'Product direction' },
-  { href: '/work-with/product-and-engineering-teams', label: 'UX systems' },
-  { href: '/work-with/ai-enabled-product-systems', label: 'AI-enabled systems' },
-  { href: '/work-with/operating-model', label: 'Operating model' }
+const focusItems = [
+  { href: '/work-with/operating-model', label: 'Operating Model', active: isPathActive('/work-with/operating-model') },
+  { href: '/work-with/ai-enabled-systems', label: 'AI-Enabled', active: isPathActive('/work-with/ai-enabled-systems') },
+  { href: '/work-with/direction-and-prioritization', label: 'Direction', active: isPathActive('/work-with/direction-and-prioritization') },
+  { href: '/work-with/standards-and-scale', label: 'Standards', active: isPathActive('/work-with/standards-and-scale') }
 ];
 ---
 
@@ -44,7 +44,7 @@ const serviceItems = [
       </span>
 
       <div class="site-header-nav-links">
-        {navItems.map((item, index) => (
+        {focusItems.map((item, index) => (
           <a
             href={withBase(item.href)}
             class:list={[item.active && 'is-active']}
@@ -66,7 +66,7 @@ const serviceItems = [
     <div class="site-mobile-nav" id="site-mobile-nav" aria-hidden="true" inert>
       <div class="site-mobile-nav-panel">
         <div class="site-mobile-nav-primary" aria-label="Primary mobile navigation">
-          {navItems.map((item, index) => (
+          {focusItems.map((item, index) => (
             <a
               href={withBase(item.href)}
               class:list={[item.active && 'is-active']}
@@ -80,8 +80,16 @@ const serviceItems = [
 
         <div class="site-mobile-nav-secondary" aria-label="Secondary mobile navigation">
           <div class="site-mobile-nav-group" style="--nav-item-index: 4">
-            <p>Services</p>
-            {serviceItems.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+            <p>Explore</p>
+            {navItems.map((item) => (
+              <a
+                href={withBase(item.href)}
+                class:list={[item.active && 'is-active']}
+                aria-current={item.active ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
           <div class="site-mobile-nav-group" style="--nav-item-index: 5">
             <p>Contact</p>
@@ -586,10 +594,10 @@ const serviceItems = [
     .site-mobile-nav-primary a {
       display: flex;
       align-items: center;
-      min-height: clamp(3.8rem, 15vw, 5.35rem);
+      min-height: clamp(2.8rem, 13vw, 5.35rem);
       color: rgba(244, 247, 255, 0.94);
       font-family: var(--font-family-display);
-      font-size: clamp(2.7rem, 15vw, 4.65rem);
+      font-size: clamp(1.7rem, 8vw, 4.65rem);
       font-weight: var(--font-weight-medium);
       line-height: 0.9;
       letter-spacing: var(--ds-tracking-title, -0.025em);

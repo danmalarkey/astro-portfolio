@@ -628,6 +628,185 @@ main {
   }
 }
 
+.focus-diagnostic-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--spacing-xl);
+  margin-top: var(--spacing-sm);
+}
+
+.focus-diagnostic-list--columns {
+  align-items: start;
+}
+
+.focus-diagnostic-column {
+  display: grid;
+  min-width: 0;
+}
+
+.focus-diagnostic-item {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  align-content: start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) 0;
+  border-bottom: var(--size-border-thin) solid var(--focus-diagnostic-border, var(--ds-border-soft));
+}
+
+.focus-diagnostic-item h3 {
+  margin: 0;
+  color: var(--focus-diagnostic-text, var(--ds-text));
+  font-size: var(--ds-type-card-title-compact);
+  line-height: var(--ds-line-card-title);
+  letter-spacing: var(--ds-tracking-card);
+  text-wrap: balance;
+}
+
+.focus-diagnostic-item p {
+  margin: var(--spacing-xs) 0 0;
+  color: var(--focus-diagnostic-text-muted, var(--ds-text-muted));
+  font-size: var(--ds-type-body-sm);
+  line-height: var(--ds-line-body-compact);
+  text-wrap: pretty;
+}
+
+.focus-diagnostic-item--disclosure {
+  display: block;
+  padding: 0;
+}
+
+.focus-diagnostic-item--disclosure > summary {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) 1rem;
+  gap: var(--spacing-sm);
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-md) 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.focus-diagnostic-item--disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.focus-diagnostic-item--disclosure > summary > span:first-child {
+  display: block;
+  margin: 0;
+  color: var(--focus-diagnostic-label, var(--ds-text-soft));
+  font-size: var(--ds-type-label);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--ds-line-label);
+  letter-spacing: var(--ds-tracking-label);
+}
+
+.focus-diagnostic-item--disclosure > summary:focus-visible {
+  outline: var(--size-border-thin) solid var(--focus-diagnostic-focus, var(--ds-border));
+  outline-offset: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+}
+
+.focus-diagnostic-item--disclosure .focus-diagnostic-item-panel {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) 1rem;
+  gap: var(--spacing-sm);
+  height: 0;
+  padding-bottom: var(--spacing-md);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(calc(var(--spacing-xs) * -0.5));
+  transition:
+    height var(--duration-transition-medium) var(--easing-standard),
+    opacity var(--duration-transition-interactive-ui) var(--easing-standard),
+    transform var(--duration-transition-medium) var(--easing-standard);
+}
+
+.focus-diagnostic-item--disclosure .focus-diagnostic-item-panel > p {
+  grid-column: 2;
+}
+
+.focus-diagnostic-item--disclosure.is-open .focus-diagnostic-item-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.focus-diagnostic-item-icon {
+  position: relative;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  align-self: center;
+  opacity: 0.28;
+  transition: opacity var(--duration-transition-interactive-ui) var(--easing-standard);
+}
+
+.focus-diagnostic-item-icon::before,
+.focus-diagnostic-item-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: var(--size-border-thin);
+  background: var(--focus-diagnostic-icon, var(--focus-diagnostic-text, var(--ds-text)));
+  transform: translateY(-50%);
+  transition:
+    opacity var(--duration-transition-interactive-ui) var(--easing-standard),
+    transform var(--duration-transition-interactive-ui) var(--easing-standard);
+}
+
+.focus-diagnostic-item-icon::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.focus-diagnostic-item--disclosure[open] .focus-diagnostic-item-icon::after {
+  opacity: 0;
+  transform: translateY(-50%) rotate(0deg);
+}
+
+@media (hover: hover) {
+  .focus-diagnostic-item--disclosure > summary:hover .focus-diagnostic-item-icon {
+    opacity: 0.78;
+  }
+}
+
+.focus-diagnostic-item--disclosure > summary:focus-visible .focus-diagnostic-item-icon,
+.focus-diagnostic-item--disclosure[open] .focus-diagnostic-item-icon {
+  opacity: 0.78;
+}
+
+@media (max-width: 78rem) {
+  .focus-diagnostic-item {
+    min-height: 13rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .focus-diagnostic-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .focus-diagnostic-item {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    min-height: 0;
+    padding: 1.2rem 0;
+  }
+
+  .focus-diagnostic-item--disclosure {
+    padding: 0;
+  }
+
+  .focus-diagnostic-item--disclosure > summary {
+    padding: 1.2rem 0;
+  }
+
+  .focus-diagnostic-item--disclosure > summary,
+  .focus-diagnostic-item--disclosure .focus-diagnostic-item-panel {
+    grid-template-columns: 2.8rem minmax(0, 1fr) 1rem;
+  }
+}
+
 .main-surface {
   width: 100%;
   margin: 0;

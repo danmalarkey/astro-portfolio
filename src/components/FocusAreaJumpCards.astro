@@ -1,0 +1,381 @@
+---
+type FocusAreaKey = 'operating' | 'ai' | 'direction' | 'standards';
+
+interface Props {
+  current: FocusAreaKey;
+  eyebrow?: string;
+}
+
+const { current, eyebrow = 'Across the organization' } = Astro.props as Props;
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const focusAreas = {
+  operating: {
+    title: 'Operating Model',
+    description: 'Keep business direction, operating reality, product behavior, and delivery decisions connected.',
+    href: '/work-with/operating-model',
+    tone: 'operating',
+    image: 'images/op-model/noise-to-sig.png'
+  },
+  ai: {
+    title: 'AI-enabled Systems',
+    description: 'Turn AI capability into useful systems, not disconnected experiments.',
+    href: '/work-with/ai-enabled-systems',
+    tone: 'ai',
+    image: 'images/work-ai/certainty-run-out.png'
+  },
+  direction: {
+    title: 'Direction & Prioritization',
+    description: 'Clarify what matters, what to sequence, and where to focus.',
+    href: '/work-with/direction-and-prioritization',
+    tone: 'direction',
+    image: 'images/direction/hero-bg.png'
+  },
+  standards: {
+    title: 'Standards & Scale',
+    description: 'Preserve quality, accessibility, and consistency as complexity grows.',
+    href: '/work-with/standards-and-scale',
+    tone: 'standards',
+    image: 'images/standards/standards-hero-bg.png'
+  }
+} satisfies Record<FocusAreaKey, {
+  title: string;
+  description: string;
+  href: string;
+  tone: string;
+  image?: string;
+}>;
+
+const relatedOrder: Record<FocusAreaKey, FocusAreaKey[]> = {
+  operating: ['direction', 'standards', 'ai'],
+  ai: ['direction', 'operating', 'standards'],
+  direction: ['operating', 'ai', 'standards'],
+  standards: ['operating', 'direction', 'ai']
+};
+
+const relatedAreas = relatedOrder[current].map((key) => focusAreas[key]);
+---
+
+<section class="focus-area-jump" aria-labelledby="focus-area-jump-title" data-motion-reveal>
+  <div class="dm-grid-l dm-grid-l--grid-sys">
+    <div class="focus-area-jump-head gc-start-2 gc-span-24" data-motion-item>
+      <p>{eyebrow}</p>
+      <h2 id="focus-area-jump-title">Different focus areas. One shared system.</h2>
+    </div>
+    <div class="focus-area-jump-grid gc-start-2 gc-span-24" role="list" data-motion-item>
+      {relatedAreas.map((item, index) => (
+        <a
+          class:list={[
+            'focus-area-jump-card',
+            index === 0 && 'focus-area-jump-card--featured',
+            `focus-area-jump-card--${item.tone}`,
+            item.image && 'focus-area-jump-card--image'
+          ]}
+          href={withBase(item.href)}
+          role="listitem"
+          style={item.image ? `--focus-area-jump-card-image: url('${withBase(item.image)}')` : undefined}
+        >
+          <span class="focus-area-jump-card-visual" aria-hidden="true"></span>
+          <span class="focus-area-jump-card-content">
+            <span class="focus-area-jump-card-title">{item.title}</span>
+            <span class="focus-area-jump-card-description">{item.description}</span>
+            <span class="focus-area-jump-card-action">Explore area</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .focus-area-jump {
+    padding: clamp(4rem, 9vw, 7rem) 0;
+    background: var(--ds-background);
+  }
+
+  .focus-area-jump-head {
+    display: grid;
+    gap: var(--spacing-sm);
+    max-width: 52rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .focus-area-jump-head p {
+    margin: 0;
+    color: rgba(176, 204, 255, 0.88);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+    text-transform: uppercase;
+  }
+
+  .focus-area-jump-head h2 {
+    margin: 0;
+    color: var(--ds-text);
+    font-family: var(--font-family-display);
+    font-size: var(--ds-type-title-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .focus-area-jump-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--spacing-sm);
+    transition: grid-template-columns 420ms var(--easing-standard);
+  }
+
+  .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):hover),
+  .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):focus-visible) {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):hover),
+  .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):focus-visible) {
+    grid-template-columns: 1fr 1fr 2fr;
+  }
+
+  .focus-area-jump-card {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-content: end;
+    min-height: clamp(19rem, 27vw, 27rem);
+    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+    overflow: hidden;
+    border: var(--size-border-thin) solid rgba(121, 154, 255, 0.12);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse 58% 46% at 0% 0%, rgba(121, 154, 255, 0.18), rgba(121, 154, 255, 0.055) 38%, transparent 74%),
+      radial-gradient(ellipse 46% 34% at 10% 4%, rgba(231, 235, 242, 0.08), rgba(231, 235, 242, 0.024) 42%, transparent 72%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+      rgba(7, 9, 13, 0.9);
+    color: var(--ds-text);
+    text-decoration: none;
+    box-shadow:
+      inset 0 0 0 var(--size-border-thin) rgba(255, 255, 255, 0.025),
+      0 1.4rem 3rem rgba(0, 0, 0, 0.18);
+    transition:
+      border-color 360ms var(--easing-standard),
+      box-shadow 360ms var(--easing-standard);
+  }
+
+  .focus-area-jump-card::before,
+  .focus-area-jump-card::after,
+  .focus-area-jump-card-visual {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .focus-area-jump-card::before {
+    z-index: -2;
+    background:
+      linear-gradient(180deg, transparent 0 38%, rgba(3, 5, 9, 0.82) 100%),
+      linear-gradient(90deg, rgba(3, 5, 9, 0.5), rgba(3, 5, 9, 0.1));
+  }
+
+  .focus-area-jump-card::after {
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(231, 239, 255, 0.88), rgba(184, 207, 255, 0.52) 34%, rgba(121, 154, 255, 0.22) 68%, transparent),
+      linear-gradient(180deg, rgba(231, 239, 255, 0.58), rgba(121, 154, 255, 0.24) 42%, transparent),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 var(--size-border-thin), transparent var(--size-border-thin) 100%),
+      radial-gradient(ellipse at 0% 0%, rgba(184, 207, 255, 0.24), rgba(121, 154, 255, 0.08) 32%, transparent 68%);
+    background-position: top left, top left, top left, top left;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    background-size: min(18rem, 72%) var(--size-border-thin), var(--size-border-thin) min(10rem, 54%), 33.333% 100%, 100% 100%;
+    box-shadow:
+      0 0.05rem 1.25rem rgba(121, 154, 255, 0.24),
+      0 0 2.15rem rgba(105, 133, 255, 0.16);
+    opacity: 0.62;
+    mask-image: linear-gradient(180deg, #000, transparent 72%);
+    transition: opacity 360ms var(--easing-standard);
+  }
+
+  .focus-area-jump-card--image .focus-area-jump-card-visual {
+    z-index: 0;
+    background-image: var(--focus-area-jump-card-image);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    transform: scale(1.02);
+    transition:
+      opacity 420ms var(--easing-standard),
+      transform 520ms var(--easing-standard);
+  }
+
+  .focus-area-jump-card--image::before {
+    z-index: 1;
+  }
+
+  .focus-area-jump-card--image::after {
+    z-index: 2;
+  }
+
+  .focus-area-jump-card--image .focus-area-jump-card-content {
+    z-index: 3;
+  }
+
+  .focus-area-jump-card--operating .focus-area-jump-card-visual {
+    background-position: center right;
+  }
+
+  .focus-area-jump-card--ai .focus-area-jump-card-visual {
+    background-position: center;
+  }
+
+  .focus-area-jump-card--direction.focus-area-jump-card--image .focus-area-jump-card-visual {
+    background-position: right;
+    opacity: 0.74;
+  }
+
+  .focus-area-jump-card--standards:not(.focus-area-jump-card--image) .focus-area-jump-card-visual {
+    z-index: -3;
+    background:
+      radial-gradient(circle at 74% 26%, rgba(176, 204, 255, 0.1), transparent 8rem),
+      radial-gradient(circle at center, rgba(231, 235, 242, 0.1) 0 0.055rem, transparent 0.075rem) 0 0 / 1rem 1rem,
+      linear-gradient(180deg, rgba(255, 255, 255, 0.024), transparent);
+    opacity: 0.66;
+  }
+
+  .focus-area-jump-card--standards.focus-area-jump-card--image .focus-area-jump-card-visual {
+    background-position: center right;
+    opacity: 0.76;
+  }
+
+  .focus-area-jump-card-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--spacing-md);
+    justify-items: start;
+    min-width: 0;
+  }
+
+  .focus-area-jump-card-title {
+    color: rgba(244, 247, 255, 0.94);
+    font-family: var(--font-family-display);
+    font-size: var(--ds-type-title-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .focus-area-jump-card-description {
+    max-width: 40ch;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .focus-area-jump-card-action {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: rgba(231, 235, 242, 0.72);
+    font-size: var(--ds-type-body-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .focus-area-jump-card-action::after {
+    content: '→';
+    color: rgba(176, 204, 255, 0.82);
+    opacity: 0;
+    transform: translateX(-0.25rem);
+    transition:
+      opacity 260ms var(--easing-standard),
+      transform 260ms var(--easing-standard);
+  }
+
+  .focus-area-jump-card:hover,
+  .focus-area-jump-card:focus-visible {
+    border-color: rgba(184, 207, 255, 0.38);
+    outline: none;
+    box-shadow:
+      inset 0 0 0 var(--size-border-thin) rgba(255, 255, 255, 0.035),
+      0 0 1.75rem rgba(121, 154, 255, 0.08),
+      0 1.7rem 3.4rem rgba(0, 0, 0, 0.24);
+  }
+
+  .focus-area-jump-card:hover::after,
+  .focus-area-jump-card:focus-visible::after {
+    opacity: 0.82;
+  }
+
+  .focus-area-jump-card:hover .focus-area-jump-card-visual,
+  .focus-area-jump-card:focus-visible .focus-area-jump-card-visual {
+    opacity: 0.84;
+    transform: scale(1.045);
+  }
+
+  .focus-area-jump-card:hover .focus-area-jump-card-action::after,
+  .focus-area-jump-card:focus-visible .focus-area-jump-card-action::after {
+    opacity: 1;
+    transform: translateX(0.18rem);
+  }
+
+  @media (max-width: 78rem) {
+    .focus-area-jump-head,
+    .focus-area-jump-grid,
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):hover),
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):focus-visible),
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):hover),
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):focus-visible) {
+      grid-column: 2 / span 24;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .focus-area-jump-card {
+      min-height: 18rem;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .focus-area-jump {
+      padding: clamp(3.5rem, 14vw, 5rem) 0;
+    }
+
+    .focus-area-jump-head,
+    .focus-area-jump-grid,
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):hover),
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):focus-visible),
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):hover),
+    .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):focus-visible) {
+      grid-column: 1 / -1;
+      margin-inline: var(--ds-mobile-content-gutter);
+    }
+
+    .focus-area-jump-head h2 {
+      font-size: var(--ds-mobile-type-title-md);
+    }
+
+    .focus-area-jump-card-title {
+      font-size: var(--ds-mobile-type-title-sm);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .focus-area-jump-grid,
+    .focus-area-jump-card,
+    .focus-area-jump-card::after,
+    .focus-area-jump-card-visual,
+    .focus-area-jump-card-action::after {
+      transition: none;
+    }
+  }
+</style>

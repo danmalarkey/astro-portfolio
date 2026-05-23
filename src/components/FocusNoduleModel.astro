@@ -1,0 +1,516 @@
+---
+interface ModelItem {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  id: string;
+  imageSrc: string;
+  items: ModelItem[];
+  label: string;
+  className?: string;
+  panelLeft?: string;
+  panelWidth?: string;
+  noduleX?: string;
+  positions?: string[];
+}
+
+const {
+  id,
+  imageSrc,
+  items,
+  label,
+  className,
+  panelLeft = 'clamp(3rem, 7vw, 6rem)',
+  panelWidth = 'min(24rem, 27vw)',
+  noduleX = '34.85%',
+  positions = ['22.1%', '32.7%', '43.45%', '54.25%', '64.95%', '75.45%']
+} = Astro.props as Props;
+---
+
+<div
+  class:list={['focus-nodule-model', className]}
+  style={`--focus-model-panel-x: ${panelLeft}; --focus-model-panel-width: ${panelWidth}; --focus-model-nodule-x: ${noduleX}; --focus-model-panel-y: ${positions[0]};`}
+  data-focus-nodule-model
+>
+  <img src={imageSrc} alt="" loading="lazy" decoding="async" aria-hidden="true" />
+  <div class="focus-nodule-model-interactive" aria-label={label}>
+    <div class="focus-nodule-model-panels" aria-live="polite">
+      <span class="focus-nodule-model-sheet focus-nodule-model-sheet--one" aria-hidden="true"></span>
+      <span class="focus-nodule-model-sheet focus-nodule-model-sheet--two" aria-hidden="true"></span>
+      <span class="focus-nodule-model-sheet focus-nodule-model-sheet--three" aria-hidden="true"></span>
+      {items.map((item, index) => (
+        <article
+          id={`${id}-panel-${index + 1}`}
+          class:list={['focus-nodule-model-panel', index === 0 && 'is-active']}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+    <div class="focus-nodule-model-nodules" aria-label={`${label} controls`}>
+      {items.map((item, index) => (
+        <button
+          class:list={['focus-nodule-model-nodule', index === 0 && 'is-active']}
+          type="button"
+          style={`--focus-model-nodule-y: ${positions[index] ?? positions[0]};`}
+          aria-label={`${String(index + 1).padStart(2, '0')} ${item.title}`}
+          aria-controls={`${id}-panel-${index + 1}`}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+          data-focus-nodule-trigger
+          data-focus-nodule-index={index}
+          data-focus-nodule-position={positions[index] ?? positions[0]}
+        >
+          <span>{String(index + 1).padStart(2, '0')}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <div class="focus-nodule-model-list" role="list">
+    {items.map((item, index) => (
+      <article class="focus-nodule-model-row" role="listitem">
+        <span>{String(index + 1).padStart(2, '0')}</span>
+        <div>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const models = Array.from(document.querySelectorAll('[data-focus-nodule-model]'));
+    if (!models.length) return;
+
+    models.forEach((model) => {
+      if (model.dataset.focusNoduleBound === 'true') return;
+
+      const triggers = Array.from(model.querySelectorAll('[data-focus-nodule-trigger]'));
+      const panels = Array.from(model.querySelectorAll('.focus-nodule-model-panel'));
+      if (!triggers.length || !panels.length) return;
+
+      model.dataset.focusNoduleBound = 'true';
+
+      let activeIndex = 0;
+      let transitionTimer = null;
+
+      const setActive = (nextIndex) => {
+        if (nextIndex === activeIndex) return;
+
+        const position = triggers[nextIndex]?.getAttribute('data-focus-nodule-position');
+        if (position) model.style.setProperty('--focus-model-panel-y', position);
+
+        triggers.forEach((trigger) => {
+          const triggerIndex = Number(trigger.getAttribute('data-focus-nodule-index'));
+          const isActive = triggerIndex === nextIndex;
+          trigger.classList.toggle('is-active', isActive);
+          trigger.setAttribute('aria-pressed', String(isActive));
+        });
+
+        window.clearTimeout(transitionTimer);
+
+        const currentPanel = panels[activeIndex];
+        const nextPanel = panels[nextIndex];
+
+        panels.forEach((panel, index) => {
+          if (index !== activeIndex && index !== nextIndex) {
+            panel.classList.remove('is-active', 'is-exiting', 'is-entering');
+            panel.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        currentPanel?.classList.add('is-exiting');
+        currentPanel?.setAttribute('aria-hidden', 'true');
+
+        transitionTimer = window.setTimeout(() => {
+          currentPanel?.classList.remove('is-active', 'is-exiting');
+          nextPanel?.classList.add('is-active', 'is-entering');
+          nextPanel?.setAttribute('aria-hidden', 'false');
+          activeIndex = nextIndex;
+
+          window.setTimeout(() => {
+            nextPanel?.classList.remove('is-entering');
+          }, 360);
+        }, 180);
+      };
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener('click', () => {
+          setActive(index);
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  .focus-nodule-model {
+    position: relative;
+    display: grid;
+    width: 100vw;
+    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-left: calc(50% - 50vw);
+    overflow: visible;
+    border-block: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+    background: rgba(3, 6, 11, 0.24);
+  }
+
+  .focus-nodule-model::before,
+  .focus-nodule-model::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .focus-nodule-model::before {
+    background:
+      linear-gradient(90deg, rgba(3, 6, 11, 0.96) 0%, rgba(3, 6, 11, 0.8) 24%, rgba(3, 6, 11, 0.32) 43%, transparent 66%),
+      radial-gradient(circle at 18% 42%, rgba(var(--focus-model-glow, 111, 162, 232), 0.14), transparent 20rem);
+  }
+
+  .focus-nodule-model::after {
+    background:
+      linear-gradient(180deg, rgba(3, 6, 11, 0.28), transparent 24%, transparent 70%, rgba(3, 6, 11, 0.34)),
+      linear-gradient(90deg, rgba(3, 6, 11, 0.72), transparent 16%, transparent 84%, rgba(3, 6, 11, 0.64));
+  }
+
+  .focus-nodule-model img {
+    position: relative;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .focus-nodule-model-interactive {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+  .focus-nodule-model-panels {
+    position: absolute;
+    top: var(--focus-model-panel-y);
+    left: var(--focus-model-panel-x);
+    z-index: 3;
+    display: grid;
+    isolation: isolate;
+    width: var(--focus-model-panel-width);
+    min-height: clamp(10.75rem, 16vw, 14rem);
+    transition: top var(--duration-transition-slow) var(--easing-standard);
+  }
+
+  .focus-nodule-model-sheet {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    border: var(--size-border-thin) solid rgba(176, 204, 255, 0.16);
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0.006)),
+      rgb(7, 10, 17);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.018),
+      0 0.8rem 1.65rem rgba(0, 0, 0, 0.16);
+    pointer-events: none;
+    transform-origin: top center;
+  }
+
+  .focus-nodule-model-sheet--one {
+    z-index: 3;
+    transform: translateY(0.48rem) scaleX(0.985);
+  }
+
+  .focus-nodule-model-sheet--two {
+    z-index: 2;
+    border-color: rgba(176, 204, 255, 0.13);
+    transform: translateY(0.92rem) scaleX(0.965);
+  }
+
+  .focus-nodule-model-sheet--three {
+    z-index: 1;
+    border-color: rgba(176, 204, 255, 0.1);
+    transform: translateY(1.3rem) scaleX(0.945);
+  }
+
+  .focus-nodule-model-panel {
+    position: relative;
+    z-index: 4;
+    grid-area: 1 / 1;
+    display: grid;
+    align-content: start;
+    min-height: clamp(10.75rem, 16vw, 14rem);
+    padding: clamp(1.25rem, 2.1vw, 1.85rem);
+    border: var(--size-border-thin) solid rgba(176, 204, 255, 0.22);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(var(--focus-model-glow, 111, 162, 232), 0.18), transparent 13rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.044), rgba(255, 255, 255, 0.012)),
+      rgb(7, 10, 17);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 1.35rem 3rem rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.28rem);
+    transition:
+      opacity 180ms var(--easing-standard),
+      transform 180ms var(--easing-standard);
+  }
+
+  .focus-nodule-model-panel.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .focus-nodule-model-panel.is-exiting {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.28rem);
+  }
+
+  .focus-nodule-model-panel.is-entering {
+    animation: focus-nodule-panel-enter 360ms var(--easing-standard) both;
+  }
+
+  .focus-nodule-model-panel > span:first-child,
+  .focus-nodule-model-row > span {
+    color: var(--focus-model-accent, rgba(176, 204, 255, 0.88));
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .focus-nodule-model-panel > span:first-child {
+    display: block;
+    margin: 0 0 var(--spacing-sm);
+  }
+
+  .focus-nodule-model-panel h3,
+  .focus-nodule-model-row h3 {
+    margin: 0;
+    color: var(--focus-model-text, var(--ds-text));
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .focus-nodule-model-panel h3 {
+    font-size: var(--ds-type-title-sm);
+  }
+
+  .focus-nodule-model-row h3 {
+    font-size: var(--ds-type-title-lg);
+  }
+
+  .focus-nodule-model-panel p,
+  .focus-nodule-model-row p {
+    color: var(--focus-model-text-muted, var(--ds-text-muted));
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .focus-nodule-model-panel p {
+    max-width: 28ch;
+    margin: var(--spacing-sm) 0 0;
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+  }
+
+  .focus-nodule-model-row p {
+    margin: 0.35rem 0 0;
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+  }
+
+  .focus-nodule-model-nodule {
+    position: absolute;
+    top: var(--focus-model-nodule-y);
+    left: var(--focus-model-nodule-x);
+    z-index: 5;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+
+  .focus-nodule-model-nodule::before,
+  .focus-nodule-model-nodule::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    border-radius: var(--radius-pill);
+    transform: translate(-50%, -50%);
+    transition:
+      opacity var(--duration-transition-interactive-ui) var(--easing-standard),
+      transform var(--duration-transition-interactive-ui) var(--easing-standard),
+      box-shadow var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .focus-nodule-model-nodule::before {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: rgba(191, 215, 255, 0.78);
+    box-shadow:
+      0 0 0.8rem rgba(var(--focus-model-glow, 111, 162, 232), 0.38),
+      0 0 1.45rem rgba(191, 215, 255, 0.18);
+    opacity: 0.46;
+  }
+
+  .focus-nodule-model-nodule::after {
+    width: 1.45rem;
+    height: 1.45rem;
+    border: var(--size-border-thin) solid rgba(191, 215, 255, 0.42);
+    opacity: 0;
+  }
+
+  .focus-nodule-model-nodule > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .focus-nodule-model-nodule:hover::before,
+  .focus-nodule-model-nodule:focus-visible::before,
+  .focus-nodule-model-nodule.is-active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.18);
+    box-shadow:
+      0 0 0.95rem rgba(var(--focus-model-glow, 111, 162, 232), 0.62),
+      0 0 1.75rem rgba(191, 215, 255, 0.3);
+  }
+
+  .focus-nodule-model-nodule:hover::after,
+  .focus-nodule-model-nodule:focus-visible::after {
+    opacity: 0.58;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .focus-nodule-model-nodule.is-active::after {
+    opacity: 1;
+    animation: focus-nodule-breathe 2.8s ease-in-out infinite;
+  }
+
+  .focus-nodule-model-nodule:focus-visible {
+    outline: var(--size-border-thin) solid rgba(191, 215, 255, 0.72);
+    outline-offset: var(--spacing-xs);
+  }
+
+  .focus-nodule-model-list {
+    display: none;
+  }
+
+  .focus-nodule-model-row {
+    display: grid;
+    grid-template-columns: minmax(2.75rem, 0.16fr) minmax(0, 0.84fr);
+    padding: clamp(1.35rem, 2.6vw, 2rem) 0;
+    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+  }
+
+  .focus-nodule-model-row > div {
+    min-width: 0;
+  }
+
+  @media (max-width: 48rem) {
+    .focus-nodule-model {
+      width: auto;
+      margin-left: 0;
+      overflow: visible;
+      border: 0;
+      background: transparent;
+    }
+
+    .focus-nodule-model::before,
+    .focus-nodule-model::after,
+    .focus-nodule-model img,
+    .focus-nodule-model-interactive {
+      display: none;
+    }
+
+    .focus-nodule-model-list {
+      display: grid;
+      gap: var(--spacing-sm);
+      margin-top: clamp(3rem, 6vw, 5rem);
+    }
+
+    .focus-nodule-model-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-sm);
+      align-content: start;
+      padding: clamp(1.25rem, 4.5vw, 1.75rem);
+      border: var(--size-border-thin) solid rgba(176, 204, 255, 0.22);
+      border-radius: var(--radius-md);
+      background:
+        radial-gradient(ellipse at 0% 0%, rgba(var(--focus-model-glow, 111, 162, 232), 0.18), transparent 13rem),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.044), rgba(255, 255, 255, 0.012)),
+        rgb(7, 10, 17);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 1.35rem 3rem rgba(0, 0, 0, 0.3);
+    }
+
+    .focus-nodule-model-row h3 {
+      font-size: var(--ds-type-title-sm);
+    }
+
+    .focus-nodule-model-row p {
+      margin-top: var(--spacing-sm);
+      font-size: var(--ds-type-lead);
+      line-height: var(--ds-line-lead);
+    }
+  }
+
+  @keyframes focus-nodule-breathe {
+    0%,
+    100% {
+      opacity: 0.82;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.24);
+    }
+  }
+
+  @keyframes focus-nodule-panel-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.28rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .focus-nodule-model-panel,
+    .focus-nodule-model-nodule,
+    .focus-nodule-model-nodule::before,
+    .focus-nodule-model-nodule::after {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>

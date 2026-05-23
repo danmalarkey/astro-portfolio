@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../layouts/Header.astro';
 import HomeFooter from '../components/HomeFooter.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import { writingRoadmapEntries } from '../data/writing-roadmap';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
@@ -22,7 +23,7 @@ const supportedOrganizationLoop = [...supportedOrganizations, ...supportedOrgani
 
 const leverageCards = [
   {
-    title: 'AI-enabled product systems',
+    title: 'AI-enabled Systems',
     descriptionLines: [
       'Designing AI-assisted workflows, prompt',
       'systems, and product behavior with enough',
@@ -39,11 +40,11 @@ const leverageCards = [
     ],
     image: 'images/home-v3/blueprint/operating-model-blueprint-transparent.png',
     imageAlt: 'AI-enabled product systems blueprint',
-    actorSlug: '/work-with/ai-enabled-product-systems',
+    actorSlug: '/work-with/ai-enabled-systems',
     actorLabel: 'a product or AI systems leader'
   },
   {
-    title: 'Executives and product drivers',
+    title: 'Executives, Founders, & Product Owners',
     descriptionLines: [
       'Clarifying product direction, aligning',
       'investment priorities, and making design',
@@ -64,7 +65,7 @@ const leverageCards = [
     actorLabel: 'an executive or product leader'
   },
   {
-    title: 'Product and engineering teams',
+    title: 'Product & Engineering Teams',
     descriptionLines: [
       'Reducing delivery friction across workflows,',
       'handoffs, and shared tooling so teams can',
@@ -85,7 +86,7 @@ const leverageCards = [
     actorLabel: 'a product or engineering leader'
   },
   {
-    title: 'Designers and design leaders',
+    title: 'Designers & Design Leaders',
     descriptionLines: [
       'Raising craft maturity, establishing standards,',
       'and strengthening design influence in product,',
@@ -107,6 +108,43 @@ const leverageCards = [
   }
 ];
 
+const actorAudienceCards = leverageCards.filter((item) => item.artType !== 'ai');
+
+const focusAreaCards = [
+  {
+    title: 'Operating Model',
+    description: 'Keep business direction, operating reality, product behavior, and delivery decisions connected.',
+    href: '/work-with/operating-model',
+    size: 'large',
+    tone: 'operating',
+    image: 'images/op-model/noise-to-sig.png'
+  },
+  {
+    title: 'Direction & Prioritization',
+    description: 'Clarify what matters, what to sequence, and where to focus.',
+    href: '/work-with/direction-and-prioritization',
+    size: 'small',
+    tone: 'direction',
+    image: 'images/direction/hero-bg.png'
+  },
+  {
+    title: 'Standards & Scale',
+    description: 'Preserve quality, accessibility, and consistency as complexity grows.',
+    href: '/work-with/standards-and-scale',
+    size: 'small',
+    tone: 'standards',
+    image: 'images/standards/standards-hero-bg.png'
+  },
+  {
+    title: 'AI-enabled Systems',
+    description: 'Turn AI capability into useful systems, not disconnected experiments.',
+    href: '/work-with/ai-enabled-systems',
+    size: 'large',
+    tone: 'ai',
+    image: 'images/work-ai/certainty-run-out.png'
+  }
+];
+
 const practiceStats = [
   {
     eyebrow: 'Current role',
@@ -125,7 +163,7 @@ const practiceStats = [
     detailImage: withBase('images/home-v3/practice/practice-telescope-detail.png')
   },
   {
-    eyebrow: 'Operating model',
+    eyebrow: 'Operating Model',
     labelLines: ['Systems-led, people-first', 'operating model'],
     text: 'Clarifies priorities, aligns teams, and builds standards that keep momentum high without creating chaos.',
     visualType: 'helmet',
@@ -140,21 +178,21 @@ const bridgePillars = [
     tone: 'clarity',
     title: 'Clarity.',
     headline: 'Make better decisions sooner with clearer direction.',
-    body: 'Create shared understanding, clearer direction, and alignment leaders can trust.'
+    body: 'Create shared understanding, sharper context, and alignment leaders can trust.'
   },
   {
     index: '2.0',
     tone: 'strategy',
     title: 'Strategy.',
-    headline: 'Align direction, priorities, and investment.',
-    body: 'Turn competing inputs into a path teams can commit to.'
+    headline: 'Turn competing inputs into a path people can commit to.',
+    body: 'Align priorities, tradeoffs, sequencing, and investment around what matters most.'
   },
   {
     index: '3.0',
     tone: 'systems',
     title: 'Systems.',
-    headline: 'Build operating models that help teams execute.',
-    body: 'Create the standards and rhythms that sustain momentum.'
+    headline: 'Create the standards and rhythms that sustain momentum.',
+    body: 'Build the operating models, practices, and guardrails that help execution hold.'
   }
 ];
 
@@ -189,32 +227,32 @@ const changeSignals = [
 const operatingShifts = [
   {
     result: 'Conceptual integrity',
-    before: 'Product logic gets fragmented across strategy, UX, AI behavior, and implementation.',
-    mechanism: 'Core product systems stay consistent across concepts, operational workflows, behavior, interface expression, and implementation.',
+    before: '',
+    mechanism: 'Core concepts, behavior, standards, and implementation logic stay consistent.',
     after: ''
   },
   {
     result: 'Sharper vision',
-    before: 'Vision moves faster than the criteria.',
-    mechanism: 'A sharper vision guides and connects business intent, customer value, constraints, and tradeoffs.',
+    before: '',
+    mechanism: 'Clarity and direction become easier to see, choose, communicate, and sustain.',
     after: ''
   },
   {
     result: 'Defensible quality',
-    before: 'Quality depends on repeated persuasion.',
-    mechanism: 'Shared standards connect customer value, product logic, delivery cost, and quality judgment.',
+    before: '',
+    mechanism: 'Standards connect product logic, accessibility, delivery cost, and judgment.',
     after: ''
   },
   {
-    result: 'More integrated',
-    before: 'Handoffs rely on meetings and memory.',
-    mechanism: 'Shared rituals, artifacts, and delivery infrastructure keep product, design, engineering, workflows, and implementation aligned.',
+    result: 'Integrated systems',
+    before: '',
+    mechanism: 'Rituals, artifacts, and infrastructure keep disciplines connected across decisions and delivery.',
     after: ''
   },
   {
-    result: 'Winning teams',
-    before: 'Direction lives in a few senior people.',
-    mechanism: 'Visible constraints and decisions help teams move with confidence, clarity, and less drift between alignment points.',
+    result: 'Confident teams',
+    before: '',
+    mechanism: 'Visible constraints, clear direction, and decisions teams trust reduce drift, ambiguity, and costly rework.',
     after: ''
   }
 ];
@@ -368,6 +406,41 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </section>
     </section>
 
+    <section id="focus-areas" class="home-v3-focus-areas" aria-label="Focus areas" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="Focus areas across the organization"
+          title="Different focus areas. One shared system."
+          body="I help organizations keep business goals, product direction, emerging technology, standards, and delivery connected through growth, complexity, and change."
+          accent
+          headClass="home-v3-focus-areas-head gc-start-2 gc-span-10"
+        />
+
+        <div class="home-v3-focus-areas-grid gc-start-2 gc-span-24" role="list">
+          {focusAreaCards.map((item) => (
+            <a
+              class:list={[
+                'home-v3-focus-card',
+                `home-v3-focus-card--${item.size}`,
+                `home-v3-focus-card--${item.tone}`,
+                item.image && 'home-v3-focus-card--image'
+              ]}
+              href={withBase(item.href)}
+              role="listitem"
+              style={item.image ? `--home-v3-focus-card-image: url('${withBase(item.image)}')` : undefined}
+            >
+              <span class="home-v3-focus-card-visual" aria-hidden="true"></span>
+              <span class="home-v3-focus-card-content">
+                <span class="home-v3-focus-card-title">{item.title}</span>
+                <span class="home-v3-focus-card-description">{item.description}</span>
+                <span class="home-v3-focus-card-action">How I help</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="home-v3-client-trust" aria-label="Organizations I have supported" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="home-v3-client-trust-shell gc-start-3 gc-span-22">
@@ -394,7 +467,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
           <div class="home-v3-pillars-shell gc-start-2 gc-span-24">
             <div class="home-v3-pillars-head">
               <p class="home-v3-section-label">Design leadership in practice</p>
-              <h2>Clarity and direction when <br />your stakes are on the line.</h2>
+              <h2>Clarity and direction when the stakes are high.</h2>
             </div>
             <div class="home-v3-pillars-surface" data-home-v3-reveal-late>
               <div class="home-v3-pillars-grid" role="list">
@@ -481,16 +554,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-actors" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-actors-intro">
-        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
-          <p class="home-v3-section-label">Across the organization</p>
-          <h2>Where it matters most.</h2>
-          <p>The same operating model shows up differently across executive decisions, product delivery, design systems, AI-assisted workflows, and the operational tooling teams rely on every day.</p>
-        </div>
+        <SectionHeader
+          eyebrow="Different roles. Shared pressure."
+          title="Leadership across the system."
+          body="Different roles carry different pressures — but the same challenges show up: unclear direction, disconnected decisions, delivery friction, inconsistent standards, and systems that become harder to operate as they grow."
+          accent
+        />
       </div>
 
       {homeV3ActorsVariant === 'legacy' && (
-      <div class="home-v3-actor-grid col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys" role="list">
-        {leverageCards.map((item) => (
+      <div class="home-v3-actor-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+        {actorAudienceCards.map((item) => (
           <article class={`home-v3-actor-card home-v3-actor-card--${item.artType}`} role="listitem">
             <div class="home-v3-actor-card-media" aria-hidden="true">
               <div class={`home-v3-actor-atmosphere home-v3-actor-atmosphere--${item.artType}`}></div>
@@ -730,8 +804,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       )}
 
       {homeV3ActorsVariant === 'concept' && homeV3ActorsConceptVariant === 'scene' && (
-      <div class="home-v3-actor-grid home-v3-actor-grid--concept col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys" role="list">
-        {leverageCards.map((item) => (
+      <div class="home-v3-actor-grid home-v3-actor-grid--concept col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+        {actorAudienceCards.map((item) => (
           <article class={`home-v3-actor-card-concept home-v3-actor-card-concept--${item.artType}`} role="listitem">
             <div class="home-v3-actor-card-concept-media" aria-hidden="true">
               <div class="home-v3-actor-card-concept-atmosphere"></div>
@@ -776,8 +850,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       )}
 
       {homeV3ActorsVariant === 'concept' && homeV3ActorsConceptVariant === 'lane' && (
-      <div class="home-v3-actor-lane-grid col-layout col-layout--4x6 dm-grid-l dm-grid-l--grid-sys" role="list">
-        {leverageCards.map((item) => (
+      <div class="home-v3-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+        {actorAudienceCards.map((item) => (
           <article class={`home-v3-actor-lane home-v3-actor-lane--${item.artType}`} role="listitem">
             <div class="home-v3-actor-lane-head">
               <p class="home-v3-actor-lane-kicker">{item.conceptLabel}</p>
@@ -827,18 +901,15 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-operating-shift" id="operating-shift" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-operating-shift-layout">
-        <div class="home-v3-operating-shift-head home-v3-section-head home-v3-section-head--compact gc-start-1 gc-span-12">
-          <p class="home-v3-section-label">Operating model</p>
-          <h2>Better product decisions come from better operating conditions.</h2>
-        </div>
+        <SectionHeader
+          eyebrow="The standard"
+          title="Good systems keep the business on course."
+          body="Strong work depends on more than execution. Business goals, core concepts, activities, behavior, standards, and implementation logic need to reinforce the same underlying model — so the organization can keep moving in the right direction as it grows."
+          accent
+          headClass="home-v3-operating-shift-head gc-start-2 gc-span-10"
+        />
 
-        <p class="home-v3-operating-shift-thesis gc-start-15 gc-span-11">
-          Strong products are not built through isolated screens or disconnected execution.
-
-          They emerge from shared context, operational clarity, conceptual integrity, and systems that help teams make better decisions together.
-        </p>
-
-        <div class="home-v3-operating-grid gc-start-1 gc-span-26" role="list" aria-label="Leadership shifts">
+        <div class="home-v3-operating-grid gc-start-2 gc-span-24" role="list" aria-label="Leadership shifts">
           {operatingShifts.map((item, index) => (
             <article class="home-v3-operating-grid-item" role="listitem">
               <p class="home-v3-operating-grid-index">{String(index + 1).padStart(2, '0')}</p>
@@ -854,11 +925,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-outcomes home-v3-outcomes--rail home-v3-outcomes--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-outcomes-intro">
-        <div class="home-v3-section-head home-v3-section-head--compact home-v3-outcomes-head gc-start-2 gc-span-14">
-          <p class="home-v3-section-label">Proof</p>
-          <h2>Real business outcomes</h2>
-          <p>Selected operational systems, workflow transformations, and AI-assisted delivery work across client engagements and internal product infrastructure. Some details are anonymized.</p>
-        </div>
+        <SectionHeader
+          eyebrow="Proof"
+          title="Real business outcomes"
+          body="Selected operational systems, workflow transformations, and AI-assisted delivery work across client engagements and internal product infrastructure. Some details are anonymized."
+          headClass="home-v3-outcomes-head gc-start-2 gc-span-10"
+        />
       </div>
 
       <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
@@ -903,13 +975,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-practice" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-practice-intro">
-        <div class="home-v3-section-head home-v3-section-head--practice gc-start-2 gc-span-14">
-          <p class="home-v3-section-label">Leadership in practice</p>
-          <h2>Clarity under pressure.</h2>
-          <p>
-            I operate where direction and delivery meet: senior enough for executive decisions, close enough to the work to define workflow architecture, strengthen execution standards, and move faster without letting quality drift.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Leadership in practice"
+          title="Clarity under pressure."
+          body="I operate where direction and delivery meet: senior enough for executive decisions, close enough to the work to define workflow architecture, strengthen execution standards, and move faster without letting quality drift."
+        />
       </div>
 
       {homeV3PracticeVariant === 'grid' && (
@@ -1038,10 +1108,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-engagements home-v3-engagements--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-engagements-intro">
-        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-14">
-          <p class="home-v3-section-label">Engagements</p>
-          <h2>Ways to engage</h2>
-        </div>
+        <SectionHeader eyebrow="Engagements" title="Ways to engage" />
       </div>
 
       <div class="dm-grid-l dm-grid-l--grid-sys">
@@ -1063,13 +1130,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-fit" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-fit-layout">
-        <div class="home-v3-section-head home-v3-section-head--compact gc-start-2 gc-span-8">
-          <p class="home-v3-section-label">Fit / FAQ</p>
-          <h2>Before we talk.</h2>
-          <p>
-            A few notes on the work, the process, and where I can be most useful.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Fit / FAQ"
+          title="Before we talk."
+          body="A few notes on the work, the process, and where I can be most useful."
+        />
 
         <div class="home-v3-fit-rows gc-start-11 gc-span-15" role="list" aria-label="Fit and FAQ">
           <p class="home-v3-fit-rows-label">Common questions</p>
@@ -1090,9 +1155,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     <section class="home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-writing-layout">
-        <div class="home-v3-writing-head gc-start-2 gc-span-16">
-          <h2>Curated thinking</h2>
-        </div>
+        <SectionHeader title="Curated thinking" headClass="home-v3-writing-head gc-start-2 gc-span-10" />
       </div>
 
       <div class="dm-grid-l dm-grid-l--grid-sys">
@@ -1950,6 +2013,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-type-card-title-compact: var(--ds-type-card-title-compact);
     --home-v3-line-label: var(--ds-line-label);
     --home-v3-line-card-title: var(--ds-line-card-title);
+    --home-v3-line-title: var(--ds-line-card-title);
     --home-v3-line-body: var(--ds-line-body);
     --home-v3-line-body-compact: var(--ds-line-body-compact);
     --home-v3-line-lead: var(--ds-line-lead);
@@ -1963,6 +2027,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-tracking-card: var(--ds-tracking-card);
     --home-v3-tracking-text: var(--ds-tracking-text);
     --home-v3-section-gap: var(--ds-section-gap);
+    --home-v3-section-eyebrow-gap: var(--spacing-xs);
     --home-v3-panel-gap: var(--ds-panel-gap);
     --home-v3-button-padding-y: var(--ds-button-padding-y);
     --home-v3-button-padding-y-compact: var(--ds-button-padding-y-compact);
@@ -2094,7 +2159,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-bridge-lite,
   .home-v3-shift,
   .home-v3-operating-shift {
-    width: var(--home-v3-shell);
     margin: 0 auto;
   }
 
@@ -2144,7 +2208,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(231, 235, 242, 0.82);
     font-size: var(--home-v3-type-body-xs);
     font-weight: var(--font-weight-medium);
-    line-height: 1.3;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: var(--home-v3-tracking-text);
     opacity: 0;
     transform: translateY(0.42rem);
@@ -2189,7 +2253,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-family: var(--home-v3-display);
     font-size: clamp(1rem, 1.5vw, 1.35rem);
     font-weight: var(--font-weight-semibold);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
@@ -2227,6 +2291,272 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding-inline: 0;
   }
 
+  .home-v3-focus-areas {
+    position: relative;
+    width: 100%;
+    padding: 6rem 0 clamp(5rem, 8vw, 8rem);
+  }
+
+  .home-v3-focus-areas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .home-v3-focus-card {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-content: end;
+    min-height: clamp(19rem, 28vw, 28rem);
+    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+    overflow: hidden;
+    border: var(--size-border-thin) solid rgba(121, 154, 255, 0.12);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse 58% 46% at 0% 0%, rgba(121, 154, 255, 0.18), rgba(121, 154, 255, 0.055) 38%, transparent 74%),
+      radial-gradient(ellipse 46% 34% at 10% 4%, rgba(231, 235, 242, 0.08), rgba(231, 235, 242, 0.024) 42%, transparent 72%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+      rgba(7, 9, 13, 0.9);
+    color: var(--home-v3-text);
+    text-decoration: none;
+    box-shadow:
+      inset 0 0 0 var(--size-border-thin) rgba(255, 255, 255, 0.025),
+      0 1.4rem 3rem rgba(0, 0, 0, 0.18);
+    transition:
+      border-color 360ms ease,
+      transform 360ms ease,
+      box-shadow 360ms ease;
+  }
+
+  .home-v3-focus-card--large {
+    grid-column: span 3;
+  }
+
+  .home-v3-focus-card--small {
+    grid-column: span 1;
+  }
+
+  .home-v3-focus-card::before,
+  .home-v3-focus-card::after,
+  .home-v3-focus-card-visual {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .home-v3-focus-card::before {
+    z-index: -2;
+    background:
+      linear-gradient(180deg, transparent 0 38%, rgba(3, 5, 9, 0.82) 100%),
+      linear-gradient(90deg, rgba(3, 5, 9, 0.5), rgba(3, 5, 9, 0.1));
+  }
+
+  .home-v3-focus-card::after {
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(231, 239, 255, 0.88), rgba(184, 207, 255, 0.52) 34%, rgba(121, 154, 255, 0.22) 68%, transparent),
+      linear-gradient(180deg, rgba(231, 239, 255, 0.58), rgba(121, 154, 255, 0.24) 42%, transparent),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 var(--size-border-thin), transparent var(--size-border-thin) 100%),
+      radial-gradient(ellipse at 0% 0%, rgba(184, 207, 255, 0.24), rgba(121, 154, 255, 0.08) 32%, transparent 68%);
+    background-position: top left, top left, top left, top left;
+    background-size: min(18rem, 72%) var(--size-border-thin), var(--size-border-thin) min(10rem, 54%), 33.333% 100%, 100% 100%;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    opacity: 0.62;
+    mask-image: linear-gradient(180deg, #000, transparent 72%);
+    box-shadow:
+      0 0.05rem 1.25rem rgba(121, 154, 255, 0.24),
+      0 0 2.15rem rgba(105, 133, 255, 0.16);
+    transition: opacity 360ms ease;
+  }
+
+  .home-v3-focus-card--image .home-v3-focus-card-visual {
+    z-index: 0;
+    background-image: var(--home-v3-focus-card-image);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    transform: scale(1.02);
+    transition:
+      opacity 420ms ease,
+      transform 520ms ease;
+  }
+
+  .home-v3-focus-card--image::before {
+    z-index: 1;
+  }
+
+  .home-v3-focus-card--image::after {
+    z-index: 2;
+  }
+
+  .home-v3-focus-card--image .home-v3-focus-card-content {
+    z-index: 3;
+  }
+
+  .home-v3-focus-card--operating .home-v3-focus-card-visual {
+    background-position: center right;
+  }
+
+  .home-v3-focus-card--ai .home-v3-focus-card-visual {
+    background-position: center;
+  }
+
+  .home-v3-focus-card--direction:not(.home-v3-focus-card--image) .home-v3-focus-card-visual,
+  .home-v3-focus-card--standards:not(.home-v3-focus-card--image) .home-v3-focus-card-visual {
+    z-index: -3;
+    opacity: 0.66;
+    background:
+      radial-gradient(circle at 72% 28%, rgba(176, 204, 255, 0.12), transparent 8rem),
+      linear-gradient(135deg, transparent 0 44%, rgba(176, 204, 255, 0.08) 44% 44.6%, transparent 44.6%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent);
+  }
+
+  .home-v3-focus-card--direction.home-v3-focus-card--image .home-v3-focus-card-visual {
+    background-position: right;
+    background-size: cover;
+    opacity: 0.74;
+  }
+
+  .home-v3-focus-card--standards:not(.home-v3-focus-card--image) .home-v3-focus-card-visual {
+    background:
+      radial-gradient(circle at 74% 26%, rgba(176, 204, 255, 0.1), transparent 8rem),
+      radial-gradient(circle at center, rgba(231, 235, 242, 0.1) 0 0.055rem, transparent 0.075rem) 0 0 / 1rem 1rem,
+      linear-gradient(180deg, rgba(255, 255, 255, 0.024), transparent);
+  }
+
+  .home-v3-focus-card--standards.home-v3-focus-card--image .home-v3-focus-card-visual {
+    background-position: center right;
+    background-size: cover;
+    opacity: 0.76;
+  }
+
+  .home-v3-focus-card-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--spacing-md);
+    justify-items: start;
+  }
+
+  .home-v3-focus-card-title {
+    color: rgba(244, 247, 255, 0.94);
+    font-family: var(--home-v3-display);
+    font-size: var(--home-v3-type-card-title);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--home-v3-line-title);
+    letter-spacing: var(--home-v3-tracking-title);
+  }
+
+  .home-v3-focus-card--small .home-v3-focus-card-title {
+    font-size: var(--home-v3-type-card-title);
+  }
+
+  .home-v3-focus-card-description {
+    max-width: 40ch;
+    color: rgba(231, 235, 242, 0.68);
+    font-size: var(--home-v3-type-body-sm);
+    line-height: var(--home-v3-line-body);
+    letter-spacing: var(--home-v3-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .home-v3-focus-card--small .home-v3-focus-card-description {
+    font-size: var(--home-v3-type-body-xs);
+    line-height: var(--home-v3-line-body-compact);
+  }
+
+  .home-v3-focus-card-action {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: rgba(231, 235, 242, 0.72);
+    font-size: var(--home-v3-type-body-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--home-v3-line-label);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .home-v3-focus-card-action::after {
+    content: '→';
+    color: rgba(176, 204, 255, 0.82);
+    opacity: 0;
+    transform: translateX(-0.25rem);
+    transition:
+      opacity 260ms ease,
+      transform 260ms ease;
+  }
+
+  .home-v3-focus-card:hover,
+  .home-v3-focus-card:focus-visible {
+    border-color: rgba(184, 207, 255, 0.38);
+    box-shadow:
+      inset 0 0 0 var(--size-border-thin) rgba(255, 255, 255, 0.035),
+      0 0 1.75rem rgba(121, 154, 255, 0.08),
+      0 1.7rem 3.4rem rgba(0, 0, 0, 0.24);
+    transform: none;
+    outline: none;
+  }
+
+  .home-v3-focus-card:hover::after,
+  .home-v3-focus-card:focus-visible::after {
+    opacity: 0.82;
+  }
+
+  .home-v3-focus-card:hover .home-v3-focus-card-visual,
+  .home-v3-focus-card:focus-visible .home-v3-focus-card-visual {
+    opacity: 0.84;
+    transform: scale(1.045);
+  }
+
+  .home-v3-focus-card:hover .home-v3-focus-card-action::after,
+  .home-v3-focus-card:focus-visible .home-v3-focus-card-action::after {
+    opacity: 1;
+    transform: translateX(0.18rem);
+  }
+
+  @media (max-width: 68rem) {
+    .home-v3-focus-areas-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-v3-focus-card--large {
+      grid-column: span 2;
+    }
+
+    .home-v3-focus-card--small {
+      min-height: clamp(17rem, 38vw, 22rem);
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .home-v3-focus-areas {
+      padding: clamp(4rem, 16vw, 6rem) 0;
+    }
+
+    .home-v3-focus-areas-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-sm);
+    }
+
+    .home-v3-focus-card,
+    .home-v3-focus-card--large,
+    .home-v3-focus-card--small {
+      grid-column: 1 / -1;
+      min-height: clamp(15rem, 56vw, 19rem);
+      padding: var(--spacing-md);
+    }
+
+    .home-v3-focus-card-title,
+    .home-v3-focus-card--small .home-v3-focus-card-title {
+      font-size: var(--home-v3-mobile-type-title-sm);
+    }
+  }
+
   .home-v3-pillars {
     position: relative;
     width: 100%;
@@ -2239,7 +2569,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-pillars-head {
     display: grid;
-    gap: 0.55rem;
+    gap: var(--home-v3-section-eyebrow-gap);
     justify-items: center;
     max-width: 51rem;
     margin: 0 auto 7rem;
@@ -2247,7 +2577,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-pillars-head .home-v3-section-label {
-    margin-bottom: 0.15rem;
+    margin-bottom: 0;
   }
 
   .home-v3-pillars-head h2 {
@@ -2256,7 +2586,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-family: var(--home-v3-display);
     font-size: 4.2vw;
     font-weight: var(--font-weight-medium);
-    line-height: 0.92;
+    line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     text-wrap: balance;
   }
@@ -2408,7 +2738,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-pillar-title {
     max-width: none;
     font-size: clamp(2rem, 2.65vw, 2.85rem);
-    line-height: 0.98;
+    line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     color: rgba(244, 247, 255, 0.96);
   }
@@ -2416,7 +2746,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-pillar-headline {
     max-width: none;
     font-size: clamp(1.28rem, 1.85vw, 1.74rem);
-    line-height: 1.08;
+    line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     color: rgba(230, 235, 244, 0.9);
   }
@@ -2426,7 +2756,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin-top: auto;
     padding-top: var(--home-v3-section-gap);
     font-size: var(--home-v3-type-body);
-    line-height: 1.6;
+    line-height: var(--home-v3-line-body);
     letter-spacing: var(--home-v3-tracking-text);
     color: rgba(180, 188, 203, 0.8);
   }
@@ -2821,7 +3151,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: max-content;
     max-width: none;
     font-size: clamp(4.8rem, 10vw, 10rem);
-    line-height: 0.92;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.044rem;
     color: transparent;
     background:
@@ -3041,7 +3371,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     z-index: 1;
     margin: 0;
     font-size: clamp(4.8rem, 10vw, 10rem);
-    line-height: 0.92;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.044rem;
     color: transparent;
     background:
@@ -3153,7 +3483,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(231, 235, 242, 0.72);
     font-size: 0.72rem;
     font-weight: var(--font-weight-medium);
-    line-height: 1.15;
+    line-height: var(--home-v3-line-section-title-compact);
     letter-spacing: 0;
     white-space: nowrap;
     opacity: 0;
@@ -3396,7 +3726,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     text-transform: uppercase;
     margin: 0;
     font-size: var(--home-v3-type-label);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: var(--home-v3-tracking-label);
     font-weight: var(--font-weight-medium);
   }
@@ -3404,7 +3734,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-section-label {
     color: var(--home-v3-text-soft);
     font-size: var(--home-v3-type-label-compact);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
     margin: 0;
@@ -3419,7 +3749,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: inherit;
     font-size: var(--home-v3-type-label);
-    line-height: 1.24;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
     font-weight: var(--font-weight-medium);
@@ -3464,14 +3794,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-hero-copy h1,
-  .home-v3-section-head h2,
   .home-v3-shift-head h2,
-  .home-v3-support-copy h2,
-  .home-v3-writing-head h2 {
+  .home-v3-support-copy h2 {
     font-family: var(--home-v3-display);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-title);
-    line-height: 0.98;
+    line-height: var(--home-v3-line-title);
     margin: 0;
   }
 
@@ -3488,7 +3816,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-hero-copy h1 {
     font-size: var(--home-v3-type-hero);
     margin-top: 0;
-    line-height: 0.92;
+    line-height: var(--home-v3-line-title);
   }
 
   .home-v3-hero-primary {
@@ -3502,9 +3830,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     animation: home-v3-hero-copy-enter 820ms ease 680ms both;
   }
 
-  .home-v3-actors .home-v3-section-label,
-  .home-v3-actors .home-v3-section-head h2,
-  .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
   .home-v3-actors .home-v3-actor-lane {
     opacity: 0;
     transform: translateY(1.25rem);
@@ -3514,20 +3839,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     will-change: opacity, transform;
   }
 
-  .home-v3-actors.is-visible .home-v3-section-label,
-  .home-v3-actors.is-visible .home-v3-section-head h2,
-  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
   .home-v3-actors.is-visible .home-v3-actor-lane {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .home-v3-actors.is-visible .home-v3-section-head h2 {
-    transition-delay: 0.08s;
-  }
-
-  .home-v3-actors.is-visible .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability) {
-    transition-delay: 0.16s;
   }
 
   .home-v3-actors.is-visible .home-v3-actor-lane:nth-child(1) {
@@ -3555,12 +3869,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-lead,
-  .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
   .home-v3-support-copy p,
   .home-v3-proof-line {
     color: var(--home-v3-text-muted);
     font-size: var(--home-v3-type-lead);
-    line-height: 1.56;
+    line-height: var(--home-v3-line-body-compact);
     margin: 0;
     letter-spacing: var(--home-v3-tracking-text);
   }
@@ -3598,7 +3911,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-body-sm);
     font-family: var(--font-family-body);
     font-weight: var(--font-weight-semibold);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: var(--home-v3-tracking-text);
     white-space: nowrap;
     transition:
@@ -4128,7 +4441,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     min-height: 1.2rem;
     border-radius: 999rem;
     font-size: 0.62rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
@@ -4214,7 +4527,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-executive-surface-label {
     font-size: 0.46rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -4231,7 +4544,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-executive-surface-value {
     font-size: clamp(0.76rem, 0.88vw, 0.88rem);
     font-weight: var(--font-weight-medium);
-    line-height: 1.02;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.02em;
     color: rgba(248, 247, 244, 0.34);
     white-space: nowrap;
@@ -4239,7 +4552,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-executive-surface-delta {
     font-size: 0.44rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(var(--executive-cream-rgb), 0.24);
@@ -4357,7 +4670,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding: 0 0.58rem;
     border-radius: 999rem;
     font-size: 0.56rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -4467,7 +4780,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-art-stat span {
     color: rgba(231, 235, 242, 0.68);
     font-size: 0.72rem;
-    line-height: 1.2;
+    line-height: var(--home-v3-line-body-compact);
     opacity: 0.74;
     transition: opacity 0.35s ease;
   }
@@ -4502,7 +4815,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-art-stat strong {
     font-size: 2rem;
-    line-height: 0.95;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.05em;
   }
 
@@ -5336,7 +5649,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     flex: 1;
     min-width: 0;
     font-size: 0.72rem;
-    line-height: 1.2;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: 0.02em;
     color: rgba(216, 223, 236, 0.72);
     white-space: nowrap;
@@ -5346,7 +5659,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-product-terminal-mode {
     font-size: 0.62rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(182, 192, 224, 0.26);
@@ -5407,7 +5720,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0.18rem;
     min-width: 0;
     font-size: 0.72rem;
-    line-height: 1.2;
+    line-height: var(--home-v3-line-body-compact);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -5467,7 +5780,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-product-terminal-metric-label {
     font-size: 0.62rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(181, 193, 225, 0.24);
@@ -5476,14 +5789,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-product-terminal-metric strong {
     font-family: var(--home-v3-display);
     font-size: 2rem;
-    line-height: 0.95;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.05rem;
     color: rgba(239, 243, 252, 0.58);
   }
 
   .home-v3-product-terminal-metric-meta {
     font-size: 0.62rem;
-    line-height: 1.2;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(181, 193, 225, 0.18);
@@ -5701,7 +6014,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-card-copy h3 {
     margin: 0;
     font-size: 1.5rem;
-    line-height: 0.96;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.04em;
     text-wrap: balance;
     max-width: 16ch;
@@ -5713,7 +6026,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.88);
     font-size: 0.91rem;
-    line-height: 1.48;
+    line-height: var(--home-v3-line-lead);
     max-width: 34ch;
     min-height: 4.25rem;
     text-shadow: 0 0.12rem 0.9rem rgba(0, 0, 0, 0.3);
@@ -5738,7 +6051,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0.18rem;
     color: var(--home-v3-text);
     font-size: 0.8rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: -0.012em;
   }
 
@@ -5877,7 +6190,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: fit-content;
     color: rgba(var(--actor-lane-soft-rgb), 0.76);
     font-size: var(--home-v3-type-label-compact);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: var(--home-v3-tracking-label);
     text-transform: uppercase;
     font-weight: var(--font-weight-medium);
@@ -5956,7 +6269,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-copy h3 {
     margin: 0;
     font-size: clamp(1.42rem, 1.55vw, 1.72rem);
-    line-height: 1.02;
+    line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     text-wrap: balance;
     max-width: none;
@@ -5966,7 +6279,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.84);
     font-size: 0.92rem;
-    line-height: 1.48;
+    line-height: var(--home-v3-line-lead);
     letter-spacing: var(--home-v3-tracking-text);
     text-wrap: pretty;
     max-width: none;
@@ -5999,7 +6312,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-metric-label {
     color: rgba(var(--actor-lane-soft-rgb), 0.82);
     font-size: 0.56rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     font-weight: var(--font-weight-medium);
@@ -6008,7 +6321,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-metric-detail {
     color: rgba(231, 235, 242, 0.66);
     font-size: 0.76rem;
-    line-height: 1.2;
+    line-height: var(--home-v3-line-body-compact);
     text-align: right;
     white-space: nowrap;
     text-wrap: nowrap;
@@ -6313,7 +6626,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       0 0.7rem 1.2rem rgba(0, 0, 0, 0.18);
     color: rgba(var(--actor-concept-soft-rgb), 0.82);
     font-size: 0.56rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -6352,7 +6665,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     background: rgba(255, 255, 255, 0.02);
     color: rgba(var(--actor-concept-soft-rgb), 0.74);
     font-size: 0.56rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
@@ -6632,7 +6945,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(var(--actor-concept-soft-rgb), 0.74);
     font-size: 0.62rem;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
@@ -6640,7 +6953,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-card-concept-copy h3 {
     margin: 0;
     font-size: 1.46rem;
-    line-height: 0.97;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.04em;
     text-wrap: balance;
     max-width: 15ch;
@@ -6651,7 +6964,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.86);
     font-size: 0.89rem;
-    line-height: 1.46;
+    line-height: var(--home-v3-line-lead);
     max-width: 32ch;
     min-height: 4rem;
     text-wrap: pretty;
@@ -6744,7 +7057,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-label);
     font-weight: var(--font-weight-medium);
     letter-spacing: 0.12em;
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     text-transform: uppercase;
   }
 
@@ -6755,7 +7068,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-title-md);
     font-weight: var(--font-weight-medium);
     letter-spacing: -0.05em;
-    line-height: 0.98;
+    line-height: var(--home-v3-line-title);
     text-wrap: balance;
   }
 
@@ -6765,7 +7078,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(231, 235, 242, 0.72);
     font-size: var(--home-v3-type-lead);
     letter-spacing: -0.015em;
-    line-height: 1.6;
+    line-height: var(--home-v3-line-body);
   }
 
   .home-v3-needs-panel-grid {
@@ -6794,7 +7107,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: 1.08rem;
     font-weight: var(--font-weight-medium);
     letter-spacing: -0.03em;
-    line-height: 1.15;
+    line-height: var(--home-v3-line-section-title-compact);
     text-wrap: balance;
   }
 
@@ -6804,7 +7117,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(231, 235, 242, 0.68);
     font-size: var(--home-v3-type-body-sm);
     letter-spacing: -0.01em;
-    line-height: 1.55;
+    line-height: var(--home-v3-line-body-compact);
   }
 
   .home-v3-needs-panel-footer {
@@ -6820,7 +7133,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(231, 235, 242, 0.72);
     font-size: 1rem;
     letter-spacing: -0.015em;
-    line-height: 1.5;
+    line-height: var(--home-v3-line-body);
   }
 
   .home-v3-window {
@@ -6996,36 +7309,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding-top: 6rem;
   }
 
-  .home-v3-section-head {
-    display: grid;
-    gap: var(--spacing-sm);
-    max-width: 48rem;
-    margin-bottom: var(--spacing-xl);
-  }
-
-  .home-v3-section-head--practice {
-    max-width: 58rem;
-    margin-bottom: var(--spacing-md);
-  }
-
-  .home-v3-section-head--compact {
-    max-width: 40rem;
-  }
-
-  .home-v3-section-head--compact h2 {
-    text-wrap: balance;
-  }
-
-  .home-v3-section-head h2,
-  .home-v3-support-copy h2,
-  .home-v3-writing-head h2 {
+  .home-v3-support-copy h2 {
     font-size: var(--home-v3-type-title-lg);
   }
 
-  .home-v3-section-head--compact h2,
-  .home-v3-shift-head h2,
-  .home-v3-practice .home-v3-section-head h2,
-  .home-v3-writing-head h2 {
+  .home-v3-shift-head h2 {
     font-size: var(--home-v3-type-section-title-compact);
     line-height: var(--home-v3-line-section-title-compact);
   }
@@ -7079,7 +7367,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-practice-story-copy h3 {
     margin: 0;
     font-size: clamp(3rem, 4.4vw, 5rem);
-    line-height: 0.94;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.065em;
     text-wrap: balance;
     max-width: 10ch;
@@ -7091,7 +7379,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: 35ch;
     color: rgba(231, 235, 242, 0.78);
     font-size: 1.02rem;
-    line-height: 1.66;
+    line-height: var(--home-v3-line-body);
   }
 
   .home-v3-practice-story-note {
@@ -7229,7 +7517,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-practice-value--solid {
     font-size: var(--home-v3-type-title-sm);
-    line-height: 0.98;
+    line-height: var(--home-v3-line-title);
     max-width: none;
   }
 
@@ -7346,7 +7634,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-practice-proof--compact .home-v3-practice-value {
     font-size: 1.14rem;
-    line-height: 1.05;
+    line-height: var(--home-v3-line-title);
     max-width: none;
   }
 
@@ -7647,9 +7935,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-pillars-head .home-v3-section-label,
     .home-v3-pillars-head h2,
     .home-v3-pillars-surface,
-    .home-v3-actors .home-v3-section-label,
-    .home-v3-actors .home-v3-section-head h2,
-    .home-v3-actors .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
     .home-v3-actors .home-v3-actor-lane,
     .home-v3-fit-row,
     .home-v3-fit-row-icon::before,
@@ -7705,7 +7990,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(249, 250, 255, 0.96);
     font-family: var(--font-family-body);
     font-size: var(--home-v3-type-title-sm);
-    line-height: 1.02;
+    line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-card);
     font-weight: var(--font-weight-semibold);
     text-wrap: pretty;
@@ -7720,7 +8005,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0.8rem 0 0;
     color: rgba(231, 235, 242, 0.56);
     font-size: var(--home-v3-type-body-sm);
-    line-height: 1.6;
+    line-height: var(--home-v3-line-body);
     letter-spacing: var(--home-v3-tracking-text);
     max-width: none;
   }
@@ -7753,14 +8038,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     opacity: 0.9;
   }
 
-  .home-v3-outcomes--editorial .home-v3-section-label,
   .home-v3-outcomes--editorial .case-rail-sep {
     color: rgba(231, 235, 242, 0.56);
-  }
-
-  .home-v3-outcomes--editorial .home-v3-section-head h2,
-  .home-v3-outcomes--editorial .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability) {
-    color: var(--home-v3-text);
   }
 
   .home-v3-outcomes--editorial .case-rail-track {
@@ -7799,20 +8078,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-outcomes-intro {
     margin-bottom: var(--spacing-lg);
-    align-items: end;
-  }
-
-  .home-v3-outcomes .home-v3-section-head {
-    margin-bottom: var(--spacing-md);
-  }
-
-  .home-v3-outcomes--editorial .home-v3-section-head h2 {
-    max-width: none;
-  }
-
-  .home-v3-outcomes--editorial .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability) {
-    max-width: 38rem;
-    color: rgba(231, 235, 242, 0.56);
+    align-items: center;
   }
 
   .home-v3-outcomes-controls-row {
@@ -7838,7 +8104,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       0 0 0 1px rgba(190, 170, 255, 0.045);
     color: rgba(231, 235, 242, 0.64);
     font-size: 0.82rem;
-    line-height: 1.24;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: var(--home-v3-tracking-text);
     white-space: nowrap;
     overflow: hidden;
@@ -7937,7 +8203,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-proof-card-role {
     color: rgba(231, 235, 242, 0.56);
     font-size: 0.82rem;
-    line-height: 1.4;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: 0;
     font-weight: var(--font-weight-light);
     text-transform: none;
@@ -7950,7 +8216,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0.45rem 0 0;
     color: rgba(248, 248, 251, 0.74);
     font-size: 0.9rem;
-    line-height: 1.35;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: 0;
     text-wrap: pretty;
   }
@@ -8008,7 +8274,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-writing-side-card p {
     color: var(--home-v3-text-muted);
     margin: 0;
-    line-height: 1.65;
+    line-height: var(--home-v3-line-body);
   }
 
   .home-v3-panel {
@@ -8019,7 +8285,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-writing-feature-card h3,
   .home-v3-writing-side-card h3 {
     font-size: 1.4rem;
-    line-height: 1.2;
+    line-height: var(--home-v3-line-body-compact);
     margin: 1rem 0 0.85rem;
   }
 
@@ -8049,7 +8315,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-label-compact);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     text-transform: uppercase;
   }
 
@@ -8169,7 +8435,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.68);
     font-size: var(--home-v3-type-body);
-    line-height: 1.62;
+    line-height: var(--home-v3-line-body);
   }
 
   .home-v3-shift-cards {
@@ -8287,7 +8553,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(244, 247, 255, 0.94);
     font-size: clamp(1.02rem, 1.18vw, 1.18rem);
     font-weight: var(--font-weight-semibold);
-    line-height: 1.12;
+    line-height: var(--home-v3-line-section-title-compact);
     letter-spacing: var(--home-v3-tracking-card);
     text-wrap: balance;
   }
@@ -8298,7 +8564,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-label-compact);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--home-v3-tracking-label);
-    line-height: 1;
+    line-height: var(--home-v3-line-label);
     text-transform: uppercase;
   }
 
@@ -8308,7 +8574,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0.25rem 0 0;
     color: rgba(231, 235, 242, 0.62);
     font-size: var(--home-v3-type-body);
-    line-height: 1.6;
+    line-height: var(--home-v3-line-body);
     letter-spacing: var(--home-v3-tracking-text);
     text-wrap: pretty;
   }
@@ -8324,23 +8590,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-operating-shift-layout {
-    align-items: start;
+    align-items: center;
     row-gap: 1.65rem;
   }
 
   .home-v3-operating-shift-head {
     margin-bottom: 0;
-  }
-
-  .home-v3-operating-shift-thesis {
-    align-self: center;
-    max-width: 34rem;
-    margin: 1.55rem 0 0;
-    color: rgba(231, 235, 242, 0.64);
-    font-size: var(--home-v3-type-lead);
-    line-height: var(--home-v3-line-lead);
-    letter-spacing: var(--home-v3-tracking-text);
-    text-wrap: pretty;
   }
 
   .home-v3-operating-grid {
@@ -8409,7 +8664,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-writing-head {
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--home-v3-section-eyebrow-gap);
     max-width: 44rem;
   }
 
@@ -8602,7 +8857,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-writing-volume-title {
     max-width: none;
     font-size: clamp(1.18rem, 1.28vw, 1.42rem);
-    line-height: 1.08;
+    line-height: var(--home-v3-line-title);
     letter-spacing: -0.035em;
   }
 
@@ -8612,7 +8867,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     overflow: hidden;
     color: rgba(231, 235, 242, 0.58);
     font-size: var(--home-v3-type-body-xs);
-    line-height: 1.42;
+    line-height: var(--home-v3-line-body-compact);
     letter-spacing: var(--home-v3-tracking-text);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -8671,10 +8926,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-shift-cards,
     .home-v3-client-trust-shell,
     .home-v3-operating-shift-head,
-    .home-v3-operating-shift-thesis,
     .home-v3-operating-grid,
     .home-v3-engagement-availability,
-    .home-v3-fit .home-v3-section-head,
     .home-v3-fit-rows,
     .home-v3-writing-head,
     .home-v3-writing-rail-wrap {
@@ -8768,7 +9021,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-operating-shift-head,
-    .home-v3-operating-shift-thesis,
     .home-v3-operating-grid {
       max-width: 48rem;
     }
@@ -8964,7 +9216,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       font: inherit;
       font-size: var(--home-v3-mobile-type-label-decorative);
       font-weight: var(--font-weight-medium);
-      line-height: 1;
+      line-height: var(--home-v3-line-label);
       letter-spacing: 0;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -9105,7 +9357,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       font-family: var(--home-v3-display);
       font-size: clamp(2.7rem, 15vw, 4.65rem);
       font-weight: var(--font-weight-medium);
-      line-height: 0.9;
+      line-height: var(--home-v3-line-title);
       letter-spacing: var(--home-v3-tracking-title);
     }
 
@@ -9130,14 +9382,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       font-size: 0.68rem;
       font-weight: var(--font-weight-semibold);
       letter-spacing: 0.14em;
-      line-height: 1;
+      line-height: var(--home-v3-line-label);
       text-transform: uppercase;
     }
 
     .home-v3-mobile-nav-group a {
       color: rgba(231, 235, 242, 0.68);
       font-size: 0.95rem;
-      line-height: 1.22;
+      line-height: var(--home-v3-line-body-compact);
       text-wrap: pretty;
     }
 
@@ -9158,7 +9410,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       border-radius: 999rem;
       font-size: 0.95rem;
       font-weight: var(--font-weight-medium);
-      line-height: 1;
+      line-height: var(--home-v3-line-label);
       text-align: center;
       color: rgba(6, 7, 10, 0.96);
     }
@@ -9310,7 +9562,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-actor-lane-copy > p {
       max-width: none;
       font-size: var(--home-v3-mobile-type-body-sm);
-      line-height: 1.54;
+      line-height: var(--home-v3-line-body-compact);
     }
 
     .home-v3-actor-card-copy p,
@@ -9432,7 +9684,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-lead,
-    .home-v3-section-head p:not(.home-v3-section-label):not(.home-v3-engagement-availability),
     .home-v3-support-copy p,
     .home-v3-proof-line {
       font-size: var(--home-v3-mobile-type-body);
@@ -9567,12 +9818,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-writing-volume .home-v3-card-title-text {
       font-size: var(--home-v3-mobile-type-title-sm);
-      line-height: 1.08;
+      line-height: var(--home-v3-line-title);
     }
 
     .home-v3-writing-volume .home-v3-card-copy-text {
       font-size: var(--home-v3-mobile-type-body-sm);
-      line-height: 1.58;
+      line-height: var(--home-v3-line-body);
     }
 
     .home-v3-writing-volume .home-v3-card-meta-text {
@@ -9689,7 +9940,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       bottom: -0.12rem;
       font-family: var(--home-v3-display);
       font-size: clamp(4.8rem, 25vw, 6.2rem);
-      line-height: 0.82;
+      line-height: var(--home-v3-line-title);
       letter-spacing: -0.085rem;
       color: rgba(255, 255, 255, 0.05);
       white-space: nowrap;
@@ -9721,7 +9972,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       margin: 0;
       max-width: 5.6ch;
       font-size: clamp(2.55rem, 12.4vw, 3.4rem);
-      line-height: 0.92;
+      line-height: var(--home-v3-line-title);
       letter-spacing: -0.044rem;
       color: transparent;
       background:
@@ -9793,14 +10044,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-pillar-headline {
       max-width: none;
       font-size: var(--home-v3-mobile-type-body);
-      line-height: 1.12;
+      line-height: var(--home-v3-line-section-title-compact);
     }
 
     .home-v3-pillar-body {
       max-width: none;
       margin-top: 0;
       font-size: var(--home-v3-mobile-type-body-sm);
-      line-height: 1.58;
+      line-height: var(--home-v3-line-body);
     }
 
     .home-v3-practice-grid {
@@ -9847,7 +10098,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-practice-text {
-      line-height: 1.6;
+      line-height: var(--home-v3-line-body);
     }
 
     .home-v3-engagement-availability {

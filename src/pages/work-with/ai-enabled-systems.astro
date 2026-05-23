@@ -1,0 +1,1144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import HomeFooter from '../../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const mailParams = new URLSearchParams();
+mailParams.set('subject', '[AI-enabled product systems] Advisory inquiry');
+mailParams.set('body', `Hi Dan,\n\nI'm reaching out about AI-enabled product systems and would like to talk through what we are building.\n\nContext:\n- Team/company:\n- Product or workflow:\n- Where AI is creating opportunity or friction:\n- Desired engagement shape:\n\nThanks,`);
+const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
+
+const stuckColumns = [
+  {
+    icon: 'radar',
+    title: 'Emerging territory on the horizon',
+    text: 'The team is working at the edge of an emerging capability, before user behavior and product value are fully understood.'
+  },
+  {
+    icon: 'boundary',
+    title: 'Pressure before clarity',
+    text: 'Momentum to ship can outpace clarity about the right problem, workflow, and durable product behavior.'
+  },
+  {
+    icon: 'artifacts',
+    title: 'Artifacts that sharpen thinking',
+    text: 'The team needs artifacts that sharpen the conversation, not polished concepts pretending certainty already exists.'
+  },
+  {
+    icon: 'decision',
+    title: 'Better questions, better bets',
+    text: 'Leaders need sharper questions, stronger hypotheses, and enough structure to decide what is worth pursuing.'
+  }
+];
+
+const outputs = [
+  {
+    title: 'Opportunity frames',
+    text: 'Defined spaces where AI can create meaningful product leverage.',
+    image: '/images/work-ai/translation-1.png'
+  },
+  {
+    title: 'Speculative prototypes',
+    text: 'Probes, scenarios, or storyboards to provoke better questions.',
+    image: '/images/work-ai/translation-2.png'
+  },
+  {
+    title: 'AI behavior models',
+    text: 'Models for confidence, agency, control, review, failure, and escalation.',
+    image: '/images/work-ai/translation-3.png'
+  },
+  {
+    title: 'System maps',
+    text: 'Maps that expose operational, ethical, product, and implementation dependencies.',
+    image: '/images/work-ai/translation-4.png'
+  },
+  {
+    title: 'Product direction',
+    text: 'Principles and product direction that translate exploration into the next phase of work.',
+    image: '/images/work-ai/translation-5.png'
+  },
+  {
+    title: 'Decision principles',
+    text: 'Clear criteria to align stakeholders and make high-integrity decisions.',
+    image: '/images/work-ai/translation-6.png'
+  }
+];
+
+const explorationPrinciples = [
+  {
+    title: 'Make to discover',
+    text: 'Make the work visible enough for the team to notice what discussion alone would miss.',
+    badge: 'Surface what discussion misses'
+  },
+  {
+    title: 'Hold uncertainty',
+    text: 'Stay with ambiguity long enough to compare multiple futures instead of forcing the first plausible answer into a product plan.',
+    badge: 'Before the plan hardens'
+  },
+  {
+    title: 'Use assumptions deliberately',
+    text: 'Model imagined users, workflows, decisions, and system responses as temporary scaffolding, then pressure-test what those assumptions reveal.',
+    badge: 'Test what would need to be true'
+  },
+  {
+    title: 'Frame consequences early',
+    text: 'Explore trust, ethics, operational risk, unintended behavior, and organizational impact before implementation makes those choices expensive.',
+    badge: 'Before the cost of change rises'
+  }
+];
+
+const activityCards = [
+  {
+    title: 'Exploration workshops',
+    text: 'Open-ended sessions that help teams think beyond feature lists and identify the sharper product questions hiding inside the AI opportunity.'
+  },
+  {
+    title: 'Design probes',
+    text: 'Small artifacts, interface sketches, prompts, workflows, or provocations built to generate reaction and reveal what the team does not yet understand.'
+  },
+  {
+    title: 'Scenario and systems modeling',
+    text: 'Future-oriented journeys, actor maps, behavior models, and dependency diagrams that show how an AI-enabled system might work or fail.'
+  },
+  {
+    title: 'AI behavior simulation',
+    text: 'Conceptual modeling for non-human system behavior: what it suggests, refuses, explains, escalates, remembers, or hands back to people.'
+  }
+];
+---
+
+<Layout
+  title="Explore the Unknown | AI-enabled Product Systems | Dan Malarkey"
+  description="Design leadership for AI-enabled product systems, prompt workflows, UX behavior, and implementation-ready product direction."
+>
+  <Header />
+  <main class="ai-systems-page">
+    <section
+      class="ai-systems-hero"
+      style={`--ai-systems-hero-bg: url('${withBase('/images/work-ai/hero-img.png')}')`}
+      aria-labelledby="ai-systems-title"
+    >
+      <div class="ai-systems-hero-rays" aria-hidden="true"></div>
+      <div class="ai-systems-hero-light" aria-hidden="true"></div>
+      <div class="ai-systems-hero-grid dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-hero-copy gc-start-2 gc-span-13">
+          <p class="ai-systems-kicker">AI-enabled product systems</p>
+          <h1 id="ai-systems-title">Explore the unknown.</h1>
+          <p>
+            I help teams use design to explore what AI could make possible before the product path is obvious: new workflows, unfamiliar behaviors, system boundaries, and the decision frames needed to move from possibility into direction.
+          </p>
+          <div class="ai-systems-actions" aria-label="AI-enabled product systems actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href="#ai-systems-output" variant="ghost">See outputs</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-section ai-systems-section--signals" aria-labelledby="ai-systems-breaks">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <figure class="ai-systems-certainty-visual gc-start-2 gc-span-24" data-motion-reveal aria-hidden="true">
+          <img
+            src={withBase('/images/work-ai/certainty-run-out.png')}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <SectionHeader
+          eyebrow="Where teams get stuck"
+          title="The work starts where certainty runs out."
+          body="AI product work often begins before there is clean data, a stable user behavior, or a known market pattern. Design creates value here by making the unknown discussable, testable, and directional."
+          headingId="ai-systems-breaks"
+          accent
+          reveal
+          revealType="late"
+        />
+
+        <div class="stuck-grid gc-start-2 gc-span-24" role="list" aria-label="Where AI-enabled product teams get stuck" data-motion-reveal-late>
+          {stuckColumns.map((item) => (
+            <article class="stuck-item" role="listitem" data-motion-item>
+              <div class="stuck-item-icon" aria-hidden="true">
+                {item.icon === 'radar' && (
+                  <svg viewBox="0 0 64 64" focusable="false">
+                    <path d="M19 35a13 13 0 0 1 18.8-11.6" />
+                    <path d="M13 35a19 19 0 0 1 29.2-16" />
+                    <path d="M8 35a24 24 0 0 1 38.8-19" />
+                    <path class="stuck-item-icon-mark--accent" d="M31 35l15-16" />
+                    <circle class="stuck-item-icon-mark--accent" cx="31" cy="35" r="3" />
+                    <circle cx="47" cy="18" r="2.5" />
+                  </svg>
+                )}
+                {item.icon === 'boundary' && (
+                  <svg viewBox="0 0 64 64" focusable="false">
+                    <path d="M36 16h14v11" stroke-dasharray="4 5" />
+                    <path d="M50 37v11H36" stroke-dasharray="4 5" />
+                    <path d="M27 48H14V37" stroke-dasharray="4 5" />
+                    <path d="M14 27V16h13" stroke-dasharray="4 5" />
+                    <path d="M9 32h31" />
+                    <path d="M30 23l10 9-10 9" />
+                    <path class="stuck-item-icon-mark--accent" d="M15 24h13" />
+                    <path class="stuck-item-icon-mark--accent" d="M15 40h13" />
+                  </svg>
+                )}
+                {item.icon === 'artifacts' && (
+                  <svg viewBox="0 0 64 64" focusable="false">
+                    <path d="M22 13h27v19H22z" />
+                    <path d="M16 21h27v19H16z" />
+                    <path class="stuck-item-icon-mark--accent" d="M11 30h27v21H11z" />
+                    <path d="M17 37h12" />
+                    <path d="M17 44h8" />
+                    <path d="M33 37h11" />
+                  </svg>
+                )}
+                {item.icon === 'decision' && (
+                  <svg viewBox="0 0 64 64" focusable="false">
+                    <path d="M9 17c10 0 15 5 22 15" />
+                    <path d="M9 47c10 0 15-5 22-15" />
+                    <path d="M10 32h21" />
+                    <circle class="stuck-item-icon-mark--accent" cx="35" cy="32" r="3.2" />
+                    <path class="stuck-item-icon-mark--accent" d="M39 32h16" />
+                    <path class="stuck-item-icon-mark--accent" d="M49 25l7 7-7 7" />
+                  </svg>
+                )}
+              </div>
+              <div class="stuck-item-copy">
+                <h3 class="stuck-item-title">{item.title}</h3>
+                <p class="stuck-item-body">{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-section ai-systems-principles" aria-labelledby="ai-systems-principles" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="How exploration works"
+          title="The first signal is not the horizon."
+          body="In ambiguous AI contexts, exploration helps teams look past the first promising demo or early signal. The work is to compare possible futures, examine what would need to be true, and find the questions that deserve product investment."
+          headingId="ai-systems-principles"
+          accent
+          reveal
+        />
+
+        <div class="signal-row-list gc-start-2 gc-span-24" role="list" data-motion-item>
+          {explorationPrinciples.map((principle, index) => (
+            <article class="signal-row" role="listitem">
+              <span class="signal-row-stars" aria-hidden="true"></span>
+              <span class="signal-row-index">{String(index + 1).padStart(2, '0')} /</span>
+              <div class="signal-row-copy">
+                <h3 class="signal-row-title">{principle.title}</h3>
+                <p class="signal-row-text">{principle.text}</p>
+              </div>
+              <span class="signal-row-badge">{principle.badge}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="ai-systems-section ai-systems-activities" aria-labelledby="ai-systems-activities" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-mosaic ai-systems-mosaic--activities gc-start-2 gc-span-24" aria-labelledby="ai-systems-activities" role="list">
+          <div class="ai-systems-mosaic-column ai-systems-mosaic-column--left">
+            {activityCards.slice(0, 2).map((activity, index) => (
+              <article class="ai-systems-mosaic-card" role="listitem" data-motion-reveal-late>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <p>Activity</p>
+                <h3>{activity.title}</h3>
+                <p>{activity.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="ai-systems-mosaic-column ai-systems-mosaic-column--center">
+            <article class="ai-systems-mosaic-card ai-systems-mosaic-card--primary" data-motion-reveal-late>
+              <p class="ai-systems-kicker">Activities</p>
+              <h2 id="ai-systems-activities">Artifacts for thinking, not theater.</h2>
+            </article>
+          </div>
+
+          <div class="ai-systems-mosaic-column ai-systems-mosaic-column--right">
+            {activityCards.slice(2).map((activity, index) => (
+              <article class="ai-systems-mosaic-card" role="listitem" data-motion-reveal-late>
+                <span>{String(index + 3).padStart(2, '0')}</span>
+                <p>Activity</p>
+                <h3>{activity.title}</h3>
+                <p>{activity.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-systems-band" aria-labelledby="ai-systems-output" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="Translation"
+          title="Exploration has to become usable direction."
+          body="Turning ambiguity into clarity through structured outputs that connect insight to action and reduce risk."
+          headingId="ai-systems-output"
+          accent
+          reveal
+        />
+        <div class="ai-systems-output-list gc-start-2 gc-span-24" role="list" data-motion-item>
+          {outputs.map((output, index) => (
+            <article class="ai-systems-output-card" role="listitem">
+              <div class="ai-systems-output-visual" aria-hidden="true">
+                <img
+                  src={withBase(output.image)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{output.title}</h3>
+              <p>{output.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FocusAreaJumpCards current="ai" />
+
+    <HomeFooter
+      eyebrow="AI-enabled product systems"
+      title="If the AI work needs to hold together as a product system, let's talk."
+      body="I'm available for select advisory, consulting, and fractional leadership engagements where AI-enabled systems need to connect product direction, standards, and implementation."
+    />
+  </main>
+</Layout>
+
+<style lang="scss">
+  .ai-systems-page {
+    --ai-page-bg: var(--ds-background);
+    --ai-page-surface: var(--ds-surface);
+    --ai-page-surface-strong: var(--ds-surface-strong);
+    --ai-page-border: var(--ds-border);
+    --ai-page-border-soft: var(--ds-border-soft);
+    --ai-page-text: var(--ds-text);
+    --ai-page-text-muted: var(--ds-text-muted);
+    --ai-page-text-soft: var(--ds-text-soft);
+    --ai-page-accent: rgba(176, 204, 255, 0.88);
+    --ai-page-warm: rgba(255, 244, 170, 0.9);
+    --ai-hero-glow: 111, 162, 232;
+    --ai-output-card-bg: #01070e;
+    --section-header-accent-color: var(--ai-page-accent);
+    --section-header-title-color: rgba(245, 248, 255, 0.96);
+    --section-header-body-color: var(--ai-page-text-muted);
+
+    min-height: 100vh;
+    padding-inline: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 82% 4%, rgba(94, 122, 188, 0.2), rgba(94, 122, 188, 0) 34rem),
+      radial-gradient(ellipse at 14% 8%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 24rem),
+      var(--ai-page-bg);
+    color: var(--ai-page-text);
+  }
+
+  .ai-systems-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: center;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(5rem, 9vw, 8rem);
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(5, 6, 8, 0.96) 0%, rgba(5, 6, 8, 0.82) 34%, rgba(7, 16, 27, 0.18) 72%, rgba(7, 16, 27, 0.04) 100%),
+      var(--ai-systems-hero-bg);
+    background-position: center, center right;
+    background-repeat: no-repeat;
+    background-size: auto, cover;
+  }
+
+  .ai-systems-hero-light {
+    position: absolute;
+    top: 8%;
+    right: -40%;
+    z-index: 0;
+    width: min(118vw, 84rem);
+    height: min(84vh, 48rem);
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse at 62% 42%,
+        rgba(191, 215, 255, 0.34) 0%,
+        rgba(var(--ai-hero-glow), 0.18) 28%,
+        rgba(var(--ai-hero-glow), 0.07) 52%,
+        transparent 76%
+    );
+    filter: blur(34px);
+    opacity: 0.86;
+    transform: rotate(-35deg);
+  }
+
+  .ai-systems-hero-rays {
+    --ai-rays-opacity: 0.5;
+
+    position: absolute;
+    top: -8rem;
+    left: -10rem;
+    z-index: 0;
+    width: min(100rem, 118vw);
+    height: 78rem;
+    transform: rotate(-22deg);
+    transform-origin: top left;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.22) 13%, rgba(255, 255, 255, 0.055) 15.5%, transparent 19%),
+      linear-gradient(90deg, transparent 18%, rgba(176, 204, 255, 0.18) 21%, rgba(176, 204, 255, 0.045) 23.5%, transparent 28%),
+      linear-gradient(90deg, transparent 29%, rgba(255, 255, 255, 0.13) 32%, rgba(255, 255, 255, 0.032) 34.5%, transparent 39%),
+      linear-gradient(90deg, transparent 42%, rgba(121, 154, 255, 0.11) 45%, rgba(121, 154, 255, 0.028) 48%, transparent 55%);
+    filter: blur(8px);
+    opacity: var(--ai-rays-opacity);
+    mix-blend-mode: screen;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.44) 32%, rgba(0, 0, 0, 0.14) 60%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.44) 32%, rgba(0, 0, 0, 0.14) 60%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
+    animation: ai-systems-rays-enter 1400ms ease 280ms both;
+  }
+
+  .ai-systems-hero-grid,
+  .ai-systems-section > .dm-grid-l,
+  .ai-systems-band > .dm-grid-l {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-systems-hero-grid {
+    min-height: inherit;
+    align-items: center;
+  }
+
+  .ai-systems-hero-copy {
+    display: grid;
+    gap: var(--ds-panel-gap);
+    align-content: start;
+  }
+
+  .ai-systems-hero-copy {
+    position: relative;
+    z-index: 4;
+    animation: ai-systems-hero-copy-enter 820ms ease 420ms both;
+  }
+
+  .ai-systems-kicker {
+    margin: 0;
+    color: var(--ai-page-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+    text-transform: uppercase;
+  }
+
+  .ai-systems-hero h1,
+  .ai-systems-section h2,
+  .ai-systems-band h2 {
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .ai-systems-hero h1 {
+    max-width: 10ch;
+    font-size: var(--ds-type-title-xl);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .ai-systems-section h2,
+  .ai-systems-band h2 {
+    color: rgba(245, 248, 255, 0.96);
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .ai-systems-hero-copy > p:not(.ai-systems-kicker) {
+    max-width: 43rem;
+    margin: 0;
+    color: var(--ai-page-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+  }
+
+  .ai-systems-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-xs) * 1.5);
+    margin-top: calc(var(--spacing-xs) * 0.25);
+  }
+
+  .ai-systems-section {
+    position: relative;
+    padding: clamp(4.5rem, 8vw, 7rem) 0;
+  }
+
+  .ai-systems-section--signals {
+    padding-top: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .ai-systems-section--signals > .dm-grid-l {
+    row-gap: clamp(1.65rem, 3.2vw, 3rem);
+  }
+
+  .ai-systems-band > .dm-grid-l {
+    row-gap: var(--spacing-2xl);
+  }
+
+  .ai-systems-output-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .ai-systems-output-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: 19rem;
+    padding: var(--spacing-md);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--ai-page-border-soft);
+    border-radius: var(--radius-md);
+    background: var(--ai-output-card-bg);
+  }
+
+  .ai-systems-output-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ai-systems-output-visual {
+    position: absolute;
+    inset: var(--spacing-sm) var(--spacing-sm) auto;
+    z-index: 0;
+    display: grid;
+    place-items: center;
+    height: 56%;
+    pointer-events: none;
+  }
+
+  .ai-systems-output-visual img {
+    width: min(100%, 16rem);
+    height: auto;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 0 56%, rgba(0, 0, 0, 0.72) 68%, transparent 82%);
+    mask-image: radial-gradient(ellipse at center, #000 0 56%, rgba(0, 0, 0, 0.72) 68%, transparent 82%);
+  }
+
+  .ai-systems-output-card span {
+    margin-bottom: var(--spacing-xs);
+    color: var(--ai-page-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+  }
+
+  .ai-systems-output-card h3 {
+    margin: 0;
+    color: var(--ai-page-text);
+    font-size: var(--ds-type-card-title-compact);
+    line-height: var(--ds-line-card-title);
+    text-wrap: balance;
+  }
+
+  .ai-systems-output-card p {
+    max-width: 29ch;
+    margin: var(--spacing-xs) 0 0;
+    color: var(--ai-page-text-muted);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+    text-wrap: pretty;
+  }
+
+  .ai-systems-certainty-visual {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: rgba(7, 9, 13, 0.72);
+    box-shadow:
+      0 2rem 5rem rgba(0, 0, 0, 0.34),
+      0 0 4rem rgba(58, 124, 230, 0.08);
+  }
+
+  .ai-systems-certainty-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(5, 6, 8, 0.02), rgba(5, 6, 8, 0.18)),
+      radial-gradient(ellipse at 50% 0%, rgba(176, 204, 255, 0.1), transparent 58%);
+  }
+
+  .ai-systems-certainty-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .stuck-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    margin-top: clamp(1.4rem, 2.8vw, 2.15rem);
+    column-gap: clamp(var(--spacing-lg), 3vw, var(--spacing-3xl));
+  }
+
+  .stuck-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--spacing-xl);
+    min-height: clamp(15rem, 18vw, 18rem);
+    padding: 0;
+  }
+
+  .stuck-item:first-child {
+    padding-left: 0;
+  }
+
+  .stuck-item:last-child {
+    padding-right: 0;
+  }
+
+  .stuck-item-icon {
+    --stuck-item-icon-color: var(--ai-page-text-muted);
+    --stuck-item-icon-accent: var(--ai-page-accent);
+
+    display: grid;
+    place-items: center;
+    width: var(--spacing-4xl);
+    height: var(--spacing-4xl);
+    border: var(--size-border-thin) solid var(--ai-page-border-soft);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(circle at 50% 18%, rgba(176, 204, 255, 0.1), transparent 62%),
+      var(--ai-page-surface);
+    color: var(--stuck-item-icon-color);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 var(--spacing-sm) var(--spacing-lg) rgba(0, 0, 0, 0.18);
+  }
+
+  .stuck-item-icon svg {
+    display: block;
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+    overflow: visible;
+  }
+
+  .stuck-item-icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.9;
+  }
+
+  .stuck-item-icon circle {
+    fill: currentColor;
+    opacity: 0.9;
+  }
+
+  .stuck-item-icon .stuck-item-icon-mark--accent {
+    color: var(--stuck-item-icon-accent);
+    opacity: 1;
+  }
+
+  .stuck-item-copy {
+    display: grid;
+    gap: 0.72rem;
+  }
+
+  .stuck-item-title {
+    max-width: 13ch;
+    margin: 0;
+    color: var(--ai-page-text);
+    font-size: var(--ds-type-card-title-compact);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .stuck-item-body {
+    margin: 0;
+    color: var(--ai-page-text-muted);
+    font-size: var(--ds-type-body-xs);
+    line-height: var(--ds-line-body-compact);
+    text-wrap: pretty;
+  }
+
+  .ai-systems-mosaic {
+    --ai-mosaic-radius: var(--radius-lg);
+    --ai-mosaic-surface: rgba(255, 255, 255, 0.035);
+    --ai-mosaic-surface-strong: rgba(255, 255, 255, 0.055);
+    --ai-mosaic-border: rgba(231, 235, 242, 0.1);
+    --ai-mosaic-border-strong: rgba(176, 204, 255, 0.2);
+
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(20rem, 1.28fr) minmax(0, 0.82fr);
+    gap: var(--spacing-sm);
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    border-top: var(--size-border-thin) solid var(--ai-page-border-soft);
+  }
+
+  .ai-systems-mosaic::before {
+    content: '';
+    position: absolute;
+    inset: 12% 18% 6%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(106, 142, 226, 0.16), transparent 66%);
+    filter: blur(1.25rem);
+    opacity: 0.78;
+  }
+
+  .ai-systems-mosaic-column {
+    display: grid;
+    gap: var(--spacing-sm);
+  }
+
+  .ai-systems-mosaic-column--left,
+  .ai-systems-mosaic-column--right {
+    grid-auto-rows: minmax(13rem, auto);
+  }
+
+  .ai-systems-mosaic-column--center {
+    grid-template-rows: minmax(19rem, auto) minmax(13rem, auto);
+  }
+
+  .ai-systems-mosaic--activities .ai-systems-mosaic-column--center {
+    grid-template-rows: minmax(26rem, 1fr);
+  }
+
+  .ai-systems-mosaic--activities {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .ai-systems-mosaic--activities .ai-systems-mosaic-card--primary {
+    min-height: 100%;
+  }
+
+  .ai-systems-mosaic-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: 13rem;
+    padding: clamp(1.15rem, 1.8vw, 1.55rem);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--ai-mosaic-border);
+    border-radius: var(--ai-mosaic-radius);
+    background:
+      linear-gradient(180deg, var(--ai-mosaic-surface-strong), rgba(255, 255, 255, 0.012)),
+      rgba(7, 9, 13, 0.82);
+    box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.22);
+  }
+
+  .ai-systems-mosaic-column--left .ai-systems-mosaic-card {
+    box-shadow:
+      0 1.2rem 3.2rem rgba(0, 0, 0, 0.22),
+      inset calc(var(--size-border-thin) * -1) 0 0 rgba(206, 226, 255, 0.38),
+      inset -1rem 0 1.8rem rgba(84, 145, 255, 0.08);
+  }
+
+  .ai-systems-mosaic-column--right .ai-systems-mosaic-card {
+    box-shadow:
+      0 1.2rem 3.2rem rgba(0, 0, 0, 0.22),
+      inset var(--size-border-thin) 0 0 rgba(206, 226, 255, 0.38),
+      inset 1rem 0 1.8rem rgba(84, 145, 255, 0.08);
+  }
+
+  .ai-systems-mosaic-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(176, 204, 255, 0.13), transparent 14rem),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.052), transparent 42%);
+    opacity: 0.72;
+  }
+
+  .ai-systems-mosaic-card::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 40%;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
+  }
+
+  .ai-systems-mosaic-column--left .ai-systems-mosaic-card::after {
+    inset: 18% 0 18% auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, rgba(220, 235, 255, 0.58) 46%, transparent);
+  }
+
+  .ai-systems-mosaic-column--right .ai-systems-mosaic-card::after {
+    inset: 18% auto 18% 0;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, rgba(220, 235, 255, 0.58) 46%, transparent);
+  }
+
+  .ai-systems-mosaic-column--left .ai-systems-mosaic-card:nth-child(2)::after,
+  .ai-systems-mosaic-column--right .ai-systems-mosaic-card:nth-child(2)::after {
+    opacity: 0.68;
+  }
+
+  .ai-systems-mosaic-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ai-systems-mosaic-card span {
+    position: absolute;
+    top: clamp(1rem, 1.5vw, 1.3rem);
+    right: clamp(1rem, 1.5vw, 1.3rem);
+    color: rgba(255, 244, 170, 0.78);
+    font-family: var(--font-family-display);
+    font-size: var(--ds-type-title-sm);
+    line-height: var(--ds-line-label);
+  }
+
+  .ai-systems-mosaic-card p {
+    margin: 0;
+  }
+
+  .ai-systems-mosaic-card > p:first-of-type:not(.ai-systems-kicker) {
+    color: var(--ai-page-text-soft);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--ds-tracking-label);
+    line-height: var(--ds-line-label);
+    text-transform: uppercase;
+  }
+
+  .ai-systems-mosaic-card h3 {
+    max-width: 15ch;
+    margin: var(--spacing-xs) 0 0;
+    color: rgba(245, 248, 255, 0.96);
+    font-size: var(--ds-type-card-title-compact);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .ai-systems-mosaic-card h3 + p {
+    max-width: 32ch;
+    margin-top: var(--spacing-sm);
+    color: var(--ai-page-text-muted);
+    font-size: var(--ds-type-body-sm);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--ds-line-body-compact);
+    text-transform: none;
+  }
+
+  .ai-systems-mosaic-card--primary {
+    isolation: isolate;
+    align-content: end;
+    z-index: 2;
+    min-height: clamp(20rem, 28vw, 26rem);
+    padding: clamp(1.45rem, 2.4vw, 2.25rem);
+    border-color: rgba(192, 216, 255, 0.26);
+    background:
+      linear-gradient(128deg, transparent 0 38%, rgba(255, 255, 255, 0.14) 49%, transparent 61%),
+      radial-gradient(circle at 18% 18%, rgba(216, 230, 255, 0.36), transparent 16rem),
+      radial-gradient(circle at 78% 10%, rgba(60, 156, 255, 0.42), transparent 20rem),
+      radial-gradient(circle at 18% 92%, rgba(49, 80, 180, 0.68), transparent 19rem),
+      linear-gradient(145deg, #123c96 0%, #0b2d73 34%, #071735 68%, #05070d 100%);
+    box-shadow:
+      0 1.8rem 5rem rgba(0, 0, 0, 0.42),
+      0 0 4rem rgba(58, 124, 230, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+
+  .ai-systems-mosaic-card--primary::before {
+    background:
+      linear-gradient(115deg, rgba(255, 255, 255, 0.18), transparent 31%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 4.8rem),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.046) 0 1px, transparent 1px 4.8rem);
+    height: 100%;
+    opacity: 0.4;
+    mask-image: radial-gradient(ellipse at 54% 38%, #000 0, rgba(0, 0, 0, 0.72) 42%, transparent 76%);
+  }
+
+  .ai-systems-mosaic-card--primary::after {
+    inset: 0;
+    height: auto;
+    background:
+      radial-gradient(ellipse at 50% 106%, rgba(1, 3, 8, 0.78), transparent 52%),
+      linear-gradient(180deg, rgba(4, 8, 18, 0.04), rgba(1, 3, 8, 0.34));
+  }
+
+  .ai-systems-mosaic-card--primary .ai-systems-kicker {
+    color: rgba(232, 240, 255, 0.76);
+  }
+
+  .ai-systems-mosaic-card--primary h2 {
+    max-width: 13ch;
+    margin-top: var(--spacing-sm);
+    color: rgba(245, 248, 255, 0.96);
+    font-family: var(--font-family-display);
+    font-size: var(--ds-type-title-md);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--ds-tracking-title);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .ai-systems-mosaic-card--primary h2 + p {
+    max-width: 36rem;
+    margin-top: clamp(1rem, 1.8vw, 1.5rem);
+    color: var(--ai-page-text-muted);
+    font-size: var(--ds-type-body-lg);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--ds-line-body-compact);
+    text-transform: none;
+  }
+
+  .ai-systems-band {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: clamp(3rem, 6vw, 5.5rem) 0;
+  }
+
+  @media (max-width: 78rem) {
+    .ai-systems-hero-copy,
+    .stuck-grid,
+    .ai-systems-certainty-visual,
+    .ai-systems-mosaic,
+    .signal-row-list,
+    .ai-systems-output-list {
+      grid-column: 2 / span 24;
+    }
+
+    .ai-systems-hero {
+      min-height: 90vh;
+      min-height: 90svh;
+      padding-top: 6rem;
+    }
+
+    .ai-systems-hero h1 {
+      max-width: 10ch;
+      font-size: var(--ds-mobile-type-title-xl);
+    }
+
+    .ai-systems-hero-rays {
+      --ai-rays-opacity: 0.34;
+
+      top: -7rem;
+      left: -15rem;
+      width: 76rem;
+      height: 58rem;
+    }
+
+    .ai-systems-output-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stuck-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-xl) var(--spacing-3xl);
+    }
+
+    .stuck-item {
+      min-height: 13rem;
+      padding-inline: 0;
+    }
+
+    .ai-systems-mosaic {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-systems-mosaic-column,
+    .ai-systems-mosaic-column--left,
+    .ai-systems-mosaic-column--right,
+    .ai-systems-mosaic-column--center {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+    }
+
+    .ai-systems-mosaic-card--primary {
+      grid-column: 1 / -1;
+    }
+
+    .ai-systems-mosaic--activities .ai-systems-mosaic-column--center {
+      order: -1;
+    }
+
+  }
+
+  @media (max-width: 48rem) {
+    .ai-systems-page {
+      --ai-mobile-gutter: var(--ds-mobile-content-gutter);
+    }
+
+    .ai-systems-hero-copy,
+    .stuck-grid,
+    .ai-systems-certainty-visual,
+    .ai-systems-mosaic,
+    .signal-row-list,
+    .ai-systems-output-list {
+      grid-column: 1 / -1;
+      margin-inline: var(--ai-mobile-gutter);
+    }
+
+    .ai-systems-hero {
+      min-height: 92vh;
+      min-height: 92svh;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .ai-systems-hero-rays {
+      --ai-rays-opacity: 0.24;
+
+      top: -8rem;
+      left: -18rem;
+      width: 52rem;
+      height: 44rem;
+    }
+
+    .ai-systems-section {
+      padding: clamp(3.25rem, 12vw, 4.5rem) 0;
+    }
+
+    .ai-systems-section h2,
+    .ai-systems-band h2 {
+      font-size: var(--ds-mobile-type-title-lg);
+    }
+
+    .ai-systems-hero-copy > p:not(.ai-systems-kicker),
+    .ai-systems-output-card p {
+      font-size: var(--ds-mobile-type-body);
+    }
+
+    .ai-systems-output-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-systems-certainty-visual {
+      width: calc(100% + (var(--ai-mobile-gutter) * 2));
+      max-width: none;
+      margin-inline: calc(var(--ai-mobile-gutter) * -1);
+      border-radius: var(--radius-md);
+    }
+
+    .ai-systems-certainty-visual img {
+      width: 112%;
+      max-width: none;
+      margin-left: -6%;
+    }
+
+    .stuck-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .stuck-item {
+      justify-content: flex-start;
+      gap: var(--spacing-md);
+      min-height: 0;
+      padding: 1.2rem 0;
+      border-bottom: var(--size-border-thin) solid var(--ai-page-border-soft);
+    }
+
+    .stuck-item + .stuck-item {
+      border-top: 0;
+    }
+
+    .stuck-item-icon {
+      width: var(--spacing-3xl);
+      height: var(--spacing-3xl);
+    }
+
+    .stuck-item-icon svg {
+      width: calc(var(--spacing-lg) + var(--spacing-xs));
+      height: calc(var(--spacing-lg) + var(--spacing-xs));
+    }
+
+    .ai-systems-mosaic {
+      gap: var(--spacing-xs);
+      padding-top: var(--spacing-lg);
+    }
+
+    .ai-systems-mosaic-column,
+    .ai-systems-mosaic-column--left,
+    .ai-systems-mosaic-column--right,
+    .ai-systems-mosaic-column--center {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-xs);
+    }
+
+    .ai-systems-mosaic-card,
+    .ai-systems-mosaic-card--primary {
+      min-height: 11rem;
+    }
+
+    .ai-systems-mosaic-card--primary h2 {
+      font-size: var(--ds-mobile-type-title-md);
+    }
+
+    .ai-systems-output-card {
+      min-height: 18rem;
+    }
+  }
+
+  @keyframes ai-systems-rays-enter {
+    from {
+      opacity: 0;
+      transform: rotate(-22deg) translate3d(-1.4rem, -1rem, 0);
+    }
+
+    to {
+      opacity: var(--ai-rays-opacity);
+      transform: rotate(-22deg) translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes ai-systems-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.85rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-systems-hero-copy,
+    .ai-systems-hero-rays {
+      animation: none;
+    }
+  }
+</style>
