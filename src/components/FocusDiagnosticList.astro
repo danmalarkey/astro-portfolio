@@ -1,0 +1,145 @@
+---
+interface DiagnosticItem {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  items: DiagnosticItem[];
+  className?: string;
+}
+
+const { items, className } = Astro.props as Props;
+const columns = [items.slice(0, 3), items.slice(3)];
+---
+
+<div class:list={['focus-diagnostic-list', 'focus-diagnostic-list--columns', className]} role="list" data-motion-item>
+  {columns.map((column, columnIndex) => (
+    <div class="focus-diagnostic-column">
+      {column.map((item, itemIndex) => {
+        const index = (columnIndex * 3) + itemIndex;
+
+        return (
+          <details class="focus-diagnostic-item focus-diagnostic-item--disclosure" role="listitem">
+            <summary>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <span class="focus-diagnostic-item-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="focus-diagnostic-item-panel">
+              <p>{item.text}</p>
+            </div>
+          </details>
+        );
+      })}
+    </div>
+  ))}
+</div>
+
+<script is:inline>
+  (() => {
+    const rows = Array.from(document.querySelectorAll('.focus-diagnostic-item--disclosure'));
+    if (!rows.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const closeRow = (row) => {
+      const panel = row.querySelector('.focus-diagnostic-item-panel');
+      if (!panel || !row.open) return;
+
+      window.cancelAnimationFrame(row._diagnosticAnimationFrame ?? 0);
+      if (row._diagnosticTransitionEndHandler) {
+        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
+      }
+
+      if (prefersReducedMotion) {
+        row.open = false;
+        row.classList.remove('is-open', 'is-animating');
+        panel.style.height = '';
+        return;
+      }
+
+      row.classList.add('is-animating');
+      panel.style.height = `${panel.scrollHeight}px`;
+      row.classList.remove('is-open');
+
+      row._diagnosticAnimationFrame = window.requestAnimationFrame(() => {
+        panel.style.height = '0px';
+      });
+
+      row._diagnosticTransitionEndHandler = (event) => {
+        if (event.propertyName !== 'height') return;
+        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
+        row._diagnosticTransitionEndHandler = null;
+        row.open = false;
+        row.classList.remove('is-animating');
+        panel.style.height = '';
+      };
+      panel.addEventListener('transitionend', row._diagnosticTransitionEndHandler);
+    };
+
+    const openRow = (row) => {
+      const panel = row.querySelector('.focus-diagnostic-item-panel');
+      if (!panel || row.open) return;
+
+      window.cancelAnimationFrame(row._diagnosticAnimationFrame ?? 0);
+      if (row._diagnosticTransitionEndHandler) {
+        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
+      }
+
+      row.open = true;
+
+      if (prefersReducedMotion) {
+        row.classList.add('is-open');
+        panel.style.height = '';
+        return;
+      }
+
+      row.classList.add('is-animating');
+      panel.style.height = '0px';
+
+      row._diagnosticAnimationFrame = window.requestAnimationFrame(() => {
+        row.classList.add('is-open');
+        panel.style.height = `${panel.scrollHeight}px`;
+      });
+
+      row._diagnosticTransitionEndHandler = (event) => {
+        if (event.propertyName !== 'height') return;
+        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
+        row._diagnosticTransitionEndHandler = null;
+        row.classList.remove('is-animating');
+        panel.style.height = 'auto';
+      };
+      panel.addEventListener('transitionend', row._diagnosticTransitionEndHandler);
+    };
+
+    rows.forEach((row) => {
+      if (row.dataset.diagnosticBound === 'true') return;
+
+      const summary = row.querySelector('summary');
+      const panel = row.querySelector('.focus-diagnostic-item-panel');
+      if (!summary || !panel) return;
+
+      row.dataset.diagnosticBound = 'true';
+
+      if (row.open) {
+        row.classList.add('is-open');
+        panel.style.height = 'auto';
+      }
+
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (row.open) {
+          closeRow(row);
+          return;
+        }
+
+        rows.forEach((otherRow) => {
+          if (otherRow !== row) closeRow(otherRow);
+        });
+        openRow(row);
+      });
+    });
+  })();
+</script>

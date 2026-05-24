@@ -1,0 +1,1528 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import HomeFooter from '../../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
+import FocusArtifactGrid from '../../components/FocusArtifactGrid.astro';
+import FocusDiagnosticList from '../../components/FocusDiagnosticList.astro';
+import FocusMethodCards from '../../components/FocusMethodCards.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const mailParams = new URLSearchParams();
+mailParams.set('subject', '[Direction & Prioritization] Advisory inquiry');
+const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
+
+const diagnosticItems = [
+  {
+    title: 'Competing priorities',
+    text: 'Important work stacks up without a clear way to decide what matters most.'
+  },
+  {
+    title: 'Unclear tradeoffs',
+    text: 'Teams move forward without knowing what the organization is willing to protect, defer, or simplify.'
+  },
+  {
+    title: 'Roadmaps without conviction',
+    text: 'Plans exist, but the reasoning behind them is not strong enough to guide change.'
+  },
+  {
+    title: 'Execution ahead of clarity',
+    text: 'Energy moves into delivery before the organization understands what it has committed to.'
+  },
+  {
+    title: 'Signals get flattened',
+    text: 'Business goals, customer needs, constraints, and risk are treated like equal inputs instead of different kinds of evidence.'
+  },
+  {
+    title: 'Focus keeps resetting',
+    text: 'Teams revisit the same direction questions because the underlying choices were never made explicit.'
+  }
+];
+
+const decisionDimensions = [
+  {
+    title: 'Business goals',
+    text: 'What the organization needs to make true.'
+  },
+  {
+    title: 'Customer value',
+    text: 'What people need to accomplish, avoid, understand, or trust.'
+  },
+  {
+    title: 'Operating reality',
+    text: 'What the organization can support, sustain, and deliver.'
+  },
+  {
+    title: 'Constraints',
+    text: 'What limits the path: time, cost, risk, capability, regulation, or technology.'
+  },
+  {
+    title: 'Tradeoffs',
+    text: 'What the organization is willing to choose, delay, simplify, or stop doing.'
+  },
+  {
+    title: 'Sequencing',
+    text: 'What needs to happen first so later decisions have a stronger foundation.'
+  }
+];
+
+const contributionItems = [
+  {
+    title: 'Clarify the decision',
+    text: 'Define what is actually being decided and what success needs to support.'
+  },
+  {
+    title: 'Separate signal from noise',
+    text: 'Identify which inputs should shape direction and which are distractions, assumptions, or unresolved tension.'
+  },
+  {
+    title: 'Frame tradeoffs',
+    text: 'Make the cost, risk, value, and consequences of each path easier to compare.'
+  },
+  {
+    title: 'Create decision structure',
+    text: 'Establish principles, criteria, and constraints that help the organization make better choices.'
+  },
+  {
+    title: 'Sequence the path',
+    text: 'Turn direction into a practical order of movement without pretending everything can happen at once.'
+  },
+  {
+    title: 'Translate direction into execution',
+    text: 'Connect priorities to product behavior, operational reality, standards, and delivery decisions.'
+  }
+];
+
+const outcomeItems = [
+  {
+    title: 'Fewer false starts',
+    text: 'The organization commits with better evidence and less ambiguity.'
+  },
+  {
+    title: 'Sharper sequencing',
+    text: 'The order of movement supports learning, delivery, and business value.'
+  },
+  {
+    title: 'Better tradeoff decisions',
+    text: 'Leaders can compare options without reducing everything to preference or urgency.'
+  },
+  {
+    title: 'More durable focus',
+    text: 'Direction holds longer because the reasoning behind it is clearer.'
+  },
+  {
+    title: 'Less organizational drag',
+    text: 'People spend less energy compensating for unclear priorities and disconnected decisions.'
+  }
+];
+
+const outcomeTestItems = [
+  ...outcomeItems,
+  {
+    title: 'A plan people can use',
+    text: 'The path is clear enough for people to understand what moves next, what waits, and why.'
+  }
+];
+
+const outputItems = [
+  {
+    title: 'Decision frames',
+    text: 'A clear structure for comparing options, tradeoffs, risks, and value.'
+  },
+  {
+    title: 'Prioritization criteria',
+    text: 'Shared principles for deciding what matters and why.'
+  },
+  {
+    title: 'Sequencing models',
+    text: 'A practical path for what should happen first, next, and later.'
+  },
+  {
+    title: 'Opportunity maps',
+    text: 'A clearer view of where business goals, customer needs, and operational reality intersect.'
+  },
+  {
+    title: 'Direction narratives',
+    text: 'A concise explanation of the path, the reasoning, and the decisions behind it.'
+  },
+  {
+    title: 'Execution guardrails',
+    text: 'Standards and constraints that help preserve direction as execution moves forward.'
+  }
+];
+
+const outputBackgrounds = [
+  '/images/direction/decision-frames-bg.png',
+  '/images/direction/prioritizatin-criteria-bg.png',
+  '/images/direction/sequencing-models-bg.png',
+  '/images/direction/opp-maps-bg.png',
+  '/images/direction/direction-narratives-bg.png',
+  '/images/direction/execution-guardrails-bg.png'
+];
+---
+
+<Layout
+  title="Direction & Prioritization | Dan Malarkey"
+  description="Direction and prioritization support for organizations that need clearer decisions, stronger sequencing, and less organizational drag."
+>
+  <Header />
+  <main class="direction-page">
+    <section
+      class="direction-hero"
+      style={`--direction-hero-bg: url('${withBase('/images/direction/hero-bg.png')}')`}
+      aria-labelledby="direction-title"
+    >
+      <div class="direction-hero-rays" aria-hidden="true"></div>
+      <div class="direction-hero-light" aria-hidden="true"></div>
+      <div class="direction-hero-grid dm-grid-l dm-grid-l--grid-sys">
+        <div class="direction-hero-copy gc-start-2 gc-span-13">
+          <p class="direction-kicker">Direction & Prioritization</p>
+          <h1 id="direction-title">Discover what’s worth pursuing.</h1>
+          <p>
+            Strong direction is not just a roadmap. It connects business goals, customer value, operational reality, constraints, and tradeoffs before teams commit time, money, and momentum.
+          </p>
+          <div class="direction-actions" aria-label="Direction & Prioritization actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href="#direction-help" variant="ghost">See how I work</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-section direction-section--problem" aria-labelledby="direction-problem" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="Before the work accelerates"
+          title="Momentum gets lost when everything matters."
+          body="Prioritization breaks down when decisions are made from different assumptions. Over time, the organization starts moving quickly without moving clearly."
+          headingId="direction-problem"
+          accent
+          reveal
+        />
+        <figure class="direction-problem-visual gc-start-2 gc-span-24" data-motion-item aria-hidden="true">
+          <img src={withBase('/images/direction/momentum.png')} alt="" loading="lazy" decoding="async" />
+        </figure>
+        <FocusDiagnosticList items={diagnosticItems} className="direction-diagnostic-grid gc-start-2 gc-span-24" />
+      </div>
+    </section>
+
+    <section class="direction-band direction-band--depends" aria-labelledby="direction-depends" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="What direction depends on"
+          title="Priorities should come from more than urgency."
+          body="The strongest decisions come from seeing the business, customer, operational, and technical realities together. Then the organization can decide what should lead."
+          headingId="direction-depends"
+          accent
+          reveal
+        />
+        <div class="direction-dimension-visual gc-start-1 gc-span-26" data-motion-item>
+          <img src={withBase('/images/direction/clear-direction.png')} alt="" loading="lazy" decoding="async" aria-hidden="true" />
+        <div class="direction-dimension-interactive" aria-label="Direction inputs">
+          <div class="direction-dimension-panels" aria-live="polite">
+            <span class="direction-dimension-sheet direction-dimension-sheet--one" aria-hidden="true"></span>
+            <span class="direction-dimension-sheet direction-dimension-sheet--two" aria-hidden="true"></span>
+            <span class="direction-dimension-sheet direction-dimension-sheet--three" aria-hidden="true"></span>
+            {decisionDimensions.map((item, index) => (
+              <article
+                id={`direction-dimension-panel-${index + 1}`}
+                  class:list={[
+                    'direction-dimension-panel',
+                    index === 0 && 'is-active'
+                  ]}
+                  aria-hidden={index === 0 ? 'false' : 'true'}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+            <div class="direction-dimension-nodules" aria-label="Direction input controls">
+              {decisionDimensions.map((item, index) => (
+                <button
+                  class:list={[
+                    'direction-dimension-nodule',
+                    index === 0 && 'is-active'
+                  ]}
+                  type="button"
+                  aria-label={`${String(index + 1).padStart(2, '0')} ${item.title}`}
+                  aria-controls={`direction-dimension-panel-${index + 1}`}
+                  aria-pressed={index === 0 ? 'true' : 'false'}
+                  data-direction-dimension-trigger
+                  data-direction-dimension-index={index}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div class="direction-dimension-list" role="list">
+            {decisionDimensions.map((item, index) => (
+              <article class="direction-dimension-row" role="listitem">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-section direction-section--help" aria-labelledby="direction-help" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="How I help"
+          title="Turn competing inputs into a direction people can use."
+          body="I help organizations clarify the decision in front of them, understand the forces shaping it, and translate that clarity into priorities, sequencing, and execution standards."
+          headingId="direction-help"
+          accent
+          reveal
+        />
+        <FocusMethodCards
+          items={contributionItems}
+          phases={['Understand the decision', 'Make direction usable']}
+          className="gc-start-2 gc-span-24"
+        />
+      </div>
+    </section>
+
+    <section class="direction-section direction-section--mid-cta" aria-labelledby="direction-mid-cta" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="direction-cta-inner direction-cta-inner--accent gc-start-2 gc-span-24" data-motion-item>
+          <p class="direction-kicker">Before momentum gets expensive</p>
+          <h2 id="direction-mid-cta">Know what deserves to be built.</h2>
+          <p>
+            When priorities, constraints, and tradeoffs are hard to see, the organization needs better decision structure before more execution.
+          </p>
+          <div class="direction-actions" aria-label="Direction & Prioritization actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href={withBase('/work-with/operating-model')} variant="ghost">Explore Operating Model</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="direction-section direction-section--outcomes-test"
+      aria-labelledby="direction-clear"
+      style={`--direction-outcomes-test-bg: url('${withBase('/images/direction/motion.png')}')`}
+      data-motion-reveal
+    >
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="When direction is clear"
+          title="The organization moves with less wasted motion."
+          body="Good prioritization creates the conditions for better decisions, clearer sequencing, and less organizational drag."
+          headingId="direction-clear"
+          accent
+          reveal
+        />
+        <div class="direction-outcome-field gc-start-2 gc-span-24" data-motion-item>
+          <div class="direction-outcome-columns" role="list" aria-label="Direction outcomes">
+            {[outcomeTestItems.slice(0, 3), outcomeTestItems.slice(3)].map((items, columnIndex) => (
+              <div class="direction-outcome-column">
+                {items.map((item, itemIndex) => {
+                  const index = columnIndex === 0 ? itemIndex : itemIndex + 3;
+                  return (
+                    <article class="direction-outcome-row direction-outcome-row--field" role="listitem">
+                      <span class="direction-outcome-index">{String(index + 1).padStart(2, '0')}</span>
+                      <div class="direction-outcome-copy">
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-band" aria-labelledby="direction-artifacts" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="Decision infrastructure"
+          title="Useful structure for decisions that need to hold."
+          body="The output is practical decision infrastructure: shared criteria, sequencing models, tradeoff frames, and direction-setting artifacts the organization can keep using."
+          headingId="direction-artifacts"
+          accent
+          reveal
+        />
+        <FocusArtifactGrid
+          items={outputItems}
+          backgrounds={outputBackgrounds}
+          titleSize="large"
+          className="gc-start-2 gc-span-24"
+        />
+      </div>
+    </section>
+
+    <FocusAreaJumpCards current="direction" />
+
+    <HomeFooter
+      eyebrow="Direction & Prioritization"
+      title="Momentum needs a clear direction to hold its course."
+    />
+  </main>
+</Layout>
+
+<script is:inline>
+  (() => {
+    const triggers = Array.from(document.querySelectorAll('[data-direction-dimension-trigger]'));
+    if (!triggers.length) return;
+
+    const panels = Array.from(document.querySelectorAll('.direction-dimension-panel'));
+    const visual = document.querySelector('.direction-dimension-visual');
+    const panelPositions = ['22.1%', '32.7%', '43.45%', '54.25%', '64.95%', '75.45%'];
+    let activeDimensionIndex = 0;
+    let transitionTimer = null;
+
+    const setActiveDimension = (activeIndex) => {
+      if (activeIndex === activeDimensionIndex) return;
+
+      if (visual) {
+        visual.style.setProperty('--direction-dimension-panel-y', panelPositions[activeIndex] ?? panelPositions[0]);
+      }
+
+      triggers.forEach((trigger, index) => {
+        const triggerIndex = Number(trigger.getAttribute('data-direction-dimension-index'));
+        const isActive = triggerIndex === activeIndex;
+        trigger.classList.toggle('is-active', isActive);
+        trigger.setAttribute('aria-pressed', String(isActive));
+      });
+
+      window.clearTimeout(transitionTimer);
+
+      const currentPanel = panels[activeDimensionIndex];
+      const nextPanel = panels[activeIndex];
+
+      panels.forEach((panel, index) => {
+        if (index !== activeDimensionIndex && index !== activeIndex) {
+          panel.classList.remove('is-active', 'is-exiting', 'is-entering');
+          panel.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      currentPanel?.classList.add('is-exiting');
+      currentPanel?.setAttribute('aria-hidden', 'true');
+
+      transitionTimer = window.setTimeout(() => {
+        currentPanel?.classList.remove('is-active', 'is-exiting');
+        nextPanel?.classList.add('is-active', 'is-entering');
+        nextPanel?.setAttribute('aria-hidden', 'false');
+        activeDimensionIndex = activeIndex;
+
+        window.setTimeout(() => {
+          nextPanel?.classList.remove('is-entering');
+        }, 360);
+      }, 180);
+    };
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener('click', () => {
+        setActiveDimension(index);
+      });
+    });
+  })();
+</script>
+
+<style>
+  .direction-page {
+    --direction-bg: var(--ds-background);
+    --direction-surface: var(--ds-surface);
+    --direction-surface-strong: var(--ds-surface-strong);
+    --direction-border: var(--ds-border);
+    --direction-border-soft: var(--ds-border-soft);
+    --direction-text: var(--ds-text);
+    --direction-text-muted: var(--ds-text-muted);
+    --direction-text-soft: var(--ds-text-soft);
+    --direction-accent: rgba(176, 204, 255, 0.88);
+    --direction-accent-strong: rgba(191, 215, 255, 0.98);
+    --direction-glow: 111, 162, 232;
+    --section-header-accent-color: var(--direction-accent);
+    --section-header-title-color: var(--direction-text);
+    --section-header-body-color: var(--direction-text-muted);
+
+    overflow: hidden;
+    padding: 0;
+    background:
+      radial-gradient(circle at 78% 12%, rgba(var(--direction-glow), 0.08), transparent 24rem),
+      linear-gradient(180deg, rgba(6, 8, 13, 0.96), var(--direction-bg) 22rem);
+    color: var(--direction-text);
+  }
+
+  .direction-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: center;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(5rem, 9vw, 8rem);
+    overflow: hidden;
+    background-color: var(--direction-bg);
+    background-image:
+      linear-gradient(90deg, rgb(3 6 11 / 16%) 0%, rgba(3, 6, 11, 0.8) 42%, rgba(3, 6, 11, 0.12) 100%),
+      radial-gradient(ellipse at 82% 42%, rgba(var(--direction-glow), 0.16), rgba(var(--direction-glow), 0.055) 34%, transparent 64%),
+      var(--direction-hero-bg);
+    background-position: center, center, top;
+    background-repeat: no-repeat;
+    background-size: auto, auto, contain;
+  }
+
+  .direction-hero-rays {
+    --direction-rays-opacity: 0.5;
+
+    position: absolute;
+    top: -8rem;
+    left: -10rem;
+    z-index: 0;
+    width: min(100rem, 118vw);
+    height: 78rem;
+    transform: rotate(-22deg);
+    transform-origin: top left;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.22) 13%, rgba(255, 255, 255, 0.055) 15.5%, transparent 19%),
+      linear-gradient(90deg, transparent 18%, rgba(176, 204, 255, 0.18) 21%, rgba(176, 204, 255, 0.045) 23.5%, transparent 28%),
+      linear-gradient(90deg, transparent 29%, rgba(255, 255, 255, 0.13) 32%, rgba(255, 255, 255, 0.032) 34.5%, transparent 39%),
+      linear-gradient(90deg, transparent 42%, rgba(121, 154, 255, 0.11) 45%, rgba(121, 154, 255, 0.028) 48%, transparent 55%);
+    filter: blur(8px);
+    opacity: var(--direction-rays-opacity);
+    mix-blend-mode: screen;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.44) 32%, rgba(0, 0, 0, 0.14) 60%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.44) 32%, rgba(0, 0, 0, 0.14) 60%, rgba(0, 0, 0, 0.04) 78%, transparent 100%);
+    animation: direction-rays-enter 1400ms ease 280ms both;
+  }
+
+  .direction-hero-light {
+    position: absolute;
+    top: 8%;
+    right: -40%;
+    z-index: 0;
+    width: min(118vw, 84rem);
+    height: min(84vh, 48rem);
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    background: radial-gradient(ellipse at 62% 42%, rgba(191, 215, 255, 0.26) 0%, rgba(var(--direction-glow), 0.14) 28%, rgba(var(--direction-glow), 0.055) 52%, transparent 76%);
+    filter: blur(34px);
+    opacity: 0.74;
+    transform: rotate(-35deg);
+  }
+
+  .direction-hero-grid {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: inherit;
+    align-items: center;
+  }
+
+  .direction-hero-copy {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: var(--spacing-md);
+    animation: direction-hero-copy-enter 820ms ease 160ms both;
+  }
+
+  .direction-kicker {
+    margin: 0;
+    color: var(--direction-accent);
+    font-size: var(--ds-type-label-compact);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+    text-transform: uppercase;
+  }
+
+  .direction-hero h1,
+  .direction-section h2,
+  .direction-band h2 {
+    margin: 0;
+    color: var(--direction-text);
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .direction-hero h1 {
+    max-width: 11ch;
+    font-size: var(--ds-type-title-xl);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .direction-hero-copy > p:not(.direction-kicker),
+  .direction-cta-inner > p:not(.direction-kicker) {
+    margin: 0;
+    color: var(--direction-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .direction-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+  }
+
+  .direction-section,
+  .direction-band {
+    padding: clamp(5rem, 9vw, 8rem) 0;
+  }
+
+  .direction-cta-inner {
+    display: grid;
+    gap: var(--spacing-md);
+    align-content: start;
+  }
+
+  .direction-section h2,
+  .direction-band h2 {
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
+  }
+
+  :global(.direction-diagnostic-grid) {
+    --focus-diagnostic-border: var(--direction-border-soft);
+    --focus-diagnostic-label: var(--direction-accent);
+    --focus-diagnostic-text: var(--direction-text);
+    --focus-diagnostic-text-muted: var(--direction-text-muted);
+  }
+
+  .direction-problem-visual {
+    margin: clamp(2rem, 4vw, 3.25rem) 0 clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .direction-problem-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .direction-dimension-row h3 {
+    margin: 0;
+    color: var(--direction-text);
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .direction-dimension-row p {
+    margin: var(--spacing-sm) 0 0;
+    color: var(--direction-text-muted);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .direction-band--depends {
+    padding-bottom: 0;
+    background:
+      radial-gradient(circle at 70% 42%, rgba(var(--direction-glow), 0.08), transparent 26rem),
+      linear-gradient(180deg, rgba(7, 12, 22, 0.52), rgba(3, 6, 11, 0));
+  }
+
+  .direction-dimension-visual,
+  .direction-method-grid {
+    display: grid;
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .direction-dimension-visual {
+    --direction-dimension-panel-y: 22.1%;
+
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: visible;
+    border-block: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+    background: rgba(3, 6, 11, 0.24);
+  }
+
+  .direction-dimension-visual::before,
+  .direction-dimension-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .direction-dimension-visual::before {
+    background:
+      linear-gradient(90deg, rgba(3, 6, 11, 0.96) 0%, rgba(3, 6, 11, 0.8) 24%, rgba(3, 6, 11, 0.32) 43%, transparent 66%),
+      radial-gradient(circle at 18% 42%, rgba(var(--direction-glow), 0.14), transparent 20rem);
+  }
+
+  .direction-dimension-visual::after {
+    background:
+      linear-gradient(180deg, rgba(3, 6, 11, 0.28), transparent 24%, transparent 70%, rgba(3, 6, 11, 0.34)),
+      linear-gradient(90deg, rgba(3, 6, 11, 0.72), transparent 16%, transparent 84%, rgba(3, 6, 11, 0.64));
+  }
+
+  .direction-dimension-visual img {
+    position: relative;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .direction-dimension-list {
+    display: none;
+  }
+
+  .direction-dimension-interactive {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+  .direction-dimension-panels {
+    position: absolute;
+    top: var(--direction-dimension-panel-y);
+    left: clamp(3rem, 7vw, 6rem);
+    z-index: 3;
+    display: grid;
+    isolation: isolate;
+    width: min(24rem, 27vw);
+    min-height: clamp(10.75rem, 16vw, 14rem);
+    transition: top var(--duration-transition-slow) var(--easing-standard);
+  }
+
+  .direction-dimension-sheet {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    border: var(--size-border-thin) solid rgba(176, 204, 255, 0.16);
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0.006)),
+      rgb(7, 10, 17);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.018),
+      0 0.8rem 1.65rem rgba(0, 0, 0, 0.16);
+    pointer-events: none;
+    transform-origin: top center;
+  }
+
+  .direction-dimension-sheet--one {
+    z-index: 3;
+    transform: translateY(0.48rem) scaleX(0.985);
+  }
+
+  .direction-dimension-sheet--two {
+    z-index: 2;
+    border-color: rgba(176, 204, 255, 0.13);
+    transform: translateY(0.92rem) scaleX(0.965);
+  }
+
+  .direction-dimension-sheet--three {
+    z-index: 1;
+    border-color: rgba(176, 204, 255, 0.1);
+    transform: translateY(1.3rem) scaleX(0.945);
+  }
+
+  .direction-dimension-panel {
+    position: relative;
+    z-index: 4;
+    grid-area: 1 / 1;
+    display: grid;
+    align-content: start;
+    min-height: clamp(10.75rem, 16vw, 14rem);
+    padding: clamp(1.25rem, 2.1vw, 1.85rem);
+    border: var(--size-border-thin) solid rgba(176, 204, 255, 0.22);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(var(--direction-glow), 0.18), transparent 13rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.044), rgba(255, 255, 255, 0.012)),
+      rgb(7, 10, 17);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 1.35rem 3rem rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.28rem);
+    transition:
+      opacity 180ms var(--easing-standard),
+      transform 180ms var(--easing-standard);
+  }
+
+  .direction-dimension-panel.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .direction-dimension-panel.is-exiting {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.28rem);
+  }
+
+  .direction-dimension-panel.is-entering {
+    animation: direction-panel-enter 360ms var(--easing-standard) both;
+  }
+
+  .direction-dimension-panel > span:first-child {
+    display: block;
+    margin: 0 0 var(--spacing-sm);
+    color: var(--direction-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .direction-dimension-panel h3 {
+    margin: 0;
+    color: var(--direction-text);
+    font-size: var(--ds-type-title-sm);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .direction-dimension-panel p {
+    max-width: 28ch;
+    margin: var(--spacing-sm) 0 0;
+    color: var(--direction-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .direction-dimension-nodule {
+    position: absolute;
+    z-index: 5;
+    left: 34.85%;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+
+  .direction-dimension-nodule::before,
+  .direction-dimension-nodule::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    border-radius: var(--radius-pill);
+    transform: translate(-50%, -50%);
+    transition:
+      opacity var(--duration-transition-interactive-ui) var(--easing-standard),
+      transform var(--duration-transition-interactive-ui) var(--easing-standard),
+      box-shadow var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .direction-dimension-nodule::before {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: rgba(191, 215, 255, 0.78);
+    box-shadow:
+      0 0 0.8rem rgba(111, 162, 232, 0.38),
+      0 0 1.45rem rgba(191, 215, 255, 0.18);
+    opacity: 0.46;
+  }
+
+  .direction-dimension-nodule::after {
+    width: 1.45rem;
+    height: 1.45rem;
+    border: var(--size-border-thin) solid rgba(191, 215, 255, 0.42);
+    opacity: 0;
+  }
+
+  .direction-dimension-nodule > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .direction-dimension-nodule:nth-child(1) {
+    top: 22.1%;
+  }
+
+  .direction-dimension-nodule:nth-child(2) {
+    top: 32.7%;
+  }
+
+  .direction-dimension-nodule:nth-child(3) {
+    top: 43.45%;
+  }
+
+  .direction-dimension-nodule:nth-child(4) {
+    top: 54.25%;
+  }
+
+  .direction-dimension-nodule:nth-child(5) {
+    top: 64.95%;
+  }
+
+  .direction-dimension-nodule:nth-child(6) {
+    top: 75.45%;
+  }
+
+  .direction-dimension-nodule:hover::before,
+  .direction-dimension-nodule:focus-visible::before,
+  .direction-dimension-nodule.is-active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.18);
+    box-shadow:
+      0 0 0.95rem rgba(111, 162, 232, 0.62),
+      0 0 1.75rem rgba(191, 215, 255, 0.3);
+  }
+
+  .direction-dimension-nodule:hover::after,
+  .direction-dimension-nodule:focus-visible::after {
+    opacity: 0.58;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .direction-dimension-nodule.is-active::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+
+  .direction-dimension-nodule.is-active::after {
+    animation: direction-nodule-breathe 2.8s ease-in-out infinite;
+  }
+
+  .direction-dimension-nodule:focus-visible {
+    outline: var(--size-border-thin) solid rgba(191, 215, 255, 0.72);
+    outline-offset: var(--spacing-xs);
+  }
+
+  .direction-dimension-row > span,
+  .direction-method-item > span {
+    color: var(--direction-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .direction-dimension-row > div {
+    min-width: 0;
+  }
+
+  .direction-dimension-row p {
+    margin-top: 0.35rem;
+    line-height: var(--ds-line-body-compact);
+  }
+
+  .direction-method-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .direction-method-card {
+    position: relative;
+    display: grid;
+    align-content: start;
+    min-height: clamp(29rem, 36vw, 35rem);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--direction-border-soft);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse at 100% 0%, rgba(var(--direction-glow), 0.12), transparent 20rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+      var(--direction-surface);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.024),
+      0 1.25rem 3rem rgba(0, 0, 0, 0.16);
+  }
+
+  .direction-method-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.026) 0 0.0625rem, transparent 0.0625rem 100%) 0 0 / 50% 100%,
+      radial-gradient(circle at 86% 18%, rgba(191, 215, 255, 0.08), transparent 16rem);
+    opacity: 0.6;
+  }
+
+  .direction-method-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .direction-method-phase {
+    margin: 0;
+    color: var(--direction-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+    text-transform: uppercase;
+  }
+
+  .direction-method-card > h3 {
+    max-width: 14ch;
+    margin: var(--spacing-sm) 0 0;
+    color: var(--direction-text);
+    font-size: var(--ds-type-title-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .direction-method-list {
+    display: grid;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+  }
+
+  .direction-method-item {
+    display: grid;
+    grid-template-columns: minmax(2.75rem, 0.16fr) minmax(0, 0.84fr);
+    gap: clamp(0.85rem, 2vw, 1.25rem);
+    align-items: start;
+    padding: clamp(1rem, 2vw, 1.35rem) 0;
+    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+  }
+
+  .direction-method-item h4 {
+    margin: 0;
+    color: var(--direction-text);
+    font-size: var(--ds-type-title-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .direction-method-item p {
+    max-width: 48ch;
+    margin: var(--spacing-xs) 0 0;
+    color: var(--direction-text-muted);
+    font-size: var(--ds-type-body-xs);
+    line-height: var(--ds-line-body-compact);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .direction-outcome-row {
+    display: grid;
+    grid-template-columns: minmax(2.5rem, 0.18fr) minmax(0, 0.82fr);
+    gap: clamp(0.85rem, 2vw, 1.35rem);
+    padding: clamp(1rem, 2vw, 1.35rem) 0;
+    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+  }
+
+  .direction-outcome-index {
+    color: var(--direction-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .direction-outcome-copy h3 {
+    margin: 0;
+    color: var(--direction-text);
+    font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .direction-outcome-copy p {
+    max-width: 44ch;
+    margin: var(--spacing-xs) 0 0;
+    color: var(--direction-text-muted);
+    font-size: var(--ds-type-body-xs);
+    line-height: var(--ds-line-body-compact);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .direction-section--outcomes-test {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(3, 6, 11, 0.16), rgba(3, 6, 11, 0.62) 42%, rgba(3, 6, 11, 0.82) 100%),
+      linear-gradient(180deg, rgba(3, 6, 11, 0.2), rgba(3, 6, 11, 0.5)),
+      var(--direction-outcomes-test-bg);
+    background-color: color-mix(in srgb, var(--direction-bg) 92%, black);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .direction-section--outcomes-test::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(3, 6, 11, 0.26), transparent 22%, transparent 72%, rgba(3, 6, 11, 0.42)),
+      radial-gradient(ellipse at 74% 44%, transparent 0 30%, rgba(3, 6, 11, 0.34) 100%);
+  }
+
+  .direction-outcome-field {
+    position: relative;
+    isolation: isolate;
+    margin-top: clamp(2.25rem, 4vw, 3.75rem);
+    overflow: hidden;
+  }
+
+  .direction-outcome-field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 50%, rgba(3, 6, 11, 0.08), transparent 70%);
+  }
+
+  .direction-outcome-columns {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-content: center;
+  }
+
+  .direction-outcome-column {
+    display: grid;
+    align-content: center;
+    border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
+    background: rgba(3, 6, 11, 0.12);
+    backdrop-filter: blur(0.18rem);
+  }
+
+  .direction-output-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .direction-output-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: clamp(17rem, 22vw, 20rem);
+    padding: clamp(1.35rem, 2.6vw, 2rem);
+    overflow: hidden;
+    border: var(--size-border-thin) solid var(--direction-border-soft);
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(180deg, rgba(7, 9, 13, 0.1) 0%, rgba(7, 9, 13, 0.16) 44%, rgba(7, 9, 13, 0.86) 100%),
+      var(--direction-output-bg),
+      rgba(7, 9, 13, 0.84);
+    background-position: center;
+    background-size: cover;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.022),
+      0 1rem 2.4rem rgba(0, 0, 0, 0.12);
+    transition:
+      border-color var(--duration-transition-interactive-ui) var(--easing-standard),
+      background var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .direction-output-card:hover {
+    border-color: rgba(176, 204, 255, 0.18);
+    background:
+      linear-gradient(180deg, rgba(7, 9, 13, 0.04) 0%, rgba(7, 9, 13, 0.12) 44%, rgba(7, 9, 13, 0.82) 100%),
+      var(--direction-output-bg),
+      rgba(7, 9, 13, 0.88);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .direction-output-card::before {
+    content: none;
+  }
+
+  .direction-output-card::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 52%;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.3)),
+      radial-gradient(ellipse at 20% 100%, rgba(var(--direction-glow), 0.08), transparent 18rem);
+  }
+
+  .direction-output-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .direction-output-card span {
+    margin: 0;
+    color: var(--direction-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .direction-output-card h3 {
+    max-width: 16ch;
+    margin: var(--spacing-sm) 0 0;
+    color: var(--direction-text);
+    font-size: var(--ds-type-title-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .direction-output-card p {
+    max-width: 32ch;
+    margin: calc(var(--spacing-sm) * 1.15) 0 0;
+    color: var(--direction-text-muted);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .direction-cta-inner {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2rem, 5vw, 4.5rem);
+    border: var(--size-border-thin) solid var(--direction-border-soft);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse at 80% 4%, rgba(var(--direction-glow), 0.14), transparent 24rem),
+      linear-gradient(180deg, var(--direction-surface-strong), rgba(255, 255, 255, 0.01)),
+      var(--direction-surface);
+  }
+
+  .direction-cta-inner--accent {
+    border-color: rgba(176, 204, 255, 0.22);
+    background:
+      radial-gradient(ellipse at 84% 48%, rgba(var(--direction-glow), 0.28), rgba(var(--direction-glow), 0.1) 34%, transparent 66%),
+      radial-gradient(ellipse at 104% 22%, rgba(191, 215, 255, 0.16), transparent 22rem),
+      linear-gradient(135deg, rgba(5, 18, 38, 0.98), rgba(9, 31, 68, 0.94) 54%, rgba(6, 12, 24, 0.98));
+    color: var(--direction-text);
+  }
+
+  .direction-cta-inner--accent::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    right: min(-24rem, -12vw);
+    width: min(64rem, 52vw);
+    aspect-ratio: 1;
+    pointer-events: none;
+    border-radius: var(--radius-pill);
+    opacity: 0.22;
+    background: radial-gradient(circle, transparent 0 26%, rgba(191, 215, 255, 0.28) 26.2% 26.45%, transparent 26.7%), radial-gradient(circle, transparent 0 44%, rgba(191, 215, 255, 0.2) 44.2% 44.42%, transparent 44.7%), radial-gradient(circle, transparent 0 62%, rgba(176, 204, 255, 0.16) 62.2% 62.38%, transparent 62.7%), radial-gradient(circle, transparent 0 79%, rgba(176, 204, 255, 0.12) 79.15% 79.32%, transparent 79.6%);
+    transform: translateY(-50%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(24deg, transparent 0 18%, #000 18% 72%, transparent 72% 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(24deg, transparent 0 18%, #000 18% 72%, transparent 72% 100%);
+    -webkit-mask-composite: source-in, xor;
+    mask-composite: intersect;
+  }
+
+  .direction-cta-inner--accent .direction-kicker,
+  .direction-cta-inner--accent h2,
+  .direction-cta-inner--accent > p:not(.direction-kicker) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .direction-cta-inner--accent h2 {
+    color: rgba(245, 248, 255, 0.98);
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .direction-cta-inner--accent > p:not(.direction-kicker) {
+    color: rgba(210, 219, 236, 0.78);
+  }
+
+  .direction-cta-inner--accent .direction-kicker {
+    color: var(--direction-accent);
+    opacity: 0.76;
+  }
+
+  .direction-cta-inner--accent .direction-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .direction-cta-inner--accent :global(.ds-button--ghost) {
+    border-color: rgba(245, 248, 255, 0.18);
+    background: rgba(255, 255, 255, 0.035);
+    color: rgba(245, 248, 255, 0.92);
+  }
+
+  .direction-cta-inner--accent :global(.ds-button--ghost:hover),
+  .direction-cta-inner--accent :global(.ds-button--ghost:focus-visible) {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .direction-cta-inner > p:not(.direction-kicker) {
+    max-width: 58ch;
+  }
+
+  @media (max-width: 78rem) {
+    .direction-hero-copy,
+    :global(.direction-diagnostic-grid),
+    .direction-dimension-visual,
+    .direction-method-grid,
+    .direction-outcome-field,
+    .direction-output-grid,
+    .direction-cta-inner {
+      grid-column: 2 / span 24;
+    }
+
+    .direction-hero {
+      min-height: 90vh;
+      min-height: 90svh;
+      padding-top: 6rem;
+    }
+
+    .direction-hero-rays {
+      --direction-rays-opacity: 0.34;
+
+      top: -7rem;
+      left: -15rem;
+      width: 76rem;
+      height: 58rem;
+    }
+
+    :global(.direction-diagnostic-grid),
+    .direction-output-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .direction-method-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+  }
+
+  @media (max-width: 48rem) {
+    .direction-page {
+      --direction-mobile-gutter: var(--ds-mobile-content-gutter);
+    }
+
+    .direction-hero-copy,
+    :global(.direction-diagnostic-grid),
+    .direction-dimension-visual,
+    .direction-method-grid,
+    .direction-outcome-field,
+    .direction-output-grid,
+    .direction-cta-inner {
+      grid-column: 1 / -1;
+      margin-inline: var(--direction-mobile-gutter);
+    }
+
+    .direction-hero {
+      min-height: 92vh;
+      min-height: 92svh;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .direction-hero-rays {
+      --direction-rays-opacity: 0.24;
+
+      top: -8rem;
+      left: -18rem;
+      width: 52rem;
+      height: 44rem;
+    }
+
+    .direction-hero h1 {
+      font-size: var(--ds-mobile-type-title-xl);
+    }
+
+    .direction-hero-copy > p:not(.direction-kicker),
+    .direction-cta-inner > p:not(.direction-kicker) {
+      font-size: var(--ds-mobile-type-body);
+    }
+
+    .direction-section h2,
+    .direction-band h2 {
+      font-size: var(--ds-mobile-type-title-md);
+    }
+
+    .direction-section,
+    .direction-band {
+      padding: clamp(4rem, 16vw, 6rem) 0;
+    }
+
+    .direction-band--depends {
+      padding-bottom: clamp(4rem, 16vw, 6rem);
+    }
+
+    .direction-diagnostic-grid,
+    .direction-method-grid,
+    .direction-output-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .direction-outcome-field {
+      background-position: center;
+    }
+
+    .direction-outcome-columns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .direction-outcome-row {
+      grid-template-columns: minmax(2.5rem, 0.18fr) minmax(0, 0.82fr);
+    }
+
+    .direction-dimension-visual {
+      width: auto;
+      margin-left: 0;
+      overflow: visible;
+      border: 0;
+      background: transparent;
+    }
+
+    .direction-dimension-visual::before,
+    .direction-dimension-visual::after {
+      display: none;
+    }
+
+    .direction-dimension-visual img {
+      display: none;
+    }
+
+    .direction-dimension-interactive {
+      display: none;
+    }
+
+    .direction-dimension-list {
+      position: static;
+      display: grid;
+      margin-top: clamp(3rem, 6vw, 5rem);
+      border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+    }
+
+    .direction-dimension-row {
+      position: relative;
+      inset: auto;
+      left: auto;
+      width: auto;
+      padding: clamp(1.35rem, 2.6vw, 2rem) 0;
+      border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+    }
+
+    .direction-output-card {
+      min-height: 14rem;
+    }
+
+    .direction-dimension-row,
+    .direction-method-item {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-sm);
+    }
+
+    .direction-dimension-row p,
+    .direction-method-item p {
+      margin-top: 0;
+    }
+
+    .direction-cta-inner {
+      padding: var(--spacing-lg);
+    }
+  }
+
+  @keyframes direction-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(1.4rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes direction-rays-enter {
+    from {
+      opacity: 0;
+      transform: rotate(-22deg) translate3d(-1.4rem, -1rem, 0);
+    }
+
+    to {
+      opacity: var(--direction-rays-opacity);
+      transform: rotate(-22deg) translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes direction-nodule-breathe {
+    0%,
+    100% {
+      opacity: 0.82;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.24);
+    }
+  }
+
+  @keyframes direction-panel-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.28rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .direction-hero-copy,
+    .direction-hero-rays,
+    .direction-dimension-panel,
+    .direction-dimension-nodule,
+    .direction-dimension-nodule::before,
+    .direction-dimension-nodule::after {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>

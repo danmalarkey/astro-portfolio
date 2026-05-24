@@ -1,0 +1,728 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../layouts/Header.astro';
+import HomeFooter from '../../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
+import FocusArtifactGrid from '../../components/FocusArtifactGrid.astro';
+import FocusDiagnosticList from '../../components/FocusDiagnosticList.astro';
+import FocusMethodCards from '../../components/FocusMethodCards.astro';
+import FocusNoduleModel from '../../components/FocusNoduleModel.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+
+const mailParams = new URLSearchParams();
+mailParams.set('subject', '[Standards & Scale] Advisory inquiry');
+const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
+
+const diagnosticItems = [
+  {
+    title: 'Inconsistent behavior',
+    text: 'Similar patterns begin working differently across products, teams, workflows, or customer touchpoints.'
+  },
+  {
+    title: 'Accessibility risk',
+    text: 'Compliance gaps become business risk when accessibility is treated as a late audit instead of a release standard.'
+  },
+  {
+    title: 'Implementation drift',
+    text: 'Design intent, product behavior, and delivered code start moving in different directions.'
+  },
+  {
+    title: 'Unclear ownership',
+    text: 'Teams know quality matters, but not who owns the standard, the exception, or the final decision.'
+  },
+  {
+    title: 'Fragile governance',
+    text: 'Rules exist, but they are too hard to apply, review, maintain, or defend as the system changes.'
+  },
+  {
+    title: 'Weak evidence',
+    text: 'When quality is challenged, the organization lacks the documentation, decisions, and traceability to explain what happened.'
+  }
+];
+
+const standardItems = [
+  {
+    title: 'Product behavior',
+    text: 'The system should behave consistently across related moments, not just look consistent.'
+  },
+  {
+    title: 'Accessibility',
+    text: 'Standards should make inclusive, compliant, usable experiences part of normal delivery.'
+  },
+  {
+    title: 'Implementation integrity',
+    text: 'The delivered system should preserve the logic, constraints, and quality decisions behind the work.'
+  },
+  {
+    title: 'Governance',
+    text: 'Teams need clear rules for decisions, exceptions, reviews, and changes over time.'
+  },
+  {
+    title: 'Documentation',
+    text: 'Standards need enough clarity and traceability for teams to use them and leaders to trust them.'
+  },
+  {
+    title: 'Evidence',
+    text: 'The organization should be able to show how decisions were made, approved, tested, and maintained.'
+  }
+];
+
+const methodItems = [
+  {
+    title: 'Clarify quality expectations',
+    text: 'Define what quality needs to mean across product behavior, accessibility, trust, implementation, governance, and delivery.'
+  },
+  {
+    title: 'Assess current capability',
+    text: 'Understand whether the organization has the skills, practices, ownership, evidence, and review points needed to uphold those expectations.'
+  },
+  {
+    title: 'Identify quality risk',
+    text: 'Separate surface inconsistency from issues that affect usability, trust, compliance, delivery cost, business exposure, or system integrity.'
+  },
+  {
+    title: 'Define usable standards',
+    text: 'Create standards that are clear enough for people to apply and realistic enough for the organization to maintain.'
+  },
+  {
+    title: 'Strengthen review practices',
+    text: 'Establish practical review points for accessibility, implementation, consistency, exceptions, evidence, and release readiness.'
+  },
+  {
+    title: 'Connect standards to delivery',
+    text: 'Make standards part of how teams plan, build, review, ship, and improve the system over time.'
+  }
+];
+
+const outcomeItems = [
+  {
+    title: 'More consistent behavior',
+    text: 'Customers experience the system as one coherent product instead of disconnected decisions.'
+  },
+  {
+    title: 'Lower accessibility risk',
+    text: 'Accessibility becomes part of normal delivery, not a separate scramble after release.'
+  },
+  {
+    title: 'Cleaner implementation',
+    text: 'Design, product logic, and delivered code stay closer together as work moves through delivery.'
+  },
+  {
+    title: 'Better governance',
+    text: 'Teams understand how standards are applied, when exceptions are allowed, and who makes the call.'
+  },
+  {
+    title: 'Stronger release confidence',
+    text: 'The organization has clearer expectations for what is ready, what needs review, and what should not ship.'
+  },
+  {
+    title: 'More defensible quality',
+    text: 'Decisions, approvals, and standards are easier to explain when the work is questioned.'
+  }
+];
+
+const infrastructureItems = [
+  {
+    title: 'Accessibility audits',
+    text: 'Structured findings that identify barriers, severity, risk, and practical remediation paths.'
+  },
+  {
+    title: 'Quality standards',
+    text: 'Clear expectations for product behavior, accessibility, consistency, implementation, and release readiness.'
+  },
+  {
+    title: 'Governance models',
+    text: 'Decision structures for ownership, exceptions, approvals, reviews, and standard maintenance.'
+  },
+  {
+    title: 'Implementation guardrails',
+    text: 'Rules and guidance that help teams preserve quality as work moves into code.'
+  },
+  {
+    title: 'Documentation systems',
+    text: 'Reusable standards, rationale, examples, and decision records that make quality easier to apply.'
+  },
+  {
+    title: 'Evidence trails',
+    text: 'Traceable decisions, approvals, reviews, and changes that help organizations explain and defend the work.'
+  }
+];
+
+const infrastructureBackgrounds = [
+  '/images/standards/access-audits-bg.png',
+  '/images/standards/quality-standards-bg.png',
+  '/images/standards/gov-models-bg.png',
+  '/images/standards/imp-guardrails-bg.png',
+  '/images/standards/doc-systems-bg.png',
+  '/images/standards/evidence-trails-bg.png'
+];
+---
+
+<Layout
+  title="Standards & Scale | Dan Malarkey"
+  description="Standards and scale support for organizations that need quality, accessibility, governance, and implementation integrity to hold."
+>
+  <Header />
+  <main class="standards-page">
+    <section
+      class="standards-hero"
+      style={`--standards-hero-bg: url('${withBase('/images/standards/standards-hero-bg.png')}')`}
+      aria-labelledby="standards-title"
+    >
+      <div class="standards-hero-rays" aria-hidden="true"></div>
+      <div class="standards-hero-light" aria-hidden="true"></div>
+      <div class="standards-hero-grid dm-grid-l dm-grid-l--grid-sys">
+        <div class="standards-hero-copy gc-start-2 gc-span-13">
+          <p class="standards-kicker">Standards &amp; Scale</p>
+          <h1 id="standards-title">Preserve quality wherever the system goes.</h1>
+          <p>
+            Strong standards help organizations keep quality, accessibility, product behavior, implementation, and trust consistent whether the system is stable, scaling, or moving into new territory.
+          </p>
+          <div class="standards-actions" aria-label="Standards & Scale actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href="#standards-help" variant="ghost">See how I work</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="standards-section" aria-labelledby="standards-diagnostic" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="Before quality is tested"
+          title="Standards show what the system can carry."
+          body="Quality is tested in stable systems, growing systems, and unfamiliar conditions. It erodes when decisions, patterns, accessibility, ownership, and evidence no longer reinforce the same standard."
+          headingId="standards-diagnostic"
+          accent
+          reveal
+        />
+        <FocusDiagnosticList items={diagnosticItems} className="standards-diagnostic-grid gc-start-2 gc-span-24" />
+      </div>
+    </section>
+
+    <section class="standards-band standards-band--model-test" aria-labelledby="standards-model-test" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="What standards need to hold"
+          title="Scale depends on more than consistency."
+          body="The strongest standards connect business risk, customer trust, product behavior, accessibility, implementation, governance, and evidence so quality can hold across stable systems and new conditions."
+          headingId="standards-model-test"
+          accent
+          reveal
+        />
+        <FocusNoduleModel
+          id="standards-scale-test"
+          imageSrc={withBase('/images/standards/standards-scale.png')}
+          items={standardItems}
+          label="Standards load-bearing inputs"
+          noduleX="23.3%"
+          positions={['21%', '32.45%', '43.85%', '55.35%', '66.7%', '78.35%']}
+          panelLeft="clamp(1.5rem, 3vw, 3.5rem)"
+          panelWidth="min(19rem, 20vw)"
+          className="standards-scale-model-test gc-start-1 gc-span-26"
+        />
+      </div>
+    </section>
+
+    <section class="standards-section standards-section--mid-cta" aria-labelledby="standards-mid-cta" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="standards-cta-inner standards-cta-inner--accent gc-start-2 gc-span-24" data-motion-item>
+          <p class="standards-kicker">Before quality becomes risk</p>
+          <h2 id="standards-mid-cta">Standards need to hold under pressure.</h2>
+          <p>
+            When products, teams, regulations, and delivery demands change, quality needs more than good intentions. It needs structure people can apply, maintain, and defend.
+          </p>
+          <div class="standards-actions" aria-label="Standards & Scale actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href={withBase('/work-with/operating-model')} variant="ghost">Explore Operating Model</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="standards-section" id="standards-help" aria-labelledby="standards-help-title" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="How I help"
+          title="Make quality expectations operational."
+          body="I help organizations clarify what quality needs to mean, where current capability falls short, and how standards, evidence, governance, and delivery practices need to work together so quality can be applied, maintained, and defended."
+          headingId="standards-help-title"
+          accent
+          reveal
+        />
+        <FocusMethodCards
+          items={methodItems}
+          phases={['Clarify the quality model', 'Create standards that can hold']}
+          className="standards-method-grid gc-start-2 gc-span-24"
+        />
+      </div>
+    </section>
+
+    <section
+      class="standards-section standards-section--outcomes"
+      aria-labelledby="standards-outcomes"
+      style={`--standards-outcomes-bg: url('${withBase('/images/standards/standards-hold-bg.png')}')`}
+      data-motion-reveal
+    >
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="When standards hold"
+          title="Quality travels with the system."
+          body="Good standards reduce ambiguity, protect consistency, support accessibility, and help people make better decisions as the system changes."
+          headingId="standards-outcomes"
+          accent
+          reveal
+        />
+        <div class="standards-outcome-field gc-start-2 gc-span-24" data-motion-item>
+          <div class="standards-outcome-columns" role="list" aria-label="Standards outcomes">
+            {[outcomeItems.slice(0, 3), outcomeItems.slice(3)].map((items, columnIndex) => (
+              <div class="standards-outcome-column">
+                {items.map((item, itemIndex) => {
+                  const index = columnIndex === 0 ? itemIndex : itemIndex + 3;
+                  return (
+                    <article class="standards-outcome-row" role="listitem">
+                      <span class="standards-outcome-index">{String(index + 1).padStart(2, '0')}</span>
+                      <div class="standards-outcome-copy">
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="standards-band" aria-labelledby="standards-infrastructure" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="Standards infrastructure"
+          title="Useful structure for quality that needs to hold."
+          body="The output is practical standards infrastructure: audit findings, accessibility guidance, governance models, implementation rules, documentation, evidence trails, and review practices people can keep using."
+          headingId="standards-infrastructure"
+          accent
+          reveal
+        />
+        <FocusArtifactGrid
+          items={infrastructureItems}
+          backgrounds={infrastructureBackgrounds}
+          className="gc-start-2 gc-span-24"
+        />
+      </div>
+    </section>
+
+    <FocusAreaJumpCards current="standards" eyebrow="Focus areas across the organization" />
+
+    <HomeFooter eyebrow="Standards & Scale" title="Quality needs structure to hold." />
+  </main>
+</Layout>
+
+<style>
+  .standards-page {
+    --standards-bg: var(--ds-background);
+    --standards-surface: var(--ds-surface);
+    --standards-surface-strong: var(--ds-surface-strong);
+    --standards-border-soft: var(--ds-border-soft);
+    --standards-text: var(--ds-text);
+    --standards-text-muted: var(--ds-text-muted);
+    --standards-accent: rgba(176, 204, 255, 0.88);
+    --standards-glow: 111, 162, 232;
+    --section-header-accent-color: var(--standards-accent);
+    --section-header-title-color: var(--standards-text);
+    --section-header-body-color: var(--standards-text-muted);
+
+    overflow: hidden;
+    padding: 0;
+    background:
+      radial-gradient(circle at 78% 12%, rgba(var(--standards-glow), 0.08), transparent 24rem),
+      linear-gradient(180deg, rgba(6, 8, 13, 0.96), var(--standards-bg) 22rem);
+    color: var(--standards-text);
+  }
+
+  .standards-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: center;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(5rem, 9vw, 8rem);
+    overflow: hidden;
+    background-color: var(--standards-bg);
+    background-image:
+      linear-gradient(90deg, rgba(3, 6, 11, 0.98) 0%, rgba(3, 6, 11, 0.9) 36%, rgba(3, 6, 11, 0.24) 72%, rgba(3, 6, 11, 0.08) 100%),
+      radial-gradient(ellipse at 84% 42%, rgba(var(--standards-glow), 0.14), rgba(var(--standards-glow), 0.04) 36%, transparent 68%),
+      var(--standards-hero-bg);
+    background-position: center, center, center right;
+    background-repeat: no-repeat;
+    background-size: auto, auto, cover;
+  }
+
+  .standards-hero-rays {
+    --standards-rays-opacity: 0.46;
+
+    position: absolute;
+    top: -8rem;
+    left: -10rem;
+    z-index: 0;
+    width: min(100rem, 118vw);
+    height: 78rem;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.2) 13%, rgba(255, 255, 255, 0.052) 15.5%, transparent 19%),
+      linear-gradient(90deg, transparent 18%, rgba(176, 204, 255, 0.16) 21%, rgba(176, 204, 255, 0.042) 23.5%, transparent 28%),
+      linear-gradient(90deg, transparent 29%, rgba(255, 255, 255, 0.12) 32%, rgba(255, 255, 255, 0.03) 34.5%, transparent 39%);
+    filter: blur(8px);
+    opacity: var(--standards-rays-opacity);
+    mix-blend-mode: screen;
+    transform: rotate(-22deg);
+    transform-origin: top left;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.44) 32%, transparent 82%);
+    animation: standards-rays-enter 1400ms ease 280ms both;
+  }
+
+  .standards-hero-light {
+    position: absolute;
+    top: 8%;
+    right: -40%;
+    z-index: 0;
+    width: min(118vw, 84rem);
+    height: min(84vh, 48rem);
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    background: radial-gradient(ellipse at 62% 42%, rgba(191, 215, 255, 0.22), rgba(var(--standards-glow), 0.11) 28%, transparent 76%);
+    filter: blur(34px);
+    opacity: 0.72;
+    transform: rotate(-35deg);
+  }
+
+  .standards-hero-grid {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: inherit;
+    align-items: center;
+  }
+
+  .standards-hero-copy,
+  .standards-cta-inner {
+    display: grid;
+    gap: var(--spacing-md);
+    align-content: start;
+  }
+
+  .standards-hero-copy {
+    animation: standards-hero-copy-enter 820ms ease 160ms both;
+  }
+
+  .standards-kicker {
+    margin: 0;
+    color: var(--standards-accent);
+    font-size: var(--ds-type-label-compact);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+    text-transform: uppercase;
+  }
+
+  .standards-hero h1,
+  .standards-section h2,
+  .standards-band h2 {
+    margin: 0;
+    color: var(--standards-text);
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .standards-hero h1 {
+    max-width: 11ch;
+    font-size: var(--ds-type-title-xl);
+  }
+
+  .standards-section h2,
+  .standards-band h2 {
+    font-size: var(--ds-type-title-lg);
+  }
+
+  .standards-hero-copy > p:not(.standards-kicker),
+  .standards-cta-inner > p:not(.standards-kicker) {
+    margin: 0;
+    color: var(--standards-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .standards-hero-copy > p:not(.standards-kicker) {
+    max-width: 44rem;
+    color: color-mix(in srgb, var(--standards-text) 64%, transparent);
+  }
+
+  .standards-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+  }
+
+  .standards-section,
+  .standards-band {
+    padding: clamp(5rem, 9vw, 8rem) 0;
+  }
+
+  :global(.standards-diagnostic-grid) {
+    --focus-diagnostic-border: var(--standards-border-soft);
+    --focus-diagnostic-label: var(--standards-accent);
+    --focus-diagnostic-text: var(--standards-text);
+    --focus-diagnostic-text-muted: var(--standards-text-muted);
+
+    grid-column: 2 / span 24;
+  }
+
+  :global(.standards-scale-model-test) {
+    --focus-model-accent: var(--standards-accent);
+    --focus-model-glow: var(--standards-glow);
+    --focus-model-text: var(--standards-text);
+    --focus-model-text-muted: var(--standards-text-muted);
+  }
+
+  :global(.standards-method-grid) {
+    --focus-method-card-padding: clamp(1.75rem, 3.4vw, 2.6rem);
+    --focus-method-card-title-margin: calc(var(--spacing-sm) * 1.2);
+    --focus-method-list-margin: clamp(2.35rem, 4.5vw, 3.4rem);
+    --focus-method-item-padding: clamp(1.15rem, 2.25vw, 1.55rem);
+    --focus-method-divider: rgba(231, 235, 242, 0.055);
+    --focus-method-field-opacity: 0.48;
+  }
+
+  .standards-outcome-row {
+    display: grid;
+    gap: clamp(0.85rem, 2vw, 1.35rem);
+    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
+  }
+
+  .standards-outcome-row {
+    grid-template-columns: minmax(2.75rem, 0.16fr) minmax(0, 0.84fr);
+    padding: clamp(1rem, 2vw, 1.35rem) 0;
+  }
+
+  .standards-outcome-index {
+    color: var(--standards-accent);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+  }
+
+  .standards-outcome-copy h3 {
+    margin: 0;
+    color: var(--standards-text);
+    font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-card);
+    text-wrap: balance;
+  }
+
+  .standards-outcome-copy p {
+    margin: var(--spacing-xs) 0 0;
+    color: var(--standards-text-muted);
+    font-size: var(--ds-type-body-sm);
+    line-height: var(--ds-line-body-compact);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .standards-cta-inner {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2rem, 5vw, 4.5rem);
+    border: var(--size-border-thin) solid rgba(176, 204, 255, 0.22);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(ellipse at 84% 48%, rgba(var(--standards-glow), 0.28), rgba(var(--standards-glow), 0.1) 34%, transparent 66%),
+      radial-gradient(ellipse at 104% 22%, rgba(191, 215, 255, 0.16), transparent 22rem),
+      linear-gradient(135deg, rgba(5, 18, 38, 0.98), rgba(9, 31, 68, 0.94) 54%, rgba(6, 12, 24, 0.98));
+  }
+
+  .standards-cta-inner::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    right: min(-24rem, -12vw);
+    width: min(64rem, 52vw);
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    opacity: 0.22;
+    background:
+      radial-gradient(circle, transparent 0 26%, rgba(191, 215, 255, 0.28) 26.2% 26.45%, transparent 26.7%),
+      radial-gradient(circle, transparent 0 44%, rgba(191, 215, 255, 0.2) 44.2% 44.42%, transparent 44.7%),
+      radial-gradient(circle, transparent 0 62%, rgba(176, 204, 255, 0.16) 62.2% 62.38%, transparent 62.7%);
+    transform: translateY(-50%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 82%, transparent 100%);
+  }
+
+  .standards-cta-inner > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .standards-section--outcomes {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(3, 6, 11, 0.16), rgba(3, 6, 11, 0.62) 42%, rgba(3, 6, 11, 0.82) 100%),
+      linear-gradient(180deg, rgba(3, 6, 11, 0.2), rgba(3, 6, 11, 0.5)),
+      var(--standards-outcomes-bg);
+    background-color: color-mix(in srgb, var(--standards-bg) 92%, black);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .standards-section--outcomes::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(3, 6, 11, 0.26), transparent 22%, transparent 72%, rgba(3, 6, 11, 0.42)),
+      radial-gradient(ellipse at 74% 44%, transparent 0 30%, rgba(3, 6, 11, 0.34) 100%);
+  }
+
+  .standards-outcome-field {
+    margin-top: clamp(2.25rem, 4vw, 3.75rem);
+  }
+
+  .standards-outcome-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-content: center;
+  }
+
+  .standards-outcome-column {
+    display: grid;
+    align-content: center;
+    border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
+    background: rgba(3, 6, 11, 0.12);
+    backdrop-filter: blur(0.18rem);
+  }
+
+  @media (max-width: 78rem) {
+    .standards-hero-copy,
+    :global(.standards-scale-model-test),
+    .standards-outcome-field,
+    .standards-cta-inner {
+      grid-column: 2 / span 24;
+    }
+
+    .standards-hero {
+      min-height: 90vh;
+      min-height: 90svh;
+      padding-top: 6rem;
+    }
+
+  }
+
+  @media (max-width: 48rem) {
+    .standards-page {
+      --standards-mobile-gutter: var(--ds-mobile-content-gutter);
+    }
+
+    .standards-hero-copy,
+    :global(.standards-diagnostic-grid),
+    :global(.standards-scale-model-test),
+    .standards-outcome-field,
+    .standards-cta-inner {
+      grid-column: 1 / -1;
+      margin-inline: var(--standards-mobile-gutter);
+    }
+
+    .standards-hero {
+      min-height: 92vh;
+      min-height: 92svh;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+      background-position: center, center, 62% center;
+    }
+
+    .standards-hero h1 {
+      font-size: var(--ds-mobile-type-title-xl);
+    }
+
+    .standards-section h2,
+    .standards-band h2 {
+      font-size: var(--ds-mobile-type-title-md);
+    }
+
+    .standards-hero-copy > p:not(.standards-kicker),
+    .standards-cta-inner > p:not(.standards-kicker) {
+      font-size: var(--ds-mobile-type-body);
+    }
+
+    .standards-section,
+    .standards-band {
+      padding: clamp(4rem, 16vw, 6rem) 0;
+    }
+
+    .standards-outcome-columns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .standards-outcome-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-sm);
+    }
+
+    .standards-cta-inner {
+      padding: var(--spacing-lg);
+    }
+
+  }
+
+  @keyframes standards-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(1.4rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes standards-rays-enter {
+    from {
+      opacity: 0;
+      transform: rotate(-22deg) translate3d(-1.4rem, -1rem, 0);
+    }
+
+    to {
+      opacity: var(--standards-rays-opacity);
+      transform: rotate(-22deg) translate3d(0, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .standards-hero-copy,
+    .standards-hero-rays {
+      animation: none;
+    }
+  }
+</style>

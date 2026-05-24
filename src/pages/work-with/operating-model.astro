@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../layouts/Header.astro';
 import HomeFooter from '../../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
 import Button from '../../components/Button.astro';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
@@ -110,31 +112,33 @@ const supportAreas = [
 const outputs = [
   {
     title: 'Product model maps',
-    text: 'Define concepts, relationships, rules, and business logic.'
+    text: 'Define concepts, relationships, rules, and business logic.',
+    backgroundImage: '/images/op-model/product-model-maps-bg.png'
   },
   {
     title: 'Workflow and activity models',
-    text: 'Clarify how work actually moves through the organization.'
+    text: 'Clarify how work actually moves through the organization.',
+    backgroundImage: '/images/op-model/activities-1-bg.png'
   },
   {
     title: 'Operating principles',
-    text: 'Connect strategy to delivery decisions teams can act on.'
+    text: 'Connect strategy to delivery decisions and reduce organizational drift over time.',
+    backgroundImage: '/images/op-model/op-principles-bg.png'
   },
   {
     title: 'Decision frameworks',
-    text: 'Support product, design, engineering, and operational tradeoffs.'
+    text: 'Support product, design, engineering, and operational tradeoffs.',
+    backgroundImage: '/images/op-model/decision-frameworks-bg.png'
   },
   {
-    title: 'UX system patterns',
-    text: 'Tie interface patterns to implementation and operational realities.'
+    title: 'System patterns',
+    text: 'Connect product behavior, implementation, and operational realities.',
+    backgroundImage: '/images/op-model/system-patterns-bg.png'
   },
   {
     title: 'Operating standards',
-    text: 'Establish standards for terminology, behavior, accessibility, and quality.'
-  },
-  {
-    title: 'Alignment artifacts',
-    text: 'Reduce organizational drift over time.'
+    text: 'Establish standards for terminology, behavior, accessibility, and quality.',
+    backgroundImage: '/images/op-model/operating-standards-bg.png'
   }
 ];
 ---
@@ -161,51 +165,57 @@ const outputs = [
           <p class="operating-model-kicker">Operating model</p>
           <h1 id="operating-model-title">Products reflect the organizations behind them.</h1>
           <p>
-            Strong product work reflects aligned business intent, operational capability, and shared understanding. Product logic, workflows, system behavior, interface patterns, and implementation decisions should reinforce the same underlying model.
+            Strong product work reflects aligned business intent, operational capability, shared understanding, and implementation decisions. Product logic, workflows, system behavior, and delivery choices should reinforce the same underlying model.
           </p>
           <div class="operating-model-actions" aria-label="Operating model actions">
             <Button href={mailto}>Start a conversation</Button>
-            <Button href={withBase('/work-with/ai-enabled-product-systems')} variant="ghost">AI-enabled systems</Button>
+            <Button href={withBase('/work-with/ai-enabled-systems')} variant="ghost">AI-enabled systems</Button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="operating-model-section operating-model-section--signal" aria-labelledby="operating-model-signal" data-motion-reveal>
-      <div class="operating-model-signal-visual" aria-hidden="true">
-        <img
-          src={withBase('/images/op-model/noise-to-sig.png')}
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
+    <section
+      class="operating-model-section operating-model-section--signal"
+      style={`--operating-model-signal-bg: url('${withBase('/images/op-model/noise-to-sig.png')}')`}
+      aria-labelledby="operating-model-signal"
+      data-motion-reveal
+    >
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-signal-copy gc-start-10 gc-span-11" data-motion-item>
-          <p class="operating-model-kicker">Operating clarity</p>
-          <h2 id="operating-model-signal">Separate the signal from the noise.</h2>
+        <SectionHeader
+          eyebrow="Operating clarity"
+          title="Separate the signal from the noise."
+          headingId="operating-model-signal"
+          headClass="operating-model-signal-head gc-start-10 gc-span-11"
+          bodyClass="operating-model-signal-body gc-start-10 gc-span-11"
+          accent
+          reveal
+        >
+          <Fragment slot="body">
           <p>
-            Strong operating models help organizations distinguish between short-term delivery pressure and the decisions that fundamentally shape operational success, product vision, and team alignment.
+            Strong operating models help organizations distinguish between short-term delivery pressure and the decisions that shape operational success, product vision, and long-term capability.
           </p>
           <p>
             The work goes beyond interfaces. It is aligning business goals, user activities, behaviors, workflows, and constraints that shape the entire journey.
           </p>
-        </div>
+          </Fragment>
+        </SectionHeader>
       </div>
     </section>
 
     <section class="operating-model-section operating-model-section--stuck" aria-labelledby="operating-model-stuck" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head operating-model-stuck-head gc-start-2 gc-span-12" data-motion-item>
-          <p class="operating-model-kicker">Where alignment starts to break down</p>
-          <h2 id="operating-model-stuck">Drift starts long before the interface.</h2>
-        </div>
-        <p class="operating-model-thesis gc-start-15 gc-span-10" data-motion-item>
-          Product fragmentation rarely happens all at once. It usually begins earlier—when business goals, operating assumptions, user activities, and delivery decisions start moving in different directions. By the time it reaches the interface, the underlying model is already under strain.
-        </p>
-        <div class="operating-model-stuck-list gc-start-2 gc-span-24" role="list" aria-label="Where operating model work gets stuck" data-motion-item>
+        <SectionHeader
+          eyebrow="Where alignment starts to break down"
+          title="Drift starts long before the interface."
+          body="Product fragmentation rarely happens all at once. It usually begins earlier—when business goals, operating assumptions, user activities, and delivery decisions start moving in different directions. By the time it reaches the interface, the underlying model is already under strain."
+          headingId="operating-model-stuck"
+          accent
+          reveal
+        />
+        <div class="focus-diagnostic-list operating-model-stuck-list gc-start-2 gc-span-24" role="list" aria-label="Where operating model work gets stuck" data-motion-item>
           {stuckPatterns.map((pattern) => (
-            <article class="operating-model-stuck-item" role="listitem">
+            <article class="focus-diagnostic-item operating-model-stuck-item" role="listitem">
               <div class="operating-model-drift-icon" aria-hidden="true">
                 {pattern.icon === 'intent' && (
                   <svg viewBox="0 0 48 48" focusable="false">
@@ -272,13 +282,14 @@ const outputs = [
 
     <section class="operating-model-band" aria-labelledby="operating-model-layers" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
-          <p class="operating-model-kicker">Maintain trajectory</p>
-          <h2 id="operating-model-layers">Hold alignment through execution.</h2>
-        </div>
-        <p class="operating-model-layer-thesis gc-start-15 gc-span-9" data-motion-item>
-          Every decision shapes the path forward. These six dimensions must stay aligned to keep the organization moving in the right direction.
-        </p>
+        <SectionHeader
+          eyebrow="Maintain trajectory"
+          title="Hold alignment through execution."
+          body="Every decision shapes the path forward. These six dimensions must stay aligned to keep the organization moving in the right direction."
+          headingId="operating-model-layers"
+          accent
+          reveal
+        />
         <div
           class="operating-model-layer-system gc-start-2 gc-span-24"
           data-operating-model-layers
@@ -351,13 +362,14 @@ const outputs = [
 
     <section class="operating-model-section operating-model-section--split" aria-labelledby="operating-model-support" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-section-head gc-start-2 gc-span-10" data-motion-item>
-          <p class="operating-model-kicker">Clarity improves</p>
-          <h2 id="operating-model-support">When organizations maintain direction.</h2>
-        </div>
-        <p class="operating-model-clarity-thesis gc-start-15 gc-span-9" data-motion-item>
-          Organizations operate more effectively when business priorities, operational realities, product behavior, and decision-making continue reinforcing the same direction over time.
-        </p>
+        <SectionHeader
+          eyebrow="Clarity improves"
+          title="When organizations maintain direction."
+          body="Organizations operate more effectively when business priorities, operational realities, product behavior, and decision-making continue reinforcing the same direction over time."
+          headingId="operating-model-support"
+          accent
+          reveal
+        />
         <div class="operating-model-clarity-grid gc-start-2 gc-span-24" role="list" data-motion-item>
           {supportAreas.map((area, index) => (
             <article class="operating-model-clarity-card" role="listitem">
@@ -372,16 +384,21 @@ const outputs = [
 
     <section class="operating-model-band" aria-labelledby="operating-model-outputs" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="operating-model-band-copy gc-start-2 gc-span-9" data-motion-item>
-          <p class="operating-model-kicker">Outputs</p>
-          <h2 id="operating-model-outputs">The work becomes useful when teams can make better decisions with it.</h2>
-        </div>
-        <p class="operating-model-band-thesis gc-start-15 gc-span-8" data-motion-item>
-          The output is not theater. It is a practical operating layer teams can use when executive priorities, product direction, design patterns, and implementation choices need to stay connected.
-        </p>
+        <SectionHeader
+          eyebrow="Decision infrastructure"
+          title="The work becomes useful when decisions improve."
+          body="The output is not theater. It is a practical operating layer that helps executive priorities, product direction, standards, and implementation choices stay connected."
+          headingId="operating-model-outputs"
+          accent
+          reveal
+        />
         <div class="operating-model-output-list gc-start-2 gc-span-24" role="list" data-motion-item>
           {outputs.map((output, index) => (
-            <article class="operating-model-output-card" role="listitem">
+            <article
+              class="operating-model-output-card"
+              role="listitem"
+              style={`--operating-model-output-bg: url('${withBase(output.backgroundImage)}')`}
+            >
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{output.title}</h3>
               <p>{output.text}</p>
@@ -390,6 +407,8 @@ const outputs = [
         </div>
       </div>
     </section>
+
+    <FocusAreaJumpCards current="operating" />
 
     <HomeFooter
       eyebrow="Operating model"
@@ -414,6 +433,9 @@ const outputs = [
     --operating-model-warm: rgba(255, 244, 170, 0.9);
     --operating-model-glow: 111, 162, 232;
     --operating-model-orbit-glow: 111, 162, 232;
+    --section-header-accent-color: var(--operating-model-accent);
+    --section-header-title-color: rgba(245, 248, 255, 0.96);
+    --section-header-body-color: var(--operating-model-text-muted);
     --operating-model-layer-crossfade-duration: 880ms;
     --operating-model-layer-exit-duration: 540ms;
     --operating-model-layer-enter-delay: 210ms;
@@ -521,9 +543,7 @@ const outputs = [
     align-items: center;
   }
 
-  .operating-model-hero-copy,
-  .operating-model-section-head,
-  .operating-model-band-copy {
+  .operating-model-hero-copy {
     display: grid;
     gap: var(--ds-panel-gap);
     align-content: start;
@@ -569,25 +589,13 @@ const outputs = [
     line-height: var(--ds-line-card-title);
   }
 
-  .operating-model-hero-copy > p:not(.operating-model-kicker),
-  .operating-model-section-head > p:not(.operating-model-kicker),
-  .operating-model-thesis,
-  .operating-model-layer-thesis,
-  .operating-model-clarity-thesis,
-  .operating-model-band-thesis {
+  .operating-model-hero-copy > p:not(.operating-model-kicker) {
     max-width: 43rem;
     margin: 0;
     color: var(--operating-model-text-muted);
     font-size: var(--ds-type-lead);
     line-height: var(--ds-line-lead);
     text-wrap: pretty;
-  }
-
-  .operating-model-thesis,
-  .operating-model-layer-thesis,
-  .operating-model-clarity-thesis,
-  .operating-model-band-thesis {
-    align-self: center;
   }
 
   .operating-model-actions {
@@ -615,19 +623,9 @@ const outputs = [
   }
 
   .operating-model-stuck-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 var(--spacing-xl);
-    margin-top: var(--spacing-sm);
-  }
-
-  .operating-model-stuck-item {
-    display: grid;
-    grid-template-columns: 3.25rem minmax(0, 1fr);
-    align-content: start;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-md) 0;
-    border-bottom: var(--size-border-thin) solid var(--operating-model-border-soft);
+    --focus-diagnostic-border: var(--operating-model-border-soft);
+    --focus-diagnostic-text: var(--operating-model-text);
+    --focus-diagnostic-text-muted: var(--operating-model-text-muted);
   }
 
   .operating-model-drift-icon {
@@ -670,55 +668,27 @@ const outputs = [
     line-height: var(--ds-line-label);
   }
 
-  .operating-model-stuck-item h3 {
-    margin: 0;
-    color: var(--operating-model-text);
-    font-size: var(--ds-type-card-title-compact);
-    line-height: var(--ds-line-card-title);
-    letter-spacing: var(--ds-tracking-card);
-    text-wrap: balance;
-  }
-
-  .operating-model-stuck-item p {
-    margin: var(--spacing-xs) 0 0;
-    color: var(--operating-model-text-muted);
-    font-size: var(--ds-type-body-sm);
-    line-height: var(--ds-line-body-compact);
-    text-wrap: pretty;
-  }
-
   .operating-model-section--signal {
     position: relative;
     padding-block: clamp(5rem, 11vw, 9rem);
     overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(3, 6, 11, 0.42), rgba(3, 6, 11, 0.12) 38%, rgba(3, 6, 11, 0.24) 100%),
+      linear-gradient(180deg, rgba(3, 6, 11, 0.34), rgba(3, 6, 11, 0.04) 34%, rgba(3, 6, 11, 0.34)),
+      var(--operating-model-signal-bg);
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
-  .operating-model-signal-visual {
-    position: absolute;
-    top: 44%;
-    z-index: 0;
-    width: 100%;
-    pointer-events: none;
-    opacity: 0.84;
-    transform: translateY(-50%);
-  }
-
-  .operating-model-signal-visual img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .operating-model-signal-copy {
+  :global(.operating-model-signal-head) {
     position: relative;
     z-index: 1;
-    display: grid;
-    gap: var(--ds-panel-gap);
-    margin-top: 6rem;
+    margin-top: 0;
     text-align: left;
   }
 
-  .operating-model-signal-copy::before {
+  :global(.operating-model-signal-head)::before {
     content: '';
     position: absolute;
     inset: -18% auto auto 62%;
@@ -731,17 +701,13 @@ const outputs = [
     mask-image: linear-gradient(120deg, transparent 0 16%, #000 44%, transparent 78%);
   }
 
-  .operating-model-signal-copy h2 {
+  :global(.operating-model-signal-head) h2 {
     max-width: 13ch;
   }
 
-  .operating-model-signal-copy p:not(.operating-model-kicker) {
+  :global(.operating-model-signal-body) {
+    align-self: start;
     max-width: 52rem;
-    margin: 0;
-    color: var(--operating-model-text-muted);
-    font-size: var(--ds-type-lead);
-    line-height: var(--ds-line-lead);
-    text-wrap: pretty;
   }
 
   .operating-model-band {
@@ -1063,18 +1029,41 @@ const outputs = [
     position: relative;
     display: grid;
     align-content: end;
-    min-height: clamp(21rem, 25vw, 26rem);
-    padding: var(--spacing-md);
+    min-height: clamp(18rem, 21vw, 22rem);
+    padding: clamp(1.35rem, 2.2vw, 1.8rem);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--operating-model-border-soft);
     border-radius: var(--radius-md);
     background:
+      radial-gradient(circle at 20% 10%, rgba(var(--operating-model-glow), 0.065), transparent 11rem),
       linear-gradient(
         180deg,
-        color-mix(in srgb, var(--operating-model-text) 2.8%, transparent),
-        color-mix(in srgb, var(--operating-model-text) 0.8%, transparent)
+        color-mix(in srgb, var(--operating-model-text) 3.6%, transparent),
+        color-mix(in srgb, var(--operating-model-text) 1.1%, transparent)
       ),
       color-mix(in srgb, var(--operating-model-bg) 88%, black);
+    box-shadow:
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.022),
+      0 0.75rem 2rem rgba(0, 0, 0, 0.1);
+    transition:
+      border-color var(--duration-transition-interactive-ui) var(--easing-standard),
+      background var(--duration-transition-interactive-ui) var(--easing-standard),
+      box-shadow var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .operating-model-clarity-card:hover {
+    border-color: color-mix(in srgb, var(--operating-model-accent) 18%, var(--operating-model-border-soft));
+    background:
+      radial-gradient(circle at 20% 10%, rgba(var(--operating-model-glow), 0.085), transparent 11rem),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--operating-model-text) 4.4%, transparent),
+        color-mix(in srgb, var(--operating-model-text) 1.35%, transparent)
+      ),
+      color-mix(in srgb, var(--operating-model-bg) 88%, black);
+    box-shadow:
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.03),
+      0 1rem 2.4rem rgba(0, 0, 0, 0.14);
   }
 
   .operating-model-clarity-card::before {
@@ -1090,7 +1079,7 @@ const outputs = [
         transparent 0.0625rem 100%
       );
     background-size: auto, 50% 100%;
-    opacity: 0.2;
+    opacity: 0.18;
   }
 
   .operating-model-clarity-card::after {
@@ -1119,8 +1108,13 @@ const outputs = [
       ),
       linear-gradient(90deg, color-mix(in srgb, var(--operating-model-accent) 4.5%, transparent), transparent 72%);
     filter: blur(0.15px);
-    opacity: 0.24;
+    opacity: 0.2;
     mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.78) 58%, transparent 100%);
+    transition: opacity var(--duration-transition-interactive-ui) var(--easing-standard);
+  }
+
+  .operating-model-clarity-card:hover::after {
+    opacity: 0.28;
   }
 
   .operating-model-clarity-card:nth-child(2)::after {
@@ -1171,7 +1165,7 @@ const outputs = [
 
   .operating-model-clarity-card h3 {
     max-width: 13ch;
-    margin: var(--spacing-xs) 0 0;
+    margin: var(--spacing-sm) 0 0;
     color: var(--operating-model-text);
     font-size: var(--ds-type-card-title-compact);
     line-height: var(--ds-line-card-title);
@@ -1181,7 +1175,7 @@ const outputs = [
 
   .operating-model-clarity-card p {
     max-width: 28ch;
-    margin: calc(var(--spacing-sm) * 1.2) 0 0;
+    margin: var(--spacing-sm) 0 0;
     color: var(--operating-model-text-muted);
     font-size: var(--ds-type-body-xs);
     line-height: var(--ds-line-body-compact);
@@ -1204,9 +1198,11 @@ const outputs = [
     border: var(--size-border-thin) solid var(--operating-model-border-soft);
     border-radius: var(--radius-md);
     background:
-      radial-gradient(circle at 20% 14%, rgba(176, 204, 255, 0.11), transparent 12rem),
-      linear-gradient(180deg, var(--operating-model-surface-strong), rgba(255, 255, 255, 0.012)),
+      linear-gradient(180deg, rgba(7, 9, 13, 0.08) 0%, rgba(7, 9, 13, 0.14) 44%, rgba(7, 9, 13, 0.86) 100%),
+      var(--operating-model-output-bg),
       rgba(7, 9, 13, 0.84);
+    background-position: center;
+    background-size: cover;
   }
 
   .operating-model-output-card::after {
@@ -1244,16 +1240,9 @@ const outputs = [
 
   @media (max-width: 78rem) {
     .operating-model-hero-copy,
-    .operating-model-section-head,
-    .operating-model-thesis,
-    .operating-model-layer-thesis,
-    .operating-model-clarity-thesis,
-    .operating-model-signal-copy,
     .operating-model-stuck-list,
     .operating-model-layer-system,
     .operating-model-clarity-grid,
-    .operating-model-band-copy,
-    .operating-model-band-thesis,
     .operating-model-output-list {
       grid-column: 2 / span 24;
     }
@@ -1288,9 +1277,6 @@ const outputs = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .operating-model-stuck-item {
-      min-height: 13rem;
-    }
   }
 
   @media (max-width: 48rem) {
@@ -1299,23 +1285,12 @@ const outputs = [
     }
 
     .operating-model-hero-copy,
-    .operating-model-section-head,
-    .operating-model-thesis,
-    .operating-model-layer-thesis,
-    .operating-model-clarity-thesis,
     .operating-model-stuck-list,
-    .operating-model-signal-copy,
     .operating-model-layer-system,
     .operating-model-clarity-grid,
-    .operating-model-band-copy,
-    .operating-model-band-thesis,
     .operating-model-output-list {
       grid-column: 1 / -1;
       margin-inline: var(--operating-model-mobile-gutter);
-    }
-
-    .operating-model-signal-copy {
-      margin-top: 0;
     }
 
     .operating-model-hero {
@@ -1351,13 +1326,7 @@ const outputs = [
       font-size: var(--ds-mobile-type-title-lg);
     }
 
-    .operating-model-hero-copy > p:not(.operating-model-kicker),
-    .operating-model-section-head > p:not(.operating-model-kicker),
-    .operating-model-thesis,
-    .operating-model-layer-thesis,
-    .operating-model-clarity-thesis,
-    .operating-model-band-thesis,
-    .operating-model-signal-copy p:not(.operating-model-kicker) {
+    .operating-model-hero-copy > p:not(.operating-model-kicker) {
       font-size: var(--ds-mobile-type-body);
     }
 
@@ -1393,16 +1362,6 @@ const outputs = [
       width: min(100%, 22rem);
     }
 
-    .operating-model-stuck-list {
-      gap: 0;
-    }
-
-    .operating-model-stuck-item {
-      grid-template-columns: 2.8rem minmax(0, 1fr);
-      min-height: 0;
-      padding: 1.2rem 0;
-    }
-
     .operating-model-drift-icon {
       width: var(--spacing-xl);
       height: var(--spacing-xl);
@@ -1411,10 +1370,6 @@ const outputs = [
     .operating-model-drift-icon svg {
       width: 2rem;
       height: 2rem;
-    }
-
-    .operating-model-signal-copy h2 {
-      font-size: var(--ds-mobile-type-title-lg);
     }
 
     .operating-model-output-card {

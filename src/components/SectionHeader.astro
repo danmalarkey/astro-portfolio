@@ -1,0 +1,123 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  headingId?: string;
+  accent?: boolean;
+  headClass?: string;
+  bodyClass?: string;
+  reveal?: boolean;
+  revealType?: 'item' | 'late' | 'reveal';
+}
+
+const {
+  eyebrow,
+  title,
+  body,
+  headingId,
+  accent = false,
+  headClass = 'gc-start-2 gc-span-10',
+  bodyClass = 'gc-start-15 gc-span-9',
+  reveal = false,
+  revealType = 'item'
+} = Astro.props as Props;
+
+const revealAttribute =
+  revealType === 'late' ? 'data-motion-reveal-late' : revealType === 'reveal' ? 'data-motion-reveal' : 'data-motion-item';
+const revealAttrs = reveal ? { [revealAttribute]: true } : {};
+const hasBodySlot = Astro.slots.has('body');
+---
+
+<div class:list={['section-header', accent && 'section-header--accent', headClass]} {...revealAttrs}>
+  {eyebrow && <p class="section-header-eyebrow">{eyebrow}</p>}
+  <h2 id={headingId}>{title}</h2>
+</div>
+{body && (
+  <p class:list={['section-header-body', bodyClass]} {...revealAttrs}>
+    {body}
+  </p>
+)}
+{!body && hasBodySlot && (
+  <div class:list={['section-header-body', 'section-header-body--stack', bodyClass]} {...revealAttrs}>
+    <slot name="body" />
+  </div>
+)}
+
+<style>
+  .section-header {
+    display: grid;
+    align-content: start;
+    gap: var(--section-header-eyebrow-gap, var(--spacing-xs));
+    margin-bottom: var(--section-header-margin-bottom, var(--spacing-xl));
+  }
+
+  .section-header-eyebrow {
+    margin: 0;
+    color: var(--section-header-eyebrow-color, var(--ds-text-soft));
+    font-size: var(--section-header-eyebrow-size, var(--ds-type-label-compact, var(--ds-type-label)));
+    font-weight: var(--section-header-eyebrow-weight, var(--font-weight-medium));
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+    text-transform: uppercase;
+  }
+
+  .section-header--accent .section-header-eyebrow {
+    color: var(--section-header-accent-color, var(--color-tag-text-accent, var(--ds-text-soft)));
+  }
+
+  .section-header h2 {
+    margin: 0;
+    color: var(--section-header-title-color, var(--ds-text));
+    font-family: var(--font-family-display);
+    font-size: var(--section-header-title-size, var(--ds-type-title-lg));
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-card-title);
+    letter-spacing: var(--ds-tracking-title);
+    text-wrap: balance;
+  }
+
+  .section-header-body {
+    align-self: center;
+    margin: 0;
+    color: var(--section-header-body-color, var(--ds-text-muted));
+    font-size: var(--section-header-body-size, var(--ds-type-lead));
+    line-height: var(--section-header-body-line, var(--ds-line-lead));
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .section-header-body--stack {
+    display: grid;
+    gap: var(--section-header-body-gap, var(--spacing-sm));
+  }
+
+  .section-header-body--stack :global(p) {
+    margin: 0;
+  }
+
+  @media (max-width: 78rem) {
+    .section-header,
+    .section-header-body {
+      grid-column: 2 / span 24;
+      max-width: 48rem;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .section-header,
+    .section-header-body {
+      grid-column: 1 / -1;
+      margin-inline: var(--ds-mobile-content-gutter);
+    }
+
+    .section-header h2 {
+      font-size: var(--section-header-mobile-title-size, var(--ds-mobile-type-title-lg));
+    }
+
+    .section-header-body {
+      align-self: start;
+      font-size: var(--section-header-mobile-body-size, var(--ds-mobile-type-body));
+    }
+  }
+</style>
