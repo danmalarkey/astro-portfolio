@@ -41,32 +41,32 @@ const outputs = [
   {
     title: 'Opportunity frames',
     text: 'Defined spaces where AI can create meaningful product leverage.',
-    image: '/images/work-ai/translation-1.png'
+    bgImage: '/images/work-ai/translation-new-1.png'
   },
   {
     title: 'Speculative prototypes',
     text: 'Probes, scenarios, or storyboards to provoke better questions.',
-    image: '/images/work-ai/translation-2.png'
+    bgImage: '/images/work-ai/translation-new-2.png'
   },
   {
     title: 'AI behavior models',
     text: 'Models for confidence, agency, control, review, failure, and escalation.',
-    image: '/images/work-ai/translation-3.png'
+    bgImage: '/images/work-ai/translation-new-3.png'
   },
   {
     title: 'System maps',
     text: 'Maps that expose operational, ethical, product, and implementation dependencies.',
-    image: '/images/work-ai/translation-4.png'
+    bgImage: '/images/work-ai/translation-new-4.png'
   },
   {
     title: 'Product direction',
     text: 'Principles and product direction that translate exploration into the next phase of work.',
-    image: '/images/work-ai/translation-5.png'
+    bgImage: '/images/work-ai/translation-new-5.png'
   },
   {
     title: 'Decision principles',
     text: 'Clear criteria to align stakeholders and make high-integrity decisions.',
-    image: '/images/work-ai/translation-6.png'
+    bgImage: '/images/work-ai/translation-new-6.png'
   }
 ];
 
@@ -100,7 +100,7 @@ const activityCards = [
   },
   {
     title: 'Design probes',
-    text: 'Small artifacts, interface sketches, prompts, workflows, or provocations built to generate reaction and reveal what the team does not yet understand.'
+    text: 'Small artifacts, sketches, prompts, workflows, or provocations built to generate reaction and reveal what the team does not yet understand.'
   },
   {
     title: 'Scenario and systems modeling',
@@ -133,25 +133,12 @@ const activityCards = [
           <p>
             I help teams use design to explore what AI could make possible before the product path is obvious: new workflows, unfamiliar behaviors, system boundaries, and the decision frames needed to move from possibility into direction.
           </p>
-          <div class="ai-systems-actions" aria-label="AI-enabled product systems actions">
-            <Button href={mailto}>Start a conversation</Button>
-            <Button href="#ai-systems-output" variant="ghost">See outputs</Button>
-          </div>
         </div>
       </div>
     </section>
 
     <section class="ai-systems-section ai-systems-section--signals" aria-labelledby="ai-systems-breaks">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <figure class="ai-systems-certainty-visual gc-start-2 gc-span-24" data-motion-reveal aria-hidden="true">
-          <img
-            src={withBase('/images/work-ai/certainty-run-out.png')}
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-
         <SectionHeader
           eyebrow="Where teams get stuck"
           title="The work starts where certainty runs out."
@@ -219,6 +206,15 @@ const activityCards = [
       </div>
     </section>
 
+    <figure class="ai-systems-certainty-visual ai-systems-certainty-visual--full-bleed" data-motion-reveal aria-hidden="true">
+      <img
+        src={withBase('/images/work-ai/certainty-run-out.png')}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+
     <section class="ai-systems-section ai-systems-principles" aria-labelledby="ai-systems-principles" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
@@ -247,34 +243,38 @@ const activityCards = [
     </section>
     <section class="ai-systems-section ai-systems-activities" aria-labelledby="ai-systems-activities" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="ai-systems-mosaic ai-systems-mosaic--activities gc-start-2 gc-span-24" aria-labelledby="ai-systems-activities" role="list">
-          <div class="ai-systems-mosaic-column ai-systems-mosaic-column--left">
-            {activityCards.slice(0, 2).map((activity, index) => (
-              <article class="ai-systems-mosaic-card" role="listitem" data-motion-reveal-late>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <p>Activity</p>
-                <h3>{activity.title}</h3>
-                <p>{activity.text}</p>
-              </article>
-            ))}
-          </div>
+        <SectionHeader
+          eyebrow="Activities"
+          title="Artifacts for thinking, not theater."
+          body="These activities help teams make uncertainty visible, test possible futures, and create enough structure to decide what deserves product investment."
+          headingId="ai-systems-activities"
+          accent
+          reveal
+        />
 
-          <div class="ai-systems-mosaic-column ai-systems-mosaic-column--center">
-            <article class="ai-systems-mosaic-card ai-systems-mosaic-card--primary" data-motion-reveal-late>
-              <p class="ai-systems-kicker">Activities</p>
-              <h2 id="ai-systems-activities">Artifacts for thinking, not theater.</h2>
+        <div class="ai-systems-activity-grid gc-start-2 gc-span-24" role="list" aria-label="AI-enabled product systems activities" data-motion-item>
+          {activityCards.map((activity, index) => (
+            <article class="ai-systems-activity-card" role="listitem">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{activity.title}</h3>
+              <p>{activity.text}</p>
             </article>
-          </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-          <div class="ai-systems-mosaic-column ai-systems-mosaic-column--right">
-            {activityCards.slice(2).map((activity, index) => (
-              <article class="ai-systems-mosaic-card" role="listitem" data-motion-reveal-late>
-                <span>{String(index + 3).padStart(2, '0')}</span>
-                <p>Activity</p>
-                <h3>{activity.title}</h3>
-                <p>{activity.text}</p>
-              </article>
-            ))}
+    <section class="ai-systems-section ai-systems-section--mid-cta" aria-labelledby="ai-systems-mid-cta" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="ai-systems-cta-inner ai-systems-cta-inner--accent gc-start-2 gc-span-24" data-motion-item>
+          <p class="ai-systems-kicker">Before the AI work hardens</p>
+          <h2 id="ai-systems-mid-cta">Turn exploration into product direction.</h2>
+          <p>
+            When AI possibilities are moving faster than shared understanding, teams need structured exploration before pilots, workflows, and standards start pulling apart.
+          </p>
+          <div class="ai-systems-actions" aria-label="AI-enabled product systems CTA actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href={withBase('/work-with/operating-model')} variant="ghost">Explore Operating Model</Button>
           </div>
         </div>
       </div>
@@ -292,15 +292,11 @@ const activityCards = [
         />
         <div class="ai-systems-output-list gc-start-2 gc-span-24" role="list" data-motion-item>
           {outputs.map((output, index) => (
-            <article class="ai-systems-output-card" role="listitem">
-              <div class="ai-systems-output-visual" aria-hidden="true">
-                <img
-                  src={withBase(output.image)}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+            <article
+              class="ai-systems-output-card"
+              role="listitem"
+              style={`--ai-systems-output-bg-image: url('${withBase(output.bgImage)}')`}
+            >
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{output.title}</h3>
               <p>{output.text}</p>
@@ -314,7 +310,7 @@ const activityCards = [
 
     <HomeFooter
       eyebrow="AI-enabled product systems"
-      title="If the AI work needs to hold together as a product system, let's talk."
+      title="If AI work needs to hold together as product strategy, system behavior, and delivery, let’s talk."
       body="I'm available for select advisory, consulting, and fractional leadership engagements where AI-enabled systems need to connect product direction, standards, and implementation."
     />
   </main>
@@ -333,7 +329,7 @@ const activityCards = [
     --ai-page-accent: rgba(176, 204, 255, 0.88);
     --ai-page-warm: rgba(255, 244, 170, 0.9);
     --ai-hero-glow: 111, 162, 232;
-    --ai-output-card-bg: #01070e;
+    --ai-output-card-bg: rgba(var(--ds-surface-panel-rgb), 0.96);
     --section-header-accent-color: var(--ai-page-accent);
     --section-header-title-color: rgba(245, 248, 255, 0.96);
     --section-header-body-color: var(--ai-page-text-muted);
@@ -358,7 +354,7 @@ const activityCards = [
     padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(5rem, 9vw, 8rem);
     overflow: hidden;
     background:
-      linear-gradient(90deg, rgba(5, 6, 8, 0.96) 0%, rgba(5, 6, 8, 0.82) 34%, rgba(7, 16, 27, 0.18) 72%, rgba(7, 16, 27, 0.04) 100%),
+      linear-gradient(90deg, rgba(3, 8, 20, 0.96) 0%, rgba(3, 8, 20, 0.82) 34%, rgba(7, 16, 27, 0.18) 72%, rgba(7, 16, 27, 0.04) 100%),
       var(--ai-systems-hero-bg);
     background-position: center, center right;
     background-repeat: no-repeat;
@@ -428,6 +424,12 @@ const activityCards = [
     display: grid;
     gap: var(--ds-panel-gap);
     align-content: start;
+  }
+
+  .ai-systems-cta-inner {
+    display: grid;
+    align-content: start;
+    gap: var(--spacing-md);
   }
 
   .ai-systems-hero-copy {
@@ -501,6 +503,74 @@ const activityCards = [
     row-gap: var(--spacing-2xl);
   }
 
+  .ai-systems-cta-inner {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(var(--spacing-lg), 5vw, calc(var(--spacing-4xl) + var(--spacing-xs)));
+    border: var(--size-border-thin) solid color-mix(in srgb, var(--ai-page-accent) 26%, transparent);
+    border-radius: var(--radius-panel);
+    background:
+      radial-gradient(ellipse at 84% 48%, rgba(var(--ai-hero-glow), 0.28), rgba(var(--ai-hero-glow), 0.1) 34%, transparent 66%),
+      radial-gradient(ellipse at 104% 22%, color-mix(in srgb, var(--ai-page-accent) 16%, transparent), transparent 22rem),
+      linear-gradient(135deg, color-mix(in srgb, var(--ai-page-bg) 78%, var(--ai-page-accent)), color-mix(in srgb, var(--ai-page-bg) 72%, rgb(var(--ai-hero-glow))) 54%, var(--ai-page-bg));
+    color: var(--ai-page-text);
+  }
+
+  .ai-systems-cta-inner::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    right: min(-24rem, -12vw);
+    width: min(64rem, 52vw);
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    opacity: 0.22;
+    background:
+      radial-gradient(circle, transparent 0 26%, color-mix(in srgb, var(--ai-page-accent) 28%, transparent) 26.2% 26.45%, transparent 26.7%),
+      radial-gradient(circle, transparent 0 44%, color-mix(in srgb, var(--ai-page-accent) 20%, transparent) 44.2% 44.42%, transparent 44.7%),
+      radial-gradient(circle, transparent 0 62%, color-mix(in srgb, var(--ai-page-accent) 16%, transparent) 62.2% 62.38%, transparent 62.7%);
+    transform: translateY(-50%);
+    mask-image: linear-gradient(90deg, transparent 0%, black 22%, black 82%, transparent 100%);
+  }
+
+  .ai-systems-cta-inner > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ai-systems-cta-inner h2 {
+    color: var(--ai-page-text);
+  }
+
+  .ai-systems-cta-inner > p:not(.ai-systems-kicker) {
+    max-width: 58ch;
+    margin: 0;
+    color: var(--ai-page-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    text-wrap: pretty;
+  }
+
+  .ai-systems-cta-inner .ai-systems-kicker {
+    opacity: 0.76;
+  }
+
+  .ai-systems-cta-inner .ai-systems-actions {
+    margin-top: var(--spacing-sm);
+  }
+
+  .ai-systems-cta-inner :global(.ds-button--ghost) {
+    border-color: color-mix(in srgb, var(--ai-page-text) 18%, transparent);
+    background: color-mix(in srgb, var(--ai-page-text) 3.5%, transparent);
+    color: color-mix(in srgb, var(--ai-page-text) 92%, transparent);
+  }
+
+  .ai-systems-cta-inner :global(.ds-button--ghost:hover),
+  .ai-systems-cta-inner :global(.ds-button--ghost:focus-visible) {
+    background: color-mix(in srgb, var(--ai-page-text) 6%, transparent);
+  }
+
   .ai-systems-output-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -515,30 +585,35 @@ const activityCards = [
     padding: var(--spacing-md);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--ai-page-border-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
     background: var(--ai-output-card-bg);
+  }
+
+  .ai-systems-output-card::before,
+  .ai-systems-output-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ai-systems-output-card::before {
+    z-index: 0;
+    background-image: var(--ai-systems-output-bg-image);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .ai-systems-output-card::after {
+    z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.02) 0%, rgba(var(--ds-background-rgb), 0.16) 46%, rgba(var(--ds-background-rgb), 0.78) 100%),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.26) 0%, rgba(var(--ds-background-rgb), 0.08) 58%, rgba(var(--ds-background-rgb), 0) 100%);
   }
 
   .ai-systems-output-card > * {
     position: relative;
     z-index: 1;
-  }
-
-  .ai-systems-output-visual {
-    position: absolute;
-    inset: var(--spacing-sm) var(--spacing-sm) auto;
-    z-index: 0;
-    display: grid;
-    place-items: center;
-    height: 56%;
-    pointer-events: none;
-  }
-
-  .ai-systems-output-visual img {
-    width: min(100%, 16rem);
-    height: auto;
-    -webkit-mask-image: radial-gradient(ellipse at center, #000 0 56%, rgba(0, 0, 0, 0.72) 68%, transparent 82%);
-    mask-image: radial-gradient(ellipse at center, #000 0 56%, rgba(0, 0, 0, 0.72) 68%, transparent 82%);
   }
 
   .ai-systems-output-card span {
@@ -554,6 +629,7 @@ const activityCards = [
     margin: 0;
     color: var(--ai-page-text);
     font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-regular);
     line-height: var(--ds-line-card-title);
     text-wrap: balance;
   }
@@ -571,8 +647,8 @@ const activityCards = [
     position: relative;
     margin: 0;
     overflow: hidden;
-    border-radius: var(--radius-lg);
-    background: rgba(7, 9, 13, 0.72);
+    border-radius: var(--radius-visual-panel);
+    background: rgba(var(--ds-surface-panel-rgb), 0.72);
     box-shadow:
       0 2rem 5rem rgba(0, 0, 0, 0.34),
       0 0 4rem rgba(58, 124, 230, 0.08);
@@ -584,8 +660,21 @@ const activityCards = [
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(5, 6, 8, 0.02), rgba(5, 6, 8, 0.18)),
+      linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.18)),
       radial-gradient(ellipse at 50% 0%, rgba(176, 204, 255, 0.1), transparent 58%);
+  }
+
+  .ai-systems-certainty-visual--full-bleed {
+    width: 100%;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .ai-systems-certainty-visual--full-bleed::after {
+    background:
+      linear-gradient(180deg, rgba(3, 8, 20, 0.18), rgba(3, 8, 20, 0.02) 18%, rgba(3, 8, 20, 0.04) 72%, rgba(3, 8, 20, 0.18)),
+      radial-gradient(ellipse at 50% 0%, rgba(176, 204, 255, 0.12), transparent 62%);
   }
 
   .ai-systems-certainty-visual img {
@@ -620,22 +709,9 @@ const activityCards = [
   }
 
   .stuck-item-icon {
-    --stuck-item-icon-color: var(--ai-page-text-muted);
-    --stuck-item-icon-accent: var(--ai-page-accent);
-
-    display: grid;
-    place-items: center;
-    width: var(--spacing-4xl);
-    height: var(--spacing-4xl);
-    border: var(--size-border-thin) solid var(--ai-page-border-soft);
-    border-radius: var(--radius-md);
-    background:
-      radial-gradient(circle at 50% 18%, rgba(176, 204, 255, 0.1), transparent 62%),
-      var(--ai-page-surface);
-    color: var(--stuck-item-icon-color);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 var(--spacing-sm) var(--spacing-lg) rgba(0, 0, 0, 0.18);
+    width: max-content;
+    color: var(--ai-page-accent);
+    opacity: 0.82;
   }
 
   .stuck-item-icon svg {
@@ -660,7 +736,6 @@ const activityCards = [
   }
 
   .stuck-item-icon .stuck-item-icon-mark--accent {
-    color: var(--stuck-item-icon-accent);
     opacity: 1;
   }
 
@@ -687,91 +762,29 @@ const activityCards = [
     text-wrap: pretty;
   }
 
-  .ai-systems-mosaic {
-    --ai-mosaic-radius: var(--radius-lg);
-    --ai-mosaic-surface: rgba(255, 255, 255, 0.035);
-    --ai-mosaic-surface-strong: rgba(255, 255, 255, 0.055);
-    --ai-mosaic-border: rgba(231, 235, 242, 0.1);
-    --ai-mosaic-border-strong: rgba(176, 204, 255, 0.2);
-
-    position: relative;
-    z-index: 1;
+  .ai-systems-activity-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(20rem, 1.28fr) minmax(0, 0.82fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: clamp(2rem, 4vw, 3.5rem);
-    padding-top: clamp(2rem, 4vw, 3.5rem);
-    border-top: var(--size-border-thin) solid var(--ai-page-border-soft);
+    margin-top: clamp(1.4rem, 2.8vw, 2.15rem);
   }
 
-  .ai-systems-mosaic::before {
-    content: '';
-    position: absolute;
-    inset: 12% 18% 6%;
-    z-index: -1;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, rgba(106, 142, 226, 0.16), transparent 66%);
-    filter: blur(1.25rem);
-    opacity: 0.78;
-  }
-
-  .ai-systems-mosaic-column {
-    display: grid;
-    gap: var(--spacing-sm);
-  }
-
-  .ai-systems-mosaic-column--left,
-  .ai-systems-mosaic-column--right {
-    grid-auto-rows: minmax(13rem, auto);
-  }
-
-  .ai-systems-mosaic-column--center {
-    grid-template-rows: minmax(19rem, auto) minmax(13rem, auto);
-  }
-
-  .ai-systems-mosaic--activities .ai-systems-mosaic-column--center {
-    grid-template-rows: minmax(26rem, 1fr);
-  }
-
-  .ai-systems-mosaic--activities {
-    padding-top: 0;
-    border-top: 0;
-  }
-
-  .ai-systems-mosaic--activities .ai-systems-mosaic-card--primary {
-    min-height: 100%;
-  }
-
-  .ai-systems-mosaic-card {
+  .ai-systems-activity-card {
     position: relative;
     display: grid;
-    align-content: end;
-    min-height: 13rem;
+    align-content: start;
+    min-height: 12rem;
     padding: clamp(1.15rem, 1.8vw, 1.55rem);
     overflow: hidden;
-    border: var(--size-border-thin) solid var(--ai-mosaic-border);
-    border-radius: var(--ai-mosaic-radius);
+    border: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
+    border-radius: var(--radius-card);
     background:
-      linear-gradient(180deg, var(--ai-mosaic-surface-strong), rgba(255, 255, 255, 0.012)),
-      rgba(7, 9, 13, 0.82);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)),
+      rgba(var(--ds-surface-panel-rgb), 0.82);
     box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.22);
   }
 
-  .ai-systems-mosaic-column--left .ai-systems-mosaic-card {
-    box-shadow:
-      0 1.2rem 3.2rem rgba(0, 0, 0, 0.22),
-      inset calc(var(--size-border-thin) * -1) 0 0 rgba(206, 226, 255, 0.38),
-      inset -1rem 0 1.8rem rgba(84, 145, 255, 0.08);
-  }
-
-  .ai-systems-mosaic-column--right .ai-systems-mosaic-card {
-    box-shadow:
-      0 1.2rem 3.2rem rgba(0, 0, 0, 0.22),
-      inset var(--size-border-thin) 0 0 rgba(206, 226, 255, 0.38),
-      inset 1rem 0 1.8rem rgba(84, 145, 255, 0.08);
-  }
-
-  .ai-systems-mosaic-card::before {
+  .ai-systems-activity-card::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -782,144 +795,49 @@ const activityCards = [
     opacity: 0.72;
   }
 
-  .ai-systems-mosaic-card::after {
+  .ai-systems-activity-card::after {
     content: '';
     position: absolute;
     inset: auto 0 0;
     height: 40%;
     pointer-events: none;
-    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
+    background: linear-gradient(180deg, transparent, rgba(var(--ds-background-rgb), 0.22));
   }
 
-  .ai-systems-mosaic-column--left .ai-systems-mosaic-card::after {
-    inset: 18% 0 18% auto;
-    width: 1px;
-    height: auto;
-    background: linear-gradient(180deg, transparent, rgba(220, 235, 255, 0.58) 46%, transparent);
-  }
-
-  .ai-systems-mosaic-column--right .ai-systems-mosaic-card::after {
-    inset: 18% auto 18% 0;
-    width: 1px;
-    height: auto;
-    background: linear-gradient(180deg, transparent, rgba(220, 235, 255, 0.58) 46%, transparent);
-  }
-
-  .ai-systems-mosaic-column--left .ai-systems-mosaic-card:nth-child(2)::after,
-  .ai-systems-mosaic-column--right .ai-systems-mosaic-card:nth-child(2)::after {
-    opacity: 0.68;
-  }
-
-  .ai-systems-mosaic-card > * {
+  .ai-systems-activity-card > * {
     position: relative;
     z-index: 1;
   }
 
-  .ai-systems-mosaic-card span {
-    position: absolute;
-    top: clamp(1rem, 1.5vw, 1.3rem);
-    right: clamp(1rem, 1.5vw, 1.3rem);
-    color: rgba(255, 244, 170, 0.78);
+  .ai-systems-activity-card span {
+    margin-bottom: var(--spacing-sm);
+    color: var(--ai-page-accent);
     font-family: var(--font-family-display);
-    font-size: var(--ds-type-title-sm);
-    line-height: var(--ds-line-label);
-  }
-
-  .ai-systems-mosaic-card p {
-    margin: 0;
-  }
-
-  .ai-systems-mosaic-card > p:first-of-type:not(.ai-systems-kicker) {
-    color: var(--ai-page-text-soft);
     font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--ds-tracking-label);
     line-height: var(--ds-line-label);
-    text-transform: uppercase;
+    opacity: 0.72;
   }
 
-  .ai-systems-mosaic-card h3 {
-    max-width: 15ch;
-    margin: var(--spacing-xs) 0 0;
+  .ai-systems-activity-card h3 {
+    max-width: 24ch;
+    margin: 0;
     color: rgba(245, 248, 255, 0.96);
     font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-regular);
     line-height: var(--ds-line-card-title);
     letter-spacing: var(--ds-tracking-card);
     text-wrap: balance;
   }
 
-  .ai-systems-mosaic-card h3 + p {
-    max-width: 32ch;
-    margin-top: var(--spacing-sm);
+  .ai-systems-activity-card p {
+    max-width: 48ch;
+    margin: var(--spacing-sm) 0 0;
     color: var(--ai-page-text-muted);
     font-size: var(--ds-type-body-sm);
     font-weight: var(--font-weight-regular);
     letter-spacing: 0;
     line-height: var(--ds-line-body-compact);
-    text-transform: none;
-  }
-
-  .ai-systems-mosaic-card--primary {
-    isolation: isolate;
-    align-content: end;
-    z-index: 2;
-    min-height: clamp(20rem, 28vw, 26rem);
-    padding: clamp(1.45rem, 2.4vw, 2.25rem);
-    border-color: rgba(192, 216, 255, 0.26);
-    background:
-      linear-gradient(128deg, transparent 0 38%, rgba(255, 255, 255, 0.14) 49%, transparent 61%),
-      radial-gradient(circle at 18% 18%, rgba(216, 230, 255, 0.36), transparent 16rem),
-      radial-gradient(circle at 78% 10%, rgba(60, 156, 255, 0.42), transparent 20rem),
-      radial-gradient(circle at 18% 92%, rgba(49, 80, 180, 0.68), transparent 19rem),
-      linear-gradient(145deg, #123c96 0%, #0b2d73 34%, #071735 68%, #05070d 100%);
-    box-shadow:
-      0 1.8rem 5rem rgba(0, 0, 0, 0.42),
-      0 0 4rem rgba(58, 124, 230, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  }
-
-  .ai-systems-mosaic-card--primary::before {
-    background:
-      linear-gradient(115deg, rgba(255, 255, 255, 0.18), transparent 31%),
-      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 4.8rem),
-      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.046) 0 1px, transparent 1px 4.8rem);
-    height: 100%;
-    opacity: 0.4;
-    mask-image: radial-gradient(ellipse at 54% 38%, #000 0, rgba(0, 0, 0, 0.72) 42%, transparent 76%);
-  }
-
-  .ai-systems-mosaic-card--primary::after {
-    inset: 0;
-    height: auto;
-    background:
-      radial-gradient(ellipse at 50% 106%, rgba(1, 3, 8, 0.78), transparent 52%),
-      linear-gradient(180deg, rgba(4, 8, 18, 0.04), rgba(1, 3, 8, 0.34));
-  }
-
-  .ai-systems-mosaic-card--primary .ai-systems-kicker {
-    color: rgba(232, 240, 255, 0.76);
-  }
-
-  .ai-systems-mosaic-card--primary h2 {
-    max-width: 13ch;
-    margin-top: var(--spacing-sm);
-    color: rgba(245, 248, 255, 0.96);
-    font-family: var(--font-family-display);
-    font-size: var(--ds-type-title-md);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--ds-tracking-title);
-    line-height: var(--ds-line-card-title);
-  }
-
-  .ai-systems-mosaic-card--primary h2 + p {
-    max-width: 36rem;
-    margin-top: clamp(1rem, 1.8vw, 1.5rem);
-    color: var(--ai-page-text-muted);
-    font-size: var(--ds-type-body-lg);
-    font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
-    line-height: var(--ds-line-body-compact);
-    text-transform: none;
+    text-wrap: pretty;
   }
 
   .ai-systems-band {
@@ -932,9 +850,9 @@ const activityCards = [
   @media (max-width: 78rem) {
     .ai-systems-hero-copy,
     .stuck-grid,
-    .ai-systems-certainty-visual,
-    .ai-systems-mosaic,
+    .ai-systems-activity-grid,
     .signal-row-list,
+    .ai-systems-cta-inner,
     .ai-systems-output-list {
       grid-column: 2 / span 24;
     }
@@ -973,26 +891,6 @@ const activityCards = [
       padding-inline: 0;
     }
 
-    .ai-systems-mosaic {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .ai-systems-mosaic-column,
-    .ai-systems-mosaic-column--left,
-    .ai-systems-mosaic-column--right,
-    .ai-systems-mosaic-column--center {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: auto;
-    }
-
-    .ai-systems-mosaic-card--primary {
-      grid-column: 1 / -1;
-    }
-
-    .ai-systems-mosaic--activities .ai-systems-mosaic-column--center {
-      order: -1;
-    }
-
   }
 
   @media (max-width: 48rem) {
@@ -1002,9 +900,9 @@ const activityCards = [
 
     .ai-systems-hero-copy,
     .stuck-grid,
-    .ai-systems-certainty-visual,
-    .ai-systems-mosaic,
+    .ai-systems-activity-grid,
     .signal-row-list,
+    .ai-systems-cta-inner,
     .ai-systems-output-list {
       grid-column: 1 / -1;
       margin-inline: var(--ai-mobile-gutter);
@@ -1044,13 +942,6 @@ const activityCards = [
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .ai-systems-certainty-visual {
-      width: calc(100% + (var(--ai-mobile-gutter) * 2));
-      max-width: none;
-      margin-inline: calc(var(--ai-mobile-gutter) * -1);
-      border-radius: var(--radius-md);
-    }
-
     .ai-systems-certainty-visual img {
       width: 112%;
       max-width: none;
@@ -1075,8 +966,7 @@ const activityCards = [
     }
 
     .stuck-item-icon {
-      width: var(--spacing-3xl);
-      height: var(--spacing-3xl);
+      width: max-content;
     }
 
     .stuck-item-icon svg {
@@ -1084,26 +974,13 @@ const activityCards = [
       height: calc(var(--spacing-lg) + var(--spacing-xs));
     }
 
-    .ai-systems-mosaic {
-      gap: var(--spacing-xs);
-      padding-top: var(--spacing-lg);
-    }
-
-    .ai-systems-mosaic-column,
-    .ai-systems-mosaic-column--left,
-    .ai-systems-mosaic-column--right,
-    .ai-systems-mosaic-column--center {
+    .ai-systems-activity-grid {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--spacing-xs);
     }
 
-    .ai-systems-mosaic-card,
-    .ai-systems-mosaic-card--primary {
+    .ai-systems-activity-card {
       min-height: 11rem;
-    }
-
-    .ai-systems-mosaic-card--primary h2 {
-      font-size: var(--ds-mobile-type-title-md);
     }
 
     .ai-systems-output-card {

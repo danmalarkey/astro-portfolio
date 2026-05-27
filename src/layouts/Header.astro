@@ -209,7 +209,7 @@ const focusItems = [
   .site-header.is-scrolled .site-header-nav,
   .site-header.is-menu-open .site-header-nav {
     border-color: rgba(231, 235, 242, 0.08);
-    background: rgba(10, 12, 18, 0.62);
+    background: rgba(var(--ds-background-rgb), 0.72);
     box-shadow:
       inset 0 0 0 0.0625rem rgba(255, 255, 255, 0.025),
       0 0.75rem 2rem rgba(0, 0, 0, 0.16);
@@ -305,7 +305,7 @@ const focusItems = [
     gap: 0.72rem;
     justify-self: end;
     color: var(--ds-text-muted, rgba(231, 235, 242, 0.72));
-    font-size: 0.82rem;
+    font-size: var(--ds-type-body-xs);
   }
 
   .site-header-nav-links a {
@@ -401,7 +401,7 @@ const focusItems = [
     .site-header.is-scrolled .site-header-nav {
       padding: 0.6rem 0.72rem;
       border-radius: var(--radius-lg);
-      background: rgba(10, 12, 18, 0.72);
+      background: rgba(var(--ds-background-rgb), 0.78);
       box-shadow:
         inset 0 0 0 0.0625rem rgba(255, 255, 255, 0.025),
         0 0.55rem 1.4rem rgba(0, 0, 0, 0.16);
@@ -544,14 +544,14 @@ const focusItems = [
       padding: clamp(1.35rem, 5vw, 1.9rem);
       overflow: hidden;
       border: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
-      border-radius: 1.45rem;
+      border-radius: var(--radius-xl);
       background:
         radial-gradient(ellipse 90% 44% at 74% 0%, rgba(101, 126, 218, 0.16), transparent 62%),
         radial-gradient(ellipse 56% 34% at 10% 100%, rgba(231, 235, 242, 0.07), transparent 70%),
-        linear-gradient(180deg, rgba(13, 15, 21, 0.96), rgba(6, 7, 10, 0.98));
+        linear-gradient(180deg, rgba(9, 16, 30, 0.96), rgba(3, 8, 20, 0.98));
       box-shadow:
         inset 0 0 0 0.0625rem rgba(255, 255, 255, 0.026),
-        0 1.6rem 4rem rgba(0, 0, 0, 0.36);
+        0 1.6rem 4rem rgba(0, 5, 14, 0.38);
       opacity: 0;
       transform: translateY(-0.7rem) scale(0.985);
       transition:
@@ -622,7 +622,7 @@ const focusItems = [
     .site-mobile-nav-group p {
       margin: 0 0 0.14rem;
       color: rgba(231, 235, 242, 0.38);
-      font-size: 0.68rem;
+      font-size: var(--ds-mobile-type-label-decorative, 0.75rem);
       font-weight: var(--font-weight-semibold);
       letter-spacing: 0.14em;
       line-height: 1;
@@ -631,7 +631,7 @@ const focusItems = [
 
     .site-mobile-nav-group a {
       color: rgba(231, 235, 242, 0.68);
-      font-size: 0.95rem;
+      font-size: var(--ds-mobile-type-body-sm);
       line-height: 1.22;
       text-decoration: none;
       text-wrap: pretty;
@@ -652,11 +652,11 @@ const focusItems = [
       border: var(--size-border-thin) solid rgba(231, 235, 242, 0.22);
       border-radius: var(--radius-pill);
       background: rgba(244, 247, 255, 0.92);
-      color: rgba(6, 7, 10, 0.96);
+      color: rgba(3, 8, 20, 0.96);
       box-shadow:
         inset 0 0.0625rem 0 rgba(255, 255, 255, 0.48),
         0 0.65rem 1.4rem rgba(0, 0, 0, 0.18);
-      font-size: 0.95rem;
+      font-size: var(--ds-mobile-type-body-sm);
       font-weight: var(--font-weight-medium);
       line-height: 1;
       text-align: center;
@@ -699,7 +699,7 @@ const focusItems = [
 
     .site-mobile-nav-action:hover,
     .site-mobile-nav-action:focus-visible {
-      color: rgba(6, 7, 10, 0.96);
+      color: rgba(3, 8, 20, 0.96);
       background: rgba(255, 255, 255, 0.98);
       outline: none;
     }

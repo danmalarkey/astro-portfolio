@@ -46,7 +46,7 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
     padding: clamp(1.35rem, 2.6vw, 2rem);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--focus-pattern-border, var(--ds-border-soft));
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
     background:
       radial-gradient(circle at 76% 16%, rgba(var(--focus-pattern-glow, 111, 162, 232), 0.1), transparent 12rem),
       linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.008)),
@@ -108,14 +108,10 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
     margin: var(--spacing-sm) 0 0;
     color: var(--focus-pattern-text, var(--ds-text));
     font-size: var(--ds-type-card-title-compact);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-regular);
     line-height: var(--ds-line-card-title);
     letter-spacing: var(--ds-tracking-card);
     text-wrap: balance;
-  }
-
-  .focus-artifact-grid--large-titles .focus-artifact-card h3 {
-    font-size: var(--ds-type-title-lg);
   }
 
   .focus-artifact-card p {

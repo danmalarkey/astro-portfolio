@@ -1,13 +1,15 @@
 :root {
-  --ds-background: #050608;
-  --ds-surface: rgba(255, 255, 255, 0.04);
-  --ds-surface-strong: rgba(255, 255, 255, 0.06);
+  --ds-background: #030814;
+  --ds-background-rgb: 3, 8, 20;
+  --ds-surface: rgba(137, 169, 226, 0.055);
+  --ds-surface-strong: rgba(137, 169, 226, 0.08);
+  --ds-surface-panel-rgb: 7, 13, 24;
   --ds-border: rgba(231, 235, 242, 0.12);
   --ds-border-soft: rgba(231, 235, 242, 0.08);
   --ds-text: #e7ebf2;
   --ds-text-muted: rgba(231, 235, 242, 0.51);
   --ds-text-soft: rgba(231, 235, 242, 0.52);
-  --ds-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.32);
+  --ds-shadow: 0 1.25rem 3rem rgba(0, 5, 14, 0.34);
 
   --ds-shell: min(84rem, calc(100vw - 3rem));
   --ds-outer-gap: var(--spacing-sm);

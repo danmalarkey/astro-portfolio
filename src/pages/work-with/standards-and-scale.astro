@@ -182,10 +182,6 @@ const infrastructureBackgrounds = [
           <p>
             Strong standards help organizations keep quality, accessibility, product behavior, implementation, and trust consistent whether the system is stable, scaling, or moving into new territory.
           </p>
-          <div class="standards-actions" aria-label="Standards & Scale actions">
-            <Button href={mailto}>Start a conversation</Button>
-            <Button href="#standards-help" variant="ghost">See how I work</Button>
-          </div>
         </div>
       </div>
     </section>
@@ -320,7 +316,7 @@ const infrastructureBackgrounds = [
 
     <FocusAreaJumpCards current="standards" eyebrow="Focus areas across the organization" />
 
-    <HomeFooter eyebrow="Standards & Scale" title="Quality needs structure to hold." />
+    <HomeFooter eyebrow="Standards & Scale" title="If quality needs to hold under pressure, let’s talk." />
   </main>
 </Layout>
 
@@ -342,7 +338,7 @@ const infrastructureBackgrounds = [
     padding: 0;
     background:
       radial-gradient(circle at 78% 12%, rgba(var(--standards-glow), 0.08), transparent 24rem),
-      linear-gradient(180deg, rgba(6, 8, 13, 0.96), var(--standards-bg) 22rem);
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.96), var(--standards-bg) 22rem);
     color: var(--standards-text);
   }
 
@@ -357,7 +353,7 @@ const infrastructureBackgrounds = [
     overflow: hidden;
     background-color: var(--standards-bg);
     background-image:
-      linear-gradient(90deg, rgba(3, 6, 11, 0.98) 0%, rgba(3, 6, 11, 0.9) 36%, rgba(3, 6, 11, 0.24) 72%, rgba(3, 6, 11, 0.08) 100%),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.98) 0%, rgba(var(--ds-background-rgb), 0.9) 36%, rgba(var(--ds-background-rgb), 0.24) 72%, rgba(var(--ds-background-rgb), 0.08) 100%),
       radial-gradient(ellipse at 84% 42%, rgba(var(--standards-glow), 0.14), rgba(var(--standards-glow), 0.04) 36%, transparent 68%),
       var(--standards-hero-bg);
     background-position: center, center, center right;
@@ -529,7 +525,7 @@ const infrastructureBackgrounds = [
     margin: 0;
     color: var(--standards-text);
     font-size: var(--ds-type-card-title-compact);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-regular);
     line-height: var(--ds-line-card-title);
     letter-spacing: var(--ds-tracking-card);
     text-wrap: balance;
@@ -549,7 +545,7 @@ const infrastructureBackgrounds = [
     overflow: hidden;
     padding: clamp(2rem, 5vw, 4.5rem);
     border: var(--size-border-thin) solid rgba(176, 204, 255, 0.22);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
       radial-gradient(ellipse at 84% 48%, rgba(var(--standards-glow), 0.28), rgba(var(--standards-glow), 0.1) 34%, transparent 66%),
       radial-gradient(ellipse at 104% 22%, rgba(191, 215, 255, 0.16), transparent 22rem),
@@ -584,10 +580,10 @@ const infrastructureBackgrounds = [
     isolation: isolate;
     overflow: hidden;
     background:
-      linear-gradient(90deg, rgba(3, 6, 11, 0.16), rgba(3, 6, 11, 0.62) 42%, rgba(3, 6, 11, 0.82) 100%),
-      linear-gradient(180deg, rgba(3, 6, 11, 0.2), rgba(3, 6, 11, 0.5)),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.16), rgba(var(--ds-background-rgb), 0.62) 42%, rgba(var(--ds-background-rgb), 0.82) 100%),
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.2), rgba(var(--ds-background-rgb), 0.5)),
       var(--standards-outcomes-bg);
-    background-color: color-mix(in srgb, var(--standards-bg) 92%, black);
+    background-color: var(--standards-bg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -600,8 +596,8 @@ const infrastructureBackgrounds = [
     z-index: -1;
     pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(3, 6, 11, 0.26), transparent 22%, transparent 72%, rgba(3, 6, 11, 0.42)),
-      radial-gradient(ellipse at 74% 44%, transparent 0 30%, rgba(3, 6, 11, 0.34) 100%);
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.26), transparent 22%, transparent 72%, rgba(var(--ds-background-rgb), 0.42)),
+      radial-gradient(ellipse at 74% 44%, transparent 0 30%, rgba(var(--ds-background-rgb), 0.34) 100%);
   }
 
   .standards-outcome-field {
@@ -619,7 +615,7 @@ const infrastructureBackgrounds = [
     display: grid;
     align-content: center;
     border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
-    background: rgba(3, 6, 11, 0.12);
+    background: rgba(var(--ds-background-rgb), 0.12);
     backdrop-filter: blur(0.18rem);
   }
 
@@ -647,6 +643,7 @@ const infrastructureBackgrounds = [
     .standards-hero-copy,
     :global(.standards-diagnostic-grid),
     :global(.standards-scale-model-test),
+    :global(.standards-method-grid),
     .standards-outcome-field,
     .standards-cta-inner {
       grid-column: 1 / -1;
