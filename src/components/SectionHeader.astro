@@ -48,8 +48,12 @@ const hasBodySlot = Astro.slots.has('body');
   .section-header {
     display: grid;
     align-content: start;
-    gap: var(--section-header-eyebrow-gap, var(--spacing-lg));
-    margin-bottom: var(--section-header-margin-bottom, var(--spacing-xl));
+    gap: var(--section-header-eyebrow-gap, var(--ds-section-header-gap));
+    margin-bottom: var(--section-header-content-gap, var(--ds-section-content-gap));
+  }
+
+  .section-header:has(+ .section-header-body) {
+    margin-bottom: 0;
   }
 
   .section-header-eyebrow {
@@ -79,7 +83,7 @@ const hasBodySlot = Astro.slots.has('body');
 
   .section-header-body {
     align-self: center;
-    margin: 0;
+    margin: 0 0 var(--section-header-content-gap, var(--ds-section-content-gap));
     color: var(--section-header-body-color, var(--ds-text-muted));
     font-size: var(--section-header-body-size, var(--ds-type-lead));
     line-height: var(--section-header-body-line, var(--ds-line-lead));
@@ -111,12 +115,23 @@ const hasBodySlot = Astro.slots.has('body');
       margin-inline: var(--ds-mobile-content-gutter);
     }
 
+    .section-header {
+      gap: var(--section-header-mobile-eyebrow-gap, var(--ds-mobile-section-header-gap));
+      margin-bottom: var(--section-header-mobile-content-gap, var(--ds-mobile-section-content-gap));
+    }
+
+    .section-header:has(+ .section-header-body) {
+      margin-bottom: 0;
+    }
+
     .section-header h2 {
-      font-size: var(--section-header-mobile-title-size, var(--ds-mobile-type-title-lg));
+      font-size: var(--section-header-mobile-title-size, var(--ds-mobile-type-title-md));
     }
 
     .section-header-body {
       align-self: start;
+      margin-top: 0;
+      margin-bottom: var(--section-header-mobile-content-gap, var(--ds-mobile-section-content-gap));
       font-size: var(--section-header-mobile-body-size, var(--ds-mobile-type-body));
     }
   }

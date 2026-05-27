@@ -35,7 +35,7 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-top: var(--focus-artifact-grid-margin-top, 0);
   }
 
   .focus-artifact-card {
@@ -133,10 +133,18 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
   @media (max-width: 48rem) {
     .focus-artifact-grid {
       grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-sm);
+      margin-inline: var(--ds-mobile-content-gutter);
     }
 
     .focus-artifact-card {
       min-height: 14rem;
+      padding: var(--spacing-md);
+    }
+
+    .focus-artifact-card h3 {
+      max-width: none;
+      font-size: var(--ds-mobile-type-title-sm);
     }
   }
 </style>

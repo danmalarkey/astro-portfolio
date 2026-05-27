@@ -462,18 +462,17 @@ const outputBackgrounds = [
     isolation: isolate;
     display: grid;
     align-items: center;
-    min-height: calc(100vh - 5rem);
-    min-height: calc(100dvh - 5rem);
-    padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(5rem, 9vw, 8rem);
+    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     background-color: var(--direction-bg);
     background-image:
       linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.16) 0%, rgba(var(--ds-background-rgb), 0.8) 42%, rgba(var(--ds-background-rgb), 0.12) 100%),
       radial-gradient(ellipse at 82% 42%, rgba(var(--direction-glow), 0.16), rgba(var(--direction-glow), 0.055) 34%, transparent 64%),
       var(--direction-hero-bg);
-    background-position: center, center, top;
+    background-position: center, center, right;
     background-repeat: no-repeat;
-    background-size: auto, auto, contain;
+    background-size: auto, auto, cover;
   }
 
   .direction-hero-rays {
@@ -638,7 +637,7 @@ const outputBackgrounds = [
   .direction-dimension-visual,
   .direction-method-grid {
     display: grid;
-    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-top: 0;
   }
 
   .direction-dimension-visual {
@@ -1093,7 +1092,7 @@ const outputBackgrounds = [
   .direction-outcome-field {
     position: relative;
     isolation: isolate;
-    margin-top: clamp(2.25rem, 4vw, 3.75rem);
+    margin-top: 0;
     overflow: hidden;
   }
 
@@ -1127,7 +1126,7 @@ const outputBackgrounds = [
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-top: 0;
   }
 
   .direction-output-card {
@@ -1336,6 +1335,11 @@ const outputBackgrounds = [
       --direction-mobile-gutter: var(--ds-mobile-content-gutter);
     }
 
+    .direction-section > .dm-grid-l,
+    .direction-band > .dm-grid-l {
+      row-gap: var(--ds-mobile-section-header-gap);
+    }
+
     .direction-hero-copy,
     :global(.direction-diagnostic-grid),
     .direction-dimension-visual,
@@ -1348,10 +1352,19 @@ const outputBackgrounds = [
     }
 
     .direction-hero {
-      min-height: 92vh;
-      min-height: 92svh;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
+      align-items: end;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      padding: 0;
+      background-position: center, center, right;
+      background-size: auto, auto, cover;
+    }
+
+    .direction-hero-grid {
+      align-items: end;
+      min-height: 100%;
+      padding-block: calc(var(--spacing-2xl) + var(--spacing-lg)) var(--spacing-lg);
     }
 
     .direction-hero-rays {
@@ -1398,6 +1411,15 @@ const outputBackgrounds = [
 
     .direction-outcome-columns {
       grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .direction-outcome-column {
+      border-top: 0;
+    }
+
+    .direction-outcome-column:first-child {
+      border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
     }
 
     .direction-outcome-row {
@@ -1428,7 +1450,7 @@ const outputBackgrounds = [
     .direction-dimension-list {
       position: static;
       display: grid;
-      margin-top: clamp(3rem, 6vw, 5rem);
+      margin-top: var(--spacing-sm);
       border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
     }
 
@@ -1443,6 +1465,13 @@ const outputBackgrounds = [
 
     .direction-output-card {
       min-height: 14rem;
+    }
+
+    .direction-dimension-row h3,
+    .direction-outcome-copy h3,
+    .direction-output-card h3 {
+      max-width: none;
+      font-size: var(--ds-mobile-type-title-sm);
     }
 
     .direction-dimension-row,

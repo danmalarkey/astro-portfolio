@@ -165,8 +165,8 @@ const practiceStats = [
   },
   {
     eyebrow: 'Operating Model',
-    labelLines: ['Design systems & standards'],
-    text: 'Create reusable patterns, accessibility guidance, and implementation guardrails that help teams ship with consistency.',
+    labelLines: ['Systems-led, people-first', 'operating model'],
+    text: 'Clarifies goals, concepts, and activities to align teams and build standards that keep momentum high without creating chaos.',
     visualType: 'helmet',
     outlineImage: withBase('images/home-v3/practice/practice-helmet-outline.svg'),
     detailImage: withBase('images/home-v3/practice/practice-helmet-detail.png')
@@ -2530,7 +2530,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: var(--home-v3-section-eyebrow-gap);
     justify-items: center;
     max-width: 51rem;
-    margin: 0 auto 7rem;
+    margin: 0 auto clamp(var(--spacing-xl), 6vw, 5rem);
     text-align: center;
   }
 
@@ -4717,7 +4717,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     min-height: 10rem;
     padding: 0.95rem 0.95rem 1rem;
     display: grid;
-    gap: 0.9rem;
+    gap: var(--spacing-sm);
     align-content: start;
     opacity: 0.88;
   }
@@ -4831,7 +4831,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-art-flow {
     display: grid;
-    gap: 0.9rem;
+    gap: var(--spacing-sm);
   }
 
   .home-v3-art-flow-lane {
@@ -6044,7 +6044,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-actor-lane-grid {
-    gap: 1rem;
+    gap: var(--spacing-sm);
     padding: 0;
     align-items: stretch;
   }
@@ -6351,7 +6351,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     padding: 0;
   }
 
@@ -7094,7 +7094,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--spacing-sm);
   }
 
   .home-v3-needs-panel-footer p {
@@ -7276,15 +7276,15 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .about-dan-header {
     align-items: start;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--ds-section-content-gap);
   }
 
   .about-dan-media-grid {
-    row-gap: var(--spacing-lg);
+    row-gap: var(--ds-section-content-gap);
   }
 
   .about-dan-copy-grid {
-    margin-top: var(--spacing-lg);
+    margin-top: var(--ds-section-content-gap);
   }
 
   .about-dan-body {
@@ -7335,7 +7335,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-engagement-grid,
   .home-v3-writing-grid {
     display: grid;
-    gap: 1rem;
+    gap: var(--spacing-sm);
   }
 
   .home-v3-practice-grid {
@@ -7347,7 +7347,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-practice-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.04fr) minmax(20rem, 0.96fr);
-    gap: 1rem;
+    gap: var(--spacing-sm);
     align-items: stretch;
   }
 
@@ -7368,7 +7368,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: relative;
     z-index: 1;
     display: grid;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     max-width: 36rem;
   }
 
@@ -7590,6 +7590,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     background: transparent;
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-sm);
   }
 
   .home-v3-practice-card--grid {
@@ -7604,7 +7605,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-practice-card--grid .home-v3-practice-visual {
     --home-v3-practice-visual-w: 18.5rem;
     --home-v3-practice-visual-h: 17.75rem;
-    margin: 0 auto 1.15rem;
+    margin: 0 auto;
   }
 
   .home-v3-practice-stack {
@@ -8010,7 +8011,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-practice-text {
-    margin: 0.8rem 0 0;
+    margin: 0;
     color: rgba(231, 235, 242, 0.56);
     font-size: var(--home-v3-type-body-sm);
     line-height: var(--home-v3-line-body);
@@ -8031,7 +8032,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .proof-showcase-intro {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--ds-section-content-gap);
     align-items: center;
   }
 
@@ -8383,7 +8384,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-shift-head {
     display: grid;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     max-width: 54rem;
     margin-bottom: var(--home-v3-section-gap);
   }
@@ -8569,7 +8570,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     min-height: clamp(14.25rem, 17vw, 17.5rem);
     padding: 0 clamp(1.75rem, 2.2vw, 2.6rem) 0 clamp(1.35rem, 1.7vw, 1.9rem);
     border-left: 1px solid rgba(231, 235, 242, 0.065);
@@ -8674,7 +8675,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     z-index: 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     min-height: inherit;
     padding: 1.45rem;
     color: inherit;
@@ -8908,7 +8909,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-practice-layout {
       grid-template-columns: minmax(0, 1fr);
-      gap: 1rem;
+      gap: var(--spacing-sm);
     }
 
     .home-v3-practice-solid-card {
@@ -9005,7 +9006,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-writing-layout {
-      row-gap: 0.9rem;
+      row-gap: var(--spacing-sm);
     }
 
     .home-v3-writing-rail {
@@ -9055,17 +9056,18 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       --home-v3-type-section-title-compact: var(--home-v3-mobile-type-title-md);
     }
 
-    .home-v3 .dm-grid-l.dm-grid-l--grid-sys {
-      padding-inline: 0;
+    .home-v3 > .section > .dm-grid-l.dm-grid-l--grid-sys {
+      row-gap: var(--ds-mobile-section-header-gap);
+      padding-inline: var(--home-v3-mobile-content-gutter);
     }
 
-    .home-v3 > .section .dm-grid-l.dm-grid-l--grid-sys {
-      row-gap: var(--spacing-xl);
-    }
-
-    .home-v3 > .section .dm-grid-l.dm-grid-l--grid-sys > * {
+    .home-v3 > .section > .dm-grid-l.dm-grid-l--grid-sys > * {
       min-width: 0;
-      margin-inline: var(--home-v3-mobile-content-gutter);
+    }
+
+    .home-v3 > .section :global(.section-header),
+    .home-v3 > .section :global(.section-header-body) {
+      margin-inline: 0;
     }
 
     .home-v3-intro {
@@ -9517,13 +9519,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-actor-lane-grid {
-      gap: 1rem;
+      gap: var(--spacing-sm);
+      margin-top: var(--ds-mobile-section-content-gap);
     }
 
     .home-v3-actor-lane {
       min-height: 0;
-      gap: 1rem;
-      padding: 1.14rem 1.1rem 0;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-md) 0;
+      background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--ds-surface-strong) 84%, transparent), transparent 12rem),
+        rgba(var(--ds-surface-panel-rgb), 0.78);
     }
 
     .home-v3-actor-lane-scene {
@@ -9547,14 +9553,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-actor-lane-strip {
-      margin-inline: -1.1rem;
-      padding-inline: 1.1rem;
+      margin-inline: calc(var(--spacing-md) * -1);
+      padding-inline: var(--spacing-md);
       background: none;
     }
 
     .home-v3-actor-lane-footer {
-      margin-inline: -1.1rem;
-      padding: 0.9rem 1.1rem 1rem;
+      margin-inline: calc(var(--spacing-md) * -1);
+      padding: var(--spacing-sm) var(--spacing-md);
     }
 
     .home-v3-actor-lane-metric {
@@ -9583,7 +9589,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-actor-grid--concept {
-      gap: 1rem;
+      gap: var(--spacing-sm);
     }
 
     .home-v3-actor-card-concept {
@@ -9965,7 +9971,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-pillars > .dm-grid-l {
-      padding-inline: 0;
+      padding-inline: var(--home-v3-mobile-content-gutter);
     }
 
     .home-v3-pillars-shell {
@@ -9981,12 +9987,40 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-pillars-head {
-      margin-bottom: 1.1rem;
+      margin-bottom: var(--ds-mobile-section-content-gap);
     }
 
     .home-v3-pillars-head h2 {
       font-size: var(--home-v3-mobile-type-title-md);
       max-width: none;
+    }
+
+    .about-dan-media img {
+      object-position: right center;
+    }
+
+    .proof-card-grid-wrap,
+    .home-v3-fit-rows {
+      margin-top: 0;
+    }
+
+    .home-v3-engagements .signal-row-list {
+      margin-inline: 0;
+    }
+
+    .proof-card,
+    .home-v3-fit-row,
+    .home-v3-writing-volume-link {
+      background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--ds-surface-strong) 84%, transparent), transparent 12rem),
+        rgba(var(--ds-surface-panel-rgb), 0.78);
+    }
+
+    .proof-card h3,
+    .home-v3-proof-card-title,
+    .home-v3-card-title-text {
+      max-width: none;
+      text-wrap: initial;
     }
 
     .home-v3-pillar {
@@ -10035,13 +10069,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       grid-template-columns: none;
       grid-auto-flow: column;
       grid-auto-columns: minmax(0, 100%);
-      gap: 0.9rem;
-      margin-inline: var(--home-v3-mobile-content-gutter);
+      gap: var(--spacing-sm);
+      margin-inline: 0;
       padding-inline: 0;
       overflow-x: auto;
       padding-bottom: 0.25rem;
       scroll-snap-type: x proximity;
-      scroll-padding-inline: var(--home-v3-mobile-content-gutter);
+      scroll-padding-inline: 0;
       scrollbar-width: none;
     }
 
@@ -10052,11 +10086,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-practice-card--grid {
       min-height: 22.5rem;
       padding: 1.55rem 1.1rem 1.25rem;
+      gap: var(--spacing-md);
       scroll-snap-align: start;
       border: 1px solid rgba(231, 235, 242, 0.08);
       border-radius: var(--radius-card);
       background:
-        linear-gradient(180deg, rgba(16, 18, 24, 0.98), rgba(8, 10, 14, 1));
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--ds-surface-strong) 84%, transparent), transparent 13rem),
+        linear-gradient(180deg, rgba(var(--ds-surface-panel-rgb), 0.9), rgba(var(--ds-surface-panel-rgb), 0.72));
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.02),
         0 0.9rem 2rem rgba(0, 0, 0, 0.14);
@@ -10065,12 +10101,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-practice-card--grid .home-v3-practice-visual {
       --home-v3-practice-visual-w: 11.75rem;
-      --home-v3-practice-visual-h: 12.6rem;
-      margin: 0 auto 1rem;
+      --home-v3-practice-visual-h: 11.25rem;
+      margin: 0 auto;
     }
 
     .home-v3-practice-value {
       font-size: var(--home-v3-mobile-type-title-sm);
+    }
+
+    .home-v3-fit-row h3 {
+      font-size: var(--home-v3-mobile-type-body);
+      line-height: var(--home-v3-line-section-title-compact);
     }
 
     .home-v3-practice-text {
