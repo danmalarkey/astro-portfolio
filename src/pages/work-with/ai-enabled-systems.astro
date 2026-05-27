@@ -230,7 +230,7 @@ const activityCards = [
           {explorationPrinciples.map((principle, index) => (
             <article class="signal-row" role="listitem">
               <span class="signal-row-stars" aria-hidden="true"></span>
-              <span class="signal-row-index">{String(index + 1).padStart(2, '0')} /</span>
+              <span class="signal-row-index">{String(index + 1).padStart(2, '0')}</span>
               <div class="signal-row-copy">
                 <h3 class="signal-row-title">{principle.title}</h3>
                 <p class="signal-row-text">{principle.text}</p>
@@ -500,7 +500,7 @@ const activityCards = [
   }
 
   .ai-systems-band > .dm-grid-l {
-    row-gap: var(--spacing-2xl);
+    row-gap: var(--ds-section-content-gap);
   }
 
   .ai-systems-cta-inner {
@@ -638,8 +638,8 @@ const activityCards = [
     max-width: 29ch;
     margin: var(--spacing-xs) 0 0;
     color: var(--ai-page-text-muted);
-    font-size: var(--ds-type-body-sm);
-    line-height: var(--ds-line-body-compact);
+    font-size: var(--ds-type-supporting-copy);
+    line-height: var(--ds-line-supporting-copy);
     text-wrap: pretty;
   }
 
@@ -687,7 +687,7 @@ const activityCards = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: start;
-    margin-top: clamp(1.4rem, 2.8vw, 2.15rem);
+    margin-top: 0;
     column-gap: clamp(var(--spacing-lg), 3vw, var(--spacing-3xl));
   }
 
@@ -757,8 +757,8 @@ const activityCards = [
   .stuck-item-body {
     margin: 0;
     color: var(--ai-page-text-muted);
-    font-size: var(--ds-type-body-xs);
-    line-height: var(--ds-line-body-compact);
+    font-size: var(--ds-type-supporting-copy);
+    line-height: var(--ds-line-supporting-copy);
     text-wrap: pretty;
   }
 
@@ -766,7 +766,7 @@ const activityCards = [
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: clamp(1.4rem, 2.8vw, 2.15rem);
+    margin-top: 0;
   }
 
   .ai-systems-activity-card {
@@ -833,10 +833,10 @@ const activityCards = [
     max-width: 48ch;
     margin: var(--spacing-sm) 0 0;
     color: var(--ai-page-text-muted);
-    font-size: var(--ds-type-body-sm);
+    font-size: var(--ds-type-supporting-copy);
     font-weight: var(--font-weight-regular);
     letter-spacing: 0;
-    line-height: var(--ds-line-body-compact);
+    line-height: var(--ds-line-supporting-copy);
     text-wrap: pretty;
   }
 
@@ -898,6 +898,11 @@ const activityCards = [
       --ai-mobile-gutter: var(--ds-mobile-content-gutter);
     }
 
+    .ai-systems-section > .dm-grid-l,
+    .ai-systems-band > .dm-grid-l {
+      row-gap: var(--ds-mobile-section-header-gap);
+    }
+
     .ai-systems-hero-copy,
     .stuck-grid,
     .ai-systems-activity-grid,
@@ -909,10 +914,18 @@ const activityCards = [
     }
 
     .ai-systems-hero {
-      min-height: 92vh;
-      min-height: 92svh;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
+      align-items: end;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      padding: 0;
+      background-position: center, right;
+    }
+
+    .ai-systems-hero-grid {
+      align-items: end;
+      min-height: 100%;
+      padding-block: calc(var(--spacing-2xl) + var(--spacing-lg)) var(--spacing-lg);
     }
 
     .ai-systems-hero-rays {
@@ -930,7 +943,7 @@ const activityCards = [
 
     .ai-systems-section h2,
     .ai-systems-band h2 {
-      font-size: var(--ds-mobile-type-title-lg);
+      font-size: var(--ds-mobile-type-title-md);
     }
 
     .ai-systems-hero-copy > p:not(.ai-systems-kicker),
@@ -940,6 +953,13 @@ const activityCards = [
 
     .ai-systems-output-list {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    .stuck-item-title,
+    .ai-systems-activity-card h3,
+    .ai-systems-output-card h3 {
+      max-width: none;
+      font-size: var(--ds-mobile-type-title-sm);
     }
 
     .ai-systems-certainty-visual img {
@@ -976,7 +996,7 @@ const activityCards = [
 
     .ai-systems-activity-grid {
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--spacing-xs);
+      gap: var(--spacing-sm);
     }
 
     .ai-systems-activity-card {

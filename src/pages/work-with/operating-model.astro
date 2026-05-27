@@ -629,7 +629,7 @@ const outputs = [
 
   .operating-model-section--stuck > .dm-grid-l,
   .operating-model-band > .dm-grid-l {
-    row-gap: var(--spacing-2xl);
+    row-gap: var(--ds-section-content-gap);
   }
 
   .operating-model-section--split {
@@ -759,8 +759,8 @@ const outputs = [
     padding-block: clamp(5rem, 11vw, 9rem);
     overflow: hidden;
     background:
-      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.42), rgba(var(--ds-background-rgb), 0.12) 38%, rgba(var(--ds-background-rgb), 0.24) 100%),
-      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.34), rgba(var(--ds-background-rgb), 0.04) 34%, rgba(var(--ds-background-rgb), 0.34)),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.74), rgba(var(--ds-background-rgb), 0.38) 42%, rgba(var(--ds-background-rgb), 0.58) 100%),
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.52), rgba(var(--ds-background-rgb), 0.18) 34%, rgba(var(--ds-background-rgb), 0.48)),
       var(--operating-model-signal-bg);
     background-position: bottom;
     background-repeat: no-repeat;
@@ -811,7 +811,7 @@ const outputs = [
     grid-template-columns: minmax(14rem, 0.34fr) minmax(0, 1fr);
     gap: clamp(2.5rem, 5vw, 5.5rem);
     align-items: stretch;
-    margin-top: clamp(2.25rem, 5vw, 4.5rem);
+    margin-top: 0;
   }
 
   .operating-model-layer-track {
@@ -1108,7 +1108,7 @@ const outputs = [
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: clamp(2rem, 4vw, 3.5rem);
+    margin-top: 0;
   }
 
   .operating-model-clarity-card {
@@ -1371,6 +1371,11 @@ const outputs = [
       --operating-model-mobile-gutter: var(--ds-mobile-content-gutter);
     }
 
+    .operating-model-section > .dm-grid-l,
+    .operating-model-band > .dm-grid-l {
+      row-gap: var(--ds-mobile-section-header-gap);
+    }
+
     .operating-model-hero-copy,
     .operating-model-stuck-list,
     .operating-model-layer-system,
@@ -1382,10 +1387,17 @@ const outputs = [
     }
 
     .operating-model-hero {
-      min-height: 92vh;
-      min-height: 92svh;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
+      align-items: end;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .operating-model-hero-grid {
+      align-items: end;
+      min-height: 100%;
+      padding-block: calc(var(--spacing-2xl) + var(--spacing-lg)) var(--spacing-lg);
     }
 
     .operating-model-hero-rays {
@@ -1398,11 +1410,19 @@ const outputs = [
     }
 
     .operating-model-hero-blueprint {
-      top: 68%;
-      right: -34%;
-      width: min(92vw, 24rem);
+      top: 0;
+      right: 0;
+      left: 0;
+      width: min(131vw, 74rem);
+      height: 100%;
       opacity: 0.12;
-      transform: translate3d(var(--operating-model-parallax-blueprint-x), calc(-50% + var(--operating-model-parallax-strong)), 0) rotate(-8deg);
+      transform: translateY(0);
+    }
+
+    .operating-model-hero-blueprint img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .operating-model-section {
@@ -1411,7 +1431,7 @@ const outputs = [
 
     .operating-model-section h2,
     .operating-model-band h2 {
-      font-size: var(--ds-mobile-type-title-lg);
+      font-size: var(--ds-mobile-type-title-md);
     }
 
     .operating-model-hero-copy > p:not(.operating-model-kicker) {
@@ -1426,28 +1446,73 @@ const outputs = [
 
     .operating-model-layer-system {
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--spacing-xl);
+      gap: var(--spacing-sm);
     }
 
     .operating-model-layer-track {
-      align-content: start;
+      display: none;
+    }
+
+    .operating-model-layer-track::before,
+    .operating-model-layer-step-node,
+    .operating-model-layer-backgrounds,
+    .operating-model-layer-card::before,
+    .operating-model-layer-card-visual {
+      display: none;
     }
 
     .operating-model-layer-card {
-      min-height: 28rem;
+      display: block;
+      min-height: 0;
+      padding: 0;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .operating-model-layer-panels {
+      display: grid;
+      gap: var(--spacing-sm);
+      min-height: 0;
+    }
+
+    .operating-model-layer-panel {
+      grid-area: auto;
+      max-width: none;
+      min-height: 0;
+      gap: var(--spacing-md);
       padding: var(--spacing-md);
+      border: var(--size-border-thin) solid var(--operating-model-border-soft);
+      border-radius: var(--radius-panel);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(var(--operating-model-glow), 0.12), transparent 12rem),
+        rgba(var(--ds-surface-panel-rgb), 0.78);
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      transition: none;
+    }
+
+    .operating-model-layer-panel p {
+      font-size: var(--ds-mobile-type-body-sm);
+      line-height: var(--ds-line-body);
+    }
+
+    .operating-model-layer-focus {
+      width: 100%;
+      padding-top: var(--spacing-md);
     }
 
     .operating-model-clarity-card {
       min-height: 14rem;
     }
 
-    .operating-model-layer-card-visual {
-      min-height: 0;
-    }
-
-    .operating-model-layer-visual-panel img {
-      width: min(100%, 22rem);
+    .operating-model-layer-panel h3,
+    .operating-model-clarity-card h3,
+    .operating-model-output-card h3 {
+      max-width: none;
+      font-size: var(--ds-mobile-type-title-sm);
     }
 
     .operating-model-drift-icon {

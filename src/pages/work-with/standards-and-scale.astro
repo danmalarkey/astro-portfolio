@@ -491,9 +491,11 @@ const infrastructureBackgrounds = [
     --focus-model-glow: var(--standards-glow);
     --focus-model-text: var(--standards-text);
     --focus-model-text-muted: var(--standards-text-muted);
+    --focus-model-margin-top: 0;
   }
 
   :global(.standards-method-grid) {
+    --focus-method-grid-margin-top: 0;
     --focus-method-card-padding: clamp(1.75rem, 3.4vw, 2.6rem);
     --focus-method-card-title-margin: calc(var(--spacing-sm) * 1.2);
     --focus-method-list-margin: clamp(2.35rem, 4.5vw, 3.4rem);
@@ -534,8 +536,8 @@ const infrastructureBackgrounds = [
   .standards-outcome-copy p {
     margin: var(--spacing-xs) 0 0;
     color: var(--standards-text-muted);
-    font-size: var(--ds-type-body-sm);
-    line-height: var(--ds-line-body-compact);
+    font-size: var(--ds-type-supporting-copy);
+    line-height: var(--ds-line-supporting-copy);
     letter-spacing: var(--ds-tracking-text);
     text-wrap: pretty;
   }
@@ -601,7 +603,7 @@ const infrastructureBackgrounds = [
   }
 
   .standards-outcome-field {
-    margin-top: clamp(2.25rem, 4vw, 3.75rem);
+    margin-top: 0;
   }
 
   .standards-outcome-columns {
@@ -640,6 +642,11 @@ const infrastructureBackgrounds = [
       --standards-mobile-gutter: var(--ds-mobile-content-gutter);
     }
 
+    .standards-section > .dm-grid-l,
+    .standards-band > .dm-grid-l {
+      row-gap: var(--ds-mobile-section-header-gap);
+    }
+
     .standards-hero-copy,
     :global(.standards-diagnostic-grid),
     :global(.standards-scale-model-test),
@@ -651,11 +658,18 @@ const infrastructureBackgrounds = [
     }
 
     .standards-hero {
-      min-height: 92vh;
-      min-height: 92svh;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
-      background-position: center, center, 62% center;
+      align-items: end;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      padding: 0;
+      background-position: center, center, right;
+    }
+
+    .standards-hero-grid {
+      align-items: end;
+      min-height: 100%;
+      padding-block: calc(var(--spacing-2xl) + var(--spacing-lg)) var(--spacing-lg);
     }
 
     .standards-hero h1 {
@@ -684,6 +698,11 @@ const infrastructureBackgrounds = [
     .standards-outcome-row {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--spacing-sm);
+    }
+
+    .standards-outcome-copy h3 {
+      max-width: none;
+      font-size: var(--ds-mobile-type-title-sm);
     }
 
     .standards-cta-inner {

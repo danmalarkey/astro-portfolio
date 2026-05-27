@@ -303,6 +303,7 @@ const operatingContexts = [
     opacity: 0.63;
     background: radial-gradient(circle, color-mix(in srgb, var(--ds-text) 10%, transparent) 0 var(--size-border-thin), transparent calc(var(--size-border-thin) + 0.025rem)) left top / var(--about-hero-dot-size) var(--about-hero-dot-size) repeat;
     mask-image: linear-gradient(90deg, black 0 46%, transparent 68%);
+    animation: about-hero-dots-enter 1200ms ease 260ms both;
   }
 
   .about-hero-field {
@@ -330,8 +331,9 @@ const operatingContexts = [
     background-size: cover;
     filter: brightness(0.62) saturate(0.94);
     opacity: var(--about-hero-image-opacity);
-    transform: rotate(-2deg);
+    transform: translate3d(1.25rem, 0, 0) rotate(-2deg) scale(1.015);
     mask-image: radial-gradient(ellipse at 50% 50%, black 0 48%, rgba(0, 0, 0, 0.72) 66%, transparent 84%);
+    animation: about-hero-image-enter 1200ms ease 180ms both;
   }
 
   .about-hero-field::after {
@@ -359,6 +361,9 @@ const operatingContexts = [
 
   .about-hero-copy {
     z-index: 2;
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: about-hero-copy-enter 820ms ease 220ms both;
   }
 
   .about-kicker {
@@ -412,6 +417,40 @@ const operatingContexts = [
     border-bottom: var(--size-border-thin) solid var(--about-rule);
   }
 
+  @keyframes about-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes about-hero-image-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(1.25rem, 0, 0) rotate(-2deg) scale(1.015);
+    }
+
+    to {
+      opacity: var(--about-hero-image-opacity);
+      transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
+    }
+  }
+
+  @keyframes about-hero-dots-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0.63;
+    }
+  }
+
   .about-profile > .dm-grid-l {
     align-items: stretch;
   }
@@ -447,7 +486,7 @@ const operatingContexts = [
   .about-section-head {
     display: grid;
     align-content: start;
-    gap: var(--spacing-lg);
+    gap: var(--ds-section-header-gap);
   }
 
   .about-section-head h2,
@@ -576,7 +615,7 @@ const operatingContexts = [
 
   .about-archive-copy {
     display: grid;
-    gap: var(--spacing-md);
+    gap: var(--ds-section-header-gap);
     max-width: 42rem;
   }
 
@@ -589,7 +628,7 @@ const operatingContexts = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: clamp(var(--spacing-2xl), 6vw, var(--spacing-4xl));
+    margin-top: var(--ds-section-content-gap);
   }
 
   .about-method-card {
@@ -610,7 +649,7 @@ const operatingContexts = [
   }
 
   .about-context-list {
-    margin-top: clamp(var(--spacing-2xl), 6vw, var(--spacing-4xl));
+    margin-top: var(--ds-section-content-gap);
   }
 
   .about-context-row {
@@ -640,7 +679,7 @@ const operatingContexts = [
     }
 
     .about-profile > .dm-grid-l {
-      row-gap: var(--spacing-xl);
+      row-gap: var(--ds-section-content-gap);
     }
 
     .about-profile-panel {
@@ -664,7 +703,7 @@ const operatingContexts = [
     }
 
     .about-page .dm-grid-l.dm-grid-l--grid-sys {
-      row-gap: var(--spacing-xl);
+      row-gap: var(--ds-mobile-section-header-gap);
       padding-inline: 0;
     }
 
@@ -695,6 +734,10 @@ const operatingContexts = [
       top: 11%;
     }
 
+    .about-profile-media img {
+      object-position: right center;
+    }
+
     .about-hero h1 {
       max-width: 9.5ch;
       font-size: var(--ds-mobile-type-title-xl);
@@ -713,7 +756,7 @@ const operatingContexts = [
     }
 
     .about-section-head {
-      gap: var(--spacing-md);
+      gap: var(--ds-mobile-section-header-gap);
     }
 
     .about-section-head h2,
@@ -740,5 +783,22 @@ const operatingContexts = [
       max-width: 24rem;
     }
 
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-hero::before,
+    .about-hero-field::before,
+    .about-hero-copy {
+      animation: none;
+    }
+
+    .about-hero-copy {
+      opacity: 1;
+      transform: none;
+    }
+
+    .about-hero-field::before {
+      transform: rotate(-2deg);
+    }
   }
 </style>
