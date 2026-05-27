@@ -294,9 +294,9 @@ const outputBackgrounds = [
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="direction-cta-inner direction-cta-inner--accent gc-start-2 gc-span-24" data-motion-item>
           <p class="direction-kicker">Before delay gets expensive</p>
-          <h2 id="direction-mid-cta">Know what deserves to be built.</h2>
+          <h2 id="direction-mid-cta">Better decisions create less turbulence.</h2>
           <p>
-            When priorities, constraints, and tradeoffs are hard to see, the organization needs better decision structure before more execution.
+            I help organizations compare competing inputs, clarify tradeoffs, and make priority decisions with reasoning teams can understand and act on.
           </p>
           <div class="direction-actions" aria-label="Direction & Prioritization actions">
             <Button href={mailto}>Start a conversation</Button>
@@ -597,10 +597,11 @@ const outputBackgrounds = [
     --focus-diagnostic-label: var(--direction-accent);
     --focus-diagnostic-text: var(--direction-text);
     --focus-diagnostic-text-muted: var(--direction-text-muted);
+    margin-top: 0;
   }
 
   .direction-problem-visual {
-    margin: clamp(2rem, 4vw, 3.25rem) 0 clamp(1.25rem, 2.5vw, 2rem);
+    margin: 0 0 var(--ds-section-content-gap);
   }
 
   .direction-problem-visual img {
@@ -1297,7 +1298,7 @@ const outputBackgrounds = [
     .direction-hero-copy,
     :global(.direction-diagnostic-grid),
     .direction-dimension-visual,
-    .direction-method-grid,
+    :global(.direction-method-grid),
     .direction-outcome-field,
     .direction-output-grid,
     .direction-cta-inner {
@@ -1324,7 +1325,7 @@ const outputBackgrounds = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .direction-method-grid {
+    :global(.direction-method-grid) {
       grid-template-columns: minmax(0, 1fr);
     }
 
@@ -1342,8 +1343,9 @@ const outputBackgrounds = [
 
     .direction-hero-copy,
     :global(.direction-diagnostic-grid),
+    .direction-problem-visual,
     .direction-dimension-visual,
-    .direction-method-grid,
+    :global(.direction-method-grid),
     .direction-outcome-field,
     .direction-output-grid,
     .direction-cta-inner {
@@ -1399,8 +1401,8 @@ const outputBackgrounds = [
       padding-bottom: clamp(4rem, 16vw, 6rem);
     }
 
-    .direction-diagnostic-grid,
-    .direction-method-grid,
+    :global(.direction-diagnostic-grid),
+    :global(.direction-method-grid),
     .direction-output-grid {
       grid-template-columns: minmax(0, 1fr);
     }
@@ -1450,7 +1452,7 @@ const outputBackgrounds = [
     .direction-dimension-list {
       position: static;
       display: grid;
-      margin-top: var(--spacing-sm);
+      margin-top: 0;
       border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
     }
 
@@ -1459,7 +1461,7 @@ const outputBackgrounds = [
       inset: auto;
       left: auto;
       width: auto;
-      padding: clamp(1.35rem, 2.6vw, 2rem) 0;
+      padding: var(--spacing-md) 0;
       border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
     }
 
