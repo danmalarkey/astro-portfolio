@@ -46,7 +46,7 @@ const modelLayers = [
     backgroundImage: '/images/op-model/behavior-bg.png'
   },
   {
-    title: 'Expression',
+    title: 'Design systems',
     text: 'How the interface, language, patterns, and implementation make the model visible.',
     focus: 'Interfaces and patterns that make complex systems understandable.',
     backgroundImage: '/images/op-model/expression-bg.png'
@@ -104,8 +104,8 @@ const supportAreas = [
     text: 'Customer experience, operational capability, and implementation move in the same direction.'
   },
   {
-    title: 'Organizations gain clearer momentum',
-    text: 'Direction becomes easier to maintain as products, systems, and responsibilities evolve.'
+    title: 'Organizations gain steadier movement',
+    text: 'Priorities become easier to maintain as products, standards, and responsibilities evolve.'
   }
 ];
 
@@ -167,10 +167,6 @@ const outputs = [
           <p>
             Strong product work reflects aligned business intent, operational capability, shared understanding, and implementation decisions. Product logic, workflows, system behavior, and delivery choices should reinforce the same underlying model.
           </p>
-          <div class="operating-model-actions" aria-label="Operating model actions">
-            <Button href={mailto}>Start a conversation</Button>
-            <Button href={withBase('/work-with/ai-enabled-systems')} variant="ghost">AI-enabled systems</Button>
-          </div>
         </div>
       </div>
     </section>
@@ -382,6 +378,22 @@ const outputs = [
       </div>
     </section>
 
+    <section class="operating-model-section operating-model-section--mid-cta" aria-labelledby="operating-model-mid-cta" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="operating-model-cta-inner operating-model-cta-inner--accent gc-start-2 gc-span-24" data-motion-item>
+          <p class="operating-model-kicker">Before drift becomes expensive</p>
+          <h2 id="operating-model-mid-cta">Make the operating model easier to hold.</h2>
+          <p>
+            When business direction, product behavior, and delivery choices start to drift, the organization needs a clearer model before more work compounds the problem.
+          </p>
+          <div class="operating-model-actions" aria-label="Operating model CTA actions">
+            <Button href={mailto}>Start a conversation</Button>
+            <Button href={withBase('/work-with/standards-and-scale')} variant="ghost">Explore Standards & Scale</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="operating-model-band" aria-labelledby="operating-model-outputs" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
@@ -549,6 +561,12 @@ const outputs = [
     align-content: start;
   }
 
+  .operating-model-cta-inner {
+    display: grid;
+    align-content: start;
+    gap: var(--spacing-md);
+  }
+
   .operating-model-hero-copy {
     position: relative;
     z-index: 4;
@@ -618,6 +636,74 @@ const outputs = [
     padding-bottom: clamp(4.5rem, 8vw, 7rem);
   }
 
+  .operating-model-cta-inner {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(var(--spacing-lg), 5vw, calc(var(--spacing-4xl) + var(--spacing-xs)));
+    border: var(--size-border-thin) solid color-mix(in srgb, var(--operating-model-accent) 26%, transparent);
+    border-radius: var(--radius-panel);
+    background:
+      radial-gradient(ellipse at 84% 48%, rgba(var(--operating-model-glow), 0.28), rgba(var(--operating-model-glow), 0.1) 34%, transparent 66%),
+      radial-gradient(ellipse at 104% 22%, color-mix(in srgb, var(--operating-model-orbit-accent) 16%, transparent), transparent 22rem),
+      linear-gradient(135deg, color-mix(in srgb, var(--operating-model-bg) 78%, var(--operating-model-accent)), color-mix(in srgb, var(--operating-model-bg) 72%, rgb(var(--operating-model-glow))) 54%, var(--operating-model-bg));
+    color: var(--operating-model-text);
+  }
+
+  .operating-model-cta-inner::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    right: min(-24rem, -12vw);
+    width: min(64rem, 52vw);
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    opacity: 0.22;
+    background:
+      radial-gradient(circle, transparent 0 26%, color-mix(in srgb, var(--operating-model-orbit-accent) 28%, transparent) 26.2% 26.45%, transparent 26.7%),
+      radial-gradient(circle, transparent 0 44%, color-mix(in srgb, var(--operating-model-orbit-accent) 20%, transparent) 44.2% 44.42%, transparent 44.7%),
+      radial-gradient(circle, transparent 0 62%, color-mix(in srgb, var(--operating-model-accent) 16%, transparent) 62.2% 62.38%, transparent 62.7%);
+    transform: translateY(-50%);
+    mask-image: linear-gradient(90deg, transparent 0%, black 22%, black 82%, transparent 100%);
+  }
+
+  .operating-model-cta-inner > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .operating-model-cta-inner h2 {
+    color: var(--operating-model-text);
+  }
+
+  .operating-model-cta-inner > p:not(.operating-model-kicker) {
+    max-width: 58ch;
+    margin: 0;
+    color: var(--operating-model-text-muted);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    text-wrap: pretty;
+  }
+
+  .operating-model-cta-inner .operating-model-kicker {
+    opacity: 0.76;
+  }
+
+  .operating-model-cta-inner .operating-model-actions {
+    margin-top: var(--spacing-sm);
+  }
+
+  .operating-model-cta-inner :global(.ds-button--ghost) {
+    border-color: color-mix(in srgb, var(--operating-model-text) 18%, transparent);
+    background: color-mix(in srgb, var(--operating-model-text) 3.5%, transparent);
+    color: color-mix(in srgb, var(--operating-model-text) 92%, transparent);
+  }
+
+  .operating-model-cta-inner :global(.ds-button--ghost:hover),
+  .operating-model-cta-inner :global(.ds-button--ghost:focus-visible) {
+    background: color-mix(in srgb, var(--operating-model-text) 6%, transparent);
+  }
+
   .operating-model-stuck-head h2 {
     max-width: 15ch;
   }
@@ -673,10 +759,10 @@ const outputs = [
     padding-block: clamp(5rem, 11vw, 9rem);
     overflow: hidden;
     background:
-      linear-gradient(90deg, rgba(3, 6, 11, 0.42), rgba(3, 6, 11, 0.12) 38%, rgba(3, 6, 11, 0.24) 100%),
-      linear-gradient(180deg, rgba(3, 6, 11, 0.34), rgba(3, 6, 11, 0.04) 34%, rgba(3, 6, 11, 0.34)),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.42), rgba(var(--ds-background-rgb), 0.12) 38%, rgba(var(--ds-background-rgb), 0.24) 100%),
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.34), rgba(var(--ds-background-rgb), 0.04) 34%, rgba(var(--ds-background-rgb), 0.34)),
       var(--operating-model-signal-bg);
-    background-position: center left;
+    background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -843,12 +929,12 @@ const outputs = [
     padding: clamp(2rem, 4vw, 3.5rem);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--operating-model-border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     background:
-      linear-gradient(90deg, rgba(7, 9, 13, 0.96) 0%, rgba(7, 9, 13, 0.84) 31%, rgba(7, 9, 13, 0.5) 53%, rgba(7, 9, 13, 0.16) 100%),
+      linear-gradient(90deg, rgba(var(--ds-surface-panel-rgb), 0.96) 0%, rgba(var(--ds-surface-panel-rgb), 0.84) 31%, rgba(var(--ds-surface-panel-rgb), 0.5) 53%, rgba(var(--ds-surface-panel-rgb), 0.16) 100%),
       radial-gradient(circle at 72% 48%, rgba(var(--operating-model-glow), 0.12), transparent 18rem),
       linear-gradient(180deg, var(--operating-model-surface-strong), rgba(255, 255, 255, 0.012)),
-      rgba(7, 9, 13, 0.86);
+      rgba(var(--ds-surface-panel-rgb), 0.86);
     background-position:
       center,
       center,
@@ -869,7 +955,7 @@ const outputs = [
     z-index: 1;
     pointer-events: none;
     background:
-      linear-gradient(90deg, rgba(7, 9, 13, 0.96) 0%, rgba(7, 9, 13, 0.84) 31%, rgba(7, 9, 13, 0.5) 53%, rgba(7, 9, 13, 0.16) 100%),
+      linear-gradient(90deg, rgba(var(--ds-surface-panel-rgb), 0.96) 0%, rgba(var(--ds-surface-panel-rgb), 0.84) 31%, rgba(var(--ds-surface-panel-rgb), 0.5) 53%, rgba(var(--ds-surface-panel-rgb), 0.16) 100%),
       linear-gradient(90deg, rgba(255, 255, 255, 0.035), transparent 32%),
       radial-gradient(circle at 34% 45%, rgba(var(--operating-model-glow), 0.08), transparent 16rem);
     opacity: 0.8;
@@ -1004,7 +1090,7 @@ const outputs = [
   .operating-model-layer-card-visual {
     display: none;
     min-height: 100%;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     opacity: 0;
   }
 
@@ -1033,7 +1119,7 @@ const outputs = [
     padding: clamp(1.35rem, 2.2vw, 1.8rem);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--operating-model-border-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
       radial-gradient(circle at 20% 10%, rgba(var(--operating-model-glow), 0.065), transparent 11rem),
       linear-gradient(
@@ -1041,7 +1127,7 @@ const outputs = [
         color-mix(in srgb, var(--operating-model-text) 3.6%, transparent),
         color-mix(in srgb, var(--operating-model-text) 1.1%, transparent)
       ),
-      color-mix(in srgb, var(--operating-model-bg) 88%, black);
+      rgba(var(--ds-surface-panel-rgb), 0.88);
     box-shadow:
       inset 0 0.0625rem 0 rgba(255, 255, 255, 0.022),
       0 0.75rem 2rem rgba(0, 0, 0, 0.1);
@@ -1060,7 +1146,7 @@ const outputs = [
         color-mix(in srgb, var(--operating-model-text) 4.4%, transparent),
         color-mix(in srgb, var(--operating-model-text) 1.35%, transparent)
       ),
-      color-mix(in srgb, var(--operating-model-bg) 88%, black);
+      rgba(var(--ds-surface-panel-rgb), 0.92);
     box-shadow:
       inset 0 0.0625rem 0 rgba(255, 255, 255, 0.03),
       0 1rem 2.4rem rgba(0, 0, 0, 0.14);
@@ -1072,7 +1158,7 @@ const outputs = [
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(180deg, transparent 0 42%, rgba(0, 0, 0, 0.32) 100%),
+      linear-gradient(180deg, transparent 0 42%, rgba(var(--ds-background-rgb), 0.32) 100%),
       linear-gradient(
         90deg,
         color-mix(in srgb, var(--operating-model-text) 2.2%, transparent) 0 0.0625rem,
@@ -1196,11 +1282,11 @@ const outputs = [
     padding: var(--spacing-md);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--operating-model-border-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
-      linear-gradient(180deg, rgba(7, 9, 13, 0.08) 0%, rgba(7, 9, 13, 0.14) 44%, rgba(7, 9, 13, 0.86) 100%),
+      linear-gradient(180deg, rgba(var(--ds-surface-panel-rgb), 0.08) 0%, rgba(var(--ds-surface-panel-rgb), 0.14) 44%, rgba(var(--ds-surface-panel-rgb), 0.86) 100%),
       var(--operating-model-output-bg),
-      rgba(7, 9, 13, 0.84);
+      rgba(var(--ds-surface-panel-rgb), 0.84);
     background-position: center;
     background-size: cover;
   }
@@ -1211,7 +1297,7 @@ const outputs = [
     inset: auto 0 0;
     height: 42%;
     pointer-events: none;
-    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
+    background: linear-gradient(180deg, transparent, rgba(var(--ds-background-rgb), 0.22));
   }
 
   .operating-model-output-card > * {
@@ -1243,6 +1329,7 @@ const outputs = [
     .operating-model-stuck-list,
     .operating-model-layer-system,
     .operating-model-clarity-grid,
+    .operating-model-cta-inner,
     .operating-model-output-list {
       grid-column: 2 / span 24;
     }
@@ -1288,6 +1375,7 @@ const outputs = [
     .operating-model-stuck-list,
     .operating-model-layer-system,
     .operating-model-clarity-grid,
+    .operating-model-cta-inner,
     .operating-model-output-list {
       grid-column: 1 / -1;
       margin-inline: var(--operating-model-mobile-gutter);

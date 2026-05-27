@@ -14,8 +14,8 @@ $dm-gray-700: #7a7a7a;
 $dm-text-muted: rgba(0, 0, 0, 0.6);
 $dm-border-light: rgba(0, 0, 0, 0.1);
 
-$dm-bg-dark: #171717;
-$dm-border-dark: #232323;
+$dm-bg-dark: #07111e;
+$dm-border-dark: rgba(137, 169, 226, 0.16);
 $dm-text-muted-white: rgba(255, 255, 255, 0.40);
 $dm-text-more-muted-white: rgba(255, 255, 255, 0.32);
 
@@ -29,11 +29,11 @@ $round-radi-0-5: 0.5rem; .round-radi-0-5 {
 $round-radi-1: 1rem; .round-radi-1 {
     border-radius: 1rem;
                      }
-$round-radi-2: 2rem; .round-radi-2 {
-    border-radius: 2rem;
+$round-radi-2: 0; .round-radi-2 {
+    border-radius: 0;
                      }
-$round-radi-3: 3rem; .round-radi-3 {
-    border-radius: 3rem;
+$round-radi-3: 0; .round-radi-3 {
+    border-radius: 0;
 }
 
 

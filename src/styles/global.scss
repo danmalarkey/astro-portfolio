@@ -8,19 +8,24 @@
 @use "./components/cards";
 
 :root {
-  --color-background-canvas: #0a0a0a;
-  --color-background-surface: #121315;
-  --color-background-surface-alt: #171717;
-  --color-border-subtle-dark: #232323;
+  --color-background-canvas: #030814;
+  --color-background-surface: #050b16;
+  --color-background-surface-alt: #07111e;
+  --color-border-subtle-dark: rgba(137, 169, 226, 0.16);
   --color-text-primary: #ffffff;
   --color-text-muted: rgba(255, 255, 255, 0.7);
   --color-accent-primary: #f1e218;
   --color-accent-soft: rgba(241, 226, 24, 0.2);
   --gradient-accent-ui: linear-gradient(120deg, rgba(241, 226, 24, 0.95), rgba(255, 248, 171, 0.95));
 
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
   --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-card: 0;
+  --radius-panel: 0;
+  --radius-visual-panel: 0.125rem;
   --radius-pill: 999rem;
 
   --spacing-xs: 0.5rem;
@@ -52,8 +57,8 @@
   --font-weight-bold: 700;
   --font-family-body: "Geist", -apple-system, sans-serif;
   --font-family-display: "Cal Sans", -apple-system, sans-serif;
-  --shadow-surface: 0 var(--spacing-md) var(--spacing-xl) rgba(0, 0, 0, 0.35);
-  --shadow-hero: 0 3rem 5rem rgba(0, 0, 0, 0.33), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.08);
+  --shadow-surface: 0 var(--spacing-md) var(--spacing-xl) rgba(0, 5, 14, 0.36);
+  --shadow-hero: 0 3rem 5rem rgba(0, 5, 14, 0.34), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.08);
   --layout-inset-desktop: var(--spacing-lg);
   --layout-inset-tablet: var(--spacing-sm);
   --layout-gutter-mobile: var(--spacing-sm);
@@ -62,7 +67,7 @@
   --layout-gutter-desktop: var(--spacing-lg);
   --layout-hero-height-glow: 10rem;
   --size-card-leverage-min-height: 30rem;
-  --size-card-case-min-height: 32rem;
+  --size-card-case-min-height: 26rem;
   --size-card-case-min-height-tablet: 28rem;
   --size-card-case-min-height-mobile: 24rem;
   --size-line-constellation: 0.125rem;
@@ -75,12 +80,12 @@
   --color-text-secondary: #7a7a7a;
   --color-light-border: rgba(19, 20, 21, 0.14);
   --shadow-light-surface: 0 var(--spacing-sm) var(--spacing-lg) rgba(0, 0, 0, 0.12);
-  --shadow-dark-surface: 0 var(--spacing-md) var(--spacing-xl) rgba(0, 0, 0, 0.26);
-  --shadow-color-header: rgba(0, 0, 0, 0.45);
+  --shadow-dark-surface: 0 var(--spacing-md) var(--spacing-xl) rgba(0, 5, 14, 0.3);
+  --shadow-color-header: rgba(0, 5, 14, 0.46);
   --color-ink-on-accent: #101010;
   --color-border-accent-ink: rgba(16, 16, 16, 0.18);
-  --color-surface-dark-base: rgba(10, 10, 10, 0.9);
-  --color-surface-dark-elevated: #0c0d10;
+  --color-surface-dark-base: rgba(5, 12, 22, 0.92);
+  --color-surface-dark-elevated: #07111e;
   --color-surface-glass-subtle: rgba(255, 255, 255, 0.02);
   --color-surface-glass-soft: rgba(255, 255, 255, 0.04);
   --color-surface-glass-mid: rgba(255, 255, 255, 0.16);
@@ -107,8 +112,8 @@
   --color-accent-glow-soft: rgba(241, 226, 24, 0.14);
   --color-accent-glow-base: rgba(241, 226, 24, 0.18);
   --color-accent-glow-mid: rgba(241, 226, 24, 0.22);
-  --gradient-overlay-dark-heavy: linear-gradient(to top, rgba(0, 0, 0, 0.84), rgba(0, 0, 0, 0.55) 46%, rgba(0, 0, 0, 0));
-  --gradient-overlay-dark-card: linear-gradient(to top, rgba(0, 0, 0, 0.84) 28%, rgba(0, 0, 0, 0.36) 56%, rgba(0, 0, 0, 0.12) 100%);
+  --gradient-overlay-dark-heavy: linear-gradient(to top, rgba(3, 8, 20, 0.86), rgba(3, 8, 20, 0.56) 46%, rgba(3, 8, 20, 0));
+  --gradient-overlay-dark-card: linear-gradient(to top, rgba(3, 8, 20, 0.84) 28%, rgba(3, 8, 20, 0.36) 56%, rgba(3, 8, 20, 0.12) 100%);
   --gradient-accent-line: linear-gradient(90deg, rgba(241, 226, 24, 0.18), rgba(241, 226, 24, 0.62), rgba(241, 226, 24, 0.08));
   --gradient-accent-line-soft: linear-gradient(90deg, rgba(241, 226, 24, 0.18), rgba(241, 226, 24, 0.55), rgba(241, 226, 24, 0.18));
   --duration-transition-fast: 0.18s;
@@ -129,10 +134,10 @@
   --spacing-header-panel-padding-inline: calc(var(--spacing-sm) * 0.875);
   --spacing-header-link-padding-inline: calc(var(--spacing-sm) - var(--spacing-xs) * 0.25);
   --spacing-header-link-padding-inline-mobile: calc(var(--spacing-sm) - var(--spacing-xs) * 0.5);
-  --color-header-surface: rgba(18, 19, 21, 0.54);
+  --color-header-surface: rgba(7, 13, 24, 0.58);
   --color-header-link-hover: rgba(255, 255, 255, 0.06);
   --shadow-header-floating: 0 var(--spacing-md) calc(var(--spacing-xl) + var(--spacing-sm)) rgba(0, 0, 0, 0.32);
-  --color-header-surface-mobile: rgba(18, 19, 21, 0.68);
+  --color-header-surface-mobile: rgba(7, 13, 24, 0.72);
   --shadow-header-floating-mobile: 0 var(--spacing-sm) var(--spacing-xl) rgba(0, 0, 0, 0.28);
   --spacing-header-panel-padding-inline-mobile: calc(var(--spacing-xs) * 0.875);
   --spacing-header-link-gap-mobile: calc(var(--spacing-xs) * 0.25);
@@ -227,7 +232,7 @@
   --size-site-footer-title-max-width: 20ch;
   --size-site-footer-separator-width: min(26rem, 35vw);
   --size-site-footer-separator-height: 0.125rem;
-  --gradient-site-footer-background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 12, 16, 0.55) 12%, rgba(10, 12, 16, 0.92) 42%, rgba(10, 12, 16, 0.98) 100%);
+  --gradient-site-footer-background: linear-gradient(180deg, rgba(3, 8, 20, 0) 0%, rgba(5, 12, 22, 0.58) 12%, rgba(5, 12, 22, 0.92) 42%, rgba(5, 12, 22, 0.98) 100%);
   --color-site-footer-border-top: rgba(255, 255, 255, 0.08);
   --size-site-footer-divider-width: min(40rem, 76vw);
   --gradient-site-footer-divider: linear-gradient(90deg, rgba(241, 226, 24, 0), rgba(241, 226, 24, 0.45), rgba(255, 255, 255, 0.4), rgba(241, 226, 24, 0.45), rgba(241, 226, 24, 0));
@@ -657,6 +662,7 @@ main {
   margin: 0;
   color: var(--focus-diagnostic-text, var(--ds-text));
   font-size: var(--ds-type-card-title-compact);
+  font-weight: var(--font-weight-regular);
   line-height: var(--ds-line-card-title);
   letter-spacing: var(--ds-tracking-card);
   text-wrap: balance;
@@ -703,7 +709,7 @@ main {
 .focus-diagnostic-item--disclosure > summary:focus-visible {
   outline: var(--size-border-thin) solid var(--focus-diagnostic-focus, var(--ds-border));
   outline-offset: var(--spacing-xs);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
 }
 
 .focus-diagnostic-item--disclosure .focus-diagnostic-item-panel {
@@ -812,11 +818,11 @@ main {
   margin: 0;
   background: var(--color-surface-dark-base);
   border: var(--size-border-thin) solid var(--color-border-on-dark-subtle);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-panel);
   box-shadow: var(--shadow-surface);
 
   @media (max-width: map.get(grid.$breakpoints, "md")) {
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
   }
 }
 
@@ -956,14 +962,14 @@ main {
   position: relative;
   z-index: 1;
   border: 0;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-panel);
   padding: var(--spacing-3xl) 0;
   background: transparent;
   overflow: hidden;
   box-shadow: none;
 
   @media (max-width: 48rem) {
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
     padding: var(--spacing-lg) 0;
   }
 
@@ -1063,7 +1069,7 @@ main {
     position: absolute;
     inset: 0;
     background: var(--gradient-leverage-overlay);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
     pointer-events: none;
   }
 }
@@ -1078,7 +1084,7 @@ main {
   margin: var(--spacing-sm) 0 0;
   padding-left: 0;
   padding-right: 0;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   overflow: hidden;
 
   > * {
@@ -1121,7 +1127,7 @@ main {
     left: var(--spacing-sm);
     right: var(--spacing-sm);
     height: var(--size-line-constellation);
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border-radius: var(--radius-panel) var(--radius-panel) 0 0;
     background: var(--gradient-hero-bridge-topline);
     transform-origin: 50% 50%;
     filter: drop-shadow(0 0 0.35rem rgba(241, 226, 24, 0.45));
@@ -1775,7 +1781,7 @@ main {
     margin-top: var(--spacing-sm);
     padding-left: var(--layout-gutter-mobile);
     padding-right: var(--layout-gutter-mobile);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .section-panel--hero-bridge::before {
@@ -1837,7 +1843,7 @@ main {
     margin-top: var(--spacing-sm);
     padding-left: var(--layout-gutter-mobile-section);
     padding-right: var(--layout-gutter-mobile-section);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .leadership-intro,
@@ -1962,7 +1968,7 @@ main {
   }
 
   .main-surface {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .section {
@@ -2268,7 +2274,7 @@ main {
 
 .writing-panel {
   border: var(--size-border-thin) solid var(--color-writing-panel-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--gradient-writing-panel-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -2357,7 +2363,7 @@ main {
 
 .writing-entry {
   border: var(--size-border-thin) solid var(--color-writing-card-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: var(--color-writing-card-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -2512,7 +2518,7 @@ main {
 
 .writing-post-side {
   border: var(--size-border-thin) solid var(--color-writing-post-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--gradient-writing-panel-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -2560,7 +2566,7 @@ main {
 
 .writing-post-body-block--callout {
   border: var(--size-border-thin) solid var(--color-writing-post-callout-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-writing-post-callout-surface);
   padding: var(--spacing-sm);
 }
@@ -2577,7 +2583,7 @@ main {
 
 .writing-post-outline {
   border: var(--size-border-thin) solid var(--color-writing-post-outline-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--gradient-writing-panel-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -2618,7 +2624,7 @@ main {
 
 .actor-page-hero-side {
   border: var(--size-border-thin) solid var(--color-actor-page-side-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-actor-page-side-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -2636,7 +2642,7 @@ main {
 
 .actor-page-hero-signal {
   border: var(--size-border-thin) solid var(--color-actor-page-side-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.03);
   padding: calc(var(--spacing-xs) * 0.95) var(--spacing-sm);
   display: grid;
@@ -2716,7 +2722,7 @@ main {
 
 .actor-page-card {
   border: var(--size-border-thin) solid var(--color-actor-page-card-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-actor-page-card-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -2746,7 +2752,7 @@ main {
 
 .actor-page-signal {
   border: var(--size-border-thin) solid var(--color-actor-page-signal-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-actor-page-signal-surface);
   color: var(--color-actor-page-signal-text);
   padding: var(--spacing-sm);
@@ -2764,7 +2770,7 @@ main {
   display: grid;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   border: var(--size-border-thin) solid rgba(255, 255, 255, 0.1);
   background:
     radial-gradient(circle at 82% 16%, rgba(241, 226, 24, 0.16), rgba(241, 226, 24, 0) 42%),
@@ -2828,7 +2834,7 @@ main {
   display: grid;
   gap: calc(var(--spacing-xs) * 0.85);
   padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   border: var(--size-border-thin) solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
 }
@@ -2889,7 +2895,7 @@ main {
 
 .home-v2-actor-card {
   border: var(--size-border-thin) solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
   padding: var(--spacing-sm);
   display: grid;
@@ -2922,7 +2928,7 @@ main {
 
 .home-v2-shift-card {
   border: var(--size-border-thin) solid rgba(20, 23, 31, 0.12);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background:
     radial-gradient(circle at 88% 16%, rgba(241, 226, 24, 0.12), rgba(241, 226, 24, 0) 52%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5));
@@ -3412,7 +3418,7 @@ main {
   color: inherit;
   font-family: var(--font-family-body);
   font-size: var(--ds-type-title-sm);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-regular);
   letter-spacing: var(--ds-tracking-card);
   line-height: var(--ds-line-card-title);
   text-wrap: balance;
@@ -3520,7 +3526,7 @@ main {
 
 .case-study-summary {
   border: var(--size-border-thin) solid var(--color-writing-post-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.03);
   padding: var(--spacing-sm);
   display: grid;
@@ -3554,7 +3560,7 @@ main {
 
 .case-study-fact {
   border: var(--size-border-thin) solid rgba(20, 20, 20, 0.1);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.35);
   padding: var(--spacing-sm);
   display: grid;
@@ -3602,7 +3608,7 @@ main {
 
 .case-study-compare-col {
   border: var(--size-border-thin) solid rgba(20, 20, 20, 0.1);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.28);
   padding: var(--spacing-sm);
 }
@@ -3620,7 +3626,7 @@ main {
 .case-study-how {
   margin-top: var(--spacing-sm);
   border: var(--size-border-thin) solid rgba(20, 20, 20, 0.1);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.3);
   padding: var(--spacing-sm);
 }
@@ -3660,7 +3666,7 @@ main {
   gap: calc(var(--spacing-xs) * 0.45);
   padding: var(--spacing-sm);
   border: var(--size-border-thin) solid rgba(20, 20, 20, 0.1);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.28);
 }
 
@@ -3683,7 +3689,7 @@ main {
 
 .case-study-block--callout {
   border: var(--size-border-thin) solid var(--color-writing-post-callout-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-writing-post-callout-surface);
   padding: var(--spacing-sm);
 }
@@ -3694,7 +3700,7 @@ main {
 
 .case-study-outline {
   border: var(--size-border-thin) solid var(--color-writing-post-outline-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.03);
   padding: var(--spacing-sm);
   align-self: start;
@@ -3728,7 +3734,7 @@ main {
   display: grid;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   border: var(--size-border-thin) solid rgba(255, 255, 255, 0.1);
   background:
     radial-gradient(circle at 84% 18%, rgba(241, 226, 24, 0.14), rgba(241, 226, 24, 0) 46%),
@@ -4037,7 +4043,7 @@ main {
 .about-page-mh-card {
   background: var(--color-accent-primary);
   color: var(--color-ink-on-accent);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   border: var(--size-border-thin) solid var(--color-border-accent-ink);
   box-shadow: var(--shadow-light-surface);
   padding: var(--spacing-md);
@@ -4104,7 +4110,7 @@ main {
 
 .about-page-principle {
   border: var(--size-border-thin) solid var(--color-about-principle-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-about-principle-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -4134,7 +4140,7 @@ main {
 
 .about-page-collab-item {
   border: var(--size-border-thin) solid var(--color-about-collab-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-about-collab-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -4163,7 +4169,7 @@ main {
 
 .about-page-local-card {
   border: var(--size-border-thin) solid var(--color-about-local-card-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: var(--color-about-local-card-surface);
   padding: var(--spacing-md);
   display: grid;
@@ -4240,7 +4246,7 @@ main {
   margin-top: var(--spacing-xs);
   width: min(22rem, calc(100vw - var(--spacing-lg)));
   border: var(--size-border-thin) solid var(--color-border-on-dark-soft);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   background: rgba(12, 15, 22, 0.92);
   backdrop-filter: blur(var(--size-header-blur));
   -webkit-backdrop-filter: blur(var(--size-header-blur));
@@ -4356,7 +4362,7 @@ main {
   .home-v2-hero-side,
   .home-v2-shift-card {
     padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .home-v2-hero-main .intro-title,
@@ -4379,7 +4385,7 @@ main {
 
   .about-a-statement-card {
     padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .about-a-statement-top .pill {
@@ -4416,14 +4422,14 @@ main {
 
   .about-page-mh-card {
     padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .about-page-principle,
   .about-page-collab-item,
   .about-page-local-card {
     padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .about-page-dev-support {
@@ -4441,7 +4447,7 @@ main {
   .actor-page-card,
   .actor-page-signal {
     padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .writing-post-dek {
@@ -4452,11 +4458,11 @@ main {
   .writing-post-side,
   .writing-post-outline {
     padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .writing-post-body-block--callout {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
     padding: var(--spacing-sm);
   }
 
@@ -4471,7 +4477,7 @@ main {
   .case-study-how,
   .case-study-outcome,
   .case-study-block--callout {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
     padding: var(--spacing-sm);
   }
 }
@@ -4513,7 +4519,7 @@ main {
     position: relative;
     padding-left: var(--spacing-sm);
     padding-right: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
     overflow: hidden;
 
     &::before {

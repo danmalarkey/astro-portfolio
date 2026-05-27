@@ -30,7 +30,7 @@
     .media-panel-media img {
       height: var(--size-media-panel-image-desktop);
       min-height: var(--size-media-panel-image-desktop);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-visual-panel);
       filter: var(--filter-media-image-soft);
     }
 
@@ -93,13 +93,13 @@
   .media-panel-media img {
     height: var(--size-media-panel-image-desktop);
     min-height: var(--size-media-panel-image-desktop);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-visual-panel);
   }
 
   .media-panel-media--stacked {
     position: relative;
     overflow: hidden;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-visual-panel);
     perspective: 1300px;
     perspective-origin: 84% 18%;
     transform-style: preserve-3d;
@@ -145,7 +145,7 @@
     top: 50%;
     width: 108%;
     height: auto;
-    border-radius: calc(var(--radius-sm) * 0.9);
+    border-radius: var(--radius-visual-panel);
     border: var(--size-border-thin) solid rgba(255, 255, 255, 0.14);
     filter: drop-shadow(0 0.75rem 1.4rem rgba(5, 8, 18, 0.44));
     object-fit: cover;

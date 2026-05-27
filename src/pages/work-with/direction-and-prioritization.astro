@@ -183,12 +183,8 @@ const outputBackgrounds = [
           <p class="direction-kicker">Direction & Prioritization</p>
           <h1 id="direction-title">Discover what’s worth pursuing.</h1>
           <p>
-            Strong direction is not just a roadmap. It connects business goals, customer value, operational reality, constraints, and tradeoffs before teams commit time, money, and momentum.
+            Strong direction is not just a roadmap. It connects business goals, customer value, operational reality, constraints, and tradeoffs before teams commit time, money, and resources.
           </p>
-          <div class="direction-actions" aria-label="Direction & Prioritization actions">
-            <Button href={mailto}>Start a conversation</Button>
-            <Button href="#direction-help" variant="ghost">See how I work</Button>
-          </div>
         </div>
       </div>
     </section>
@@ -297,7 +293,7 @@ const outputBackgrounds = [
     <section class="direction-section direction-section--mid-cta" aria-labelledby="direction-mid-cta" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="direction-cta-inner direction-cta-inner--accent gc-start-2 gc-span-24" data-motion-item>
-          <p class="direction-kicker">Before momentum gets expensive</p>
+          <p class="direction-kicker">Before delay gets expensive</p>
           <h2 id="direction-mid-cta">Know what deserves to be built.</h2>
           <p>
             When priorities, constraints, and tradeoffs are hard to see, the organization needs better decision structure before more execution.
@@ -371,7 +367,7 @@ const outputBackgrounds = [
 
     <HomeFooter
       eyebrow="Direction & Prioritization"
-      title="Momentum needs a clear direction to hold its course."
+      title="If competing inputs need to become clear product direction, let’s talk."
     />
   </main>
 </Layout>
@@ -457,7 +453,7 @@ const outputBackgrounds = [
     padding: 0;
     background:
       radial-gradient(circle at 78% 12%, rgba(var(--direction-glow), 0.08), transparent 24rem),
-      linear-gradient(180deg, rgba(6, 8, 13, 0.96), var(--direction-bg) 22rem);
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.96), var(--direction-bg) 22rem);
     color: var(--direction-text);
   }
 
@@ -472,7 +468,7 @@ const outputBackgrounds = [
     overflow: hidden;
     background-color: var(--direction-bg);
     background-image:
-      linear-gradient(90deg, rgb(3 6 11 / 16%) 0%, rgba(3, 6, 11, 0.8) 42%, rgba(3, 6, 11, 0.12) 100%),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.16) 0%, rgba(var(--ds-background-rgb), 0.8) 42%, rgba(var(--ds-background-rgb), 0.12) 100%),
       radial-gradient(ellipse at 82% 42%, rgba(var(--direction-glow), 0.16), rgba(var(--direction-glow), 0.055) 34%, transparent 64%),
       var(--direction-hero-bg);
     background-position: center, center, top;
@@ -636,7 +632,7 @@ const outputBackgrounds = [
     padding-bottom: 0;
     background:
       radial-gradient(circle at 70% 42%, rgba(var(--direction-glow), 0.08), transparent 26rem),
-      linear-gradient(180deg, rgba(7, 12, 22, 0.52), rgba(3, 6, 11, 0));
+      linear-gradient(180deg, rgba(var(--ds-surface-panel-rgb), 0.52), rgba(var(--ds-background-rgb), 0));
   }
 
   .direction-dimension-visual,
@@ -653,7 +649,7 @@ const outputBackgrounds = [
     margin-left: calc(50% - 50vw);
     overflow: visible;
     border-block: var(--size-border-thin) solid rgba(231, 235, 242, 0.08);
-    background: rgba(3, 6, 11, 0.24);
+    background: rgba(var(--ds-background-rgb), 0.24);
   }
 
   .direction-dimension-visual::before,
@@ -667,14 +663,14 @@ const outputBackgrounds = [
 
   .direction-dimension-visual::before {
     background:
-      linear-gradient(90deg, rgba(3, 6, 11, 0.96) 0%, rgba(3, 6, 11, 0.8) 24%, rgba(3, 6, 11, 0.32) 43%, transparent 66%),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.96) 0%, rgba(var(--ds-background-rgb), 0.8) 24%, rgba(var(--ds-background-rgb), 0.32) 43%, transparent 66%),
       radial-gradient(circle at 18% 42%, rgba(var(--direction-glow), 0.14), transparent 20rem);
   }
 
   .direction-dimension-visual::after {
     background:
-      linear-gradient(180deg, rgba(3, 6, 11, 0.28), transparent 24%, transparent 70%, rgba(3, 6, 11, 0.34)),
-      linear-gradient(90deg, rgba(3, 6, 11, 0.72), transparent 16%, transparent 84%, rgba(3, 6, 11, 0.64));
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.28), transparent 24%, transparent 70%, rgba(var(--ds-background-rgb), 0.34)),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.72), transparent 16%, transparent 84%, rgba(var(--ds-background-rgb), 0.64));
   }
 
   .direction-dimension-visual img {
@@ -713,10 +709,10 @@ const outputBackgrounds = [
     z-index: 0;
     display: block;
     border: var(--size-border-thin) solid rgba(176, 204, 255, 0.16);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0.006)),
-      rgb(7, 10, 17);
+      rgba(var(--ds-surface-panel-rgb), 0.96);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.018),
       0 0.8rem 1.65rem rgba(0, 0, 0, 0.16);
@@ -750,11 +746,11 @@ const outputBackgrounds = [
     min-height: clamp(10.75rem, 16vw, 14rem);
     padding: clamp(1.25rem, 2.1vw, 1.85rem);
     border: var(--size-border-thin) solid rgba(176, 204, 255, 0.22);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
       radial-gradient(ellipse at 0% 0%, rgba(var(--direction-glow), 0.18), transparent 13rem),
       linear-gradient(180deg, rgba(255, 255, 255, 0.044), rgba(255, 255, 255, 0.012)),
-      rgb(7, 10, 17);
+      rgba(var(--ds-surface-panel-rgb), 0.98);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.04),
       0 1.35rem 3rem rgba(0, 0, 0, 0.3);
@@ -951,7 +947,7 @@ const outputBackgrounds = [
     padding: clamp(1.5rem, 3vw, 2.25rem);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--direction-border-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
       radial-gradient(ellipse at 100% 0%, rgba(var(--direction-glow), 0.12), transparent 20rem),
       linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
@@ -1053,7 +1049,7 @@ const outputBackgrounds = [
     margin: 0;
     color: var(--direction-text);
     font-size: var(--ds-type-card-title-compact);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-regular);
     line-height: var(--ds-line-card-title);
     letter-spacing: var(--ds-tracking-card);
     text-wrap: balance;
@@ -1074,10 +1070,10 @@ const outputBackgrounds = [
     isolation: isolate;
     overflow: hidden;
     background:
-      linear-gradient(90deg, rgba(3, 6, 11, 0.16), rgba(3, 6, 11, 0.62) 42%, rgba(3, 6, 11, 0.82) 100%),
-      linear-gradient(180deg, rgba(3, 6, 11, 0.2), rgba(3, 6, 11, 0.5)),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.16), rgba(var(--ds-background-rgb), 0.62) 42%, rgba(var(--ds-background-rgb), 0.82) 100%),
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.2), rgba(var(--ds-background-rgb), 0.5)),
       var(--direction-outcomes-test-bg);
-    background-color: color-mix(in srgb, var(--direction-bg) 92%, black);
+    background-color: var(--direction-bg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1090,8 +1086,8 @@ const outputBackgrounds = [
     z-index: -1;
     pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(3, 6, 11, 0.26), transparent 22%, transparent 72%, rgba(3, 6, 11, 0.42)),
-      radial-gradient(ellipse at 74% 44%, transparent 0 30%, rgba(3, 6, 11, 0.34) 100%);
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.26), transparent 22%, transparent 72%, rgba(var(--ds-background-rgb), 0.42)),
+      radial-gradient(ellipse at 74% 44%, transparent 0 30%, rgba(var(--ds-background-rgb), 0.34) 100%);
   }
 
   .direction-outcome-field {
@@ -1107,7 +1103,7 @@ const outputBackgrounds = [
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(ellipse at 50% 50%, rgba(3, 6, 11, 0.08), transparent 70%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(var(--ds-background-rgb), 0.08), transparent 70%);
   }
 
   .direction-outcome-columns {
@@ -1123,7 +1119,7 @@ const outputBackgrounds = [
     display: grid;
     align-content: center;
     border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.1);
-    background: rgba(3, 6, 11, 0.12);
+    background: rgba(var(--ds-background-rgb), 0.12);
     backdrop-filter: blur(0.18rem);
   }
 
@@ -1142,11 +1138,11 @@ const outputBackgrounds = [
     padding: clamp(1.35rem, 2.6vw, 2rem);
     overflow: hidden;
     border: var(--size-border-thin) solid var(--direction-border-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
-      linear-gradient(180deg, rgba(7, 9, 13, 0.1) 0%, rgba(7, 9, 13, 0.16) 44%, rgba(7, 9, 13, 0.86) 100%),
+      linear-gradient(180deg, rgba(var(--ds-surface-panel-rgb), 0.1) 0%, rgba(var(--ds-surface-panel-rgb), 0.16) 44%, rgba(var(--ds-surface-panel-rgb), 0.86) 100%),
       var(--direction-output-bg),
-      rgba(7, 9, 13, 0.84);
+      rgba(var(--ds-surface-panel-rgb), 0.84);
     background-position: center;
     background-size: cover;
     box-shadow:
@@ -1160,9 +1156,9 @@ const outputBackgrounds = [
   .direction-output-card:hover {
     border-color: rgba(176, 204, 255, 0.18);
     background:
-      linear-gradient(180deg, rgba(7, 9, 13, 0.04) 0%, rgba(7, 9, 13, 0.12) 44%, rgba(7, 9, 13, 0.82) 100%),
+      linear-gradient(180deg, rgba(var(--ds-surface-panel-rgb), 0.04) 0%, rgba(var(--ds-surface-panel-rgb), 0.12) 44%, rgba(var(--ds-surface-panel-rgb), 0.82) 100%),
       var(--direction-output-bg),
-      rgba(7, 9, 13, 0.88);
+      rgba(var(--ds-surface-panel-rgb), 0.88);
     background-position: center;
     background-size: cover;
   }
@@ -1178,7 +1174,7 @@ const outputBackgrounds = [
     height: 52%;
     pointer-events: none;
     background:
-      linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.3)),
+      linear-gradient(180deg, transparent, rgba(var(--ds-background-rgb), 0.3)),
       radial-gradient(ellipse at 20% 100%, rgba(var(--direction-glow), 0.08), transparent 18rem);
   }
 
@@ -1222,7 +1218,7 @@ const outputBackgrounds = [
     overflow: hidden;
     padding: clamp(2rem, 5vw, 4.5rem);
     border: var(--size-border-thin) solid var(--direction-border-soft);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-panel);
     background:
       radial-gradient(ellipse at 80% 4%, rgba(var(--direction-glow), 0.14), transparent 24rem),
       linear-gradient(180deg, var(--direction-surface-strong), rgba(255, 255, 255, 0.01)),

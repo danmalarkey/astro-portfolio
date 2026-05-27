@@ -11,6 +11,7 @@ const homeV3ActorsVariant: 'legacy' | 'concept' = 'concept';
 const homeV3ActorsConceptVariant: 'scene' | 'lane' = 'lane';
 const homeV3PracticeVariant: 'grid' | 'story-stack' | 'solid-cards' = 'grid';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+const proofDraftImage = withBase('images/case-studies/home/tri-proof-bg.png');
 const createActorMailto = (actor: string, prompt: string) => {
   const params = new URLSearchParams();
   params.set('subject', `[${actor}] Advisory inquiry`);
@@ -23,13 +24,13 @@ const supportedOrganizationLoop = [...supportedOrganizations, ...supportedOrgani
 
 const leverageCards = [
   {
-    title: 'AI-enabled Systems',
+    title: 'AI-enabled product exploration',
     descriptionLines: [
-      'Designing AI-assisted workflows, prompt',
-      'systems, and product behavior with enough',
-      'structure to hold up in real use.'
+      'Explore new workflows, model system',
+      'behavior, and pressure-test what needs',
+      'to be true before teams invest.'
     ],
-    cardFit: 'For teams turning AI capability into useful product systems, not disconnected experiments.',
+    cardFit: 'Explore new workflows, model system behavior, and pressure-test what needs to be true before teams invest.',
     artType: 'ai',
     conceptLabel: 'AI product systems',
     conceptSignals: ['Workflow', 'Prompts', 'Behavior'],
@@ -164,8 +165,8 @@ const practiceStats = [
   },
   {
     eyebrow: 'Operating Model',
-    labelLines: ['Systems-led, people-first', 'operating model'],
-    text: 'Clarifies priorities, aligns teams, and builds standards that keep momentum high without creating chaos.',
+    labelLines: ['Design systems & standards'],
+    text: 'Create reusable patterns, accessibility guidance, and implementation guardrails that help teams ship with consistency.',
     visualType: 'helmet',
     outlineImage: withBase('images/home-v3/practice/practice-helmet-outline.svg'),
     detailImage: withBase('images/home-v3/practice/practice-helmet-detail.png')
@@ -191,7 +192,7 @@ const bridgePillars = [
     index: '3.0',
     tone: 'systems',
     title: 'Systems.',
-    headline: 'Create the standards and rhythms that sustain momentum.',
+    headline: 'Create the standards and rhythms that sustain execution.',
     body: 'Build the operating models, practices, and guardrails that help execution hold.'
   }
 ];
@@ -234,19 +235,19 @@ const operatingShifts = [
   {
     result: 'Sharper vision',
     before: '',
-    mechanism: 'Clarity and direction become easier to see, choose, communicate, and sustain.',
+    mechanism: 'Decision confidence becomes easier to see, choose, communicate, and sustain.',
     after: ''
   },
   {
-    result: 'Defensible quality',
+    result: 'Baseline rigor',
     before: '',
-    mechanism: 'Standards connect product logic, accessibility, delivery cost, and judgment.',
+    mechanism: 'Accessibility, ethical standards, and best practices drive shared expectations.',
     after: ''
   },
   {
     result: 'Integrated systems',
     before: '',
-    mechanism: 'Rituals, artifacts, and infrastructure keep disciplines connected across decisions and delivery.',
+    mechanism: 'Rituals, artifacts, and infrastructure keep disciplines connected.',
     after: ''
   },
   {
@@ -317,6 +318,41 @@ const caseStudies = [
   }
 ];
 
+const proofDraftCards = [
+  {
+    kicker: 'Regulated insurance platform',
+    details: ['Insurance operations', 'Business workshops', 'Conceptual product design', 'Agent, member, and underwriting workflows'],
+    title: 'Helped shape core insurance workflows across agents, members, and underwriting.',
+    image: proofDraftImage,
+    imageAlt: 'Swimmer moving through pool water',
+    imagePosition: 'center center'
+  },
+  {
+    kicker: 'Franchise operations platform',
+    details: ['Bid Management', 'Reporting & Forecasting', 'Analytics', 'Franchise Expansion & Growth'],
+    title: 'Contributed operational tooling that helps franchise teams see, manage, and forecast fence installations.',
+    image: 'https://images.unsplash.com/photo-1560749003-f4b1e17e2dff?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageAlt: 'Person working at a desk with technology',
+    imagePosition: 'center center'
+  },
+  {
+    kicker: 'Global seafood supply chain platform',
+    details: ['Food distribution', 'Global supply chain operations', 'Production scheduling', 'Workflow design'],
+    title: 'Helped shape operations workflows across a global seafood supply chain platform, including production floor scheduling.',
+    image: 'https://images.unsplash.com/photo-1588160282477-7abbf7ee8c5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageAlt: 'Seafood displayed on ice',
+    imagePosition: 'center center'
+  },
+  {
+    kicker: 'Veteran services data platform',
+    details: ['Veteran services', 'Secure intake workflows', 'Sensitive data management', 'Reporting systems'],
+    title: 'Contributed to veteran intake and secure data management for a growing national nonprofit.',
+    image: 'https://images.unsplash.com/photo-1696271929832-6a91a90b5884?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageAlt: 'Veteran service dog sitting beside a person',
+    imagePosition: 'center center'
+  }
+];
+
 const engagementModels = [
   {
     title: 'Fractional design leadership',
@@ -324,9 +360,9 @@ const engagementModels = [
     text: 'Embedded leadership support for product direction, organizational alignment, and critical design decisions across teams.'
   },
   {
-    title: 'Advisory and consulting engagements',
+    title: 'AI-enabled product exploration',
     fit: 'For high-stakes inflection points',
-    text: 'Targeted support for high-stakes decisions, product direction, and delivery friction where senior design leadership is needed quickly.'
+    text: 'Explore new workflows, model system behavior, and pressure-test what needs to be true before teams invest.'
   },
   {
     title: 'Transformation and reset work',
@@ -406,14 +442,15 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </section>
     </section>
 
-    <section id="focus-areas" class="home-v3-focus-areas" aria-label="Focus areas" data-home-v3-reveal>
+    <section id="focus-areas" class="section home-v3-focus-areas" aria-label="Focus areas" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
           eyebrow="Focus areas across the organization"
-          title="Different focus areas. One shared system."
-          body="I help organizations keep business goals, product direction, emerging technology, standards, and delivery connected through growth, complexity, and change."
+          title="Different focus areas. One connected model."
+          body="Organizations rarely struggle in one isolated place. Direction, operating models, emerging technology, standards, and delivery decisions all shape each other. I focus where those pressures need to stay connected so teams can make better decisions, move with clearer priorities, and build systems that hold as conditions change."
           accent
           headClass="home-v3-focus-areas-head gc-start-2 gc-span-10"
+          bodyClass="gc-start-15 gc-span-11"
         />
 
         <div class="home-v3-focus-areas-grid gc-start-2 gc-span-24" role="list">
@@ -441,7 +478,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="home-v3-client-trust" aria-label="Organizations I have supported" data-home-v3-reveal>
+    <section class="section home-v3-client-trust" aria-label="Organizations I have supported" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="home-v3-client-trust-shell gc-start-3 gc-span-22">
           <p class="home-v3-client-trust-label">Organizations I’ve supported</p>
@@ -462,12 +499,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     </section>
 
     {homeV3BridgeVariant === 'pillars' ? (
-      <section class="home-v3-pillars" aria-label="Clarity, strategy, and systems" data-home-v3-reveal>
+      <section class="section home-v3-pillars" aria-label="Clarity, strategy, and systems" data-home-v3-reveal>
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="home-v3-pillars-shell gc-start-2 gc-span-24">
             <div class="home-v3-pillars-head">
-              <p class="home-v3-section-label">Design leadership in practice</p>
-              <h2>Clarity and direction when the stakes are high.</h2>
+              <p class="home-v3-section-label">How the work holds</p>
+              <h2>Clearer priorities when the stakes are high.</h2>
             </div>
             <div class="home-v3-pillars-surface" data-home-v3-reveal-late>
               <div class="home-v3-pillars-grid" role="list">
@@ -487,7 +524,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         </div>
       </section>
     ) : homeV3BridgeVariant === 'legacy' ? (
-      <section class="home-v3-bridge" aria-label="Operating range" data-home-v3-bridge>
+      <section class="section home-v3-bridge" aria-label="Operating range" data-home-v3-bridge>
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="home-v3-bridge-shell gc-start-1 gc-span-26">
             <div class="home-v3-bridge-atmosphere" aria-hidden="true">
@@ -520,7 +557,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         </div>
       </section>
     ) : (
-      <section class="home-v3-bridge-lite" aria-label="Operating range" data-home-v3-bridge-lite>
+      <section class="section home-v3-bridge-lite" aria-label="Operating range" data-home-v3-bridge-lite>
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="home-v3-bridge-lite-shell gc-start-1 gc-span-26">
             <div class="home-v3-bridge-lite-stage">
@@ -552,7 +589,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </section>
     )}
 
-    <section class="home-v3-actors" data-home-v3-reveal>
+    <section class="section home-v3-actors" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-actors-intro">
         <SectionHeader
           eyebrow="Different roles. Shared pressure."
@@ -899,7 +936,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       )}
     </section>
 
-    <section class="home-v3-operating-shift" id="operating-shift" data-home-v3-reveal>
+    <section class="section home-v3-operating-shift" id="operating-shift" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-operating-shift-layout">
         <SectionHeader
           eyebrow="The standard"
@@ -923,57 +960,78 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="home-v3-outcomes home-v3-outcomes--rail home-v3-outcomes--editorial" data-home-v3-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-v3-outcomes-intro">
+    <section class="section about-dan-section" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys about-dan-header">
+        <SectionHeader
+          eyebrow="About Dan"
+          title="Product design, systems, and delivery leadership."
+          accent
+          headClass="about-dan-head gc-start-2 gc-span-13"
+        />
+      </div>
+
+      <div class="dm-grid-l dm-grid-l--grid-sys about-dan-media-grid">
+        <figure class="about-dan-media gc-start-2 gc-span-24">
+          <img src={withBase('images/dan-right.png')} alt="Dan leading a whiteboard session with a product team" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+
+      <div class="dm-grid-l dm-grid-l--grid-sys about-dan-copy-grid">
+        <div class="about-dan-body gc-start-2 gc-span-24">
+          <p>
+            I work across business goals, product direction, operating realities, and implementation constraints — helping teams turn complexity into clearer decisions and more durable systems.
+          </p>
+          <p>
+            My work spans strategy, product design, design systems, accessibility, AI-enabled exploration, and delivery support for organizations building or modernizing operational software.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proof-showcase" data-home-v3-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys proof-showcase-intro">
         <SectionHeader
           eyebrow="Proof"
           title="Real business outcomes"
           body="Selected operational systems, workflow transformations, and AI-assisted delivery work across client engagements and internal product infrastructure. Some details are anonymized."
-          headClass="home-v3-outcomes-head gc-start-2 gc-span-10"
+          accent
+          headClass="proof-showcase-head gc-start-2 gc-span-10"
         />
       </div>
 
-      <div class="case-rail-wrap dm-grid-l dm-grid-l--grid-sys">
-        <div class="case-rail gc-start-2 gc-span-24" id="case-rail" tabindex="0" aria-label="Featured case studies" data-home-v3-edge-rail data-home-v3-rail-anchor>
-          {caseStudies.map((item) => (
-            <article class={`case-card home-v3-proof-card ${item.stacked ? 'home-v3-proof-card--stacked' : ''}`}>
-              <div class="home-v3-proof-card-media">
-                <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
-                <div class="home-v3-proof-card-overlay">
-                  <div class="home-v3-proof-card-copy">
-                    <p class="home-v3-card-title-text home-v3-proof-card-title">{item.logo}</p>
-                    <p class="home-v3-card-copy-text home-v3-proof-card-role">{item.tags.join(' · ')}</p>
-                    <p class="home-v3-card-copy-text home-v3-proof-card-summary">{item.outcome}</p>
-                  </div>
+      <div class="proof-card-grid-wrap dm-grid-l dm-grid-l--grid-sys">
+        <div class="proof-card-grid gc-start-2 gc-span-24" role="list" aria-label="Featured case studies">
+          {proofDraftCards.map((item) => (
+            <article class="proof-card" role="listitem">
+              <img
+                class="proof-card-image"
+                src={item.image}
+                alt={item.imageAlt}
+                loading="lazy"
+                decoding="async"
+                style={`object-position: ${item.imagePosition};`}
+              />
+              <div class="proof-card-shade" aria-hidden="true"></div>
+              <div class="proof-card-inner">
+                <div class="proof-card-top">
+                  <p class="proof-card-kicker">{item.kicker}</p>
+                </div>
+                <div class="proof-card-copy">
+                  <h3>{item.title}</h3>
+                  <ul class="proof-card-details">
+                    {item.details.map((detail) => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </article>
           ))}
         </div>
       </div>
-
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="home-v3-outcomes-controls-row gc-start-2 gc-span-24">
-          <div class="case-rail-controls" aria-label="Case studies navigation">
-            <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-prev aria-controls="case-rail" aria-label="Scroll to previous case study">
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M10.75 2.75 5.5 8l5.25 5.25" />
-              </svg>
-            </button>
-            <div class="case-rail-progress" aria-live="polite">
-              <div class="case-rail-track" aria-hidden="true"><span data-case-progress></span></div>
-            </div>
-            <button type="button" class="case-rail-btn case-rail-btn--icon" data-case-next aria-controls="case-rail" aria-label="Scroll to next case study">
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M5.25 2.75 10.5 8l-5.25 5.25" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section class="home-v3-practice" data-home-v3-reveal>
+    <section class="section home-v3-practice" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-practice-intro">
         <SectionHeader
           eyebrow="Leadership in practice"
@@ -1106,7 +1164,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     </section>
 
-    <section class="home-v3-engagements home-v3-engagements--editorial" data-home-v3-reveal>
+    <section class="section home-v3-engagements home-v3-engagements--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-engagements-intro">
         <SectionHeader eyebrow="Engagements" title="Ways to engage" />
       </div>
@@ -1128,16 +1186,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="home-v3-fit" data-home-v3-reveal>
+    <section class="section home-v3-fit" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-fit-layout">
         <SectionHeader
           eyebrow="Fit / FAQ"
           title="Before we talk."
-          body="A few notes on the work, the process, and where I can be most useful."
+          body="I’m a strong fit when the business needs clearer direction and that direction has to translate into product decisions, standards, systems, and delivery. That can include shaping a roadmap of success, clarifying what should be built, aligning teams around priorities, or helping leaders make better decisions under complexity."
+          headClass="home-v3-fit-head gc-start-2 gc-span-11"
+          bodyClass="home-v3-fit-body gc-start-2 gc-span-11"
         />
 
-        <div class="home-v3-fit-rows gc-start-11 gc-span-15" role="list" aria-label="Fit and FAQ">
-          <p class="home-v3-fit-rows-label">Common questions</p>
+        <div class="home-v3-fit-rows gc-start-15 gc-span-11" role="list" aria-label="Fit and FAQ">
           {fitQuestions.map((item) => (
             <details class="home-v3-fit-row" role="listitem">
               <summary>
@@ -1153,7 +1212,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
+    <section class="section home-v3-writing home-v3-writing--editorial" data-home-v3-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-v3-writing-layout">
         <SectionHeader title="Curated thinking" headClass="home-v3-writing-head gc-start-2 gc-span-10" />
       </div>
@@ -1280,8 +1339,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         if (!prefersReducedMotion) {
           const now = performance.now();
 
-          // Frequent but controlled shooting stars for atmospheric motion.
-          if (now >= nextShootingStarAt && shootingStars.length < 2) {
+          // Keep shooting stars occasional so the hero stays calm.
+          if (now >= nextShootingStarAt && shootingStars.length < 1) {
             const fromLeft = Math.random() > 0.5;
             const startX = fromLeft ? -120 : width + 120;
             const startY = Math.random() * (height * 0.45) + 20;
@@ -1295,7 +1354,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
               life: 0,
               maxLife: 150 + Math.random() * 60
             });
-            nextShootingStarAt = now + 1100 + Math.random() * 1600;
+            nextShootingStarAt = now + 2400 + Math.random() * 2600;
           }
 
           for (let i = shootingStars.length - 1; i >= 0; i -= 1) {
@@ -1337,7 +1396,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       resize();
       seed();
       draw();
-      nextShootingStarAt = performance.now() + 1800;
+      nextShootingStarAt = performance.now() + 2600;
       window.addEventListener('resize', resize);
     };
 
@@ -1358,119 +1417,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     syncEdgeRailWidths();
     window.addEventListener('resize', syncEdgeRailWidths);
-  })();
-
-  (() => {
-    const rail = document.querySelector('[data-home-v3-rail-anchor]');
-    const anchorSource = document.querySelector('.home-v3-outcomes-head');
-    if (!(rail instanceof HTMLElement) || !(anchorSource instanceof HTMLElement)) return;
-
-    const syncOutcomeRailAnchor = () => {
-      const railLeft = rail.getBoundingClientRect().left;
-      const anchorLeft = anchorSource.getBoundingClientRect().left;
-      const anchor = Math.max(0, anchorLeft - railLeft);
-      rail.style.setProperty('--home-v3-rail-anchor', `${anchor}px`);
-    };
-
-    syncOutcomeRailAnchor();
-    window.addEventListener('resize', syncOutcomeRailAnchor);
-  })();
-
-  (() => {
-    const rail = document.getElementById('case-rail');
-    const prevButton = document.querySelector('[data-case-prev]');
-    const nextButton = document.querySelector('[data-case-next]');
-    const currentNode = document.querySelector('[data-case-current]');
-    const progressNode = document.querySelector('[data-case-progress]');
-
-    if (!rail || !(rail instanceof HTMLElement) || !prevButton || !nextButton) return;
-
-    const cards = Array.from(rail.querySelectorAll('.case-card'));
-    const totalCards = cards.length;
-    let activeIndex = 0;
-    const EDGE_EPSILON = 4;
-    const getCardRailOffset = (card) => card.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
-    const getRailAnchor = () => Number.parseFloat(getComputedStyle(rail).getPropertyValue('--home-v3-rail-anchor')) || 0;
-
-    const syncRailTailSpace = () => {
-      const firstCard = cards[0];
-      if (!(firstCard instanceof HTMLElement)) return;
-      const trailingSpace = Math.max(0, rail.clientWidth - firstCard.offsetWidth);
-      rail.style.setProperty('--size-case-rail-tail-space', `${trailingSpace}px`);
-    };
-
-    const updateProgress = () => {
-      if (currentNode) currentNode.textContent = `${activeIndex + 1}`;
-      if (progressNode instanceof HTMLElement) {
-        const progress = totalCards <= 1 ? 1 : (activeIndex + 1) / totalCards;
-        progressNode.style.transform = `scaleX(${progress.toFixed(4)})`;
-      }
-    };
-
-    const updateActiveIndex = () => {
-      if (rail.scrollLeft <= EDGE_EPSILON) {
-        activeIndex = 0;
-        updateProgress();
-        return;
-      }
-
-      const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
-      if (rail.scrollLeft >= maxScroll - EDGE_EPSILON) {
-        activeIndex = Math.max(0, totalCards - 1);
-        updateProgress();
-        return;
-      }
-
-      const railStart = rail.scrollLeft + getRailAnchor();
-      let closestIndex = 0;
-      let closestDistance = Number.POSITIVE_INFINITY;
-
-      cards.forEach((card, index) => {
-        if (!(card instanceof HTMLElement)) return;
-        const distance = Math.abs(getCardRailOffset(card) - railStart);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      activeIndex = closestIndex;
-      updateProgress();
-    };
-
-    const updateButtons = () => {
-      prevButton.removeAttribute('disabled');
-      nextButton.removeAttribute('disabled');
-      updateActiveIndex();
-    };
-
-    const scrollToIndex = (index) => {
-      const nextIndex = Math.max(0, Math.min(index, totalCards - 1));
-      const targetCard = cards[nextIndex];
-      if (!(targetCard instanceof HTMLElement)) return;
-      const anchor = nextIndex === 0 ? 0 : getRailAnchor();
-      rail.scrollTo({ left: Math.max(0, getCardRailOffset(targetCard) - anchor), behavior: 'smooth' });
-    };
-
-    prevButton.addEventListener('click', () => {
-      updateActiveIndex();
-      const nextIndex = activeIndex <= 0 ? totalCards - 1 : activeIndex - 1;
-      scrollToIndex(nextIndex);
-    });
-    nextButton.addEventListener('click', () => {
-      updateActiveIndex();
-      const nextIndex = activeIndex >= totalCards - 1 ? 0 : activeIndex + 1;
-      scrollToIndex(nextIndex);
-    });
-    rail.addEventListener('scroll', updateButtons, { passive: true });
-    window.addEventListener('resize', () => {
-      syncRailTailSpace();
-      updateButtons();
-    });
-
-    syncRailTailSpace();
-    updateProgress();
-    updateButtons();
   })();
 
   (() => {
@@ -2027,6 +1973,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     --home-v3-tracking-card: var(--ds-tracking-card);
     --home-v3-tracking-text: var(--ds-tracking-text);
     --home-v3-section-gap: var(--ds-section-gap);
+    --home-v3-section-spacing: calc(var(--spacing-4xl) + var(--spacing-3xl));
     --home-v3-section-eyebrow-gap: var(--spacing-xs);
     --home-v3-panel-gap: var(--ds-panel-gap);
     --home-v3-button-padding-y: var(--ds-button-padding-y);
@@ -2048,16 +1995,27 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   :global(body:has(.home-v3)) {
-    background-color: #050608;
+    background-color: var(--ds-background);
   }
 
   .home-v3 {
+    --home-v3-bg: var(--ds-background);
+    --home-v3-surface: var(--ds-surface);
+    --home-v3-surface-strong: var(--ds-surface-strong);
+    --home-v3-surface-deep: var(--color-background-surface);
+    --home-v3-surface-elevated: var(--color-background-surface-alt);
+    --home-v3-surface-panel-rgb: var(--ds-surface-panel-rgb);
+    --home-v3-bg-rgb: var(--ds-background-rgb);
+    --home-v3-shadow: 0 1.25rem 3rem rgba(0, 5, 14, 0.34);
+    --color-surface-dark-base: rgba(5, 12, 22, 0.92);
+    --color-surface-dark-elevated: var(--home-v3-surface-elevated);
+
     position: relative;
     isolation: isolate;
     overflow: hidden;
     background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent 22rem),
-      radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.025), transparent 28rem),
+      radial-gradient(circle at top left, rgba(92, 126, 190, 0.12), transparent 24rem),
+      radial-gradient(circle at bottom right, rgba(40, 79, 138, 0.14), transparent 30rem),
       var(--home-v3-bg);
     color: var(--home-v3-text);
     min-height: 100vh;
@@ -2086,8 +2044,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     height: 100dvh;
     min-height: 100vh;
     min-height: 100dvh;
-    padding-top: var(--home-v3-outer-gap);
-    padding-bottom: var(--home-v3-outer-gap);
+    padding-top: 0;
+    padding-bottom: 0;
     box-sizing: border-box;
   }
 
@@ -2166,11 +2124,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: relative;
     z-index: 1;
     align-self: stretch;
-    height: calc(100vh - (var(--home-v3-outer-gap) * 2));
-    height: calc(100dvh - (var(--home-v3-outer-gap) * 2));
-    min-height: calc(100vh - (var(--home-v3-outer-gap) * 2));
-    min-height: calc(100dvh - (var(--home-v3-outer-gap) * 2));
-    padding-inline: var(--home-v3-outer-gap);
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: 0;
   }
 
   .home-v3-hero-layout {
@@ -2294,7 +2254,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-focus-areas {
     position: relative;
     width: 100%;
-    padding: 6rem 0 clamp(5rem, 8vw, 8rem);
   }
 
   .home-v3-focus-areas-grid {
@@ -2312,12 +2271,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
     overflow: hidden;
     border: var(--size-border-thin) solid rgba(121, 154, 255, 0.12);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
     background:
       radial-gradient(ellipse 58% 46% at 0% 0%, rgba(121, 154, 255, 0.18), rgba(121, 154, 255, 0.055) 38%, transparent 74%),
       radial-gradient(ellipse 46% 34% at 10% 4%, rgba(231, 235, 242, 0.08), rgba(231, 235, 242, 0.024) 42%, transparent 72%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
-      rgba(7, 9, 13, 0.9);
+      rgba(var(--home-v3-surface-panel-rgb), 0.9);
     color: var(--home-v3-text);
     text-decoration: none;
     box-shadow:
@@ -2475,7 +2434,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: var(--spacing-xs);
     color: rgba(231, 235, 242, 0.72);
     font-size: var(--home-v3-type-body-xs);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-regular);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0;
     text-transform: uppercase;
@@ -2560,7 +2519,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-pillars {
     position: relative;
     width: 100%;
-    padding: 10rem 0;
   }
 
   .home-v3-pillars-shell {
@@ -2584,7 +2542,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(244, 247, 255, 0.92);
     font-family: var(--home-v3-display);
-    font-size: 4.2vw;
+    font-size: var(--home-v3-type-title-lg);
     font-weight: var(--font-weight-medium);
     line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
@@ -2616,10 +2574,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-pillars-surface {
     position: relative;
     overflow: hidden;
-    border-radius: 1.75rem;
+    border-radius: var(--radius-panel);
     border: 1px solid rgba(231, 235, 242, 0.08);
     background:
-      linear-gradient(180deg, rgba(16, 18, 25, 0.98), rgba(8, 9, 13, 1));
+      radial-gradient(ellipse at 50% 0%, rgba(121, 154, 255, 0.08), transparent 30rem),
+      linear-gradient(180deg, rgba(137, 169, 226, 0.045), rgba(137, 169, 226, 0.018)),
+      rgba(var(--ds-surface-panel-rgb), 0.86);
     box-shadow:
       inset 0 0 0 1px rgba(255, 255, 255, 0.025),
       0 1.2rem 2.8rem rgba(0, 0, 0, 0.18);
@@ -2667,6 +2627,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0;
     padding: 3rem 2.2rem 2.4rem;
     overflow: hidden;
+    background:
+      radial-gradient(ellipse at 100% 0%, rgba(121, 154, 255, 0.1), transparent 18rem),
+      linear-gradient(180deg, rgba(137, 169, 226, 0.055), rgba(137, 169, 226, 0.02)),
+      rgba(var(--ds-surface-panel-rgb), 0.82);
     transition:
       background-color 180ms ease,
       border-color 180ms ease,
@@ -2737,7 +2701,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-pillar-title {
     max-width: none;
-    font-size: clamp(2rem, 2.65vw, 2.85rem);
+    font-size: var(--home-v3-type-title-md);
     line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     color: rgba(244, 247, 255, 0.96);
@@ -2745,10 +2709,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-pillar-headline {
     max-width: none;
-    font-size: clamp(1.28rem, 1.85vw, 1.74rem);
+    font-size: var(--home-v3-type-card-title-compact);
     line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     color: rgba(230, 235, 244, 0.9);
+    text-wrap: balance;
   }
 
   .home-v3-pillar-body {
@@ -2767,7 +2732,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: none;
     --bridge-scroll-height: 228vh;
     min-height: var(--bridge-scroll-height);
-    padding-top: 0;
     --bridge-strategy: 0;
     --bridge-systems: 0;
     --bridge-clarity: 0;
@@ -3187,7 +3151,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: none;
     --bridge-lite-scroll-height: 154vh;
     min-height: var(--bridge-lite-scroll-height);
-    padding-top: 0;
     --bridge-lite-field: 0;
   }
 
@@ -3398,11 +3361,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     min-height: 100%;
     height: 100%;
     padding: var(--home-v3-outer-gap);
-    border-radius: 2rem;
+    border-radius: var(--radius-panel);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0)),
       linear-gradient(128deg, rgba(255, 255, 255, 0.024), rgba(255, 255, 255, 0) 42%),
-      #050608;
+      var(--home-v3-bg);
     box-shadow:
       inset 0 0 0 1px rgba(231, 235, 242, 0.05),
       0 1.25rem 3rem rgba(0, 0, 0, 0.16);
@@ -3432,7 +3395,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-header.is-scrolled .home-v3-nav {
-    background: rgba(10, 12, 18, 0.52);
+    background: rgba(var(--home-v3-surface-panel-rgb), 0.72);
     border-color: rgba(231, 235, 242, 0.08);
     box-shadow:
       inset 0 0 0 1px rgba(255, 255, 255, 0.025),
@@ -3481,7 +3444,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       inset 0 1px 0 rgba(255, 255, 255, 0.045),
       0 0.45rem 1.2rem rgba(0, 0, 0, 0.1);
     color: rgba(231, 235, 242, 0.72);
-    font-size: 0.72rem;
+    font-size: var(--home-v3-type-label-compact);
     font-weight: var(--font-weight-medium);
     line-height: var(--home-v3-line-section-title-compact);
     letter-spacing: 0;
@@ -3530,7 +3493,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     align-items: center;
     gap: 0.72rem;
     color: var(--home-v3-text-muted);
-    font-size: 0.82rem;
+    font-size: var(--home-v3-type-body-xs);
     grid-column: 4;
     justify-self: end;
     align-self: center;
@@ -3716,7 +3679,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     height: 100%;
     display: grid;
     align-items: end;
-    padding: calc(var(--spacing-3xl) + 3.25rem) 0 var(--spacing-3xl);
+    padding: calc(var(--spacing-3xl) + 3.25rem) calc(var(--layout-gutter-desktop) + var(--home-v3-outer-gap)) var(--spacing-3xl);
   }
 
   .home-v3-kicker,
@@ -3766,9 +3729,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-card-title);
     line-height: var(--home-v3-line-card-title);
     letter-spacing: var(--home-v3-tracking-card);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-light);
     text-wrap: balance;
-    max-width: none;
+    max-width: 9ch;
   }
 
   .home-v3-card-title-text--ink {
@@ -3903,11 +3866,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     justify-content: center;
     padding: var(--home-v3-button-padding-y) var(--home-v3-button-padding-x);
     border-radius: var(--home-v3-button-radius);
-    border: 1px solid rgba(231, 235, 242, 0.1);
-    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(231, 235, 242, 0.13);
+    background:
+      linear-gradient(180deg, var(--home-v3-surface-strong), color-mix(in srgb, var(--home-v3-surface) 46%, transparent)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.82);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.045),
-      0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+      inset 0 1px 0 rgba(255, 255, 255, 0.055),
+      0 0.5rem 1rem rgba(var(--home-v3-bg-rgb), 0.18);
     font-size: var(--home-v3-type-body-sm);
     font-family: var(--font-family-body);
     font-weight: var(--font-weight-semibold);
@@ -3937,36 +3902,39 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-button--solid {
     background: linear-gradient(180deg, rgba(248, 250, 255, 0.98), rgba(233, 238, 246, 0.96));
     border-color: rgba(231, 235, 242, 0.36);
-    color: #08090c;
-    -webkit-text-fill-color: #08090c;
+    color: var(--color-ink-on-accent);
+    -webkit-text-fill-color: var(--color-ink-on-accent);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.88),
-      0 0.6rem 1.2rem rgba(0, 0, 0, 0.12);
+      0 0.6rem 1.2rem rgba(var(--home-v3-bg-rgb), 0.16);
   }
 
   .home-v3 a.home-v3-button--solid:link,
   .home-v3 a.home-v3-button--solid:visited,
   .home-v3-button--solid:link,
   .home-v3-button--solid:visited {
-    color: #08090c;
-    -webkit-text-fill-color: #08090c;
+    color: var(--color-ink-on-accent);
+    -webkit-text-fill-color: var(--color-ink-on-accent);
   }
 
   .home-v3-button--ghost {
-    background: rgba(255, 255, 255, 0.02);
+    background:
+      linear-gradient(180deg, var(--home-v3-surface), color-mix(in srgb, var(--home-v3-surface) 32%, transparent)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.76);
     color: var(--home-v3-text);
   }
 
   .home-v3-button--actor-primary {
     background:
-      linear-gradient(180deg, rgba(28, 30, 35, 0.98), rgba(19, 20, 24, 1));
+      linear-gradient(180deg, var(--home-v3-surface-strong), color-mix(in srgb, var(--home-v3-surface) 46%, transparent)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.9);
     color: var(--home-v3-text);
     -webkit-text-fill-color: var(--home-v3-text);
-    border-color: rgba(255, 255, 255, 0.09);
+    border-color: rgba(231, 235, 242, 0.14);
     box-shadow:
-      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.055),
-      inset 0 -0.0625rem 0 rgba(0, 0, 0, 0.36),
-      0 0.45rem 1rem rgba(0, 0, 0, 0.16);
+      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.06),
+      inset 0 -0.0625rem 0 rgba(var(--home-v3-bg-rgb), 0.28),
+      0 0.45rem 1rem rgba(var(--home-v3-bg-rgb), 0.2);
     transition:
       background 0.28s ease,
       border-color 0.28s ease,
@@ -3986,13 +3954,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-button--actor-primary:focus-visible {
     border-color: rgba(var(--actor-cta-soft-rgb, 220, 230, 255), 0.18);
     background:
-      linear-gradient(135deg, rgba(var(--actor-cta-soft-rgb, 220, 230, 255), 0.055), rgba(var(--actor-cta-rgb, 160, 188, 255), 0) 72%),
-      linear-gradient(180deg, rgba(32, 34, 39, 0.98), rgba(20, 22, 26, 1));
+      linear-gradient(135deg, rgba(var(--actor-cta-soft-rgb, 220, 230, 255), 0.07), rgba(var(--actor-cta-rgb, 160, 188, 255), 0) 72%),
+      linear-gradient(180deg, var(--home-v3-surface-strong), color-mix(in srgb, var(--home-v3-surface) 64%, transparent)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.96);
     box-shadow:
       inset 0 0.0625rem 0 rgba(255, 255, 255, 0.07),
-      inset 0 -0.0625rem 0 rgba(0, 0, 0, 0.38),
+      inset 0 -0.0625rem 0 rgba(var(--home-v3-bg-rgb), 0.3),
       0 0 0 0.0625rem rgba(255, 255, 255, 0.02),
-      0 0.72rem 1.28rem rgba(0, 0, 0, 0.2),
+      0 0.72rem 1.28rem rgba(var(--home-v3-bg-rgb), 0.24),
       0 0 1rem rgba(var(--actor-cta-rgb, 160, 188, 255), 0.06);
   }
 
@@ -4018,8 +3987,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     overflow: hidden;
     isolation: isolate;
     border: 1px solid var(--home-v3-border-soft);
-    border-radius: 1.5rem;
-    background: rgba(8, 9, 12, 0.94);
+    border-radius: var(--radius-card);
+    background: rgba(var(--home-v3-surface-panel-rgb), 0.94);
     box-shadow: var(--home-v3-shadow);
     min-height: 36rem;
     display: block;
@@ -4130,8 +4099,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     background:
       radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.06), transparent 16rem),
       radial-gradient(circle at 78% 76%, rgba(255, 255, 255, 0.03), transparent 18rem),
-      linear-gradient(180deg, rgba(15, 17, 22, 0.28), rgba(8, 9, 12, 0.7)),
-      rgba(7, 8, 11, 0.98);
+      linear-gradient(180deg, rgba(15, 17, 22, 0.28), rgba(var(--home-v3-surface-panel-rgb), 0.7)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.98);
   }
 
   .home-v3-actor-card-media::before {
@@ -4140,7 +4109,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     inset: 0;
     z-index: 1;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%, rgba(255, 255, 255, 0.018) 62%, rgba(5, 6, 8, 0.14) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%, rgba(255, 255, 255, 0.018) 62%, rgba(var(--home-v3-bg-rgb), 0.14) 100%),
       linear-gradient(115deg, rgba(255, 255, 255, 0.03), transparent 30%),
       radial-gradient(circle at 24% 24%, rgba(255, 255, 255, 0.035), transparent 16rem);
     pointer-events: none;
@@ -4152,7 +4121,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     z-index: 2;
     inset: auto 0 0;
     height: 28%;
-    background: linear-gradient(180deg, rgba(5, 6, 8, 0) 0%, rgba(5, 6, 8, 0.02) 28%, rgba(5, 6, 8, 0.08) 54%, rgba(5, 6, 8, 0.18) 78%, rgba(5, 6, 8, 0.32) 100%);
+    background: linear-gradient(180deg, rgba(var(--home-v3-bg-rgb), 0) 0%, rgba(var(--home-v3-bg-rgb), 0.02) 28%, rgba(var(--home-v3-bg-rgb), 0.08) 54%, rgba(var(--home-v3-bg-rgb), 0.18) 78%, rgba(var(--home-v3-bg-rgb), 0.32) 100%);
     pointer-events: none;
   }
 
@@ -4201,21 +4170,21 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     background:
       radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.028), transparent 16rem),
       radial-gradient(circle at 78% 76%, rgba(255, 255, 255, 0.016), transparent 18rem),
-      linear-gradient(180deg, rgba(11, 13, 18, 0.16), rgba(7, 8, 11, 0.82)),
-      rgba(6, 7, 10, 0.99);
+      linear-gradient(180deg, rgba(11, 13, 18, 0.16), rgba(var(--home-v3-surface-panel-rgb), 0.82)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.99);
     opacity: 0.76;
   }
 
   .home-v3-actor-card--product .home-v3-actor-card-media::before {
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.016), transparent 18%, rgba(255, 255, 255, 0.008) 62%, rgba(5, 6, 8, 0.12) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.016), transparent 18%, rgba(255, 255, 255, 0.008) 62%, rgba(var(--home-v3-bg-rgb), 0.12) 100%),
       linear-gradient(115deg, rgba(255, 255, 255, 0.016), transparent 30%),
       radial-gradient(circle at 24% 24%, rgba(255, 255, 255, 0.018), transparent 16rem);
   }
 
   .home-v3-actor-card--product .home-v3-actor-card-media::after {
     height: 24%;
-    background: linear-gradient(180deg, rgba(5, 6, 8, 0) 0%, rgba(5, 6, 8, 0.012) 28%, rgba(5, 6, 8, 0.05) 54%, rgba(5, 6, 8, 0.12) 78%, rgba(5, 6, 8, 0.22) 100%);
+    background: linear-gradient(180deg, rgba(var(--home-v3-bg-rgb), 0) 0%, rgba(var(--home-v3-bg-rgb), 0.012) 28%, rgba(var(--home-v3-bg-rgb), 0.05) 54%, rgba(var(--home-v3-bg-rgb), 0.12) 78%, rgba(var(--home-v3-bg-rgb), 0.22) 100%);
   }
 
   .home-v3-actor-traces {
@@ -4413,7 +4382,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-art-card,
   .home-v3-art-layer {
-    border-radius: 1.28rem;
+    border-radius: var(--radius-card);
     border: 1px solid rgba(231, 235, 242, 0.08);
     background:
       linear-gradient(180deg, rgba(24, 26, 31, 0.82), rgba(14, 16, 20, 0.56)),
@@ -4440,7 +4409,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     align-items: center;
     min-height: 1.2rem;
     border-radius: 999rem;
-    font-size: 0.62rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -4498,7 +4467,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: absolute;
     inset: 1rem 1rem auto;
     min-height: 14.8rem;
-    border-radius: 1.28rem;
+    border-radius: var(--radius-panel);
     background:
       linear-gradient(180deg, rgba(18, 19, 23, 0.92), rgba(12, 13, 17, 0.94)),
       radial-gradient(circle at top left, rgba(var(--executive-gold-rgb), 0.014), transparent 11rem);
@@ -4526,7 +4495,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-executive-surface-label {
-    font-size: 0.46rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -4551,7 +4520,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-executive-surface-delta {
-    font-size: 0.44rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -4669,7 +4638,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     min-height: 1.46rem;
     padding: 0 0.58rem;
     border-radius: 999rem;
-    font-size: 0.56rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -4779,7 +4748,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-art-priority span,
   .home-v3-art-stat span {
     color: rgba(231, 235, 242, 0.68);
-    font-size: 0.72rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-body-compact);
     opacity: 0.74;
     transition: opacity 0.35s ease;
@@ -4814,7 +4783,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-art-stat strong {
-    font-size: 2rem;
+    font-size: var(--home-v3-type-title-md);
     line-height: var(--home-v3-line-title);
     letter-spacing: -0.05em;
   }
@@ -4983,7 +4952,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-art-status-grid span {
     position: relative;
-    border-radius: 0.9rem;
+    border-radius: var(--radius-card);
     border: 1px solid rgba(var(--actor-accent-soft-rgb), 0.1);
     background: linear-gradient(180deg, rgba(var(--actor-accent-soft-rgb), 0.12), rgba(var(--actor-accent-rgb), 0.025));
     opacity: 0.58;
@@ -5559,11 +5528,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: 100%;
     min-height: 12.9rem;
     padding: 0.78rem 0.78rem 1.4rem;
-    border-radius: 1.34rem;
+    border-radius: var(--radius-panel);
     border: 1px solid rgba(214, 223, 255, 0.08);
     background:
-      linear-gradient(180deg, rgba(9, 11, 15, 0.975), rgba(7, 8, 11, 0.92)),
-      rgba(8, 9, 12, 0.84);
+      linear-gradient(180deg, rgba(9, 11, 15, 0.975), rgba(var(--home-v3-surface-panel-rgb), 0.92)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.84);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.02),
       0 0.75rem 2rem rgba(0, 0, 0, 0.16);
@@ -5596,7 +5565,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     inset: auto 0 0;
     z-index: 2;
     height: 26%;
-    background: linear-gradient(180deg, rgba(8, 9, 12, 0) 0%, rgba(8, 9, 12, 0.08) 28%, rgba(8, 9, 12, 0.3) 72%, rgba(8, 9, 12, 0.58) 100%);
+    background: linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0) 0%, rgba(var(--home-v3-surface-panel-rgb), 0.08) 28%, rgba(var(--home-v3-surface-panel-rgb), 0.3) 72%, rgba(var(--home-v3-surface-panel-rgb), 0.58) 100%);
     pointer-events: none;
   }
 
@@ -5648,7 +5617,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-product-terminal-file {
     flex: 1;
     min-width: 0;
-    font-size: 0.72rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-body-compact);
     letter-spacing: 0.02em;
     color: rgba(216, 223, 236, 0.72);
@@ -5658,7 +5627,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-product-terminal-mode {
-    font-size: 0.62rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -5679,11 +5648,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: absolute;
     inset: 0;
     z-index: 0;
-    border-radius: 1.1rem;
+    border-radius: var(--radius-panel);
     border: 1px solid rgba(214, 223, 255, 0.06);
     background:
       linear-gradient(180deg, rgba(14, 16, 22, 0.56), rgba(10, 12, 17, 0.44)),
-      rgba(8, 9, 12, 0.46);
+      rgba(var(--home-v3-surface-panel-rgb), 0.46);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
   }
 
@@ -5709,7 +5678,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-product-terminal-ln {
-    font-size: 0.62rem;
+    font-size: var(--home-v3-type-label-compact);
     letter-spacing: 0.02em;
     color: rgba(149, 159, 186, 0.2);
   }
@@ -5719,7 +5688,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     align-items: center;
     gap: 0.18rem;
     min-width: 0;
-    font-size: 0.72rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-body-compact);
     white-space: nowrap;
     overflow: hidden;
@@ -5774,12 +5743,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0.34rem;
     padding: 0.7rem 0.72rem 0.82rem;
     border-left: 1px solid rgba(214, 223, 255, 0.06);
-    border-radius: 0.95rem;
+    border-radius: var(--radius-card);
     background: linear-gradient(180deg, rgba(20, 23, 31, 0.52), rgba(12, 14, 19, 0.28));
   }
 
   .home-v3-product-terminal-metric-label {
-    font-size: 0.62rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -5788,14 +5757,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-product-terminal-metric strong {
     font-family: var(--home-v3-display);
-    font-size: 2rem;
+    font-size: var(--home-v3-type-title-md);
     line-height: var(--home-v3-line-title);
     letter-spacing: -0.05rem;
     color: rgba(239, 243, 252, 0.58);
   }
 
   .home-v3-product-terminal-metric-meta {
-    font-size: 0.62rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-body-compact);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -6013,9 +5982,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-card-copy h3 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: var(--home-v3-type-card-title-compact);
     line-height: var(--home-v3-line-title);
-    letter-spacing: -0.04em;
+    letter-spacing: var(--home-v3-tracking-card);
     text-wrap: balance;
     max-width: 16ch;
     min-height: 2.55rem;
@@ -6025,7 +5994,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-card-copy p {
     margin: 0;
     color: rgba(231, 235, 242, 0.88);
-    font-size: 0.91rem;
+    font-size: var(--home-v3-type-body-sm);
     line-height: var(--home-v3-line-lead);
     max-width: 34ch;
     min-height: 4.25rem;
@@ -6041,7 +6010,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-button--compact {
     padding: var(--home-v3-button-padding-y-compact) var(--home-v3-button-padding-x-compact);
-    font-size: 0.78rem;
+    font-size: var(--home-v3-type-label-compact);
     border-radius: 1rem;
   }
 
@@ -6050,9 +6019,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     align-items: center;
     gap: 0.18rem;
     color: var(--home-v3-text);
-    font-size: 0.8rem;
+    font-size: var(--home-v3-type-body-xs);
     line-height: var(--home-v3-line-label);
-    letter-spacing: -0.012em;
+    letter-spacing: var(--home-v3-tracking-text);
   }
 
   .home-v3-actor-link::after {
@@ -6101,10 +6070,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     overflow: hidden;
     isolation: isolate;
     border: 1px solid var(--home-v3-border-soft);
-    border-radius: 1.5rem;
+    border-radius: var(--radius-card);
     background:
-      linear-gradient(180deg, rgba(15, 16, 21, 0.98), rgba(7, 8, 11, 1)),
-      rgba(7, 8, 11, 1);
+      linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0.94), rgba(var(--home-v3-surface-panel-rgb), 1)),
+      rgba(var(--home-v3-surface-panel-rgb), 1);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.04),
       0 1.25rem 3rem rgba(0, 0, 0, 0.24);
@@ -6210,7 +6179,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(7, 8, 11, 0.18), rgba(7, 8, 11, 0.36) 28%, rgba(7, 8, 11, 0.66) 66%, rgba(7, 8, 11, 0.94) 100%);
+    background: linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0.18), rgba(var(--home-v3-surface-panel-rgb), 0.36) 28%, rgba(var(--home-v3-surface-panel-rgb), 0.66) 66%, rgba(var(--home-v3-surface-panel-rgb), 0.94) 100%);
   }
 
   .home-v3-actor-lane-scene .home-v3-actor-card-concept-atmosphere,
@@ -6268,7 +6237,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-lane-copy h3 {
     margin: 0;
-    font-size: clamp(1.42rem, 1.55vw, 1.72rem);
+    font-size: var(--home-v3-type-card-title-compact);
     line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-title);
     text-wrap: balance;
@@ -6278,7 +6247,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-lane-copy > p {
     margin: 0;
     color: rgba(231, 235, 242, 0.84);
-    font-size: 0.92rem;
+    font-size: var(--home-v3-type-body-sm);
     line-height: var(--home-v3-line-lead);
     letter-spacing: var(--home-v3-tracking-text);
     text-wrap: pretty;
@@ -6291,7 +6260,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0 calc(var(--actor-lane-pad-x) * -1);
     padding: 0 var(--actor-lane-pad-x);
     background:
-      linear-gradient(180deg, rgba(7, 8, 11, 0), rgba(7, 8, 11, 0.52)),
+      linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0), rgba(var(--home-v3-surface-panel-rgb), 0.52)),
       linear-gradient(90deg, rgba(var(--actor-lane-rgb), 0.035), transparent 62%);
   }
 
@@ -6311,7 +6280,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-lane-metric-label {
     color: rgba(var(--actor-lane-soft-rgb), 0.82);
-    font-size: 0.56rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -6320,7 +6289,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-lane-metric-detail {
     color: rgba(231, 235, 242, 0.66);
-    font-size: 0.76rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-body-compact);
     text-align: right;
     white-space: nowrap;
@@ -6342,8 +6311,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding: 0.78rem var(--actor-lane-pad-x) 0.88rem;
     border-top: 1px solid rgba(231, 235, 242, 0.06);
     background:
-      linear-gradient(180deg, rgba(7, 8, 11, 0.24), rgba(7, 8, 11, 0.9)),
-      rgba(7, 8, 11, 0.68);
+      linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0.24), rgba(var(--home-v3-surface-panel-rgb), 0.9)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.68);
   }
 
   .home-v3-actions--actor-lane {
@@ -6400,10 +6369,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     overflow: hidden;
     isolation: isolate;
     border: 1px solid var(--home-v3-border-soft);
-    border-radius: 1.5rem;
+    border-radius: var(--radius-card);
     background:
-      linear-gradient(180deg, rgba(12, 14, 19, 0.98), rgba(7, 8, 11, 1)),
-      rgba(7, 8, 11, 1);
+      linear-gradient(180deg, rgba(12, 14, 19, 0.98), rgba(var(--home-v3-surface-panel-rgb), 1)),
+      rgba(var(--home-v3-surface-panel-rgb), 1);
     box-shadow: var(--home-v3-shadow);
     min-height: 34.75rem;
     display: block;
@@ -6462,8 +6431,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     background:
       radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.045), transparent 16rem),
       radial-gradient(circle at 78% 76%, rgba(255, 255, 255, 0.02), transparent 18rem),
-      linear-gradient(180deg, rgba(13, 15, 20, 0.18), rgba(7, 8, 11, 0.76)),
-      rgba(7, 8, 11, 0.98);
+      linear-gradient(180deg, rgba(13, 15, 20, 0.18), rgba(var(--home-v3-surface-panel-rgb), 0.76)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.98);
   }
 
   .home-v3-actor-card-concept-media::before {
@@ -6471,7 +6440,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: absolute;
     inset: auto 0 0;
     height: 34%;
-    background: linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.04) 22%, rgba(7, 8, 11, 0.2) 54%, rgba(7, 8, 11, 0.6) 100%);
+    background: linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0) 0%, rgba(var(--home-v3-surface-panel-rgb), 0.04) 22%, rgba(var(--home-v3-surface-panel-rgb), 0.2) 54%, rgba(var(--home-v3-surface-panel-rgb), 0.6) 100%);
     pointer-events: none;
     z-index: 3;
   }
@@ -6620,12 +6589,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding: 0 0.56rem;
     border-radius: 999rem;
     border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.12);
-    background: rgba(10, 12, 18, 0.72);
+    background: rgba(var(--home-v3-surface-panel-rgb), 0.72);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.03),
       0 0.7rem 1.2rem rgba(0, 0, 0, 0.18);
     color: rgba(var(--actor-concept-soft-rgb), 0.82);
-    font-size: 0.56rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -6644,7 +6613,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0.62rem;
     padding: 1rem;
     border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.12);
-    border-radius: 1.28rem;
+    border-radius: var(--radius-panel);
     background:
       linear-gradient(180deg, rgba(15, 18, 25, 0.92), rgba(9, 11, 18, 0.9)),
       radial-gradient(circle at top left, rgba(var(--actor-concept-rgb), 0.12), transparent 8rem);
@@ -6661,10 +6630,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0.8rem;
     min-height: 2.35rem;
     padding: 0.65rem 0.78rem;
-    border-radius: 0.92rem;
+    border-radius: var(--radius-card);
     background: rgba(255, 255, 255, 0.02);
     color: rgba(var(--actor-concept-soft-rgb), 0.74);
-    font-size: 0.56rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -6835,7 +6804,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-card-concept--product .home-v3-actor-card-concept-diagram::before {
     inset: 20% 6% 18% 70%;
-    border-radius: 1.15rem;
+    border-radius: var(--radius-panel);
     border: 1px solid rgba(var(--actor-concept-soft-rgb), 0.12);
     background:
       linear-gradient(180deg, rgba(16, 19, 28, 0.92), rgba(9, 11, 18, 0.92)),
@@ -6911,7 +6880,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     left: 18%;
     width: 56%;
     height: 41%;
-    border-radius: 1.4rem;
+    border-radius: var(--radius-card);
     background: radial-gradient(circle at 26% 34%, rgba(var(--actor-concept-rgb), 0.14), rgba(var(--actor-concept-rgb), 0) 72%);
     filter: blur(18px);
     opacity: 0.28;
@@ -6938,13 +6907,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     width: min(34ch, calc(100% - 2.6rem));
     padding: 1.3rem 1.3rem 1.18rem;
     max-width: 34ch;
-    background: linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.16) 12%, rgba(7, 8, 11, 0.78) 42%, rgba(7, 8, 11, 0.98) 100%);
+    background: linear-gradient(180deg, rgba(var(--home-v3-surface-panel-rgb), 0) 0%, rgba(var(--home-v3-surface-panel-rgb), 0.16) 12%, rgba(var(--home-v3-surface-panel-rgb), 0.78) 42%, rgba(var(--home-v3-surface-panel-rgb), 0.98) 100%);
   }
 
   .home-v3-actor-card-concept-kicker {
     margin: 0;
     color: rgba(var(--actor-concept-soft-rgb), 0.74);
-    font-size: 0.62rem;
+    font-size: var(--home-v3-type-label-compact);
     line-height: var(--home-v3-line-label);
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -6952,7 +6921,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-actor-card-concept-copy h3 {
     margin: 0;
-    font-size: 1.46rem;
+    font-size: var(--home-v3-type-title-sm);
     line-height: var(--home-v3-line-title);
     letter-spacing: -0.04em;
     text-wrap: balance;
@@ -6963,7 +6932,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-actor-card-concept-copy p:not(.home-v3-actor-card-concept-kicker) {
     margin: 0;
     color: rgba(231, 235, 242, 0.86);
-    font-size: 0.89rem;
+    font-size: var(--home-v3-type-body-xs);
     line-height: var(--home-v3-line-lead);
     max-width: 32ch;
     min-height: 4rem;
@@ -7020,10 +6989,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 1.6rem;
+    border-radius: var(--radius-panel);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
-      rgba(8, 9, 12, 0.98);
+      rgba(var(--home-v3-surface-panel-rgb), 0.98);
     box-shadow: 0 1.2rem 2.5rem rgba(0, 0, 0, 0.22);
   }
 
@@ -7056,7 +7025,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(231, 235, 242, 0.48);
     font-size: var(--home-v3-type-label);
     font-weight: var(--font-weight-medium);
-    letter-spacing: 0.12em;
+    letter-spacing: var(--home-v3-tracking-label);
     line-height: var(--home-v3-line-label);
     text-transform: uppercase;
   }
@@ -7067,7 +7036,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: var(--home-v3-text);
     font-size: var(--home-v3-type-title-md);
     font-weight: var(--font-weight-medium);
-    letter-spacing: -0.05em;
+    letter-spacing: var(--home-v3-tracking-title);
     line-height: var(--home-v3-line-title);
     text-wrap: balance;
   }
@@ -7077,7 +7046,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.72);
     font-size: var(--home-v3-type-lead);
-    letter-spacing: -0.015em;
+    letter-spacing: var(--home-v3-tracking-text);
     line-height: var(--home-v3-line-body);
   }
 
@@ -7104,9 +7073,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-needs-panel-item h4 {
     margin: 0;
     color: var(--home-v3-text);
-    font-size: 1.08rem;
+    font-size: var(--home-v3-type-body-lg);
     font-weight: var(--font-weight-medium);
-    letter-spacing: -0.03em;
+    letter-spacing: var(--home-v3-tracking-card);
     line-height: var(--home-v3-line-section-title-compact);
     text-wrap: balance;
   }
@@ -7116,7 +7085,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     color: rgba(231, 235, 242, 0.68);
     font-size: var(--home-v3-type-body-sm);
-    letter-spacing: -0.01em;
+    letter-spacing: var(--home-v3-tracking-text);
     line-height: var(--home-v3-line-body-compact);
   }
 
@@ -7131,8 +7100,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-needs-panel-footer p {
     margin: 0;
     color: rgba(231, 235, 242, 0.72);
-    font-size: 1rem;
-    letter-spacing: -0.015em;
+    font-size: var(--home-v3-type-body);
+    letter-spacing: var(--home-v3-tracking-text);
     line-height: var(--home-v3-line-body);
   }
 
@@ -7152,10 +7121,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: absolute;
     inset: 1px;
     z-index: 0;
-    border-radius: calc(2rem - 1px);
+    border-radius: var(--radius-panel);
     background:
-      radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.08), transparent 34%),
-      linear-gradient(180deg, rgba(10, 10, 12, 0.9), rgba(5, 6, 8, 0.96));
+      radial-gradient(circle at 0% 0%, rgba(231, 235, 242, 0.07), transparent 34%),
+      linear-gradient(100deg, rgba(var(--home-v3-bg-rgb), 0.92) 0%, rgba(7, 16, 26, 0.16) 58%, rgba(8, 20, 38, 0.22) 100%),
+      linear-gradient(180deg, rgba(10, 10, 12, 0.9), rgba(var(--home-v3-bg-rgb), 0.96));
     -webkit-mask: linear-gradient(320deg, rgba(0, 0, 0, 0.76) 0%, rgb(0, 0, 0) 22%);
     mask: linear-gradient(320deg, rgba(0, 0, 0, 0.76) 0%, rgb(0, 0, 0) 22%);
     pointer-events: none;
@@ -7166,11 +7136,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: absolute;
     inset: 1px;
     z-index: 3;
-    border-radius: calc(2rem - 1px);
+    border-radius: var(--radius-panel);
     background:
-      radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.07), transparent 40%),
-      linear-gradient(321deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.014) 18%, transparent 34%);
-    opacity: 0.95;
+      radial-gradient(ellipse at 82% 42%, rgba(10, 24, 48, 0.12), transparent 58%),
+      linear-gradient(90deg, rgba(var(--home-v3-bg-rgb), 0.08) 0%, rgba(7, 16, 26, 0.055) 48%, rgba(8, 20, 38, 0.12) 100%),
+      radial-gradient(circle at 0% 0%, rgba(231, 235, 242, 0.06), transparent 40%),
+      linear-gradient(321deg, rgba(231, 235, 242, 0.04) 0%, rgba(231, 235, 242, 0.012) 18%, transparent 34%);
+    opacity: 1;
     pointer-events: none;
   }
 
@@ -7230,9 +7202,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-window-light-field {
     inset: 0;
     background:
-      linear-gradient(116deg, rgba(231, 235, 242, 0) 60%, rgba(231, 235, 242, 0.026) 70%, rgba(231, 235, 242, 0.01) 76%, rgba(231, 235, 242, 0) 82%),
-      radial-gradient(circle at 86% 18%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 20%),
-      radial-gradient(circle at 72% 84%, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 20%);
+      linear-gradient(116deg, rgba(231, 235, 242, 0) 60%, rgba(176, 204, 255, 0.03) 70%, rgba(176, 204, 255, 0.01) 76%, rgba(231, 235, 242, 0) 82%),
+      radial-gradient(circle at 86% 18%, rgba(176, 204, 255, 0.04), rgba(176, 204, 255, 0) 20%),
+      radial-gradient(circle at 72% 84%, rgba(176, 204, 255, 0.028), rgba(176, 204, 255, 0) 20%);
     opacity: 0.62;
     animation: home-v3-window-light-enter 1300ms ease 360ms both;
   }
@@ -7254,9 +7226,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-window-glow {
     inset: 0;
     background:
-      linear-gradient(114deg, rgba(231, 235, 242, 0) 62%, rgba(231, 235, 242, 0.018) 70%, rgba(231, 235, 242, 0.006) 76%, rgba(231, 235, 242, 0) 82%),
-      radial-gradient(ellipse at 88% 44%, rgba(231, 235, 242, 0.014), transparent 16rem),
-      radial-gradient(circle at 22% 80%, rgba(231, 235, 242, 0.02), transparent 18rem);
+      linear-gradient(114deg, rgba(231, 235, 242, 0) 62%, rgba(176, 204, 255, 0.02) 70%, rgba(176, 204, 255, 0.007) 76%, rgba(231, 235, 242, 0) 82%),
+      radial-gradient(ellipse at 88% 44%, rgba(176, 204, 255, 0.016), transparent 16rem),
+      radial-gradient(circle at 22% 80%, rgba(231, 235, 242, 0.018), transparent 18rem);
     opacity: 0.4;
     animation: home-v3-window-glow-enter 1500ms ease 460ms both;
   }
@@ -7264,7 +7236,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-window-haze {
     inset: auto 0 0 0;
     height: 24%;
-    background: linear-gradient(180deg, rgba(5, 6, 8, 0), rgba(5, 6, 8, 0.22) 38%, rgba(5, 6, 8, 0.58));
+    background: linear-gradient(180deg, rgba(var(--home-v3-bg-rgb), 0), rgba(var(--home-v3-bg-rgb), 0.22) 38%, rgba(var(--home-v3-bg-rgb), 0.58));
   }
 
   .home-v3-window-orbit {
@@ -7275,7 +7247,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     border-radius: 50%;
     background:
       radial-gradient(ellipse at 24% 58%, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01) 14%, rgba(0, 0, 0, 0) 24%),
-      radial-gradient(ellipse at 18% 58%, rgba(12, 13, 16, 0.08), rgba(12, 13, 16, 0.4) 30%, rgba(6, 7, 10, 0.82) 58%, rgba(5, 6, 8, 0.99) 80%);
+      radial-gradient(ellipse at 18% 58%, rgba(12, 13, 16, 0.08), rgba(12, 13, 16, 0.4) 30%, rgba(var(--home-v3-bg-rgb), 0.82) 58%, rgba(var(--home-v3-bg-rgb), 0.99) 80%);
     box-shadow: inset 0 0 4rem rgba(255, 255, 255, 0.012);
     opacity: 0.96;
     transform-origin: center;
@@ -7297,16 +7269,56 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     border-color: rgba(231, 235, 242, 0.032);
   }
 
-  .home-v3-actors,
-  .home-v3-trust,
-  .home-v3-practice,
-  .home-v3-outcomes,
-  .home-v3-shift,
-  .home-v3-operating-shift,
-  .home-v3-engagements,
-  .home-v3-writing,
-  .home-v3-fit {
-    padding-top: 6rem;
+  .home-v3 > .section {
+    padding-block: var(--home-v3-section-spacing);
+    padding-inline: 0;
+  }
+
+  .about-dan-header {
+    align-items: start;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .about-dan-media-grid {
+    row-gap: var(--spacing-lg);
+  }
+
+  .about-dan-copy-grid {
+    margin-top: var(--spacing-lg);
+  }
+
+  .about-dan-body {
+    align-self: start;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .about-dan-body p {
+    color: var(--home-v3-text);
+    font-size: var(--home-v3-type-body-lg);
+    line-height: var(--home-v3-line-lead);
+    text-wrap: balance;
+  }
+
+  .about-dan-media {
+    position: relative;
+    margin: 0;
+    height: clamp(calc(var(--spacing-4xl) * 6), 48vw, calc(var(--spacing-4xl) * 9));
+    overflow: hidden;
+    border-radius: var(--radius-visual-panel);
+    border: var(--size-border-thin) solid var(--ds-border-soft);
+    background: var(--color-surface-dark-elevated);
+    box-shadow: var(--ds-shadow);
+  }
+
+  .about-dan-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+    filter: brightness(0.68) saturate(1.02);
   }
 
   .home-v3-support-copy h2 {
@@ -7324,10 +7336,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-writing-grid {
     display: grid;
     gap: 1rem;
-  }
-
-  .home-v3-practice {
-    padding-top: 6rem;
   }
 
   .home-v3-practice-grid {
@@ -7366,9 +7374,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-practice-story-copy h3 {
     margin: 0;
-    font-size: clamp(3rem, 4.4vw, 5rem);
+    font-size: var(--home-v3-type-title-lg);
     line-height: var(--home-v3-line-title);
-    letter-spacing: -0.065em;
+    letter-spacing: var(--home-v3-tracking-title);
     text-wrap: balance;
     max-width: 10ch;
   }
@@ -7378,7 +7386,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     margin: 0;
     max-width: 35ch;
     color: rgba(231, 235, 242, 0.78);
-    font-size: 1.02rem;
+    font-size: var(--home-v3-type-body);
     line-height: var(--home-v3-line-body);
   }
 
@@ -7633,7 +7641,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-v3-practice-proof--compact .home-v3-practice-value {
-    font-size: 1.14rem;
+    font-size: var(--home-v3-type-body-lg);
     line-height: var(--home-v3-line-title);
     max-width: none;
   }
@@ -7992,7 +8000,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     font-size: var(--home-v3-type-title-sm);
     line-height: var(--home-v3-line-title);
     letter-spacing: var(--home-v3-tracking-card);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-regular);
     text-wrap: pretty;
     max-width: none;
   }
@@ -8010,81 +8018,21 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: none;
   }
 
-  .home-v3-outcomes--editorial {
+  .proof-showcase {
     position: relative;
     width: 100%;
     max-width: none;
-    margin: 6rem 0 0;
-    padding: 5rem 0 5.25rem;
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 28rem),
-      linear-gradient(180deg, rgba(11, 12, 17, 0.985), rgba(6, 7, 10, 1));
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 1.5rem 3rem rgba(0, 0, 0, 0.12);
+    margin: 0;
     overflow: hidden;
   }
 
-  .home-v3-outcomes--editorial::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 24%),
-      radial-gradient(circle at 78% 22%, rgba(102, 120, 220, 0.08), rgba(102, 120, 220, 0) 18rem);
-    opacity: 0.9;
+  .proof-showcase::before {
+    content: none;
   }
 
-  .home-v3-outcomes--editorial .case-rail-sep {
-    color: rgba(231, 235, 242, 0.56);
-  }
-
-  .home-v3-outcomes--editorial .case-rail-track {
-    position: relative;
-    height: 0.28rem;
-    border: 1px solid rgba(231, 235, 242, 0.08);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
-      rgba(231, 235, 242, 0.1);
-    box-shadow:
-      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.08),
-      0 0.35rem 1rem rgba(0, 0, 0, 0.22);
-  }
-
-  .home-v3-outcomes--editorial .case-rail-track span {
-    border-radius: inherit;
-    background:
-      linear-gradient(90deg, rgba(214, 170, 67, 0.98), rgba(255, 234, 142, 1) 62%, rgba(255, 249, 204, 0.95));
-    box-shadow:
-      0 0 0.55rem rgba(245, 220, 126, 0.24),
-      inset 0 0.0625rem 0 rgba(255, 255, 255, 0.42);
-  }
-
-  .home-v3-outcomes--editorial .case-rail-btn {
-    border-color: rgba(231, 235, 242, 0.12);
-    background: transparent;
-    color: rgba(245, 247, 251, 0.88);
-    box-shadow: none;
-  }
-
-  .home-v3-outcomes--editorial .case-rail-btn:hover,
-  .home-v3-outcomes--editorial .case-rail-btn:focus-visible {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(231, 235, 242, 0.2);
-  }
-
-  .home-v3-outcomes-intro {
+  .proof-showcase-intro {
     margin-bottom: var(--spacing-lg);
     align-items: center;
-  }
-
-  .home-v3-outcomes-controls-row {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.15rem;
   }
 
   .home-v3-engagement-availability {
@@ -8103,7 +8051,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       inset 0 1px 0 rgba(255, 255, 255, 0.045),
       0 0 0 1px rgba(190, 170, 255, 0.045);
     color: rgba(231, 235, 242, 0.64);
-    font-size: 0.82rem;
+    font-size: var(--home-v3-type-body-xs);
     line-height: var(--home-v3-line-body-compact);
     letter-spacing: var(--home-v3-tracking-text);
     white-space: nowrap;
@@ -8130,124 +8078,126 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     content: none;
   }
 
-  .home-v3-outcomes--editorial .case-rail-controls {
-    gap: 0.7rem;
-    align-items: center;
-    justify-content: center;
+  .proof-card-grid-wrap {
+    padding-top: 0;
   }
 
-  .home-v3-outcomes--editorial .case-rail-progress {
-    min-width: clamp(8.5rem, 12vw, 13rem);
-    display: flex;
-    align-items: center;
+  .proof-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-md);
   }
 
-  .home-v3-outcomes .case-card {
+  .proof-card {
     position: relative;
-    flex-basis: min(25rem, 32vw);
-    display: block;
-  }
-
-  .home-v3-proof-card-media {
-    position: relative;
-    aspect-ratio: 0.86;
-    min-height: 0;
-    border-radius: 1rem;
+    display: grid;
+    align-items: stretch;
+    min-height: calc(var(--size-card-case-min-height) + var(--spacing-3xl) + var(--spacing-xl));
+    border-radius: var(--radius-visual-panel);
     overflow: hidden;
-    border: 1px solid rgba(231, 235, 242, 0.08);
-    background: rgba(17, 18, 25, 1);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.24);
+    border: var(--size-border-thin) solid var(--ds-border-soft);
+    background: var(--color-surface-dark-elevated);
+    box-shadow: var(--ds-shadow);
   }
 
-  .home-v3-proof-card-media img {
+  .proof-card-image {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
     min-height: 100%;
     object-fit: cover;
-    filter: saturate(0.92) contrast(0.98) brightness(0.86);
+    filter: saturate(0.9) contrast(0.98) brightness(0.76);
     transform: scale(1.015);
-    transition: transform 220ms ease;
+    transition: transform var(--duration-transition-medium) var(--easing-standard);
   }
 
-  .home-v3-proof-card-overlay {
+  .proof-card-shade {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: end;
-    padding: 1.2rem;
     background:
-      linear-gradient(180deg, rgba(7, 8, 12, 0) 0%, rgba(7, 8, 12, 0.08) 38%, rgba(7, 8, 12, 0.68) 72%, rgba(7, 8, 12, 0.92) 100%);
+      linear-gradient(
+        180deg,
+        rgba(3, 10, 20, 0.34) 0%,
+        rgba(3, 10, 20, 0.48) 45%,
+        rgba(3, 10, 20, 0.88) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(3, 10, 20, 0.72) 0%,
+        rgba(3, 10, 20, 0.42) 45%,
+        rgba(3, 10, 20, 0.22) 100%
+      );
+    pointer-events: none;
   }
 
-  .home-v3-proof-card-copy {
+  .proof-card-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(var(--spacing-sm), 2vw, var(--spacing-lg));
+  }
+
+  .proof-card-top {
     display: grid;
-    gap: 0.3rem;
-    max-width: none;
+    gap: var(--spacing-sm);
+    align-content: start;
+    justify-items: start;
   }
 
-  .home-v3-proof-card-title {
-    color: rgba(248, 248, 251, 0.98);
-    font-size: var(--home-v3-type-card-title-compact);
-    line-height: var(--home-v3-line-card-title);
-    max-width: none;
+  .proof-card-kicker {
+    margin: 0;
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-label);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-label);
+    text-transform: uppercase;
   }
 
-  .home-v3-proof-card-logo {
-    height: 1.05rem;
-    max-width: 12rem;
-    opacity: 0.98;
-    filter: none;
+  .proof-card-copy {
+    display: grid;
+    gap: var(--spacing-md);
   }
 
-  .home-v3-proof-card-role {
-    color: rgba(231, 235, 242, 0.56);
-    font-size: 0.82rem;
-    line-height: var(--home-v3-line-body-compact);
+  .proof-card h3 {
+    margin: 0;
+    color: var(--ds-text);
+    font-size: var(--ds-type-card-title-compact);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--ds-line-card-title);
     letter-spacing: 0;
-    font-weight: var(--font-weight-light);
-    text-transform: none;
-    opacity: 1;
-    transform: none;
+    max-width: 29ch;
+    text-wrap: balance;
   }
 
-  .home-v3-proof-card-summary {
-    max-width: 28ch;
-    margin: 0.45rem 0 0;
-    color: rgba(248, 248, 251, 0.74);
-    font-size: 0.9rem;
-    line-height: var(--home-v3-line-body-compact);
-    letter-spacing: 0;
+  .proof-card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-xs) * 0.75) var(--spacing-sm);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .proof-card-details li {
+    margin: 0;
+    color: var(--color-tag-text-accent);
+    font-size: var(--ds-type-label);
+    line-height: var(--ds-line-body-compact);
+    letter-spacing: var(--ds-tracking-text);
     text-wrap: pretty;
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .home-v3-proof-card:hover .home-v3-proof-card-media img,
-    .home-v3-proof-card:focus-within .home-v3-proof-card-media img {
+    .proof-card:hover .proof-card-image,
+    .proof-card:focus-within .proof-card-image {
       transform: scale(1.035);
     }
-  }
-
-  .home-v3-outcomes .case-rail-wrap {
-    padding-top: 0;
-  }
-
-  .home-v3-outcomes .case-rail {
-    --home-v3-rail-anchor: 0px;
-    gap: var(--spacing-md);
-    overflow-x: auto;
-    overflow-y: visible;
-    width: var(--home-v3-rail-viewport-width, 100%);
-    margin-left: calc(var(--home-v3-rail-anchor) * -0.5);
-    margin-right: 0;
-    padding: 0 0 var(--spacing-xs) var(--home-v3-rail-anchor);
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: var(--home-v3-rail-anchor);
-  }
-
-  .home-v3-outcomes .case-rail .case-card {
-    flex: 0 0 clamp(22rem, 27vw, 32rem);
   }
 
   .home-v3-trust-grid {
@@ -8259,7 +8209,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-support-row {
     border: 1px solid var(--home-v3-border-soft);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
-    border-radius: 1.5rem;
+    border-radius: var(--radius-card);
     box-shadow: var(--home-v3-shadow);
   }
 
@@ -8284,8 +8234,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-panel h3,
   .home-v3-writing-feature-card h3,
   .home-v3-writing-side-card h3 {
-    font-size: 1.4rem;
-    line-height: var(--home-v3-line-body-compact);
+    font-size: var(--home-v3-type-card-title-compact);
+    line-height: var(--home-v3-line-card-title);
     margin: 1rem 0 0.85rem;
   }
 
@@ -8297,6 +8247,19 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-fit-layout,
   .home-v3-writing-layout {
     align-items: start;
+  }
+
+  .home-v3-fit-head {
+    grid-row: 1;
+  }
+
+  .home-v3-fit-body {
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .home-v3-fit-rows {
+    grid-row: 1 / span 2;
   }
 
   .home-v3-fit-rows,
@@ -8322,26 +8285,27 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-fit-row {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(231, 235, 242, 0.055);
-    border-radius: 0.72rem;
+    border: 1px solid var(--home-v3-border-soft);
+    border-radius: var(--radius-panel);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.006)),
-      rgba(9, 10, 14, 0.42);
+      radial-gradient(ellipse at 92% 0%, color-mix(in srgb, var(--home-v3-surface-strong) 82%, transparent), transparent 14rem),
+      linear-gradient(180deg, var(--home-v3-surface), color-mix(in srgb, var(--home-v3-surface) 42%, transparent)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.72);
     transition:
       border-color 240ms ease,
-      background-color 240ms ease,
+      background 240ms ease,
       box-shadow 240ms ease;
   }
 
   .home-v3-fit-row.is-open {
-    border-color: rgba(231, 235, 242, 0.12);
+    border-color: rgba(231, 235, 242, 0.14);
     background:
-      radial-gradient(ellipse at 78% 8%, rgba(118, 147, 255, 0.06), transparent 15rem),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
-      rgba(11, 12, 17, 0.68);
+      radial-gradient(ellipse at 78% 8%, var(--home-v3-surface-strong), transparent 15rem),
+      linear-gradient(180deg, var(--home-v3-surface-strong), color-mix(in srgb, var(--home-v3-surface) 62%, transparent)),
+      rgba(var(--home-v3-surface-panel-rgb), 0.9);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.028),
-      0 0.6rem 1.5rem rgba(0, 0, 0, 0.12);
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 0.6rem 1.5rem rgba(var(--home-v3-bg-rgb), 0.16);
   }
 
   .home-v3-fit-row summary {
@@ -8361,7 +8325,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-fit-row summary:focus-visible {
     outline: 1px solid rgba(231, 235, 242, 0.34);
     outline-offset: -0.35rem;
-    border-radius: 0.72rem;
+    border-radius: var(--radius-panel);
   }
 
   .home-v3-fit-row-icon {
@@ -8454,10 +8418,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     min-height: 12rem;
     padding: clamp(1.1rem, 1.55vw, 1.4rem);
     border: 1px solid transparent;
-    border-radius: 1rem;
+    border-radius: var(--radius-card);
     background:
       linear-gradient(152deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012) 42%, rgba(255, 255, 255, 0.02)) padding-box,
-      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(180deg, rgba(9, 16, 30, 0.98), rgba(var(--home-v3-surface-panel-rgb), 0.98)) padding-box,
       linear-gradient(138deg, rgba(231, 235, 242, 0.2), rgba(143, 126, 210, 0.12) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.035),
@@ -8508,7 +8472,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     min-height: 16rem;
     background:
       linear-gradient(152deg, rgba(167, 151, 222, 0.052), rgba(255, 255, 255, 0.012) 42%, rgba(255, 255, 255, 0.018)) padding-box,
-      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(180deg, rgba(9, 16, 30, 0.98), rgba(var(--home-v3-surface-panel-rgb), 0.98)) padding-box,
       linear-gradient(138deg, rgba(231, 235, 242, 0.18), rgba(143, 126, 210, 0.12) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
   }
 
@@ -8521,21 +8485,21 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-shift-card--3 {
     background:
       linear-gradient(32deg, rgba(167, 151, 222, 0.05), rgba(255, 255, 255, 0.012) 48%, rgba(255, 255, 255, 0.018)) padding-box,
-      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(180deg, rgba(9, 16, 30, 0.98), rgba(var(--home-v3-surface-panel-rgb), 0.98)) padding-box,
       linear-gradient(138deg, rgba(231, 235, 242, 0.16), rgba(143, 126, 210, 0.105) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
   }
 
   .home-v3-shift-card--4 {
     background:
       linear-gradient(152deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012) 42%, rgba(91, 107, 154, 0.05)) padding-box,
-      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(180deg, rgba(9, 16, 30, 0.98), rgba(var(--home-v3-surface-panel-rgb), 0.98)) padding-box,
       linear-gradient(138deg, rgba(231, 235, 242, 0.16), rgba(143, 126, 210, 0.105) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
   }
 
   .home-v3-shift-card--5 {
     background:
       linear-gradient(205deg, rgba(167, 151, 222, 0.055), rgba(255, 255, 255, 0.012) 42%, rgba(255, 255, 255, 0.018)) padding-box,
-      linear-gradient(180deg, rgba(13, 14, 20, 0.98), rgba(7, 8, 12, 0.98)) padding-box,
+      linear-gradient(180deg, rgba(9, 16, 30, 0.98), rgba(var(--home-v3-surface-panel-rgb), 0.98)) padding-box,
       linear-gradient(138deg, rgba(231, 235, 242, 0.16), rgba(143, 126, 210, 0.105) 32%, rgba(231, 235, 242, 0.055) 74%) border-box;
   }
 
@@ -8551,8 +8515,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   .home-v3-fit-row h3 {
     margin: 0;
     color: rgba(244, 247, 255, 0.94);
-    font-size: clamp(1.02rem, 1.18vw, 1.18rem);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--home-v3-type-card-title-compact);
+    font-weight: var(--font-weight-regular);
     line-height: var(--home-v3-line-section-title-compact);
     letter-spacing: var(--home-v3-tracking-card);
     text-wrap: balance;
@@ -8583,10 +8547,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     max-width: 64ch;
     margin: 0;
     padding: 0 3.1rem 1.05rem 1.05rem;
-  }
-
-  .home-v3-operating-shift {
-    padding-top: 6.5rem;
   }
 
   .home-v3-operating-shift-layout {
@@ -8647,8 +8607,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: relative;
     width: 100%;
     max-width: none;
-    margin: 6rem 0 0;
-    padding: 5rem 0 5.25rem;
+    margin: 0;
     overflow: hidden;
   }
 
@@ -8696,11 +8655,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     position: relative;
     isolation: isolate;
     min-height: 24rem;
-    border-radius: 1.15rem;
+    border-radius: var(--radius-card);
     border: 1px solid rgba(231, 235, 242, 0.1);
     background:
       linear-gradient(180deg, rgba(20, 22, 30, 0.3), rgba(6, 7, 11, 0.34)),
-      #06070b;
+      var(--home-v3-surface-deep);
     color: var(--home-v3-text);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.06),
@@ -8856,9 +8815,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-v3-writing-volume-title {
     max-width: none;
-    font-size: clamp(1.18rem, 1.28vw, 1.42rem);
+    font-size: var(--home-v3-type-card-title-compact);
     line-height: var(--home-v3-line-title);
-    letter-spacing: -0.035em;
+    letter-spacing: var(--home-v3-tracking-card);
   }
 
   .home-v3-writing-volume-summary {
@@ -8932,6 +8891,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-writing-head,
     .home-v3-writing-rail-wrap {
       grid-column: 2 / span 24;
+    }
+
+    .home-v3-fit-head,
+    .home-v3-fit-body,
+    .home-v3-fit-rows {
+      grid-row: auto;
     }
 
     .home-v3-engagement-availability {
@@ -9051,8 +9016,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       scrollbar-width: none;
     }
 
-    .home-v3-outcomes .case-rail .case-card {
-      flex-basis: min(28rem, 42vw);
+    .proof-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-sm);
     }
 
     .home-v3-needs-panel-grid {
@@ -9068,6 +9034,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   @media (max-width: 48rem) {
     .home-v3 {
       padding: 0;
+      --home-v3-section-spacing: var(--spacing-3xl);
       --home-v3-shell: min(100% - (var(--home-v3-mobile-section-gutter) * 2), 84rem);
       --home-v3-outer-gap: 0.75rem;
       --home-v3-header-top: var(--home-v3-mobile-page-gutter);
@@ -9090,6 +9057,15 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3 .dm-grid-l.dm-grid-l--grid-sys {
       padding-inline: 0;
+    }
+
+    .home-v3 > .section .dm-grid-l.dm-grid-l--grid-sys {
+      row-gap: var(--spacing-xl);
+    }
+
+    .home-v3 > .section .dm-grid-l.dm-grid-l--grid-sys > * {
+      min-width: 0;
+      margin-inline: var(--home-v3-mobile-content-gutter);
     }
 
     .home-v3-intro {
@@ -9142,7 +9118,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-header.is-menu-open .home-v3-nav {
       border-radius: 1rem;
       border-color: rgba(231, 235, 242, 0.1);
-      background: rgba(10, 12, 18, 0.74);
+      background: rgba(var(--home-v3-surface-panel-rgb), 0.86);
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.025),
         0 0.55rem 1.4rem rgba(0, 0, 0, 0.16);
@@ -9154,7 +9130,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       padding: 0.6rem 0.72rem;
       border-radius: 1rem;
       border-color: rgba(231, 235, 242, 0.08);
-      background: rgba(10, 12, 18, 0.68);
+      background: rgba(var(--home-v3-surface-panel-rgb), 0.82);
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.025),
         0 0.55rem 1.4rem rgba(0, 0, 0, 0.16);
@@ -9302,12 +9278,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       min-height: 0;
       padding: clamp(1.35rem, 5vw, 1.9rem);
       border: 1px solid rgba(231, 235, 242, 0.1);
-      border-radius: 1.45rem;
+      border-radius: var(--radius-xl);
       overflow: hidden;
       background:
         radial-gradient(ellipse 90% 44% at 74% 0%, rgba(101, 126, 218, 0.16), transparent 62%),
         radial-gradient(ellipse 56% 34% at 10% 100%, rgba(231, 235, 242, 0.07), transparent 70%),
-        linear-gradient(180deg, rgba(13, 15, 21, 0.96), rgba(6, 7, 10, 0.98));
+        linear-gradient(180deg, rgba(13, 15, 21, 0.96), rgba(var(--home-v3-bg-rgb), 0.98));
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.026),
         0 1.6rem 4rem rgba(0, 0, 0, 0.36);
@@ -9379,16 +9355,16 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-mobile-nav-group p {
       margin: 0 0 0.14rem;
       color: rgba(231, 235, 242, 0.38);
-      font-size: 0.68rem;
-      font-weight: var(--font-weight-semibold);
-      letter-spacing: 0.14em;
+      font-size: var(--home-v3-type-label-compact);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--home-v3-tracking-label);
       line-height: var(--home-v3-line-label);
       text-transform: uppercase;
     }
 
     .home-v3-mobile-nav-group a {
       color: rgba(231, 235, 242, 0.68);
-      font-size: 0.95rem;
+      font-size: var(--home-v3-type-body-sm);
       line-height: var(--home-v3-line-body-compact);
       text-wrap: pretty;
     }
@@ -9408,11 +9384,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       min-height: 3rem;
       padding: 0 0.9rem;
       border-radius: 999rem;
-      font-size: 0.95rem;
+      font-size: var(--home-v3-type-body-sm);
       font-weight: var(--font-weight-medium);
       line-height: var(--home-v3-line-label);
       text-align: center;
-      color: rgba(6, 7, 10, 0.96);
+      color: rgba(var(--home-v3-bg-rgb), 0.96);
     }
 
     .home-v3-mobile-nav-panel .home-v3-mobile-nav-action,
@@ -9425,8 +9401,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-mobile-nav-action--secondary {
       border: 1px solid rgba(231, 235, 242, 0.22);
       background: rgba(244, 247, 255, 0.92);
-      color: rgba(6, 7, 10, 0.96);
-      -webkit-text-fill-color: rgba(6, 7, 10, 0.96);
+      color: rgba(var(--home-v3-bg-rgb), 0.96);
+      -webkit-text-fill-color: rgba(var(--home-v3-bg-rgb), 0.96);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.48),
         0 0.65rem 1.4rem rgba(0, 0, 0, 0.18);
@@ -9462,7 +9438,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-mobile-nav-action--primary:focus-visible,
     .home-v3-mobile-nav-action--secondary:hover,
     .home-v3-mobile-nav-action--secondary:focus-visible {
-      color: rgba(6, 7, 10, 0.96);
+      color: rgba(var(--home-v3-bg-rgb), 0.96);
       background: rgba(255, 255, 255, 0.98);
       outline: none;
     }
@@ -9627,7 +9603,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-actor-card-concept-copy h3 {
       max-width: 14ch;
       min-height: 0;
-      font-size: 1.34rem;
+      font-size: var(--home-v3-mobile-type-title-sm);
     }
 
     .home-v3-actor-card-concept-copy p:not(.home-v3-actor-card-concept-kicker) {
@@ -9638,7 +9614,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-actor-card-concept-tag {
       min-height: 1.28rem;
       padding: 0 0.48rem;
-      font-size: 0.52rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
     }
 
     .home-v3-actor-card-concept-board {
@@ -9652,7 +9628,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-actor-card-concept-board-row {
       min-height: 2rem;
       padding: 0.55rem 0.64rem;
-      font-size: 0.5rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
     }
 
     .home-v3-actor-card-concept-board-row::after {
@@ -9724,11 +9700,13 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       height: 110%;
     }
 
-    .home-v3-shift,
-    .home-v3-operating-shift,
-    .home-v3-writing,
-    .home-v3-fit {
-      padding-top: 4rem;
+    .home-v3 > .section {
+      padding-block: var(--home-v3-section-spacing);
+      padding-inline: 0;
+    }
+
+    .about-dan-body {
+      grid-template-columns: 1fr;
     }
 
     .home-v3-practice-proof--feature {
@@ -9780,8 +9758,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-writing--editorial {
-      margin-top: 4rem;
-      padding: 4rem 0 4.35rem;
+      margin-top: 0;
     }
 
     .home-v3-writing-layout {
@@ -9792,8 +9769,8 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       grid-auto-columns: minmax(17rem, 84vw);
     }
 
-    .home-v3-outcomes .case-rail .case-card {
-      flex-basis: min(24rem, 84vw);
+    .proof-card-grid {
+      grid-template-columns: 1fr;
     }
 
     .home-v3-writing-volume {
@@ -9805,12 +9782,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       padding: 1.15rem 1.05rem 1.2rem;
     }
 
-    .home-v3-proof-card-title {
+    .proof-card h3 {
       font-size: var(--home-v3-mobile-type-title-sm);
       max-width: none;
     }
 
-    .home-v3-proof-card-role {
+    .proof-card-role {
       font-size: var(--home-v3-mobile-type-label);
       opacity: 1;
       transform: none;
@@ -9827,13 +9804,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-writing-volume .home-v3-card-meta-text {
-      font-size: 0.68rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
     }
 
     .home-v3-bridge-lite {
       width: var(--home-v3-shell);
       min-height: 0;
-      padding-top: 0.75rem;
     }
 
     .home-v3-bridge-lite > .dm-grid-l {
@@ -9872,10 +9848,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       display: grid;
       gap: 0;
       padding: 0.5rem 0;
-      border-radius: 1.65rem;
+      border-radius: var(--radius-panel);
       border: 1px solid rgba(231, 235, 242, 0.08);
       background:
-        linear-gradient(180deg, rgba(15, 17, 24, 0.98), rgba(7, 8, 11, 1)),
+        linear-gradient(180deg, rgba(15, 17, 24, 0.98), rgba(var(--home-v3-surface-panel-rgb), 1)),
         radial-gradient(circle at 72% 54%, rgba(78, 104, 194, 0.08), rgba(78, 104, 194, 0) 52%);
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.02),
@@ -9898,7 +9874,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(6, 7, 10, 0.04), rgba(6, 7, 10, 0.24));
+      background: linear-gradient(180deg, rgba(var(--home-v3-bg-rgb), 0.04), rgba(var(--home-v3-bg-rgb), 0.24));
     }
 
     .home-v3-bridge-lite.is-mobile-static .home-v3-bridge-lite-mobile-row {
@@ -9997,7 +9973,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-v3-pillars-surface {
-      border-radius: 1.45rem;
+      border-radius: var(--radius-panel);
     }
 
     .home-v3-pillars-grid {
@@ -10028,7 +10004,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     .home-v3-pillar-index {
       position: static;
       margin-bottom: 0.12rem;
-      font-size: 0.68rem;
+      font-size: var(--home-v3-mobile-type-label-decorative);
     }
 
     .home-v3-pillar-main {
@@ -10060,12 +10036,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       grid-auto-flow: column;
       grid-auto-columns: minmax(0, 100%);
       gap: 0.9rem;
-      margin-inline: 0;
+      margin-inline: var(--home-v3-mobile-content-gutter);
       padding-inline: 0;
       overflow-x: auto;
       padding-bottom: 0.25rem;
       scroll-snap-type: x proximity;
-      scroll-padding-inline: 0;
+      scroll-padding-inline: var(--home-v3-mobile-content-gutter);
       scrollbar-width: none;
     }
 
@@ -10078,7 +10054,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       padding: 1.55rem 1.1rem 1.25rem;
       scroll-snap-align: start;
       border: 1px solid rgba(231, 235, 242, 0.08);
-      border-radius: 1.35rem;
+      border-radius: var(--radius-card);
       background:
         linear-gradient(180deg, rgba(16, 18, 24, 0.98), rgba(8, 10, 14, 1));
       box-shadow:
@@ -10165,7 +10141,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     .home-v3-needs-panel-top h3 {
       max-width: none;
-      font-size: 1.9rem;
+      font-size: var(--home-v3-mobile-type-title-md);
     }
 
     .home-v3-needs-panel-lead,
