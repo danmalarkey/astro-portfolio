@@ -17,38 +17,38 @@ const mailto = `mailto:hello@danmalarkey.com?${mailParams.toString()}`;
 const modelLayers = [
   {
     title: 'Business Intent',
-    text: 'What the organization is trying to make true, and why it matters now.',
-    focus: 'Clarity of direction and alignment on what matters.',
+    text: 'What the organization is trying to make true.',
+    focus: 'The business intent the model has to preserve.',
     backgroundImage: '/images/op-model/business-intent-bg.png'
   },
   {
     title: 'Concepts',
-    text: 'The core objects, relationships, rules, and constraints the product depends on.',
-    focus: 'Shared language, systems, rules, and understanding across teams.',
+    text: 'The core abstractions, relationships, rules, and boundaries that give the system conceptual integrity.',
+    focus: 'The shared model behind product behavior.',
     backgroundImage: '/images/op-model/concepts-bg.png'
   },
   {
     title: 'Activities',
-    text: 'The real work customers, operators, and teams are trying to accomplish.',
-    focus: 'Alignment around the real work people are trying to accomplish.',
-    backgroundImage: '/images/op-model/activities-bg.png'
+    text: 'The goals, jobs, decisions, and work patterns people move through to accomplish something meaningful.',
+    focus: 'The human activity the system needs to support.',
+    backgroundImage: '/images/op-model/activities-hold-bg.png'
   },
   {
     title: 'Operations',
-    text: 'How workflows, responsibilities, and delivery models support the work.',
-    focus: 'Operational structures that support coherent delivery and scale.',
+    text: 'How the organization supports, coordinates, governs, and delivers the work.',
+    focus: 'The operating reality surrounding the product.',
     backgroundImage: '/images/op-model/operations-bg.png'
   },
   {
     title: 'Behavior',
-    text: 'How the system responds, enforces rules, and builds trust over time.',
-    focus: 'Consistent expectations across workflows, decisions, and environments.',
+    text: 'How the system responds, guides, prevents errors, and builds trust in use.',
+    focus: 'The product behavior people experience in use.',
     backgroundImage: '/images/op-model/behavior-bg.png'
   },
   {
     title: 'Design systems',
-    text: 'How the interface, language, patterns, and implementation make the model visible.',
-    focus: 'Interfaces and patterns that make complex systems understandable.',
+    text: 'How decisions, standards, patterns, accessibility, and implementation guidance become reusable.',
+    focus: 'The reusable standards that keep delivery coherent.',
     backgroundImage: '/images/op-model/expression-bg.png'
   }
 ];
@@ -112,17 +112,17 @@ const supportAreas = [
 const outputs = [
   {
     title: 'Product model maps',
-    text: 'Define concepts, relationships, rules, and business logic.',
+    text: 'Define concepts, relationships, rules, and business logic so teams understand what the product is built around.',
     backgroundImage: '/images/op-model/product-model-maps-bg.png'
   },
   {
     title: 'Workflow and activity models',
-    text: 'Clarify how work actually moves through the organization.',
-    backgroundImage: '/images/op-model/activities-1-bg.png'
+    text: 'Clarify how work actually moves through the organization, including goals, jobs, decisions, handoffs, and constraints.',
+    backgroundImage: '/images/op-model/activities-bg.png'
   },
   {
     title: 'Operating principles',
-    text: 'Connect strategy to delivery decisions and reduce organizational drift over time.',
+    text: 'Connect strategy to delivery decisions teams can act on.',
     backgroundImage: '/images/op-model/op-principles-bg.png'
   },
   {
@@ -131,13 +131,13 @@ const outputs = [
     backgroundImage: '/images/op-model/decision-frameworks-bg.png'
   },
   {
-    title: 'System patterns',
-    text: 'Connect product behavior, implementation, and operational realities.',
+    title: 'UX system patterns',
+    text: 'Tie interface patterns to implementation and operational realities.',
     backgroundImage: '/images/op-model/system-patterns-bg.png'
   },
   {
     title: 'Operating standards',
-    text: 'Establish standards for terminology, behavior, accessibility, and quality.',
+    text: 'Establish shared expectations for terminology, behavior, accessibility, and quality.',
     backgroundImage: '/images/op-model/operating-standards-bg.png'
   }
 ];
@@ -279,9 +279,9 @@ const outputs = [
     <section class="operating-model-band" aria-labelledby="operating-model-layers" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
-          eyebrow="Maintain trajectory"
+          eyebrow="What has to stay aligned"
           title="Hold alignment through execution."
-          body="Every decision shapes the path forward. These six dimensions must stay aligned to keep the organization moving in the right direction."
+          body="Execution stays aligned when business intent, conceptual integrity, human activity, operations, behavior, and design systems continue reinforcing the same direction."
           headingId="operating-model-layers"
           accent
           reveal
@@ -356,12 +356,38 @@ const outputs = [
       </div>
     </section>
 
+    <section class="operating-model-band" aria-labelledby="operating-model-outputs" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <SectionHeader
+          eyebrow="What supports better decisions"
+          title="The work becomes useful when decisions improve."
+          body="Decision infrastructure gives teams the models, frameworks, principles, patterns, and standards they need to keep priorities, product direction, implementation choices, and operating reality connected."
+          headingId="operating-model-outputs"
+          accent
+          reveal
+        />
+        <div class="operating-model-output-list gc-start-2 gc-span-24" role="list" data-motion-item>
+          {outputs.map((output, index) => (
+            <article
+              class="operating-model-output-card"
+              role="listitem"
+              style={`--operating-model-output-bg: url('${withBase(output.backgroundImage)}')`}
+            >
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{output.title}</h3>
+              <p>{output.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="operating-model-section operating-model-section--split" aria-labelledby="operating-model-support" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
-          eyebrow="Clarity improves"
+          eyebrow="What gets better"
           title="When organizations maintain direction."
-          body="Organizations operate more effectively when business priorities, operational realities, product behavior, and decision-making continue reinforcing the same direction over time."
+          body="When the right layers stay connected and better decisions are easier to make, priorities stay visible, friction decreases, and systems evolve with more consistency."
           headingId="operating-model-support"
           accent
           reveal
@@ -390,32 +416,6 @@ const outputs = [
             <Button href={mailto}>Start a conversation</Button>
             <Button href={withBase('/work-with/standards-and-scale')} variant="ghost">Explore Standards & Scale</Button>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="operating-model-band" aria-labelledby="operating-model-outputs" data-motion-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <SectionHeader
-          eyebrow="Decision infrastructure"
-          title="The work becomes useful when decisions improve."
-          body="The output is not theater. It is a practical operating layer that helps executive priorities, product direction, standards, and implementation choices stay connected."
-          headingId="operating-model-outputs"
-          accent
-          reveal
-        />
-        <div class="operating-model-output-list gc-start-2 gc-span-24" role="list" data-motion-item>
-          {outputs.map((output, index) => (
-            <article
-              class="operating-model-output-card"
-              role="listitem"
-              style={`--operating-model-output-bg: url('${withBase(output.backgroundImage)}')`}
-            >
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{output.title}</h3>
-              <p>{output.text}</p>
-            </article>
-          ))}
         </div>
       </div>
     </section>
@@ -1285,18 +1285,27 @@ const outputs = [
     border-radius: var(--radius-panel);
     background:
       linear-gradient(180deg, rgba(var(--ds-surface-panel-rgb), 0.08) 0%, rgba(var(--ds-surface-panel-rgb), 0.14) 44%, rgba(var(--ds-surface-panel-rgb), 0.86) 100%),
-      var(--operating-model-output-bg),
       rgba(var(--ds-surface-panel-rgb), 0.84);
-    background-position: center;
-    background-size: cover;
   }
 
+  .operating-model-output-card::before,
   .operating-model-output-card::after {
     content: '';
     position: absolute;
+    pointer-events: none;
+  }
+
+  .operating-model-output-card::before {
+    inset: 0;
+    background-image: var(--operating-model-output-bg);
+    background-position: center;
+    background-size: cover;
+    opacity: var(--operating-model-output-bg-opacity, 0.44);
+  }
+
+  .operating-model-output-card::after {
     inset: auto 0 0;
     height: 42%;
-    pointer-events: none;
     background: linear-gradient(180deg, transparent, rgba(var(--ds-background-rgb), 0.22));
   }
 
