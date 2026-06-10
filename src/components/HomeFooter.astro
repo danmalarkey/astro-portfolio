@@ -6,6 +6,8 @@ interface Props {
   title?: string;
   body?: string;
   ctaLabel?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
   email?: string;
   linkedinUrl?: string;
   locationLabel?: string;
@@ -16,6 +18,8 @@ const {
   title = 'Design leadership for teams navigating growth, complexity, and change.',
   body = 'Available for select advisory, consulting, and fractional leadership engagements where sharper direction and stronger product design leadership can move the work forward.',
   ctaLabel = 'Work with me',
+  secondaryCtaLabel = 'Book a call',
+  secondaryCtaHref,
   email = 'hello@danmalarkey.com',
   linkedinUrl = 'https://www.linkedin.com/in/danmalarkey/',
   locationLabel = 'Jacksonville, Florida'
@@ -38,7 +42,7 @@ const currentYear = new Date().getFullYear();
           <p>{body}</p>
           <div class="site-footer-new-actions">
             <Button href={`mailto:${email}`}>{ctaLabel}</Button>
-            <Button href={`mailto:${email}`} variant="ghost">Book a call</Button>
+            <Button href={secondaryCtaHref ?? `mailto:${email}`} variant="ghost">{secondaryCtaLabel}</Button>
           </div>
         </div>
       </div>
@@ -47,10 +51,10 @@ const currentYear = new Date().getFullYear();
         <nav class="site-footer-new-links" aria-label="Footer">
           <div class="site-footer-new-link-group site-footer-new-link-group--services">
             <p>Focus areas</p>
-            <a href={withBase('/work-with/operating-model')}>Operating Model</a>
-            <a href={withBase('/work-with/ai-enabled-systems')}>AI-enabled Systems</a>
-            <a href={withBase('/work-with/direction-and-prioritization')}>Direction & Prioritization</a>
-            <a href={withBase('/work-with/standards-and-scale')}>Standards & Scale</a>
+            <a href={withBase('/operating-model')}>Operating Model</a>
+            <a href={withBase('/ai-enabled-systems')}>AI-enabled Systems</a>
+            <a href={withBase('/direction-and-prioritization')}>Direction & Prioritization</a>
+            <a href={withBase('/standards-and-scale')}>Standards & Scale</a>
           </div>
           <div class="site-footer-new-link-group">
             <p>Explore</p>
