@@ -17,8 +17,10 @@
   --ds-panel-gap: 1.5rem;
   --ds-section-header-gap: var(--spacing-sm);
   --ds-section-content-gap: var(--spacing-xl);
+  --ds-section-header-content-gap: var(--spacing-2xl);
   --ds-mobile-section-header-gap: var(--spacing-sm);
   --ds-mobile-section-content-gap: var(--spacing-lg);
+  --ds-mobile-section-header-content-gap: var(--spacing-xl);
 
   --ds-type-label: 0.75rem;
   --ds-type-label-compact: 0.75rem;
@@ -72,5 +74,6 @@
   :root {
     --ds-section-header-gap: var(--ds-mobile-section-header-gap);
     --ds-section-content-gap: var(--ds-mobile-section-content-gap);
+    --ds-section-header-content-gap: var(--ds-mobile-section-header-content-gap);
   }
 }

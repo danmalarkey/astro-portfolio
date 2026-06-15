@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.astro";
+import PageIntro from "../components/PageIntro.astro";
 ---
 
 <Layout title="Library | Dan Malarkey">
@@ -8,17 +9,12 @@ import Header from "../layouts/Header.astro";
   <main>
     <section class="section section-panel section-surface--warm">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="gc-start-2 gc-span-18 section-intro section-intro--page">
-          <p class="section-intro-eyebrow">Library</p>
-          <h1 class="section-title">Books, references, and recommendations that shape how I think.</h1>
-          <p class="section-intro-body">
-            A curated collection of books, references, and recommendations is in progress.
-            This will include resources for designers building their careers and leaders learning how design creates leverage.
-          </p>
-          <p class="section-intro-meta">
-            Future plans include personal recommendations, notes, and eventually data-fed collections (including vinyl and other lab projects).
-          </p>
-        </div>
+        <PageIntro
+          eyebrow="Library"
+          title="Books, references, and recommendations that shape how I think."
+          body="A curated collection of books, references, and recommendations is in progress. This will include resources for designers building their careers and leaders learning how design creates leverage."
+          meta="Future plans include personal recommendations, notes, and eventually data-fed collections (including vinyl and other lab projects)."
+        />
       </div>
     </section>
   </main>

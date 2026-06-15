@@ -1,10 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../layouts/Header.astro';
-import HomeFooter from '../../components/HomeFooter.astro';
-import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
-import Button from '../../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../layouts/Header.astro';
+import HomeFooter from '../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../components/FocusAreaJumpCards.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
@@ -414,7 +414,7 @@ const outputs = [
           </p>
           <div class="operating-model-actions" aria-label="Operating model CTA actions">
             <Button href={mailto}>Start a conversation</Button>
-            <Button href={withBase('/work-with/standards-and-scale')} variant="ghost">Explore Standards & Scale</Button>
+            <Button href={withBase('/standards-and-scale')} variant="ghost">Explore Standards & Scale</Button>
           </div>
         </div>
       </div>
@@ -625,11 +625,6 @@ const outputs = [
 
   .operating-model-section {
     padding: clamp(4.5rem, 8vw, 7rem) 0;
-  }
-
-  .operating-model-section--stuck > .dm-grid-l,
-  .operating-model-band > .dm-grid-l {
-    row-gap: var(--ds-section-content-gap);
   }
 
   .operating-model-section--split {
@@ -1378,11 +1373,6 @@ const outputs = [
   @media (max-width: 48rem) {
     .operating-model-page {
       --operating-model-mobile-gutter: var(--ds-mobile-content-gutter);
-    }
-
-    .operating-model-section > .dm-grid-l,
-    .operating-model-band > .dm-grid-l {
-      row-gap: var(--ds-mobile-section-header-gap);
     }
 
     .operating-model-hero-copy,

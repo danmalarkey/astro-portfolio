@@ -1,5 +1,7 @@
 ---
 import { writingRoadmapEntries } from '../data/writing-roadmap';
+import PageIntro from './PageIntro.astro';
+import SectionHeader from './SectionHeader.astro';
 
 interface WritingEntry {
   title: string;
@@ -40,19 +42,19 @@ const entries: WritingEntry[] = writingRoadmapEntries;
 
 <section class="section section-panel section-surface--dark writing-shell">
   <div class="dm-grid-l dm-grid-l--grid-sys">
-    <div class="gc-start-2 gc-span-12 section-intro section-intro--page">
-      <p class="section-intro-eyebrow">Writing</p>
-      <h1 class="section-title text-white">Notes, essays, and field observations from the work.</h1>
-      <p class="section-intro-body">
-        I use writing to clarify what I believe about design leadership, product direction, systems, and the practical use of AI in delivery.
-        This is where I publish frameworks, patterns, and lessons that help leaders make better decisions and teams execute with more confidence.
-      </p>
+    <PageIntro
+      eyebrow="Writing"
+      title="Notes, essays, and field observations from the work."
+      body="I use writing to clarify what I believe about design leadership, product direction, systems, and the practical use of AI in delivery. This is where I publish frameworks, patterns, and lessons that help leaders make better decisions and teams execute with more confidence."
+      headClass="gc-start-2 gc-span-12"
+      titleClass="text-white"
+    >
       {aliasRoute && (
-        <p class="section-intro-meta">
+        <p slot="meta" class="section-intro-meta">
           You are viewing the legacy <code>/blog</code> route. <a href={withBase('/writing')}>Writing</a> is the canonical path going forward.
         </p>
       )}
-    </div>
+    </PageIntro>
 
     <div class="gc-start-15 gc-span-5 writing-panel writing-panel--tracks">
       <h2 class="writing-panel-title">What you will find here</h2>
@@ -81,13 +83,12 @@ const entries: WritingEntry[] = writingRoadmapEntries;
 
 <section class="section section-panel section-surface--warm writing-list-shell">
   <div class="dm-grid-l dm-grid-l--grid-sys">
-    <div class="gc-start-2 gc-span-18 section-intro section-intro--compact">
-      <p class="section-intro-eyebrow">Queue</p>
-      <h2 class="section-title">Publishing roadmap</h2>
-      <p class="section-intro-body">
-        These are the first pieces I plan to publish as the Writing section comes online. Each one is selected to support leaders looking for clearer direction, stronger systems, and faster product delivery.
-      </p>
-    </div>
+    <SectionHeader
+      eyebrow="Queue"
+      title="Publishing roadmap"
+      body="These are the first pieces I plan to publish as the Writing section comes online. Each one is selected to support leaders looking for clearer direction, stronger systems, and faster product delivery."
+      headClass="gc-start-2 gc-span-18"
+    />
 
     <div class="gc-start-2 gc-span-18 writing-entry-list" role="list">
       {entries.map((entry) => (

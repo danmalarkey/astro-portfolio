@@ -1,4 +1,4 @@
 ---
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
-return Astro.redirect(baseUrl, 301);
+return Astro.redirect(`${baseUrl}ai-enabled-systems`, 301);
 ---

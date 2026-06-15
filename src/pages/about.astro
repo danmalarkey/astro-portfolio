@@ -184,7 +184,7 @@ const operatingContexts = [
           </p>
         </div>
 
-        <div class="about-method-grid gc-start-2 gc-span-24" role="list">
+        <div class="about-method-grid section-flow-content gc-start-2 gc-span-24" role="list">
           {workMethods.map((item) => (
             <article class="about-method-card" role="listitem">
               <p>{item.number}</p>
@@ -208,7 +208,7 @@ const operatingContexts = [
           </p>
         </div>
 
-        <div class="about-context-list gc-start-2 gc-span-24" role="list">
+        <div class="about-context-list section-flow-content gc-start-2 gc-span-24" role="list">
           {operatingContexts.map((item) => (
             <article class="about-context-row" role="listitem">
               <h3>{item.title}</h3>
@@ -628,7 +628,6 @@ const operatingContexts = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--spacing-sm);
-    margin-top: var(--ds-section-content-gap);
   }
 
   .about-method-card {
@@ -646,10 +645,6 @@ const operatingContexts = [
 
   .about-method-card h3 {
     margin-top: var(--spacing-lg);
-  }
-
-  .about-context-list {
-    margin-top: var(--ds-section-content-gap);
   }
 
   .about-context-row {
@@ -703,7 +698,7 @@ const operatingContexts = [
     }
 
     .about-page .dm-grid-l.dm-grid-l--grid-sys {
-      row-gap: var(--ds-mobile-section-header-gap);
+      row-gap: var(--ds-mobile-section-content-gap);
       padding-inline: 0;
     }
 

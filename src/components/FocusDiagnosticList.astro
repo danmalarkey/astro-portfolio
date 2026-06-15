@@ -27,7 +27,9 @@ const columns = [items.slice(0, 3), items.slice(3)];
               <span class="focus-diagnostic-item-icon" aria-hidden="true"></span>
             </summary>
             <div class="focus-diagnostic-item-panel">
-              <p>{item.text}</p>
+              <div class="focus-diagnostic-item-panel-inner">
+                <p>{item.text}</p>
+              </div>
             </div>
           </details>
         );
@@ -38,19 +40,24 @@ const columns = [items.slice(0, 3), items.slice(3)];
 
 <script is:inline>
   (() => {
-    const rows = Array.from(document.querySelectorAll('.focus-diagnostic-item--disclosure'));
-    if (!rows.length) return;
+    const lists = Array.from(document.querySelectorAll('.focus-diagnostic-list'));
+    if (!lists.length) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const clearTransition = (row, panel) => {
+      window.cancelAnimationFrame(row._diagnosticAnimationFrame ?? 0);
+      if (row._diagnosticTransitionEndHandler) {
+        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
+        row._diagnosticTransitionEndHandler = null;
+      }
+    };
 
     const closeRow = (row) => {
       const panel = row.querySelector('.focus-diagnostic-item-panel');
       if (!panel || !row.open) return;
 
-      window.cancelAnimationFrame(row._diagnosticAnimationFrame ?? 0);
-      if (row._diagnosticTransitionEndHandler) {
-        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
-      }
+      clearTransition(row, panel);
 
       if (prefersReducedMotion) {
         row.open = false;
@@ -60,7 +67,8 @@ const columns = [items.slice(0, 3), items.slice(3)];
       }
 
       row.classList.add('is-animating');
-      panel.style.height = `${panel.scrollHeight}px`;
+      panel.style.height = `${panel.getBoundingClientRect().height}px`;
+      panel.offsetHeight;
       row.classList.remove('is-open');
 
       row._diagnosticAnimationFrame = window.requestAnimationFrame(() => {
@@ -80,12 +88,10 @@ const columns = [items.slice(0, 3), items.slice(3)];
 
     const openRow = (row) => {
       const panel = row.querySelector('.focus-diagnostic-item-panel');
-      if (!panel || row.open) return;
+      const inner = row.querySelector('.focus-diagnostic-item-panel-inner');
+      if (!panel || !inner || row.open) return;
 
-      window.cancelAnimationFrame(row._diagnosticAnimationFrame ?? 0);
-      if (row._diagnosticTransitionEndHandler) {
-        panel.removeEventListener('transitionend', row._diagnosticTransitionEndHandler);
-      }
+      clearTransition(row, panel);
 
       row.open = true;
 
@@ -97,10 +103,11 @@ const columns = [items.slice(0, 3), items.slice(3)];
 
       row.classList.add('is-animating');
       panel.style.height = '0px';
+      panel.offsetHeight;
 
       row._diagnosticAnimationFrame = window.requestAnimationFrame(() => {
         row.classList.add('is-open');
-        panel.style.height = `${panel.scrollHeight}px`;
+        panel.style.height = `${inner.offsetHeight}px`;
       });
 
       row._diagnosticTransitionEndHandler = (event) => {
@@ -113,32 +120,37 @@ const columns = [items.slice(0, 3), items.slice(3)];
       panel.addEventListener('transitionend', row._diagnosticTransitionEndHandler);
     };
 
-    rows.forEach((row) => {
-      if (row.dataset.diagnosticBound === 'true') return;
+    lists.forEach((list) => {
+      const rows = Array.from(list.querySelectorAll('.focus-diagnostic-item--disclosure'));
+      if (!rows.length) return;
 
-      const summary = row.querySelector('summary');
-      const panel = row.querySelector('.focus-diagnostic-item-panel');
-      if (!summary || !panel) return;
+      rows.forEach((row) => {
+        if (row.dataset.diagnosticBound === 'true') return;
 
-      row.dataset.diagnosticBound = 'true';
+        const summary = row.querySelector('summary');
+        const panel = row.querySelector('.focus-diagnostic-item-panel');
+        if (!summary || !panel) return;
 
-      if (row.open) {
-        row.classList.add('is-open');
-        panel.style.height = 'auto';
-      }
-
-      summary.addEventListener('click', (event) => {
-        event.preventDefault();
+        row.dataset.diagnosticBound = 'true';
 
         if (row.open) {
-          closeRow(row);
-          return;
+          row.classList.add('is-open');
+          panel.style.height = 'auto';
         }
 
-        rows.forEach((otherRow) => {
-          if (otherRow !== row) closeRow(otherRow);
+        summary.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          if (row.open) {
+            closeRow(row);
+            return;
+          }
+
+          rows.forEach((otherRow) => {
+            if (otherRow !== row) closeRow(otherRow);
+          });
+          openRow(row);
         });
-        openRow(row);
       });
     });
   })();

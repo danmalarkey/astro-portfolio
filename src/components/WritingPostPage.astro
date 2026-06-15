@@ -1,4 +1,6 @@
 ---
+import PageIntro from './PageIntro.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -27,22 +29,26 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
 
 <section class="section section-panel section-surface--dark writing-post-shell">
   <div class="dm-grid-l dm-grid-l--grid-sys">
-    <div class="gc-start-2 gc-span-16 writing-post-head">
-      <p class="section-intro-eyebrow">Writing</p>
-      <h1 class="section-title text-white writing-post-title">{title}</h1>
-      <p class="writing-post-dek">{description}</p>
-      <div class="writing-post-meta" aria-label="Post metadata">
+    <PageIntro
+      eyebrow="Writing"
+      title={title}
+      body={description}
+      headClass="gc-start-2 gc-span-16 writing-post-head"
+      titleClass="text-white writing-post-title"
+      bodyClass="writing-post-dek"
+    >
+      <div slot="afterBody" class="writing-post-meta" aria-label="Post metadata">
         <p>{type}</p>
         <p>{audience}</p>
         <p>{status}</p>
         <p>{publishedLabel}</p>
       </div>
       {aliasRoute && (
-        <p class="section-intro-meta writing-post-alias-note">
+        <p slot="meta" class="section-intro-meta writing-post-alias-note">
           You are viewing the legacy <code>/blog</code> route. The canonical path for this post is <a href={withBase(canonicalPath)}>{canonicalPath}</a>.
         </p>
       )}
-    </div>
+    </PageIntro>
 
     <aside class="gc-start-19 gc-span-6 writing-post-side" aria-label="Post summary">
       <p class="writing-panel-title">Why this piece exists</p>

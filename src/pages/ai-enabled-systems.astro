@@ -1,10 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../layouts/Header.astro';
-import HomeFooter from '../../components/HomeFooter.astro';
-import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
-import Button from '../../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../layouts/Header.astro';
+import HomeFooter from '../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../components/FocusAreaJumpCards.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
@@ -274,7 +274,7 @@ const activityCards = [
           </p>
           <div class="ai-systems-actions" aria-label="AI-enabled product systems CTA actions">
             <Button href={mailto}>Start a conversation</Button>
-            <Button href={withBase('/work-with/operating-model')} variant="ghost">Explore Operating Model</Button>
+            <Button href={withBase('/operating-model')} variant="ghost">Explore Operating Model</Button>
           </div>
         </div>
       </div>
@@ -493,14 +493,6 @@ const activityCards = [
 
   .ai-systems-section--signals {
     padding-top: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .ai-systems-section--signals > .dm-grid-l {
-    row-gap: clamp(1.65rem, 3.2vw, 3rem);
-  }
-
-  .ai-systems-band > .dm-grid-l {
-    row-gap: var(--ds-section-content-gap);
   }
 
   .ai-systems-cta-inner {
@@ -896,11 +888,6 @@ const activityCards = [
   @media (max-width: 48rem) {
     .ai-systems-page {
       --ai-mobile-gutter: var(--ds-mobile-content-gutter);
-    }
-
-    .ai-systems-section > .dm-grid-l,
-    .ai-systems-band > .dm-grid-l {
-      row-gap: var(--ds-mobile-section-header-gap);
     }
 
     .ai-systems-hero-copy,

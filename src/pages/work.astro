@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.astro";
 import ButtonLink from "../components/ButtonLink.astro";
+import PageIntro from "../components/PageIntro.astro";
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
@@ -22,17 +23,13 @@ const workEntries = [
   <main>
     <section class="section section-panel section-surface--dark">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="gc-start-2 gc-span-18 section-intro section-intro--page">
-          <p class="section-intro-eyebrow">Work</p>
-          <h1 class="section-title text-white">Case studies built around decisions, systems, and business impact.</h1>
-          <p class="section-intro-body">
-            Outcome-led case studies and selected leadership engagements are being assembled here.
-            The homepage currently highlights the proof themes and business outcomes.
-          </p>
-          <p class="section-intro-meta">
-            This page will focus on decisions, systems, and business impact, not just polished UI outputs. Some examples are anonymized and attributed to work delivered through feature[23] where relevant.
-          </p>
-        </div>
+        <PageIntro
+          eyebrow="Work"
+          title="Case studies built around decisions, systems, and business impact."
+          body="Outcome-led case studies and selected leadership engagements are being assembled here. The homepage currently highlights the proof themes and business outcomes."
+          meta="This page will focus on decisions, systems, and business impact, not just polished UI outputs. Some examples are anonymized and attributed to work delivered through feature[23] where relevant."
+          titleClass="text-white"
+        />
       </div>
     </section>
 
