@@ -49,11 +49,7 @@ const hasBodySlot = Astro.slots.has('body');
     display: grid;
     align-content: start;
     gap: var(--section-header-eyebrow-gap, var(--ds-section-header-gap));
-    margin-bottom: var(--section-header-content-gap, var(--ds-section-content-gap));
-  }
-
-  .section-header:has(+ .section-header-body) {
-    margin-bottom: 0;
+    margin-bottom: var(--section-header-content-gap, var(--ds-section-header-content-gap, var(--ds-section-content-gap)));
   }
 
   .section-header-eyebrow {
@@ -83,7 +79,7 @@ const hasBodySlot = Astro.slots.has('body');
 
   .section-header-body {
     align-self: center;
-    margin: 0 0 var(--section-header-content-gap, var(--ds-section-content-gap));
+    margin: 0 0 var(--section-header-content-gap, var(--ds-section-header-content-gap, var(--ds-section-content-gap)));
     color: var(--section-header-body-color, var(--ds-text-muted));
     font-size: var(--section-header-body-size, var(--ds-type-lead));
     line-height: var(--section-header-body-line, var(--ds-line-lead));
@@ -117,11 +113,7 @@ const hasBodySlot = Astro.slots.has('body');
 
     .section-header {
       gap: var(--section-header-mobile-eyebrow-gap, var(--ds-mobile-section-header-gap));
-      margin-bottom: var(--section-header-mobile-content-gap, var(--ds-mobile-section-content-gap));
-    }
-
-    .section-header:has(+ .section-header-body) {
-      margin-bottom: 0;
+      margin-bottom: var(--section-header-mobile-content-gap, var(--ds-section-header-content-gap, var(--ds-mobile-section-content-gap)));
     }
 
     .section-header h2 {
@@ -131,7 +123,7 @@ const hasBodySlot = Astro.slots.has('body');
     .section-header-body {
       align-self: start;
       margin-top: 0;
-      margin-bottom: var(--section-header-mobile-content-gap, var(--ds-mobile-section-content-gap));
+      margin-bottom: var(--section-header-mobile-content-gap, var(--ds-section-header-content-gap, var(--ds-mobile-section-content-gap)));
       font-size: var(--section-header-mobile-body-size, var(--ds-mobile-type-body));
     }
   }

@@ -1,0 +1,395 @@
+---
+interface PinnedStackCard {
+  title: string;
+  titleLines?: string[];
+  href?: string;
+  eyebrow?: string;
+  tags?: string[];
+  fitLine?: string;
+  body?: string;
+  image?: string;
+}
+
+interface Props {
+  items: PinnedStackCard[];
+  className?: string;
+  reveal?: boolean;
+  revealType?: 'item' | 'late' | 'reveal';
+}
+
+const { items, className, reveal = false, revealType = 'item' } = Astro.props as Props;
+const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+const revealAttribute =
+  revealType === 'late' ? 'data-motion-reveal-late' : revealType === 'reveal' ? 'data-motion-reveal' : 'data-motion-item';
+const revealAttrs = reveal ? { [revealAttribute]: true } : {};
+---
+
+<div class:list={['pinned-stack', className]} data-pinned-stack {...revealAttrs}>
+  <div class="pinned-stack-stage" role="list" data-pinned-stack-stage>
+    {items.map((item, index) => {
+      const Element = item.href ? 'a' : 'article';
+      const titleLines = item.titleLines ?? [item.title];
+      const style = [
+        `--pinned-stack-index: ${index}`,
+        item.image ? `--pinned-stack-image: url('${withBase(item.image)}')` : ''
+      ].filter(Boolean).join('; ');
+
+      return (
+        <Element
+          class="pinned-stack-card"
+          href={item.href ? withBase(item.href) : undefined}
+          role="listitem"
+          style={style}
+          data-pinned-stack-card
+        >
+          <span class="pinned-stack-title" aria-label={item.title}>
+            {titleLines.map((line, lineIndex) => (
+              <span class:list={[lineIndex > 0 && 'pinned-stack-title-muted']}>{line}</span>
+            ))}
+          </span>
+          {item.tags?.length || item.eyebrow || item.fitLine || item.body ? (
+            <div class="pinned-stack-details">
+              {item.tags?.length ? (
+                <span class="pinned-stack-tags" aria-label={`${item.title} details`}>
+                  {item.tags.map((tag) => <span>{tag}</span>)}
+                </span>
+              ) : null}
+              {item.eyebrow || item.fitLine || item.body ? (
+                <span class="pinned-stack-copy">
+                  {item.eyebrow ? <span class="pinned-stack-eyebrow">{item.eyebrow}</span> : null}
+                  {item.fitLine ? <span class="pinned-stack-fit-line">{item.fitLine}</span> : null}
+                  {item.body ? <span class="pinned-stack-body">{item.body}</span> : null}
+                </span>
+              ) : null}
+            </div>
+          ) : null}
+        </Element>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  (() => {
+    const pins = Array.from(document.querySelectorAll('[data-pinned-stack]'));
+    if (!pins.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobileQuery = window.matchMedia('(max-width: 48rem)');
+    const states = pins
+      .map((pin) => {
+        if (!(pin instanceof HTMLElement) || pin.dataset.pinnedStackBound === 'true') return null;
+        const stage = pin.querySelector('[data-pinned-stack-stage]');
+        const cards = Array.from(pin.querySelectorAll('[data-pinned-stack-card]'));
+        if (!(stage instanceof HTMLElement) || !cards.length) return null;
+        pin.dataset.pinnedStackBound = 'true';
+        return { pin, stage, cards, stageHeight: 0, scrollDistance: 0, pinTop: 0, step: 0 };
+      })
+      .filter(Boolean);
+
+    if (!states.length) return;
+
+    let frame = 0;
+    const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+
+    const reset = () => {
+      states.forEach(({ pin, cards }) => {
+        pin.classList.remove('is-scroll-ready');
+        pin.style.removeProperty('--pinned-stack-pin-height');
+        pin.style.removeProperty('--pinned-stack-pin-top');
+        pin.style.removeProperty('--pinned-stack-stage-height');
+        cards.forEach((card, index) => {
+          card.style.zIndex = String(index + 1);
+          card.style.transform = '';
+        });
+      });
+    };
+
+    const measure = () => {
+      if (prefersReducedMotion || mobileQuery.matches) {
+        reset();
+        return;
+      }
+
+      states.forEach((state) => {
+        state.pin.classList.add('is-scroll-ready');
+        const header = document.querySelector('[data-site-header], .home-header');
+        const headerBottom = header instanceof HTMLElement ? header.getBoundingClientRect().bottom : 0;
+        const pinWidth = state.pin.getBoundingClientRect().width;
+        const aspectHeight = pinWidth * (7.5 / 16);
+        const maxStageHeight = Math.min(window.innerHeight * 0.68, 640);
+
+        state.stageHeight = Math.max(460, Math.min(aspectHeight, maxStageHeight));
+        state.step = state.stageHeight * 0.84;
+        state.scrollDistance = state.step * Math.max(1, state.cards.length - 1);
+        state.pinTop = Math.max(headerBottom + 112, Math.min(Math.max(window.innerHeight * 0.18, 164), 248));
+        state.pin.style.setProperty('--pinned-stack-stage-height', `${state.stageHeight}px`);
+        state.pin.style.setProperty('--pinned-stack-pin-top', `${state.pinTop}px`);
+        state.pin.style.setProperty('--pinned-stack-pin-height', `${state.stageHeight + state.scrollDistance + state.pinTop}px`);
+      });
+    };
+
+    const render = () => {
+      frame = 0;
+      if (prefersReducedMotion || mobileQuery.matches) return;
+
+      states.forEach(({ pin, cards, stageHeight, scrollDistance, pinTop, step }) => {
+        const rect = pin.getBoundingClientRect();
+        const progressPx = clamp(pinTop - rect.top, 0, scrollDistance);
+        const incomingDistance = stageHeight + 76;
+        const stackGap = Math.min(36, stageHeight * 0.058);
+        const coveredScale = 0.035;
+        const stackProgress = progressPx / step;
+
+        cards.forEach((card, index) => {
+          const incoming = index === 0 ? 1 : clamp((progressPx - step * (index - 1)) / step);
+          const coveredDepth = Math.max(0, stackProgress - index);
+          const depth = Math.min(coveredDepth, 3);
+          const y = index === 0
+            ? -depth * stackGap
+            : (1 - incoming) * incomingDistance - depth * stackGap;
+          const scale = 1 - depth * coveredScale;
+
+          card.style.zIndex = String(index + 1);
+          card.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+        });
+      });
+    };
+
+    const schedule = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(render);
+    };
+
+    measure();
+    render();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', () => {
+      measure();
+      schedule();
+    });
+    mobileQuery.addEventListener?.('change', () => {
+      measure();
+      schedule();
+    });
+  })();
+</script>
+
+<style>
+  .pinned-stack {
+    --pinned-stack-stage-height: clamp(30rem, 46.875vw, 40rem);
+    --pinned-stack-pin-height: auto;
+    --pinned-stack-pin-top: clamp(10.25rem, 18vh, 15.5rem);
+    position: relative;
+    margin-top: clamp(5rem, 9.5vw, 8rem);
+  }
+
+  .pinned-stack-stage {
+    position: relative;
+    display: grid;
+    gap: 0;
+    height: var(--pinned-stack-stage-height);
+    overflow: visible;
+  }
+
+  .pinned-stack-card {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-content: space-between;
+    gap: clamp(var(--spacing-xl), 8vw, var(--spacing-4xl));
+    min-height: var(--pinned-stack-stage-height);
+    height: auto;
+    margin-top: var(--spacing-sm);
+    padding: clamp(var(--spacing-xl), 5vw, calc(var(--spacing-4xl) + var(--spacing-xl)));
+    overflow: hidden;
+    border: var(--size-border-thin) solid rgba(231, 235, 242, 0.14);
+    border-radius: clamp(2rem, 5vw, 4.6rem);
+    background:
+      radial-gradient(ellipse at 78% 18%, rgba(128, 161, 255, 0.18), transparent 24rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.062), rgba(255, 255, 255, 0.016) 42%, rgba(255, 255, 255, 0)),
+      #101827;
+    color: var(--ds-text);
+    text-decoration: none;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 2rem 4rem rgba(0, 0, 0, 0.24);
+    transform: none;
+    transform-origin: top center;
+    will-change: transform;
+  }
+
+  .pinned-stack-card:first-child {
+    margin-top: 0;
+  }
+
+  .pinned-stack-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image: var(--pinned-stack-image);
+    background-position: 84% 50%;
+    background-size: min(66rem, 68%) auto;
+    background-repeat: no-repeat;
+    opacity: 0.24;
+    filter: saturate(0.82) contrast(0.96);
+    mix-blend-mode: screen;
+    transform: scale(1.04);
+  }
+
+  .pinned-stack-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(16, 24, 39, 0.96) 0%, rgba(16, 24, 39, 0.84) 42%, rgba(16, 24, 39, 0.18) 74%, rgba(16, 24, 39, 0.64) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.006) 36%, rgba(255, 255, 255, 0));
+  }
+
+  .pinned-stack-card:nth-child(2) {
+    background:
+      radial-gradient(ellipse at 78% 18%, rgba(176, 204, 255, 0.13), transparent 24rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.016) 42%, rgba(255, 255, 255, 0)),
+      #1a2435;
+  }
+
+  .pinned-stack-card:nth-child(3) {
+    background:
+      radial-gradient(ellipse at 78% 18%, rgba(128, 161, 255, 0.14), transparent 24rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.054), rgba(255, 255, 255, 0.015) 42%, rgba(255, 255, 255, 0)),
+      #202a3d;
+  }
+
+  .pinned-stack-card:nth-child(4) {
+    background:
+      radial-gradient(ellipse at 78% 18%, rgba(121, 154, 255, 0.2), transparent 24rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.056), rgba(255, 255, 255, 0.014) 42%, rgba(255, 255, 255, 0)),
+      #0f1728;
+  }
+
+  .pinned-stack.is-scroll-ready {
+    min-height: var(--pinned-stack-pin-height);
+  }
+
+  .pinned-stack.is-scroll-ready .pinned-stack-stage {
+    position: sticky;
+    top: var(--pinned-stack-pin-top);
+    display: block;
+    height: var(--pinned-stack-stage-height);
+  }
+
+  .pinned-stack.is-scroll-ready .pinned-stack-card {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    min-height: 0;
+    margin-top: 0;
+    transform: translate3d(0, calc(var(--pinned-stack-index, 0) * (100% + 4.75rem)), 0);
+  }
+
+  .pinned-stack-title {
+    display: grid;
+    justify-items: start;
+    color: rgba(244, 247, 255, 0.94);
+    font-family: var(--font-family-display);
+    font-size: clamp(4rem, 7.55vw, 8.4rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.84;
+    letter-spacing: var(--ds-tracking-display);
+    text-wrap: balance;
+  }
+
+  .pinned-stack-title-muted {
+    color: rgba(231, 235, 242, 0.52);
+  }
+
+  .pinned-stack-details {
+    display: grid;
+    gap: var(--spacing-md);
+    align-self: end;
+  }
+
+  .pinned-stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .pinned-stack-tags span,
+  .pinned-stack-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 2.45rem;
+    padding: 0 var(--spacing-sm);
+    border: var(--size-border-thin) solid rgba(231, 235, 242, 0.06);
+    border-radius: var(--radius-pill);
+    background: rgba(4, 8, 15, 0.18);
+    color: rgba(231, 235, 242, 0.64);
+    font-size: var(--ds-type-body-sm);
+    font-weight: var(--font-weight-light);
+    line-height: var(--ds-line-label);
+    letter-spacing: var(--ds-tracking-text);
+  }
+
+  .pinned-stack-copy {
+    display: grid;
+    gap: var(--spacing-xs);
+    max-width: 43rem;
+  }
+
+  .pinned-stack-fit-line {
+    max-width: 36rem;
+    color: rgba(184, 193, 211, 0.7);
+    font-size: var(--ds-type-body-sm);
+    font-weight: var(--font-weight-light);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: balance;
+  }
+
+  .pinned-stack-body {
+    max-width: 40rem;
+    color: rgba(244, 247, 255, 0.92);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+    letter-spacing: var(--ds-tracking-text);
+  }
+
+  @media (max-width: 48rem) {
+    .pinned-stack {
+      min-height: auto;
+      margin-top: 0;
+    }
+
+    .pinned-stack-stage {
+      position: static;
+      display: grid;
+      gap: var(--spacing-sm);
+      height: auto;
+    }
+
+    .pinned-stack-card {
+      position: relative;
+      inset: auto;
+      gap: var(--spacing-lg);
+      min-height: 28rem;
+      height: auto;
+      margin-top: 0;
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-card);
+      transform: none !important;
+      will-change: auto;
+    }
+
+    .pinned-stack-title {
+      font-size: var(--ds-mobile-type-title-lg);
+      line-height: 0.9;
+    }
+  }
+</style>

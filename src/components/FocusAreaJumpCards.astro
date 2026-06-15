@@ -1,4 +1,6 @@
 ---
+import SectionHeader from './SectionHeader.astro';
+
 type FocusAreaKey = 'operating' | 'ai' | 'direction' | 'standards';
 
 interface Props {
@@ -15,28 +17,28 @@ const focusAreas = {
   operating: {
     title: 'Operating Model',
     description: 'Keep business direction, operating reality, product behavior, and delivery decisions connected.',
-    href: '/work-with/operating-model',
+    href: '/operating-model',
     tone: 'operating',
     image: 'images/op-model/noise-to-sig.png'
   },
   ai: {
     title: 'AI-enabled Systems',
     description: 'Turn AI capability into useful systems, not disconnected experiments.',
-    href: '/work-with/ai-enabled-systems',
+    href: '/ai-enabled-systems',
     tone: 'ai',
     image: 'images/work-ai/certainty-run-out.png'
   },
   direction: {
     title: 'Direction & Prioritization',
     description: 'Clarify what matters, what to sequence, and where to focus.',
-    href: '/work-with/direction-and-prioritization',
+    href: '/direction-and-prioritization',
     tone: 'direction',
     image: 'images/direction/hero-bg.png'
   },
   standards: {
     title: 'Standards & Scale',
     description: 'Preserve quality, accessibility, and consistency as complexity grows.',
-    href: '/work-with/standards-and-scale',
+    href: '/standards-and-scale',
     tone: 'standards',
     image: 'images/standards/standards-hero-bg.png'
   }
@@ -60,10 +62,14 @@ const relatedAreas = relatedOrder[current].map((key) => focusAreas[key]);
 
 <section class="focus-area-jump" aria-labelledby="focus-area-jump-title" data-motion-reveal>
   <div class="dm-grid-l dm-grid-l--grid-sys">
-    <div class="focus-area-jump-head gc-start-2 gc-span-24" data-motion-item>
-      <p>{eyebrow}</p>
-      <h2 id="focus-area-jump-title">Different focus areas. One shared system.</h2>
-    </div>
+    <SectionHeader
+      eyebrow={eyebrow}
+      title="Different focus areas. One shared system."
+      headingId="focus-area-jump-title"
+      headClass="gc-start-2 gc-span-24"
+      accent
+      reveal
+    />
     <div class="focus-area-jump-grid gc-start-2 gc-span-24" role="list" data-motion-item>
       {relatedAreas.map((item, index) => (
         <a
@@ -92,35 +98,8 @@ const relatedAreas = relatedOrder[current].map((key) => focusAreas[key]);
 <style>
   .focus-area-jump {
     padding: clamp(4rem, 9vw, 7rem) 0;
+    --section-header-accent-color: rgba(176, 204, 255, 0.88);
     background: var(--ds-background);
-  }
-
-  .focus-area-jump-head {
-    display: grid;
-    gap: var(--spacing-sm);
-    max-width: 52rem;
-    margin-bottom: clamp(2rem, 4vw, 3.5rem);
-  }
-
-  .focus-area-jump-head p {
-    margin: 0;
-    color: rgba(176, 204, 255, 0.88);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--ds-tracking-label);
-    line-height: var(--ds-line-label);
-    text-transform: uppercase;
-  }
-
-  .focus-area-jump-head h2 {
-    margin: 0;
-    color: var(--ds-text);
-    font-family: var(--font-family-display);
-    font-size: var(--ds-type-title-lg);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--ds-line-card-title);
-    letter-spacing: var(--ds-tracking-title);
-    text-wrap: balance;
   }
 
   .focus-area-jump-grid {
@@ -330,7 +309,6 @@ const relatedAreas = relatedOrder[current].map((key) => focusAreas[key]);
   }
 
   @media (max-width: 78rem) {
-    .focus-area-jump-head,
     .focus-area-jump-grid,
     .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):hover),
     .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):focus-visible),
@@ -350,7 +328,6 @@ const relatedAreas = relatedOrder[current].map((key) => focusAreas[key]);
       padding: clamp(3.5rem, 14vw, 5rem) 0;
     }
 
-    .focus-area-jump-head,
     .focus-area-jump-grid,
     .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):hover),
     .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(2):focus-visible),
@@ -358,10 +335,6 @@ const relatedAreas = relatedOrder[current].map((key) => focusAreas[key]);
     .focus-area-jump-grid:has(.focus-area-jump-card:nth-child(3):focus-visible) {
       grid-column: 1 / -1;
       margin-inline: var(--ds-mobile-content-gutter);
-    }
-
-    .focus-area-jump-head h2 {
-      font-size: var(--ds-mobile-type-title-md);
     }
 
     .focus-area-jump-card-title {

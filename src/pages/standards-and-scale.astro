@@ -1,14 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../layouts/Header.astro';
-import HomeFooter from '../../components/HomeFooter.astro';
-import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
-import FocusArtifactGrid from '../../components/FocusArtifactGrid.astro';
-import FocusDiagnosticList from '../../components/FocusDiagnosticList.astro';
-import FocusMethodCards from '../../components/FocusMethodCards.astro';
-import FocusNoduleModel from '../../components/FocusNoduleModel.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
-import Button from '../../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../layouts/Header.astro';
+import HomeFooter from '../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../components/FocusAreaJumpCards.astro';
+import FocusArtifactGrid from '../components/FocusArtifactGrid.astro';
+import FocusDiagnosticList from '../components/FocusDiagnosticList.astro';
+import FocusMethodCards from '../components/FocusMethodCards.astro';
+import FocusNoduleModel from '../components/FocusNoduleModel.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
@@ -234,7 +234,7 @@ const infrastructureBackgrounds = [
           </p>
           <div class="standards-actions" aria-label="Standards & Scale actions">
             <Button href={mailto}>Start a conversation</Button>
-            <Button href={withBase('/work-with/operating-model')} variant="ghost">Explore Operating Model</Button>
+            <Button href={withBase('/operating-model')} variant="ghost">Explore Operating Model</Button>
           </div>
         </div>
       </div>
@@ -640,11 +640,6 @@ const infrastructureBackgrounds = [
   @media (max-width: 48rem) {
     .standards-page {
       --standards-mobile-gutter: var(--ds-mobile-content-gutter);
-    }
-
-    .standards-section > .dm-grid-l,
-    .standards-band > .dm-grid-l {
-      row-gap: var(--ds-mobile-section-header-gap);
     }
 
     .standards-hero-copy,

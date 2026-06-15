@@ -1,4 +1,6 @@
 ---
+import PageIntro from './PageIntro.astro';
+
 interface FactItem {
   label: string;
   value: string;
@@ -54,16 +56,20 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
 
 <section class="section section-panel section-surface--dark case-study-shell">
   <div class="dm-grid-l dm-grid-l--grid-sys">
-    <div class="gc-start-2 gc-span-16 case-study-head">
-      <p class="section-intro-eyebrow">{eyebrow}</p>
-      <h1 class="section-title text-white case-study-title">{title}</h1>
-      <p class="case-study-dek">{dek}</p>
-      <div class="case-study-meta" aria-label="Case study metadata">
+    <PageIntro
+      eyebrow={eyebrow}
+      title={title}
+      body={dek}
+      headClass="gc-start-2 gc-span-16 case-study-head"
+      titleClass="text-white case-study-title"
+      bodyClass="case-study-dek"
+    >
+      <div slot="afterBody" class="case-study-meta" aria-label="Case study metadata">
         <p>{clientLabel}</p>
         <p>{roleLabel}</p>
         <p>{statusLabel}</p>
       </div>
-    </div>
+    </PageIntro>
 
     <aside class="gc-start-19 gc-span-6 case-study-summary" aria-label="Executive summary">
       <p class="writing-panel-title">Executive summary</p>
@@ -188,4 +194,3 @@ const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slic
     </aside>
   </div>
 </section>
-

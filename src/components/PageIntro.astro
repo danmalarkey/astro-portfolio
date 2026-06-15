@@ -1,0 +1,42 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  meta?: string;
+  headClass?: string;
+  titleClass?: string;
+  bodyClass?: string;
+  reveal?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  body,
+  meta,
+  headClass = "gc-start-2 gc-span-18",
+  titleClass = "",
+  bodyClass = "",
+  reveal = false
+} = Astro.props as Props;
+
+const revealAttrs = reveal ? { "data-motion-item": true } : {};
+const hasBodySlot = Astro.slots.has("body");
+const hasMetaSlot = Astro.slots.has("meta");
+const hasAfterBodySlot = Astro.slots.has("afterBody");
+---
+
+<div class:list={["section-intro", "section-intro--page", headClass]} {...revealAttrs}>
+  {eyebrow && <p class="section-intro-eyebrow">{eyebrow}</p>}
+  <h1 class:list={["section-title", titleClass]}>{title}</h1>
+  {body && <p class:list={["section-intro-body", bodyClass]}>{body}</p>}
+  {!body && hasBodySlot && (
+    <div class="section-intro-body">
+      <slot name="body" />
+    </div>
+  )}
+  {hasAfterBodySlot && <slot name="afterBody" />}
+  {meta && <p class="section-intro-meta">{meta}</p>}
+  {!meta && hasMetaSlot && <slot name="meta" />}
+</div>

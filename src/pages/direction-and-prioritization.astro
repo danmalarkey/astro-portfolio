@@ -1,13 +1,13 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../layouts/Header.astro';
-import HomeFooter from '../../components/HomeFooter.astro';
-import FocusAreaJumpCards from '../../components/FocusAreaJumpCards.astro';
-import FocusArtifactGrid from '../../components/FocusArtifactGrid.astro';
-import FocusDiagnosticList from '../../components/FocusDiagnosticList.astro';
-import FocusMethodCards from '../../components/FocusMethodCards.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
-import Button from '../../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../layouts/Header.astro';
+import HomeFooter from '../components/HomeFooter.astro';
+import FocusAreaJumpCards from '../components/FocusAreaJumpCards.astro';
+import FocusArtifactGrid from '../components/FocusArtifactGrid.astro';
+import FocusDiagnosticList from '../components/FocusDiagnosticList.astro';
+import FocusMethodCards from '../components/FocusMethodCards.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
@@ -199,10 +199,10 @@ const outputBackgrounds = [
           accent
           reveal
         />
+        <FocusDiagnosticList items={diagnosticItems} className="direction-diagnostic-grid gc-start-2 gc-span-24" />
         <figure class="direction-problem-visual gc-start-2 gc-span-24" data-motion-item aria-hidden="true">
           <img src={withBase('/images/direction/momentum.png')} alt="" loading="lazy" decoding="async" />
         </figure>
-        <FocusDiagnosticList items={diagnosticItems} className="direction-diagnostic-grid gc-start-2 gc-span-24" />
       </div>
     </section>
 
@@ -300,7 +300,7 @@ const outputBackgrounds = [
           </p>
           <div class="direction-actions" aria-label="Direction & Prioritization actions">
             <Button href={mailto}>Start a conversation</Button>
-            <Button href={withBase('/work-with/operating-model')} variant="ghost">Explore Operating Model</Button>
+            <Button href={withBase('/operating-model')} variant="ghost">Explore Operating Model</Button>
           </div>
         </div>
       </div>
@@ -597,11 +597,11 @@ const outputBackgrounds = [
     --focus-diagnostic-label: var(--direction-accent);
     --focus-diagnostic-text: var(--direction-text);
     --focus-diagnostic-text-muted: var(--direction-text-muted);
-    margin-top: 0;
+    margin: 0 0 var(--ds-section-content-gap);
   }
 
   .direction-problem-visual {
-    margin: 0 0 var(--ds-section-content-gap);
+    margin: 0;
   }
 
   .direction-problem-visual img {
@@ -1334,11 +1334,6 @@ const outputBackgrounds = [
   @media (max-width: 48rem) {
     .direction-page {
       --direction-mobile-gutter: var(--ds-mobile-content-gutter);
-    }
-
-    .direction-section > .dm-grid-l,
-    .direction-band > .dm-grid-l {
-      row-gap: var(--ds-mobile-section-header-gap);
     }
 
     .direction-hero-copy,
