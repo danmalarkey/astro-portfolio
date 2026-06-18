@@ -27,9 +27,10 @@ const revealAttribute =
   revealType === 'late' ? 'data-motion-reveal-late' : revealType === 'reveal' ? 'data-motion-reveal' : 'data-motion-item';
 const revealAttrs = reveal ? { [revealAttribute]: true } : {};
 const hasBodySlot = Astro.slots.has('body');
+const hasBodyContent = Boolean(body || hasBodySlot);
 ---
 
-<div class:list={['section-header', accent && 'section-header--accent', headClass]} {...revealAttrs}>
+<div class:list={['section-header', hasBodyContent && 'section-header--has-body', accent && 'section-header--accent', headClass]} {...revealAttrs}>
   {eyebrow && <p class="section-header-eyebrow">{eyebrow}</p>}
   <h2 id={headingId}>{title}</h2>
 </div>
@@ -102,6 +103,10 @@ const hasBodySlot = Astro.slots.has('body');
       grid-column: 2 / span 24;
       max-width: 48rem;
     }
+
+    .section-header--has-body {
+      margin-bottom: 0;
+    }
   }
 
   @media (max-width: 48rem) {
@@ -114,6 +119,10 @@ const hasBodySlot = Astro.slots.has('body');
     .section-header {
       gap: var(--section-header-mobile-eyebrow-gap, var(--ds-mobile-section-header-gap));
       margin-bottom: var(--section-header-mobile-content-gap, var(--ds-section-header-content-gap, var(--ds-mobile-section-content-gap)));
+    }
+
+    .section-header--has-body {
+      margin-bottom: 0;
     }
 
     .section-header h2 {

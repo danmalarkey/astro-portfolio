@@ -4,6 +4,7 @@ import Header from '../layouts/Header.astro';
 import HomeFooter from '../components/HomeFooter.astro';
 import PinnedStackCards from '../components/PinnedStackCards.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import { focusAreaServiceRows } from '../data/focus-area-service-rows';
 import { writingRoadmapEntries } from '../data/writing-roadmap';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
@@ -62,19 +63,19 @@ const leverageCards = [
     actorLabel: 'a product or AI systems leader'
   },
   {
-    title: 'Executives, Founders, & Product Owners',
+    title: 'Executives & Product Leaders',
     descriptionLines: [
       'Clarifying product direction, aligning',
       'investment priorities, and making design',
       'a driver of business outcomes.'
     ],
-    cardFit: 'For teams that need sharper product direction and clearer investment bets.',
+    cardFit: 'For teams that need sharper product direction, clearer investment decisions, and stronger alignment around what deserves attention now.',
     artType: 'executive',
     conceptLabel: 'Strategic direction',
     conceptSignals: ['Direction', 'Investment', 'Outcomes'],
     laneRows: [
       { label: 'Direction', detail: 'What matters now' },
-      { label: 'Investment', detail: 'Sequence bets' },
+      { label: 'Investment', detail: 'Where to focus' },
       { label: 'Outcomes', detail: 'Business impact' }
     ],
     image: 'images/dan-right.png',
@@ -89,14 +90,14 @@ const leverageCards = [
       'handoffs, and shared tooling so teams can',
       'ship with more confidence.'
     ],
-    cardFit: 'For teams slowed by delivery friction, ambiguity, or weak handoffs.',
+    cardFit: 'For teams that need product decisions, design direction, and implementation details to stay connected as ideas move into production.',
     artType: 'product',
     conceptLabel: 'Execution systems',
-    conceptSignals: ['Roadmap', 'Handoffs', 'Delivery'],
+    conceptSignals: ['Direction', 'Translation', 'Production'],
     laneRows: [
-      { label: 'Roadmap', detail: 'Reduce ambiguity' },
-      { label: 'Handoffs', detail: 'Better flow' },
-      { label: 'Delivery', detail: 'Ship confidently' }
+      { label: 'Direction', detail: 'Clear priorities' },
+      { label: 'Translation', detail: 'Fewer gaps' },
+      { label: 'Production', detail: 'Less rework' }
     ],
     image: 'images/img.png',
     imageAlt: 'Cross-functional product and engineering collaboration',
@@ -110,13 +111,13 @@ const leverageCards = [
       'and strengthening design influence in product,',
       'operational, and organizational decisions.'
     ],
-    cardFit: 'For organizations building stronger standards, coaching, and design influence.',
+    cardFit: 'For organizations strengthening design standards, critique, coaching, and influence across product decisions.',
     artType: 'design',
-    conceptLabel: 'Capability building',
+    conceptLabel: 'Design maturity',
     conceptSignals: ['Standards', 'Coaching', 'Influence'],
     laneRows: [
       { label: 'Standards', detail: 'Quality bar' },
-      { label: 'Coaching', detail: 'Raise judgment' },
+      { label: 'Coaching', detail: 'Stronger judgment' },
       { label: 'Influence', detail: 'Earlier decisions' }
     ],
     image: 'images/dan.png',
@@ -160,45 +161,6 @@ const focusAreaCards = [
     size: 'large',
     tone: 'ai',
     image: 'images/work-ai/certainty-run-out.png'
-  }
-];
-
-const focusAreaServiceRows = [
-  {
-    title: 'Operating Model',
-    titleLines: ['Operating', 'Model'],
-    href: '/operating-model',
-    image: 'images/home-v3/blueprint/operating-model-blueprint-transparent.png',
-    capabilities: ['Business direction', 'Operating reality', 'Product behavior', 'Delivery decisions', 'Team alignment'],
-    fitLine: 'For organizations whose product logic, workflows, system behavior, and implementation decisions need to reinforce the same underlying model.',
-    description: 'Keep product logic, workflows, system behavior, and delivery decisions reinforcing the same operating model.'
-  },
-  {
-    title: 'Direction & Prioritization',
-    titleLines: ['Direction &', 'Prioritization'],
-    href: '/direction-and-prioritization',
-    image: 'images/direction/hero-bg.png',
-    capabilities: ['Decision framing', 'Priority setting', 'Sequencing', 'Tradeoffs', 'Execution standards'],
-    fitLine: 'For organizations whose goals, customer value, operating reality, constraints, and tradeoffs need to become clear direction before teams commit time, money, and resources.',
-    description: 'Turn competing inputs into priorities, sequencing, and execution standards teams can act on.'
-  },
-  {
-    title: 'Standards & Scale',
-    titleLines: ['Standards &', 'Scale'],
-    href: '/standards-and-scale',
-    image: 'images/standards/standards-hero-bg.png',
-    capabilities: ['Design systems', 'Accessibility', 'Governance', 'Quality standards', 'Delivery practice'],
-    fitLine: 'For organizations whose patterns, accessibility expectations, design systems, and implementation standards need to preserve quality as decisions scale.',
-    description: 'Preserve quality, accessibility, and consistency as products, teams, and implementation choices grow.'
-  },
-  {
-    title: 'AI-enabled Systems',
-    titleLines: ['AI-enabled', 'Systems'],
-    href: '/ai-enabled-systems',
-    image: 'images/work-ai/certainty-run-out.png',
-    capabilities: ['Workflow modeling', 'AI behavior', 'Prompt systems', 'Human control', 'Product integration'],
-    fitLine: 'For organizations whose AI capability, product logic, system behavior, and human oversight need to become useful systems instead of disconnected experiments.',
-    description: 'Turn AI capability into useful product systems people can understand, trust, and operate.'
   }
 ];
 
@@ -284,30 +246,35 @@ const changeSignals = [
 const operatingShifts = [
   {
     result: 'Conceptual integrity',
+    resultLines: ['Conceptual', 'integrity'],
     before: '',
     mechanism: 'Core concepts, behavior, standards, and implementation logic stay consistent.',
     after: ''
   },
   {
     result: 'Sharper vision',
+    resultLines: ['Sharper', 'vision'],
     before: '',
     mechanism: 'Decision confidence becomes easier to see, choose, communicate, and sustain.',
     after: ''
   },
   {
     result: 'Baseline rigor',
+    resultLines: ['Baseline', 'rigor'],
     before: '',
     mechanism: 'Accessibility, ethical standards, and best practices drive shared expectations.',
     after: ''
   },
   {
     result: 'Integrated systems',
+    resultLines: ['Integrated', 'systems'],
     before: '',
     mechanism: 'Rituals, artifacts, and infrastructure keep disciplines connected.',
     after: ''
   },
   {
     result: 'Confident teams',
+    resultLines: ['Confident', 'teams'],
     before: '',
     mechanism: 'Visible constraints, clear direction, and decisions teams trust reduce drift, ambiguity, and costly rework.',
     after: ''
@@ -483,11 +450,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
             <div class="home-hero-copy gc-start-2 gc-span-16">
               <div class="home-hero-primary">
                 <p class="home-kicker">Chief Product Designer at feature[23]</p>
-                <h1>Clarity &amp; vision for teams in motion.</h1>
+                <h1>
+                  <span class="home-hero-title-line">Clarity &amp; vision for</span>
+                  <span class="home-hero-title-line">teams in motion.</span>
+                </h1>
               </div>
               <div class="home-hero-support">
                 <p class="home-lead">
-                  I design systems of work for organizations navigating growth, complexity, and change. I help leaders connect business direction, product decisions, operating realities, and delivery infrastructure so the work can scale with more clarity.
+                  I help organizations connect business direction, product decisions, operating realities, and delivery infrastructure so teams can scale with clearer priorities and fewer disconnected efforts.
                 </p>
               </div>
             </div>
@@ -521,7 +491,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section id="focus-areas" class="section home-section-flow home-focus-areas" aria-label="Focus areas" data-home-reveal hidden>
+    <section id="focus-areas" class="section home-focus-areas" aria-label="Focus areas" data-home-reveal hidden>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
           eyebrow="Focus areas across the organization"
@@ -532,7 +502,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
           bodyClass="gc-start-15 gc-span-11"
         />
 
-        <div class="home-section-content home-focus-areas-grid gc-start-2 gc-span-24" role="list">
+        <div class="home-focus-areas-grid gc-start-2 gc-span-24" role="list">
           {focusAreaCards.map((item) => (
             <a
               class:list={[
@@ -557,7 +527,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-section-flow home-focus-services" aria-label="Focus areas">
+    <section class="section home-focus-services" aria-label="Focus areas">
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
           eyebrow="Focus areas across the organization"
@@ -571,7 +541,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         />
 
         <PinnedStackCards
-          className="home-section-content gc-start-2 gc-span-24"
+          className="gc-start-2 gc-span-24"
           items={focusAreaServiceRows.map((item) => ({
             title: item.title,
             titleLines: item.titleLines,
@@ -589,7 +559,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         <div class="dm-grid-l dm-grid-l--grid-sys">
           <div class="home-pillars-shell gc-start-2 gc-span-24">
             <div class="home-pillars-head">
-              <p class="home-section-label">How the work holds</p>
+              <p class="home-section-label">Operating signals</p>
               <h2>Clearer priorities when the stakes are high.</h2>
             </div>
             <div class="home-pillars-surface" data-home-reveal-late>
@@ -611,17 +581,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </section>
 
 
-    <section class="section home-section-flow home-actors" data-home-reveal>
+    <section class="section home-actors" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-actors-intro">
         <SectionHeader
           eyebrow="Different roles. Shared pressure."
           title="Leadership across the system."
-          body="Different roles carry different pressures — but the same challenges show up: unclear direction, disconnected decisions, delivery friction, inconsistent standards, and systems that become harder to operate as they grow."
+          body="Different roles carry different pressures. The same patterns still show up: unclear direction, disconnected decisions, delivery friction, inconsistent standards, and systems that become harder to operate as they grow."
           accent
         />
       </div>
 
-      <div class="home-section-content home-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
+      <div class="home-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
         {actorAudienceCards.map((item) => (
           <article class={`home-actor-lane home-actor-lane--${item.artType}`} role="listitem">
             <div class="home-actor-lane-head">
@@ -679,12 +649,14 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
           headClass="home-operating-shift-head gc-start-2 gc-span-10"
         />
 
-        <div class="home-section-content home-operating-grid gc-start-2 gc-span-24" role="list" aria-label="Leadership shifts">
+        <div class="home-operating-grid gc-start-2 gc-span-24" role="list" aria-label="Leadership shifts">
           {operatingShifts.map((item, index) => (
             <article class="home-operating-grid-item" role="listitem">
               <p class="home-operating-grid-index">{String(index + 1).padStart(2, '0')}</p>
               <div class="home-operating-grid-copy">
-                <h3 class="home-card-title-text home-proof-card-title">{item.result}</h3>
+                <h3 class="type-title-geist-300 home-proof-card-title home-operating-grid-title" aria-label={item.result}>
+                  {item.resultLines.map((line) => <span>{line}</span>)}
+                </h3>
                 <p class="home-operating-grid-text">{item.mechanism}{item.after ? ` ${item.after}` : ''}</p>
               </div>
             </article>
@@ -693,35 +665,38 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-section-flow about-dan-section" data-home-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys about-dan-header">
+    <section class="section home-practice" data-home-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys home-practice-intro">
         <SectionHeader
-          eyebrow="About Dan"
-          title="Product design, systems, and delivery leadership."
-          accent
-          headClass="about-dan-head gc-start-2 gc-span-13"
+          eyebrow="Leadership in practice"
+          title="Clarity under pressure."
+          body="I operate where direction and delivery meet: senior enough for executive decisions, close enough to the work to define workflow architecture, strengthen execution standards, and move faster without letting quality drift."
         />
       </div>
 
-      <div class="home-section-content dm-grid-l dm-grid-l--grid-sys about-dan-media-grid">
-        <figure class="about-dan-media gc-start-2 gc-span-24">
-          <img src={withBase('images/dan-right.png')} alt="Dan leading a whiteboard session with a product team" loading="lazy" decoding="async" />
-        </figure>
+      <div class="home-practice-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys u-no-pt" role="list" aria-label="Design leadership proof points">
+        {practiceStats.map((item) => (
+          <article class={`home-practice-card home-practice-card--grid home-practice-card--${item.visualType}`} role="listitem">
+            <div class="home-practice-visual" aria-hidden="true">
+              <div class="home-practice-nebula"></div>
+              <div class="home-practice-glow"></div>
+              <div class="home-practice-floor-glow"></div>
+              <div class="home-practice-stars"></div>
+              <img class="home-practice-icon home-practice-icon--outline" src={item.outlineImage} alt="" loading="lazy" decoding="async" />
+              <img class="home-practice-icon home-practice-icon--detail" src={item.detailImage} alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="home-practice-value">
+              {item.labelLines.map((line) => <span class="home-practice-value-line">{line}</span>)}
+            </p>
+            <p class="home-practice-text">{item.text}</p>
+          </article>
+        ))}
       </div>
 
-      <div class="dm-grid-l dm-grid-l--grid-sys about-dan-copy-grid">
-        <div class="about-dan-body gc-start-2 gc-span-24">
-          <p>
-            I work across business goals, product direction, operating realities, and implementation constraints — helping teams turn complexity into clearer decisions and more durable systems.
-          </p>
-          <p>
-            My work spans strategy, product design, design systems, accessibility, AI-enabled exploration, and delivery support for organizations building or modernizing operational software.
-          </p>
-        </div>
-      </div>
+
     </section>
 
-    <section class="section home-section-flow proof-showcase" data-home-reveal>
+    <section class="section proof-showcase" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys proof-showcase-intro">
         <SectionHeader
           eyebrow="Proof"
@@ -732,7 +707,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
         />
       </div>
 
-      <div class="home-section-content proof-card-grid-wrap dm-grid-l dm-grid-l--grid-sys">
+      <div class="proof-card-grid-wrap dm-grid-l dm-grid-l--grid-sys">
         <div class="proof-card-grid gc-start-2 gc-span-24" role="list" aria-label="Featured case studies">
           {proofDraftCards.map((item) => (
             <article class="proof-card" role="listitem">
@@ -764,43 +739,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-section-flow home-practice" data-home-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-practice-intro">
-        <SectionHeader
-          eyebrow="Leadership in practice"
-          title="Clarity under pressure."
-          body="I operate where direction and delivery meet: senior enough for executive decisions, close enough to the work to define workflow architecture, strengthen execution standards, and move faster without letting quality drift."
-        />
-      </div>
-
-      <div class="home-section-content home-practice-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys u-no-pt" role="list" aria-label="Design leadership proof points">
-        {practiceStats.map((item) => (
-          <article class={`home-practice-card home-practice-card--grid home-practice-card--${item.visualType}`} role="listitem">
-            <div class="home-practice-visual" aria-hidden="true">
-              <div class="home-practice-nebula"></div>
-              <div class="home-practice-glow"></div>
-              <div class="home-practice-floor-glow"></div>
-              <div class="home-practice-stars"></div>
-              <img class="home-practice-icon home-practice-icon--outline" src={item.outlineImage} alt="" loading="lazy" decoding="async" />
-              <img class="home-practice-icon home-practice-icon--detail" src={item.detailImage} alt="" loading="lazy" decoding="async" />
-            </div>
-            <p class="home-practice-value">
-              {item.labelLines.map((line) => <span class="home-practice-value-line">{line}</span>)}
-            </p>
-            <p class="home-practice-text">{item.text}</p>
-          </article>
-        ))}
-      </div>
-
-
-    </section>
-
-    <section class="section home-section-flow home-engagements home-engagements--editorial" data-home-reveal>
+    <section class="section home-engagements home-engagements--editorial" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-engagements-intro">
         <SectionHeader eyebrow="Engagements" title="Ways to engage" />
       </div>
 
-      <div class="home-section-content dm-grid-l dm-grid-l--grid-sys">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="signal-row-list gc-start-2 gc-span-22" role="list" aria-label="Ways to engage">
           {engagementModels.map((item, index) => (
             <article class="signal-row" role="listitem">
@@ -825,11 +769,11 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
             <h2>Before we talk.</h2>
           </div>
           <p class="home-fit-body">
-            I’m a strong fit when the business needs clearer direction and that direction has to translate into product decisions, standards, systems, and delivery. That can include shaping a roadmap of success, clarifying what should be built, aligning teams around priorities, or helping leaders make better decisions under complexity.
+            I’m a strong fit when the business needs clearer direction and that direction has to translate into product decisions, standards, systems, and delivery. That can include shaping a roadmap of success, clarifying what should be built, aligning teams around priorities, or helping leaders make better decisions when the direction, constraints, and delivery path are still forming.
           </p>
         </div>
 
-        <div class="home-section-content home-fit-rows gc-start-15 gc-span-11" role="list" aria-label="Fit and FAQ">
+        <div class="home-fit-rows gc-start-15 gc-span-11" role="list" aria-label="Fit and FAQ">
           {fitQuestions.map((item) => (
             <details class="home-fit-row" role="listitem">
               <summary>
@@ -845,12 +789,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-section-flow home-writing home-writing--editorial" data-home-reveal>
+    <section class="section home-writing home-writing--editorial" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-writing-layout">
         <SectionHeader title="Curated thinking" headClass="home-writing-head gc-start-2 gc-span-10" />
       </div>
 
-      <div class="home-section-content dm-grid-l dm-grid-l--grid-sys">
+      <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="home-writing-rail-wrap gc-start-2 gc-span-24">
           <div class="home-writing-rail" role="list" aria-label="Writing roadmap" data-home-edge-rail>
             {[featuredWriting, ...supportingWriting].map((entry, index) => (
@@ -860,7 +804,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
                     <div class="home-writing-volume-head">
                       <p class="home-writing-volume-meta home-card-meta-text">{entry.type}</p>
                     </div>
-                    <h3 class="home-writing-volume-title home-card-title-text">{entry.title}</h3>
+                    <h3 class="home-writing-volume-title type-title-geist-300">{entry.title}</h3>
                     <p class="home-writing-volume-summary">{entry.summary}</p>
                     <div class="home-writing-volume-art" aria-hidden="true"></div>
                   </a>
@@ -869,7 +813,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
                     <div class="home-writing-volume-head">
                       <p class="home-writing-volume-meta home-card-meta-text">{entry.type}</p>
                     </div>
-                    <h3 class="home-writing-volume-title home-card-title-text">{entry.title}</h3>
+                    <h3 class="home-writing-volume-title type-title-geist-300">{entry.title}</h3>
                     <p class="home-writing-volume-summary">{entry.summary}</p>
                     <div class="home-writing-volume-art" aria-hidden="true"></div>
                   </div>
@@ -1501,14 +1445,35 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
   .home-client-marquee {
     position: relative;
+    isolation: isolate;
     width: min(100%, 54rem);
     overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
     opacity: 0;
     transform: translateY(0.5rem);
     transition:
       opacity 820ms ease 120ms,
       transform 860ms ease 120ms;
+  }
+
+  .home-client-marquee::before,
+  .home-client-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 14%;
+    pointer-events: none;
+  }
+
+  .home-client-marquee::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(var(--home-bg-rgb), 1) 0%, rgba(var(--home-bg-rgb), 0) 100%);
+  }
+
+  .home-client-marquee::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(var(--home-bg-rgb), 1) 0%, rgba(var(--home-bg-rgb), 0) 100%);
   }
 
   .home-client-trust.is-visible .home-client-trust-label,
@@ -2417,22 +2382,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     color: rgba(73, 58, 39, 0.76);
   }
 
-  .home-card-title-text {
-    margin: 0;
-    color: inherit;
-    font-family: var(--font-family-body);
-    font-size: var(--home-type-card-title);
-    line-height: var(--home-line-card-title);
-    letter-spacing: var(--home-tracking-card);
-    font-weight: var(--font-weight-light);
-    text-wrap: balance;
-    max-width: 9ch;
-  }
-
-  .home-card-title-text--ink {
-    color: rgba(24, 20, 15, 0.96);
-  }
-
   .home-card-copy-text {
     margin: 0;
     color: inherit;
@@ -2471,9 +2420,15 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
   }
 
   .home-hero-copy h1 {
+    display: grid;
+    justify-items: start;
     font-size: var(--home-type-hero);
     margin-top: 0;
     line-height: var(--home-line-title);
+  }
+
+  .home-hero-title-line {
+    white-space: nowrap;
   }
 
   .home-hero-primary {
@@ -3652,15 +3607,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     padding-inline: 0;
   }
 
-  .home-section-flow :global(.section-header),
-  .home-section-flow :global(.section-header-body) {
-    margin-bottom: 0;
-  }
-
-  .home-section-content {
-    margin-top: var(--home-section-content-gap);
-  }
-
   .about-dan-header {
     align-items: start;
     margin-bottom: 0;
@@ -4640,15 +4586,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     row-gap: 1.65rem;
   }
 
-  .home-operating-shift-head {
-    margin-bottom: 0;
-  }
-
   .home-operating-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     align-items: start;
-    margin-top: var(--home-section-content-gap);
   }
 
   .home-operating-grid-item {
@@ -4679,6 +4620,10 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     gap: 0.72rem;
     margin-top: auto;
     padding-bottom: 0.15rem;
+  }
+
+  .home-operating-grid-title span {
+    display: block;
   }
 
   .home-operating-grid-text {
@@ -5512,7 +5457,17 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .home-hero-copy h1 {
+      display: block;
       font-size: var(--home-mobile-type-title-xl);
+    }
+
+    .home-hero-title-line {
+      display: inline;
+      white-space: normal;
+    }
+
+    .home-hero-title-line + .home-hero-title-line::before {
+      content: " ";
     }
 
     .home-kicker {
@@ -5716,9 +5671,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       transform: none;
     }
 
-    .home-writing-volume .home-card-title-text {
-      font-size: var(--home-mobile-type-title-sm);
-      line-height: var(--home-line-title);
+    .home-writing-volume .type-title-geist-300 {
+      --type-title-geist-300-size: var(--home-mobile-type-title-sm);
+      --type-title-geist-300-line-height: var(--home-line-title);
     }
 
     .home-writing-volume .home-card-copy-text {
@@ -5772,8 +5727,7 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
     }
 
     .proof-card h3,
-    .home-proof-card-title,
-    .home-card-title-text {
+    .home-proof-card-title {
       max-width: none;
       text-wrap: initial;
     }

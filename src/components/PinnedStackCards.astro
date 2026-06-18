@@ -231,8 +231,8 @@ const revealAttrs = reveal ? { [revealAttribute]: true } : {};
     z-index: -2;
     pointer-events: none;
     background-image: var(--pinned-stack-image);
-    background-position: 84% 50%;
-    background-size: min(66rem, 68%) auto;
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.24;
     filter: saturate(0.82) contrast(0.96);
@@ -340,11 +340,11 @@ const revealAttrs = reveal ? { [revealAttribute]: true } : {};
   .pinned-stack-copy {
     display: grid;
     gap: var(--spacing-xs);
-    max-width: 43rem;
+    max-width: 46rem;
   }
 
   .pinned-stack-fit-line {
-    max-width: 36rem;
+    max-width: 46rem;
     color: rgba(184, 193, 211, 0.7);
     font-size: var(--ds-type-body-sm);
     font-weight: var(--font-weight-light);
@@ -363,20 +363,29 @@ const revealAttrs = reveal ? { [revealAttribute]: true } : {};
 
   @media (max-width: 48rem) {
     .pinned-stack {
+      width: auto;
+      max-width: 100%;
+      min-width: 0;
       min-height: auto;
       margin-top: 0;
+      overflow: clip;
     }
 
     .pinned-stack-stage {
       position: static;
       display: grid;
       gap: var(--spacing-sm);
+      width: 100%;
+      max-width: 100%;
       height: auto;
     }
 
     .pinned-stack-card {
       position: relative;
       inset: auto;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
       gap: var(--spacing-lg);
       min-height: 28rem;
       height: auto;
@@ -387,9 +396,20 @@ const revealAttrs = reveal ? { [revealAttribute]: true } : {};
       will-change: auto;
     }
 
+    .pinned-stack-card::before {
+      background-position: center;
+      background-size: cover;
+      opacity: .2;
+      transform: none;
+    }
+
     .pinned-stack-title {
       font-size: var(--ds-mobile-type-title-lg);
       line-height: 0.9;
+    }
+
+    .pinned-stack-tags {
+      display: none;
     }
   }
 </style>
