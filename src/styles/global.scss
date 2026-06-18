@@ -507,6 +507,7 @@ code {
 }
 
 [data-motion-reveal],
+[data-motion-reveal-early],
 [data-motion-reveal-late] {
   opacity: 0;
   transform: translateY(2rem);
@@ -517,6 +518,7 @@ code {
 }
 
 [data-motion-reveal].is-visible,
+[data-motion-reveal-early].is-visible,
 [data-motion-reveal-late].is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -558,6 +560,7 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   [data-motion-reveal],
+  [data-motion-reveal-early],
   [data-motion-reveal-late],
   [data-motion-item] {
     opacity: 1;
@@ -627,6 +630,10 @@ main {
 
 .focus-diagnostic-list--columns {
   align-items: start;
+}
+
+.focus-diagnostic-list--single {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .focus-diagnostic-column {
@@ -2949,6 +2956,31 @@ main {
   letter-spacing: var(--ds-tracking-card);
   line-height: var(--ds-line-card-title);
   text-wrap: balance;
+}
+
+.type-title-geist-300 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-family-body);
+  font-size: var(--type-title-geist-300-size, var(--ds-type-title-sm));
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--type-title-geist-300-tracking, var(--ds-tracking-card));
+  line-height: var(--type-title-geist-300-line-height, var(--ds-line-card-title));
+  text-wrap: balance;
+}
+
+.type-title-geist-300--ink {
+  color: rgba(24, 20, 15, 0.96);
+}
+
+.type-eyebrow {
+  margin: 0;
+  color: var(--type-eyebrow-color, var(--ds-text-soft));
+  font-size: var(--type-eyebrow-size, var(--ds-type-label-compact, var(--ds-type-label)));
+  font-weight: var(--type-eyebrow-weight, var(--font-weight-medium));
+  line-height: var(--ds-line-label);
+  letter-spacing: var(--ds-tracking-label);
+  text-transform: uppercase;
 }
 
 .signal-row-text {

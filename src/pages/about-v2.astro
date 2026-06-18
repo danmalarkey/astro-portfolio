@@ -1,8 +1,8 @@
 ---
-import FocusDiagnosticList from "../components/FocusDiagnosticList.astro";
 import HomeFooter from "../components/HomeFooter.astro";
 import PinnedStackCards from "../components/PinnedStackCards.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import { focusAreaServiceRows } from "../data/focus-area-service-rows";
 import Header from "../layouts/Header.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -33,42 +33,36 @@ const profileRows = [
   }
 ];
 
-const designPrinciples = [
+const visibleDesignPrinciples = [
   {
+    number: "01",
     title: "Clarity before execution",
-    body: "I believe teams make better decisions when they understand what they are trying to make true before they start moving too quickly. Clarity is not a delay. It is what keeps effort from scattering.",
+    body: "Teams make better decisions when they understand what they are trying to make true before moving too quickly. Clarity is not a delay. It keeps effort from scattering.",
   },
   {
-    title: "The model matters",
-    body: "Every product carries an underlying model: the business goal, the people involved, the work being done, the rules of the system, and the decisions that shape behavior. When that model is unclear, the product becomes harder to explain, build, use, and sustain.",
+    number: "02",
+    title: "Make the model visible",
+    body: "Every product carries an underlying model: the business goal, the people involved, the activity being supported, the rules of the system, and the decisions that shape behavior. When that model is unclear, the product becomes harder to explain, build, use, and sustain.",
   },
   {
-    title: "Human activity comes first",
-    body: "I care less about starting with artifacts and more about understanding what people are trying to do. Goals, jobs, decisions, workflows, and constraints matter because they explain what the system needs to support.",
+    number: "03",
+    title: "Start with human activity",
+    body: "Strong product decisions start with what people are trying to do. Goals, jobs, decisions, workflows, and constraints matter because they explain what the system needs to support.",
   },
   {
-    title: "Systems over isolated outputs",
-    body: "A strong feature can still create problems if it does not fit the system around it. I try to understand how decisions connect across product direction, workflows, standards, implementation, and the teams responsible for carrying the work forward.",
+    number: "04",
+    title: "Standards protect decisions",
+    body: "Standards are not decoration or process for its own sake. They help teams make better decisions repeatedly and protect accessibility, consistency, quality, and trust as more people become involved.",
   },
   {
-    title: "Standards protect the work",
-    body: "Standards are not decoration or process for its own sake. They help teams make better decisions repeatedly. They protect accessibility, consistency, quality, and trust when more people become involved in the work.",
-  },
-  {
+    number: "05",
     title: "Rigor is responsibility",
     body: "Craft matters, but rigor is larger than polish. It is the discipline of asking better questions, using evidence, understanding constraints, and making decisions that can be defended beyond preference.",
   },
   {
-    title: "Accessibility is part of the foundation",
-    body: "Accessibility is not a late-stage checklist. It belongs inside the standards, decisions, and expectations that shape the product from the beginning.",
-  },
-  {
-    title: "Design should make teams stronger",
-    body: "I believe good design practice should improve how teams think, not only what they produce. Designers, product leaders, engineers, and stakeholders should leave the work with a clearer understanding of the problem, the tradeoffs, and the decisions being made.",
-  },
-  {
+    number: "06",
     title: "AI needs direction",
-    body: "AI does not remove the need for design judgment. It increases the need for clarity, standards, and responsible decision-making. The goal is not to produce more disconnected outputs. The goal is to shape useful systems people can understand, trust, and operate.",
+    body: "AI does not remove the need for design judgment. It increases the need for clarity, standards, human control, and responsible decision-making. The goal is not more disconnected output. The goal is useful systems people can understand, trust, and operate.",
   }
 ];
 ---
@@ -80,86 +74,60 @@ const designPrinciples = [
   <Header />
 
   <main class="about-v2-page">
-    <section class="about-v2-hero" aria-labelledby="about-v2-hero-title" style={`--about-v2-hero-image: url('${withBase("/images/about/dan-drillstack.png")}')`} data-motion-reveal>
+    <section class="about-v2-hero" aria-labelledby="about-v2-hero-title" style={`--about-v2-hero-image: url('${withBase("/images/about/dan-drillstack.png")}')`}>
       <div class="about-v2-hero-field" aria-hidden="true"></div>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-v2-hero-copy gc-start-2 gc-span-12">
-          <p class="about-v2-kicker">About Dan</p>
+        <div class="about-v2-hero-copy gc-start-2 gc-span-18">
+          <p class="about-v2-kicker type-eyebrow">About Dan</p>
           <h1 id="about-v2-hero-title">Hey. I'm Dan Malarkey.</h1>
           <div class="about-v2-hero-body">
             <p>
-              I’m a Chief Product Designer with 17+ years across product design, operational software, design systems, accessibility, and delivery.
-            </p>
-            <p>
-              For the last 14 years, I’ve helped shape product direction and design practice at feature[23]. I balance business goals, human activity, technology, standards, and implementation so decisions can safely move the business forward.
+              I’m a Chief Product Designer with 17+ years across product design, operational software, design systems, accessibility, and delivery. For the last 14 years, I’ve helped shape product direction and design practice at feature[23]. I balance business goals, human activity, technology, standards, and implementation so decisions can safely move the business forward.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    {false && (
     <section class="about-v2-section about-v2-profile-section" aria-label="Profile snapshot" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <aside class="about-v2-operating-profile gc-start-2 gc-span-24" aria-label="Profile snapshot" data-motion-item>
-          <div class="about-v2-profile-head">
-            <figure class="about-v2-profile-image">
-              <img src={withBase("/images/dan.png")} alt="Dan working through product structure with a team at a whiteboard" loading="lazy" decoding="async" />
-            </figure>
-          </div>
-          <div class="about-v2-profile-rows" role="list">
-            {profileRows.map((item) => (
-              <article class="about-v2-profile-row" role="listitem">
-                <p class="about-v2-profile-index">{item.number} {item.label}</p>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+        <figure class="about-v2-profile-image gc-start-1 gc-span-18" data-motion-item>
+          <img src={withBase("/images/about/board.png")} alt="Whiteboard with product workflow notes arranged in columns" loading="lazy" decoding="async" />
+        </figure>
+        <aside class="about-v2-profile-rows gc-start-12 gc-span-13" aria-label="Profile snapshot" role="list" data-motion-item>
+          {profileRows.map((item) => (
+            <article class="about-v2-profile-row" role="listitem">
+              <p class="about-v2-profile-index">{item.label}</p>
+              <h3 class="type-title-geist-300">{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
         </aside>
-      </div>
-    </section>
-    )}
-
-    <section class="about-v2-section about-v2-profile-section" aria-label="Profile snapshot">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <PinnedStackCards
-          className="gc-start-2 gc-span-24"
-          items={profileRows.map((item) => ({
-            title: item.title,
-            titleLines: item.titleLines,
-            eyebrow: item.label,
-            body: item.body
-          }))}
-        />
       </div>
     </section>
 
     <section class="about-v2-section about-v2-story-section" aria-labelledby="about-v2-story-title" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <article class="about-v2-article about-v2-article--split dm-grid-l dm-grid-l--grid-sys gc-start-2 gc-span-24" data-motion-item>
+        <article class="about-v2-article about-v2-article--split dm-grid-l dm-grid-l--grid-sys gc-start-1 gc-span-26" data-motion-item>
           <figure class="about-v2-practitioner-image gc-start-11 gc-span-16" aria-hidden="true">
             <img src={withBase("/images/dan.png")} alt="" loading="lazy" decoding="async" />
           </figure>
-          <div class="about-v2-article-columns about-v2-article-columns--overlay gc-start-3 gc-span-13">
+          <div class="about-v2-article-columns about-v2-article-columns--overlay gc-start-2 gc-span-13">
             <div class="about-v2-article-head">
-              <p class="about-v2-kicker">Clarity, Systems, and Responsible Execution</p>
-              <h2 id="about-v2-story-title">I’m a practitioner of clarity.</h2>
+              <h2 id="about-v2-story-title" class="about-v2-story-title--sm">A practitioner of clarity, systems, and responsible execution.</h2>
             </div>
             <p>
-              I've committed my career to the craft and rigor of helping middle-market businesses move forward. More than anything, I'm a practitioner of clarity. I believe strong design connects business goals, human activity, and team capability into systems that can carry an organization further than any individual feature or initiative. Systems matter because disconnected decisions create drift, and drift quietly undermines progress.
+              I’ve committed my career to the craft and rigor of helping middle-market businesses make better product decisions. I believe strong design connects business goals, human activity, and team capability into systems that can carry an organization further than any individual feature or initiative. Systems matter because disconnected decisions create drift, and drift quietly undermines progress.
             </p>
             <p>
-              I believe good design leadership starts with understanding. Ask better questions. Understand constraints. Help people see the situation more clearly. When teams share the same understanding of the problem, they make better decisions with greater confidence. Responsible execution starts earlier than implementation. It starts with diagnosis, planning, alignment, and the decisions teams make before the work becomes expensive to change. That is the throughline of my work: clarity, systems, and the judgment to carry decisions forward responsibly.
+              I believe good design leadership starts with understanding. Ask better questions. Understand constraints. Help people see the situation more clearly. When teams share the same understanding of the problem, they make better decisions with greater confidence. Responsible execution starts earlier than implementation. It starts with diagnosis, planning, alignment, and the decisions teams make before the work becomes expensive to change.
             </p>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="about-v2-section about-v2-image-section" aria-label="Personal image row" data-motion-reveal>
+    <section class="about-v2-section about-v2-image-section" aria-label="Personal image row" data-motion-reveal hidden>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="about-v2-image-row gc-start-2 gc-span-24" data-motion-item>
           <figure class="about-v2-image-row-item">
@@ -169,52 +137,75 @@ const designPrinciples = [
             <img src={withBase("/images/about/asheville-pic.JPG")} alt="Dan outside in Asheville" loading="lazy" decoding="async" />
           </figure>
           <figure class="about-v2-image-row-item">
-            <img src={withBase("/images/about/me-lola.JPG")} alt="Dan with Lola" loading="lazy" decoding="async" />
+            <img src={withBase("/images/about/dan-family.JPG")} alt="Dan in a family photo" loading="lazy" decoding="async" />
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="about-v2-section about-v2-principles-section" aria-labelledby="about-v2-principles-title" data-motion-reveal>
+    <section class="about-v2-section about-v2-principles-visible-section" aria-labelledby="about-v2-principles-visible-title">
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
           eyebrow="Design Principles"
-          title="The principles behind how I think, lead, and evaluate design."
-          headingId="about-v2-principles-title"
-          headClass="gc-start-2 gc-span-10"
-          reveal
+          title="How I think, lead, and evaluate design."
+          headingId="about-v2-principles-visible-title"
+          headClass="about-v2-principles-visible-head gc-start-2 gc-span-10"
         />
-        <div class="about-v2-article about-v2-principles gc-start-12 gc-span-14" data-motion-item>
-          <FocusDiagnosticList
-            items={designPrinciples.map(({ title, body }) => ({ title, text: body }))}
-            className="about-v2-principles-list"
-          />
+        <div class="about-v2-principles-visible gc-start-13 gc-span-13" role="list">
+          {visibleDesignPrinciples.map((item) => (
+            <article class="about-v2-principle-row" role="listitem">
+              <div class="about-v2-principle-copy">
+                <h3 class="type-title-geist-300">{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <section class="about-v2-section about-v2-practice-section" aria-labelledby="about-v2-practice-title" data-motion-reveal>
+    <section class="about-v2-section about-v2-mosaic-section" aria-label="Image mosaic" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="about-v2-mosaic gc-start-2 gc-span-24" data-motion-item>
+          <figure class="about-v2-mosaic-item about-v2-mosaic-item--session">
+            <img src={withBase("/images/about/about-songlinkr.jpg")} alt="Dan working through product structure with a team during an archived client session" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-v2-mosaic-item about-v2-mosaic-item--asheville">
+            <img src={withBase("/images/about/asheville-pic.JPG")} alt="Dan outside in Asheville" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-v2-mosaic-item about-v2-mosaic-item--group">
+            <img src={withBase("/images/about/drillstack-group.JPG")} alt="Dan with a group during a working session" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-v2-mosaic-item about-v2-mosaic-item--family">
+            <img src={withBase("/images/about/dan-family.JPG")} alt="Dan in a family photo" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-v2-section about-v2-focus-section" aria-labelledby="about-v2-focus-title" data-motion-reveal-early>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
-          eyebrow="Practice and Principles"
-          title="The tools keep changing. The responsibility has not."
-          headingId="about-v2-practice-title"
-          headClass="about-v2-practice-head gc-start-2 gc-span-8"
+          eyebrow="Where this connects"
+          title="The same practice shows up in a few focused areas."
+          body="Operating models, direction, standards, and AI-enabled systems are different entry points into the same concern: helping teams make better decisions and keep the system coherent."
+          headingId="about-v2-focus-title"
+          headClass="gc-start-2 gc-span-10"
+          bodyClass="gc-start-15 gc-span-11"
           reveal
         />
-        <article class="about-v2-article about-v2-practice-copy gc-start-12 gc-span-8" data-motion-item>
-          <p>Most of my career has been spent in the space between business direction and delivery.</p>
-          <p>That space can get messy quickly. Teams need to understand the goal, the people involved, the work that has to happen, the constraints around it, and the standards that should guide decisions along the way. A large part of my practice has been built around making those things visible. Not just producing artifacts, but creating the models, language, systems, and shared understanding teams need before the work moves too far downstream. That is also how I think about design leadership. The goal is not to make design louder. The goal is to make design more useful: clearer reasoning, stronger standards, better questions, better tradeoffs, and fewer decisions made in isolation.</p>
-          <p>The tools keep changing. The responsibility has not. Make the model visible. Explain the tradeoffs. Understand the constraints. Protect the standard. Help the people around the work understand what needs to happen next. That has been true in client sessions years ago. It is still true in the AI-enabled work happening now.</p>
-        </article>
-        <div class="about-v2-practice-media gc-start-21 gc-span-5" data-motion-item>
-          <figure class="about-v2-practice-archive">
-            <img src={withBase("/images/about/about-songlinkr.jpg")} alt="Archived client session from 2016" loading="lazy" decoding="async" />
-            <figcaption>
-              <span>Archived client session, 2016</span>
-              Make the model visible. Explain the tradeoffs. Help the room understand what needs to happen next.
-            </figcaption>
-          </figure>
+        <div class="about-v2-focus-stack gc-start-2 gc-span-24">
+          <PinnedStackCards
+            items={focusAreaServiceRows.map((item) => ({
+              title: item.title,
+              titleLines: item.titleLines,
+              href: item.href,
+              image: item.image,
+              tags: item.capabilities,
+              fitLine: item.fitLine,
+              body: item.description
+            }))}
+          />
         </div>
       </div>
     </section>
@@ -230,14 +221,15 @@ const designPrinciples = [
 
 <style>
   .about-v2-page {
+    --about-v2-shell-gutter: var(--ds-mobile-content-gutter);
     --about-v2-section-space: calc(var(--spacing-4xl) + var(--spacing-3xl));
     --about-v2-rule: var(--ds-border-soft);
     --about-v2-accent: var(--color-tag-text-accent);
-    --about-v2-paper: #eee8dc;
-    --about-v2-paper-ink: #171512;
-    --about-v2-paper-muted: rgba(23, 21, 18, .7);
+    --about-v2-hero-bottom-space: clamp(var(--spacing-3xl), 7vw, calc(var(--spacing-4xl) + var(--spacing-lg)));
     --about-v2-hero-image-size: min(48rem, 54vw);
-    --about-v2-hero-image-offset: max(calc(var(--spacing-4xl) * -1.35), -5vw);
+    --about-v2-hero-image-offset: max(calc(var(--spacing-4xl) * -1.5), -6vw);
+    --about-v2-hero-image-opacity: .62;
+    --about-v2-hero-dot-size: 1rem;
     position: relative;
     overflow-x: clip;
     overflow-y: visible;
@@ -256,16 +248,30 @@ const designPrinciples = [
     isolation: isolate;
     align-items: end;
     width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
     min-height: 100dvh;
     margin-inline: calc(50% - 50vw);
-    padding: 0 0 clamp(var(--spacing-3xl), 7vw, calc(var(--spacing-4xl) + var(--spacing-lg)));
+    padding: 0 0 var(--about-v2-hero-bottom-space);
     box-sizing: border-box;
     border-bottom: var(--size-border-thin) solid var(--about-v2-rule);
     background:
       radial-gradient(ellipse at 74% 4%, color-mix(in srgb, var(--about-v2-accent) 20%, transparent), transparent 36rem),
       radial-gradient(ellipse at 8% 22%, var(--ds-surface-strong), transparent 30rem),
       var(--ds-background);
+  }
+
+  .about-v2-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.63;
+    background: radial-gradient(circle, color-mix(in srgb, var(--ds-text) 10%, transparent) 0 var(--size-border-thin), transparent calc(var(--size-border-thin) + .025rem)) left top / var(--about-v2-hero-dot-size) var(--about-v2-hero-dot-size) repeat;
+    mask-image: linear-gradient(90deg, black 0 46%, transparent 68%);
+    animation: about-v2-hero-dots-enter 1200ms ease 260ms both;
   }
 
   .about-v2-hero-field {
@@ -292,9 +298,10 @@ const designPrinciples = [
     background-repeat: no-repeat;
     background-size: cover;
     filter: brightness(.62) saturate(.94);
-    opacity: .62;
-    transform: rotate(-2deg) scale(1.015);
+    opacity: var(--about-v2-hero-image-opacity);
+    transform: translate3d(1.25rem, 0, 0) rotate(-2deg) scale(1.015);
     mask-image: radial-gradient(ellipse at 50% 50%, black 0 48%, rgba(0, 0, 0, .72) 66%, transparent 84%);
+    animation: about-v2-hero-image-enter 1200ms ease 180ms both;
   }
 
   .about-v2-hero-field::after {
@@ -307,29 +314,24 @@ const designPrinciples = [
   }
 
   .about-v2-hero-copy,
-  .about-v2-story-panel,
-  .about-v2-archive-media,
-  .about-v2-archive-copy,
-  .about-v2-profile-head,
   .about-v2-profile-rows {
     position: relative;
     z-index: 1;
   }
 
-  .about-v2-kicker,
-  .about-v2-profile-index {
-    margin: 0;
-    color: var(--about-v2-accent);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--ds-line-label);
-    letter-spacing: var(--ds-tracking-label);
-    text-transform: uppercase;
+  .about-v2-hero-copy {
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: about-v2-hero-copy-enter 820ms ease 220ms both;
+  }
+
+  .about-v2-kicker {
+    --type-eyebrow-color: var(--ds-text-soft);
   }
 
   .about-v2-page h1,
-  .about-v2-page h2,
-  .about-v2-page h3 {
+  .about-v2-page h2 {
     margin: 0;
     font-family: var(--font-family-display);
     font-weight: var(--font-weight-medium);
@@ -338,7 +340,7 @@ const designPrinciples = [
   }
 
   .about-v2-hero h1 {
-    max-width: 16ch;
+    max-width: 12ch;
     margin-top: var(--spacing-lg);
     color: var(--ds-text);
     font-size: var(--ds-type-title-xl);
@@ -346,16 +348,15 @@ const designPrinciples = [
   }
 
   .about-v2-hero-body {
-    max-width: 42rem;
+    max-width: 54rem;
     margin-top: clamp(var(--spacing-xl), 4vw, var(--spacing-3xl));
   }
 
   .about-v2-hero-body p + p {
-    margin-top: var(--spacing-md);
+    margin-top: 0;
   }
 
   .about-v2-hero-body p,
-  .about-v2-archive-copy > p,
   .about-v2-profile-row p:not(.about-v2-profile-index) {
     margin: 0;
     color: var(--ds-text-muted);
@@ -365,407 +366,90 @@ const designPrinciples = [
     text-wrap: pretty;
   }
 
-  .about-v2-story {
-    border-bottom: var(--size-border-thin) solid var(--about-v2-rule);
+  @keyframes about-v2-hero-copy-enter {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .about-v2-story-panel {
-    overflow: hidden;
-    background:
-      linear-gradient(90deg, rgba(23, 21, 18, .08) 0 var(--size-border-thin), transparent var(--size-border-thin) 100%),
-      linear-gradient(180deg, rgba(23, 21, 18, .055) 0 var(--size-border-thin), transparent var(--size-border-thin) 100%),
-      linear-gradient(90deg, rgba(255, 255, 255, .44), transparent 20rem),
-      var(--about-v2-paper);
-    background-size: 8.333% 100%, 100% 6rem, 100% 100%, 100% 100%;
-    color: var(--about-v2-paper-ink);
-    box-shadow: 0 2rem 5rem rgba(0, 0, 0, .2);
+  @keyframes about-v2-hero-image-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(1.25rem, 0, 0) rotate(-2deg) scale(1.015);
+    }
+
+    to {
+      opacity: var(--about-v2-hero-image-opacity);
+      transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
+    }
   }
 
-  .about-v2-story-inner {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(var(--spacing-sm), 2.2vw, var(--spacing-lg));
-    row-gap: 0;
-    max-width: 76rem;
-    margin-inline: auto;
-    padding: clamp(var(--spacing-2xl), 7vw, calc(var(--spacing-4xl) + var(--spacing-xl))) clamp(var(--spacing-md), 5vw, var(--spacing-4xl));
-  }
+  @keyframes about-v2-hero-dots-enter {
+    from {
+      opacity: 0;
+    }
 
-  .about-v2-story h2,
-  .about-v2-story h3 {
-    grid-column: 1 / span 8;
-    color: var(--about-v2-paper-ink);
-    font-size: clamp(3.4rem, 7vw, 7.4rem);
-    line-height: .86;
-    letter-spacing: 0;
-  }
-
-  .about-v2-story h3 {
-    grid-column: 4 / span 8;
-    margin-top: clamp(var(--spacing-4xl), 9vw, calc(var(--spacing-4xl) * 1.6));
-    font-size: clamp(2.85rem, 5.4vw, 5.8rem);
-    line-height: .9;
-  }
-
-  .about-v2-story p {
-    grid-column: 4 / span 7;
-    margin: clamp(var(--spacing-sm), 2.2vw, var(--spacing-md)) 0 0;
-    color: var(--about-v2-paper-muted);
-    font-size: var(--ds-type-lead);
-    line-height: 1.54;
-    letter-spacing: 0;
-    text-wrap: pretty;
-  }
-
-  .about-v2-story-lede {
-    grid-column: 5 / span 7;
-    margin-top: clamp(var(--spacing-xl), 5vw, var(--spacing-3xl));
-    color: rgba(23, 21, 18, .82);
-    font-family: var(--font-family-display);
-    font-size: clamp(1.85rem, 2.9vw, 3.2rem);
-    line-height: 1.08;
-    letter-spacing: 0;
-  }
-
-  .about-v2-editorial-figure {
-    --about-v2-figure-rule: rgba(23, 21, 18, .2);
-    --about-v2-figure-muted: rgba(23, 21, 18, .54);
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(3.5rem, .16fr) minmax(0, 1fr);
-    gap: clamp(var(--spacing-sm), 2vw, var(--spacing-md));
-    margin: clamp(var(--spacing-2xl), 6vw, var(--spacing-4xl)) 0 clamp(var(--spacing-xl), 5vw, var(--spacing-3xl));
-  }
-
-  .about-v2-editorial-figure--wide {
-    grid-column: 2 / span 10;
-  }
-
-  .about-v2-editorial-figure--inset {
-    grid-column: 7 / span 5;
-    width: auto;
-    margin-left: auto;
-  }
-
-  .about-v2-editorial-figure--paired {
-    grid-column: 2 / span 7;
-    width: auto;
-  }
-
-  .about-v2-editorial-media {
-    position: relative;
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(3.5rem, .16fr) minmax(0, 1fr);
-    min-height: clamp(18rem, 34vw, 31rem);
-    overflow: hidden;
-    border-bottom: var(--size-border-thin) solid var(--about-v2-figure-rule);
-    background:
-      linear-gradient(90deg, rgba(238, 232, 220, .08) 0 var(--size-border-thin), transparent var(--size-border-thin) 100%),
-      linear-gradient(180deg, rgba(238, 232, 220, .07) 0 var(--size-border-thin), transparent var(--size-border-thin) 100%),
-      radial-gradient(ellipse at 72% 22%, rgba(255, 255, 255, .12), transparent 19rem),
-      linear-gradient(135deg, #1b1915, #3a3428 48%, #171512);
-    background-size: 16.666% 100%, 100% 25%, 100% 100%, 100% 100%;
-  }
-
-  .about-v2-editorial-figure--inset .about-v2-editorial-media {
-    min-height: clamp(14rem, 24vw, 22rem);
-  }
-
-  .about-v2-editorial-figure--paired .about-v2-editorial-media {
-    min-height: clamp(13rem, 22vw, 19rem);
-  }
-
-  .about-v2-editorial-media::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, transparent calc(16.666% - var(--size-border-thin)), rgba(238, 232, 220, .2) 16.666%, transparent calc(16.666% + var(--size-border-thin))),
-      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .16) 100%);
-    pointer-events: none;
-  }
-
-  .about-v2-editorial-number {
-    position: relative;
-    z-index: 1;
-    align-self: end;
-    padding: 0 0 clamp(var(--spacing-sm), 2vw, var(--spacing-md));
-    color: rgba(238, 232, 220, .58);
-    font-family: var(--font-family-display);
-    font-size: clamp(2.8rem, 7vw, 6.5rem);
-    font-weight: var(--font-weight-medium);
-    line-height: .8;
-    text-align: center;
-  }
-
-  .about-v2-editorial-label {
-    position: relative;
-    z-index: 1;
-    align-self: end;
-    justify-self: start;
-    margin: 0 0 clamp(var(--spacing-sm), 2vw, var(--spacing-md));
-    padding: .58rem .72rem .54rem;
-    border: var(--size-border-thin) solid rgba(238, 232, 220, .2);
-    background: rgba(23, 21, 18, .62);
-    color: rgba(238, 232, 220, .76);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: .04em;
-    line-height: var(--ds-line-label);
-    text-transform: uppercase;
-  }
-
-  .about-v2-editorial-figure figcaption {
-    grid-column: 2;
-    margin: 0;
-    padding-top: .72rem;
-    color: var(--about-v2-figure-muted);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: .04em;
-    line-height: 1.25;
-    text-transform: uppercase;
-  }
-
-  .about-v2-story blockquote {
-    grid-column: 2 / span 10;
-    margin: clamp(var(--spacing-3xl), 7vw, calc(var(--spacing-4xl) + var(--spacing-lg))) 0 clamp(var(--spacing-2xl), 6vw, var(--spacing-4xl));
-    padding: clamp(var(--spacing-lg), 4vw, var(--spacing-2xl)) 0;
-    border-bottom: var(--size-border-thin) solid rgba(23, 21, 18, .22);
-  }
-
-  .about-v2-story blockquote p {
-    grid-column: auto;
-    margin: 0;
-    color: var(--about-v2-paper-ink);
-    font-family: var(--font-family-display);
-    font-size: clamp(3.2rem, 7vw, 7rem);
-    line-height: .86;
-    letter-spacing: 0;
-    text-wrap: balance;
-  }
-
-  .about-v2-archive {
-    border-bottom: var(--size-border-thin) solid var(--about-v2-rule);
-  }
-
-  .about-v2-archive-media {
-    margin: 0;
-    overflow: hidden;
-    aspect-ratio: 1;
-    border: var(--size-border-thin) solid var(--about-v2-rule);
-    background: rgba(var(--ds-surface-panel-rgb), .72);
-  }
-
-  .about-v2-archive-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(.8) saturate(.95);
-  }
-
-  .about-v2-archive-copy {
-    align-self: center;
-  }
-
-  .about-v2-archive h2,
-  .about-v2-profile h2 {
-    margin-top: var(--spacing-sm);
-    color: var(--ds-text);
-    font-size: clamp(2.3rem, 4vw, 4.5rem);
-    line-height: 1;
-  }
-
-  .about-v2-archive-copy > p {
-    max-width: 39rem;
-    margin-top: var(--spacing-md);
-    font-size: var(--ds-type-body);
-    line-height: var(--ds-line-body);
-  }
-
-  .about-v2-profile {
-    border-bottom: var(--size-border-thin) solid var(--about-v2-rule);
-  }
-
-  .about-v2-profile-head {
-    align-self: start;
-  }
-
-  .about-v2-profile-rows {
-    display: grid;
-  }
-
-  .about-v2-profile-row {
-    display: grid;
-    grid-template-columns: minmax(10rem, .34fr) minmax(0, .66fr);
-    gap: var(--spacing-md);
-    padding: var(--spacing-md) 0;
-    border-bottom: var(--size-border-thin) solid var(--about-v2-rule);
-  }
-
-  .about-v2-profile-row h3 {
-    color: var(--ds-text);
-    font-size: var(--ds-type-card-title-compact);
-    line-height: var(--ds-line-card-title);
-  }
-
-  .about-v2-profile-row p:not(.about-v2-profile-index) {
-    margin-top: var(--spacing-sm);
-    font-size: var(--ds-type-body-sm);
-    line-height: var(--ds-line-body-compact);
+    to {
+      opacity: .63;
+    }
   }
 
   @media (max-width: 62rem) {
-    .about-v2-hero-copy,
-    .about-v2-story-panel,
-    .about-v2-archive-media,
-    .about-v2-archive-copy,
-    .about-v2-profile-head,
-    .about-v2-profile-rows {
+    .about-v2-hero-copy {
       grid-column: 2 / -2;
-    }
-
-    .about-v2-story-panel {
-      grid-column: 1 / -1;
-    }
-
-    .about-v2-archive-media {
-      max-width: 32rem;
-    }
-
-    .about-v2-story-inner {
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-    }
-
-    .about-v2-story h2,
-    .about-v2-story h3,
-    .about-v2-story p,
-    .about-v2-story-lede,
-    .about-v2-story blockquote,
-    .about-v2-editorial-figure,
-    .about-v2-editorial-figure--wide,
-    .about-v2-editorial-figure--inset,
-    .about-v2-editorial-figure--paired {
-      grid-column: 1 / -1;
-    }
-
-    .about-v2-story p,
-    .about-v2-story-lede {
-      max-width: 42rem;
-    }
-
-    .about-v2-story h3 {
-      margin-top: clamp(var(--spacing-3xl), 9vw, var(--spacing-4xl));
     }
   }
 
   @media (max-width: 48rem) {
     .about-v2-page {
       --about-v2-section-space: var(--spacing-3xl);
-      --about-v2-hero-image-size: min(28rem, 94vw);
-      --about-v2-hero-image-offset: -28vw;
+      --about-v2-hero-bottom-space: clamp(var(--spacing-xl), 10vw, var(--spacing-3xl));
+      --about-v2-hero-image-size: min(34rem, 92vw);
+      --about-v2-hero-image-offset: -38%;
+      --about-v2-hero-image-opacity: .34;
+      --about-v2-hero-dot-size: .875rem;
+    }
+
+    .about-v2-page .dm-grid-l.dm-grid-l--grid-sys {
+      row-gap: var(--ds-mobile-section-content-gap);
+      padding-inline: 0;
+    }
+
+    .about-v2-hero-copy {
+      grid-column: 1 / -1;
+      margin-inline: var(--about-v2-shell-gutter);
+      min-width: 0;
     }
 
     .about-v2-hero {
-      min-height: auto;
-      padding: 8rem 0 var(--spacing-3xl);
+      height: 100vh;
+      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 0 0 var(--about-v2-hero-bottom-space);
+      align-items: end;
+    }
+
+    .about-v2-hero-field::before {
+      top: 11%;
     }
 
     .about-v2-hero h1 {
+      max-width: 9.5ch;
       font-size: var(--ds-mobile-type-title-xl);
     }
 
-    .about-v2-profile-row {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
     .about-v2-hero-body p,
-    .about-v2-story p,
-    .about-v2-archive-copy > p,
     .about-v2-profile-row p:not(.about-v2-profile-index) {
       font-size: var(--ds-mobile-type-body);
       line-height: var(--ds-line-body);
     }
-
-    .about-v2-story h2,
-    .about-v2-story h3,
-    .about-v2-archive h2,
-    .about-v2-profile h2 {
-      font-size: var(--ds-mobile-type-title-lg);
-    }
-
-    .about-v2-story-inner {
-      padding-inline: var(--ds-mobile-content-gutter);
-    }
-
-    .about-v2-story h2,
-    .about-v2-story h3 {
-      line-height: .92;
-    }
-
-    .about-v2-story-lede {
-      font-size: clamp(1.55rem, 9vw, 2.25rem);
-      line-height: 1.08;
-    }
-
-    .about-v2-editorial-figure,
-    .about-v2-editorial-figure--wide,
-    .about-v2-editorial-figure--inset,
-    .about-v2-editorial-figure--paired {
-      width: auto;
-      margin-inline: 0;
-    }
-
-    .about-v2-editorial-media,
-    .about-v2-editorial-figure--inset .about-v2-editorial-media,
-    .about-v2-editorial-figure--paired .about-v2-editorial-media {
-      grid-template-columns: 3rem minmax(0, 1fr);
-      min-height: clamp(12rem, 54vw, 18rem);
-    }
-
-    .about-v2-editorial-number {
-      font-size: clamp(2.1rem, 13vw, 4rem);
-    }
-
-    .about-v2-editorial-label {
-      max-width: calc(100% - var(--spacing-sm));
-      overflow-wrap: anywhere;
-    }
-
-    .about-v2-editorial-figure figcaption {
-      grid-column: 1 / -1;
-    }
-
-    .about-v2-archive-media {
-      max-width: none;
-    }
-  }
-
-  .about-v2-thesis p {
-    margin: 0;
-  }
-
-  .about-v2-thesis p:first-child {
-    max-width: 16ch;
-    color: var(--ds-text);
-    font-family: var(--font-family-display);
-    font-size: var(--ds-type-title-lg);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--ds-tracking-title);
-    line-height: var(--ds-line-card-title);
-    text-wrap: balance;
-  }
-
-  .about-v2-thesis p + p {
-    max-width: 44rem;
-    margin-top: var(--spacing-md);
-    color: var(--ds-text-muted);
-    font-size: var(--ds-type-body);
-    line-height: var(--ds-line-body);
-    letter-spacing: var(--ds-tracking-text);
-    text-wrap: pretty;
   }
 
   .about-v2-article {
@@ -803,6 +487,10 @@ const designPrinciples = [
     line-height: var(--ds-line-card-title);
   }
 
+  .about-v2-article-head .about-v2-story-title--sm {
+    font-size: var(--ds-type-title-md);
+  }
+
   .about-v2-article > p:not(.about-v2-kicker) {
     max-width: 46rem;
     margin: var(--spacing-md) 0 0;
@@ -811,39 +499,6 @@ const designPrinciples = [
     line-height: var(--ds-line-body);
     letter-spacing: var(--ds-tracking-text);
     text-wrap: pretty;
-  }
-
-  .about-v2-practice-archive {
-    max-width: none;
-    margin: 0;
-  }
-
-  .about-v2-practice-archive img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    height: auto;
-    object-fit: cover;
-    filter: brightness(.78) saturate(.88);
-  }
-
-  .about-v2-practice-archive figcaption {
-    display: grid;
-    gap: calc(var(--spacing-xs) * .75);
-    margin-top: var(--spacing-md);
-    color: var(--ds-text-muted);
-    font-size: var(--ds-type-body-sm);
-    line-height: var(--ds-line-body-compact);
-    letter-spacing: var(--ds-tracking-text);
-  }
-
-  .about-v2-practice-archive figcaption span {
-    color: var(--about-v2-accent);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--ds-line-label);
-    letter-spacing: var(--ds-tracking-label);
-    text-transform: uppercase;
   }
 
   .about-v2-article-columns {
@@ -855,13 +510,22 @@ const designPrinciples = [
   }
 
   .about-v2-article-columns--overlay {
+    --about-v2-overlay-space: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
     display: grid;
     gap: var(--spacing-lg);
-    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+    padding: var(--about-v2-overlay-space);
+    padding-left: 0;
+    background: none;
+  }
+
+  .about-v2-article-columns--overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 calc(var(--about-v2-overlay-space) * -1);
+    z-index: -1;
     background:
       linear-gradient(180deg, rgba(var(--ds-background-rgb), .92), rgba(var(--ds-background-rgb), .84)),
       rgba(var(--ds-surface-panel-rgb), .78);
-    box-shadow: 0 var(--spacing-md) var(--spacing-3xl) rgba(0, 5, 14, .28);
   }
 
   .about-v2-article-columns--overlay .about-v2-article-head {
@@ -887,7 +551,6 @@ const designPrinciples = [
     min-height: clamp(28rem, 45vw, 42rem);
     margin: 0;
     overflow: hidden;
-    background: rgba(var(--ds-surface-panel-rgb), .72);
   }
 
   .about-v2-practitioner-image::after {
@@ -928,7 +591,7 @@ const designPrinciples = [
   .about-v2-article blockquote {
     margin: clamp(var(--spacing-3xl), 7vw, var(--spacing-4xl)) 0;
     padding: clamp(var(--spacing-lg), 4vw, var(--spacing-2xl)) 0;
-    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, .14);
+    border-bottom: var(--size-border-thin) solid var(--ds-border);
   }
 
   .about-v2-article blockquote p {
@@ -938,34 +601,6 @@ const designPrinciples = [
     font-family: var(--font-family-display);
     font-size: var(--ds-type-title-lg);
     line-height: var(--ds-line-card-title);
-  }
-
-  .about-v2-article-image {
-    margin: clamp(var(--spacing-2xl), 6vw, var(--spacing-4xl)) 0;
-    overflow: hidden;
-    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, .12);
-    background: rgba(var(--ds-surface-panel-rgb), .72);
-  }
-
-  .about-v2-article-image--wide {
-    width: 100%;
-  }
-
-  .about-v2-article-image--inset {
-    width: min(31rem, 72%);
-    margin-left: auto;
-  }
-
-  .about-v2-article-image img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    filter: brightness(.82) saturate(.9);
-  }
-
-  .about-v2-article-image--inset img {
-    aspect-ratio: 4 / 3;
   }
 
   .about-v2-image-row {
@@ -979,7 +614,7 @@ const designPrinciples = [
     position: relative;
     margin: 0;
     overflow: hidden;
-    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, .12);
+    border-bottom: var(--size-border-thin) solid var(--ds-border);
     border-radius: 0;
     background: rgba(var(--ds-surface-panel-rgb), .72);
     box-shadow: none;
@@ -992,7 +627,7 @@ const designPrinciples = [
     pointer-events: none;
     background:
       linear-gradient(180deg, transparent 52%, rgba(var(--ds-background-rgb), .26)),
-      radial-gradient(ellipse at 70% 10%, rgba(231, 235, 242, .12), transparent 46%);
+      radial-gradient(ellipse at 70% 10%, var(--ds-border), transparent 46%);
   }
 
   .about-v2-image-row-item img {
@@ -1004,208 +639,169 @@ const designPrinciples = [
     filter: brightness(.82) saturate(.9);
   }
 
-  .about-v2-archive-note {
-    display: grid;
-    grid-template-columns: minmax(10rem, .34fr) minmax(0, .66fr);
-    gap: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
-    align-items: end;
-    margin: clamp(var(--spacing-3xl), 7vw, var(--spacing-4xl)) 0;
-    padding: clamp(var(--spacing-lg), 4vw, var(--spacing-2xl)) 0;
-    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, .12);
-  }
-
-  .about-v2-archive-note-media {
-    margin: 0;
-    overflow: hidden;
-    aspect-ratio: 1;
-    background: rgba(var(--ds-surface-panel-rgb), .72);
-  }
-
-  .about-v2-archive-note-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(.78) saturate(.9);
-  }
-
-  .about-v2-archive-note-copy h3 {
-    margin-top: var(--spacing-sm);
-    font-size: var(--ds-type-title-md);
-    line-height: var(--ds-line-card-title);
-  }
-
-  .about-v2-archive-note-copy p:not(.about-v2-kicker) {
-    max-width: 31rem;
-    margin-top: var(--spacing-md);
-    color: var(--ds-text-muted);
-    font-size: var(--ds-type-body);
-    line-height: var(--ds-line-body);
-  }
-
-  .about-v2-operating-profile {
-    display: grid;
-    grid-template-columns: minmax(0, .48fr) minmax(0, .52fr);
-    gap: clamp(var(--spacing-xl), 5vw, var(--spacing-4xl));
-  }
-
-  .about-v2-operating-profile .about-v2-profile-head {
-    position: sticky;
-    top: clamp(6rem, 12vh, 9rem);
-    display: grid;
-    gap: var(--spacing-sm);
-    grid-column: auto;
-    align-self: start;
-  }
-
-  .about-v2-operating-profile h2 {
-    margin: 0;
-    color: var(--ds-text);
-    font-size: var(--ds-type-title-lg);
-    line-height: var(--ds-line-card-title);
+  .about-v2-profile-section {
+    padding-top: calc(var(--about-v2-section-space) + var(--spacing-3xl));
   }
 
   .about-v2-profile-image {
-    margin: 0;
-    overflow: hidden;
-    background: rgba(var(--ds-surface-panel-rgb), .72);
-  }
-
-  .about-v2-profile-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    filter: brightness(.82) saturate(.9);
-  }
-
-  .about-v2-operating-profile .about-v2-profile-rows {
-    display: grid;
-    grid-column: auto;
-  }
-
-  .about-v2-operating-profile .about-v2-profile-row {
-    display: grid;
-    grid-template-columns: minmax(8.5rem, .3fr) minmax(0, .7fr);
-    gap: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
-    padding: 0 0 var(--spacing-md);
-    border-bottom: var(--size-border-thin) solid rgba(231, 235, 242, .12);
-  }
-
-  .about-v2-operating-profile .about-v2-profile-row + .about-v2-profile-row {
-    padding-top: var(--spacing-md);
-  }
-
-  .about-v2-operating-profile .about-v2-profile-row:last-child {
-    border-bottom: 0;
-  }
-
-  .about-v2-operating-profile .about-v2-profile-row h3 {
-    margin: 0;
-    color: var(--ds-text);
-    font-size: var(--ds-type-card-title-compact);
-    line-height: var(--ds-line-card-title);
-    letter-spacing: var(--ds-tracking-card);
-  }
-
-  .about-v2-operating-profile .about-v2-profile-row p:not(.about-v2-profile-index) {
-    max-width: 41rem;
-    margin-top: var(--spacing-sm);
-    color: var(--ds-text-muted);
-    font-size: var(--ds-type-body);
-    line-height: var(--ds-line-body);
-  }
-
-  .about-v2-principles {
-    min-width: 0;
-    --focus-diagnostic-border: rgba(231, 235, 242, .12);
-    --focus-diagnostic-label: var(--about-v2-accent);
-    --focus-diagnostic-text: var(--ds-text);
-    --focus-diagnostic-text-muted: var(--ds-text-muted);
-    --focus-diagnostic-panel-duration: .46s;
-    --focus-diagnostic-panel-opacity-duration: .3s;
-  }
-
-  :global(.about-v2-principles-list) {
-    grid-template-columns: minmax(0, 1fr);
-    border-top: var(--size-border-thin) solid var(--focus-diagnostic-border);
-  }
-
-  :global(.about-v2-principles-list .focus-diagnostic-column) {
-    display: contents;
-  }
-
-  :global(.about-v2-principles-list .focus-diagnostic-item) {
     position: relative;
+    z-index: 1;
+    grid-row: 1;
+    min-height: clamp(40rem, 60vw, 56rem);
+    margin: 0;
+    margin-left: calc(50% - 50vw);
     overflow: hidden;
-    background:
-      radial-gradient(ellipse at 84% 50%, rgba(121, 154, 255, 0), transparent 24rem),
-      transparent;
-    transition:
-      background-color var(--duration-transition-interactive-ui) var(--easing-standard),
-      border-color var(--duration-transition-interactive-ui) var(--easing-standard);
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item::before) {
+  .about-v2-profile-image::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(ellipse at 86% 44%, rgba(121, 154, 255, .12), transparent 24rem),
-      radial-gradient(ellipse at 20% 0%, rgba(231, 235, 242, .045), transparent 18rem),
-      linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0));
-    opacity: 0;
-    transition: opacity .42s var(--easing-standard);
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), .22), transparent 45%),
+      linear-gradient(180deg, transparent 42%, rgba(var(--ds-background-rgb), .36));
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item[open]::before) {
-    opacity: 1;
+  .about-v2-profile-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.82) saturate(.9);
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item > summary) {
+  .about-v2-profile-rows {
     position: relative;
-    z-index: 1;
-    grid-template-columns: minmax(3.25rem, .12fr) minmax(0, 1fr) auto;
-    padding-block: clamp(var(--spacing-md), 2vw, var(--spacing-lg));
+    z-index: 2;
+    display: grid;
+    grid-row: 1;
+    align-self: end;
+    max-width: 46rem;
+    margin-top: clamp(var(--spacing-3xl), 8vw, calc(var(--spacing-4xl) * 2));
+    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+    background:
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), .92), rgba(var(--ds-background-rgb), .84)),
+      rgba(var(--ds-surface-panel-rgb), .78);
+    text-align: left;
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item h3) {
-    font-size: var(--ds-type-title-sm);
-    line-height: var(--ds-line-card-title);
-    letter-spacing: var(--ds-tracking-card);
+  .about-v2-profile-row {
+    display: grid;
+    grid-template-columns: none;
+    gap: var(--spacing-sm);
+    padding: clamp(var(--spacing-lg), 3vw, var(--spacing-2xl)) 0;
+    color: var(--ds-text);
+    text-align: left;
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item-panel) {
-    position: relative;
-    z-index: 1;
+  .about-v2-profile-row:first-child {
+    padding-top: 0;
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item-panel-inner) {
-    padding: 0 0 clamp(var(--spacing-lg), 3vw, var(--spacing-xl)) calc(12% + var(--spacing-md));
+  .about-v2-profile-row:last-child {
+    padding-bottom: 0;
   }
 
-  :global(.about-v2-principles-list .focus-diagnostic-item-panel-inner > p) {
-    max-width: 43rem;
+  .about-v2-profile-row + .about-v2-profile-row {
+    border-top: var(--size-border-thin) solid var(--ds-border);
+  }
+
+  .about-v2-profile-index {
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-transform: none;
+  }
+
+  .about-v2-profile-row p:not(.about-v2-profile-index) {
+    max-width: 41rem;
+    margin-top: 0;
+    color: var(--ds-text-muted);
     font-size: var(--ds-type-body);
     line-height: var(--ds-line-body);
+    text-align: left;
   }
 
-  .about-v2-practice-section > .dm-grid-l {
-    align-items: start;
+  .about-v2-principles-visible-section {
+    isolation: isolate;
   }
 
-  .about-v2-practice-head {
+  .about-v2-principles-visible-section::before {
+    content: "";
     position: sticky;
-    top: clamp(6rem, 12vh, 9rem);
+    top: clamp(7rem, 18vh, 12rem);
+    display: block;
+    width: 100%;
+    height: clamp(24rem, 52vh, 40rem);
+    margin-block: calc(var(--spacing-4xl) * -1) calc(clamp(24rem, 52vh, 40rem) * -1);
+    z-index: 0;
+    pointer-events: none;
+    opacity: .96;
+    background:
+      radial-gradient(ellipse 54rem 18rem at 50% 34%, rgba(74, 124, 190, 0.4), rgba(74, 124, 190, 0.18) 34%, rgba(74, 124, 190, 0.055) 58%, transparent 78%),
+      radial-gradient(ellipse 32rem 12rem at 58% 35%, rgba(176, 204, 255, 0.22), rgba(176, 204, 255, 0.075) 38%, transparent 70%),
+      radial-gradient(ellipse 70rem 24rem at 52% 42%, rgba(13, 32, 62, 0.44), rgba(13, 32, 62, 0.16) 48%, transparent 78%);
+    filter: blur(1.15rem);
+    transform: translateZ(0);
+    mask-image: linear-gradient(180deg, transparent 0, black 16%, black 84%, transparent 100%);
+  }
+
+  .about-v2-principles-visible-section::after {
+    content: "";
+    position: sticky;
+    top: clamp(7rem, 18vh, 12rem);
+    display: block;
+    width: 100%;
+    height: clamp(24rem, 52vh, 40rem);
+    margin-bottom: calc(clamp(24rem, 52vh, 40rem) * -1);
+    z-index: 0;
+    pointer-events: none;
+    opacity: .58;
+    background:
+      radial-gradient(circle at 37% 24%, rgba(231, 239, 255, 0.58) 0 0.075rem, transparent 0.14rem),
+      radial-gradient(circle at 53% 35%, rgba(214, 232, 255, 0.44) 0 0.065rem, transparent 0.13rem),
+      radial-gradient(circle at 61% 52%, rgba(231, 239, 255, 0.5) 0 0.07rem, transparent 0.13rem),
+      radial-gradient(circle at 45% 60%, rgba(176, 204, 255, 0.38) 0 0.06rem, transparent 0.12rem),
+      linear-gradient(112deg, transparent 0 35%, rgba(184, 207, 255, 0.07) 46%, transparent 60%);
+    mask-image: linear-gradient(180deg, transparent 0, black 18%, black 82%, transparent 100%);
+  }
+
+  .about-v2-principles-visible-section > .dm-grid-l {
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.about-v2-principles-visible-head) {
+    position: sticky;
+    top: clamp(8rem, 14vh, 11rem);
     align-self: start;
   }
 
-  .about-v2-practice-copy {
+  .about-v2-principles-visible {
     display: grid;
-    gap: var(--spacing-md);
+    min-width: 0;
   }
 
-  .about-v2-practice-copy p {
+  .about-v2-principle-row {
+    display: grid;
+    padding: clamp(var(--spacing-lg), 3vw, var(--spacing-2xl)) 0;
+    border-bottom: var(--size-border-thin) solid var(--ds-border);
+  }
+
+  .about-v2-principle-row:last-child {
+    border-bottom: 0;
+  }
+
+  .about-v2-principle-copy {
+    display: grid;
+    gap: var(--spacing-sm);
+    min-width: 0;
+  }
+
+  .about-v2-principle-copy p {
     max-width: 43rem;
     margin: 0;
     color: var(--ds-text-muted);
@@ -1215,32 +811,55 @@ const designPrinciples = [
     text-wrap: pretty;
   }
 
-  .about-v2-practice-copy p:first-child {
-    color: rgba(244, 247, 255, .9);
-    font-size: var(--ds-type-lead);
-    line-height: var(--ds-line-lead);
+  .about-v2-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+    align-items: stretch;
   }
 
-  .about-v2-practice-media {
-    align-self: start;
-    padding-top: clamp(var(--spacing-sm), 2vw, var(--spacing-lg));
+  .about-v2-mosaic-item {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    background: rgba(var(--ds-surface-panel-rgb), .72);
+  }
+
+  .about-v2-mosaic-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 48%, rgba(var(--ds-background-rgb), .24)),
+      radial-gradient(ellipse at 72% 8%, color-mix(in srgb, var(--ds-border) 68%, transparent), transparent 42%);
+  }
+
+  .about-v2-mosaic-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: brightness(.82) saturate(.92);
+  }
+
+  .about-v2-mosaic-item--session img {
+    object-position: center 42%;
   }
 
   @media (max-width: 78rem) {
     .about-v2-article,
-    .about-v2-operating-profile,
-    .about-v2-principles,
-    .about-v2-practice-media {
-      grid-column: 1 / -1;
+    .about-v2-principles-visible {
+      grid-column: 2 / span 24;
     }
 
-    .about-v2-principles-section :global(.section-header),
-    .about-v2-practice-head {
-      grid-column: 1 / -1;
+    .about-v2-principles-visible-section :global(.section-header) {
+      grid-column: 2 / span 24;
     }
 
-    .about-v2-operating-profile {
-      grid-template-columns: minmax(0, 1fr);
+    :global(.about-v2-principles-visible-head) {
+      position: static;
     }
 
     .about-v2-article-columns {
@@ -1257,54 +876,46 @@ const designPrinciples = [
 
     .about-v2-article-columns--overlay {
       margin-top: calc(var(--spacing-2xl) * -1);
-      margin-inline: var(--spacing-md);
       max-width: none;
-    }
-
-    .about-v2-operating-profile .about-v2-profile-head {
-      position: static;
-    }
-
-    .about-v2-practice-head {
-      position: static;
-    }
-
-    .about-v2-practice-media {
-      max-width: 34rem;
-      padding-top: var(--spacing-lg);
     }
 
   }
 
   @media (max-width: 48rem) {
     .about-v2-article > h2,
-    .about-v2-article-head h2,
-    .about-v2-operating-profile h2 {
+    .about-v2-article-head h2 {
       font-size: var(--ds-mobile-type-title-lg);
       line-height: var(--ds-line-card-title);
     }
 
-    .about-v2-article .about-v2-story-lede {
-      font-size: var(--ds-mobile-type-lead, var(--ds-mobile-type-body));
-      line-height: var(--ds-line-lead);
-    }
-
-    .about-v2-article-image,
-    .about-v2-article-image--wide,
-    .about-v2-article-image--inset {
-      width: auto;
-      margin-right: 0;
+    .about-v2-profile-image {
+      min-height: clamp(18rem, 70vw, 26rem);
       margin-left: 0;
+      transform: none;
     }
 
-    .about-v2-article-image img,
-    .about-v2-article-image--inset img {
-      aspect-ratio: 4 / 3;
+    .about-v2-profile-image,
+    .about-v2-profile-rows {
+      grid-column: 1 / -1;
+      grid-row: auto;
     }
 
-    .about-v2-archive-note,
-    .about-v2-operating-profile .about-v2-profile-row {
-      grid-template-columns: minmax(0, 1fr);
+    .about-v2-section > .dm-grid-l > *,
+    .about-v2-article,
+    .about-v2-principles-visible-section :global(.section-header),
+    .about-v2-principles-visible {
+      margin-inline: var(--about-v2-shell-gutter);
+      min-width: 0;
+    }
+
+    .about-v2-profile-image,
+    .about-v2-practitioner-image {
+      margin-inline: 0;
+    }
+
+    .about-v2-profile-rows {
+      margin-top: calc(var(--spacing-xl) * -1);
+      max-width: none;
     }
 
     .about-v2-image-row {
@@ -1324,29 +935,61 @@ const designPrinciples = [
 
     .about-v2-article-columns--overlay {
       margin-top: calc(var(--spacing-xl) * -1);
-      margin-inline: var(--spacing-sm);
-      padding: var(--spacing-md);
+      --about-v2-overlay-space: var(--spacing-md);
     }
 
     .about-v2-practitioner-image {
       min-height: 22rem;
     }
 
-    .about-v2-archive-note-media {
-      max-width: 18rem;
+    .about-v2-practitioner-image img {
+      width: calc(100% + 6rem);
+      max-width: none;
+      transform: translateX(-6rem);
     }
 
-    :global(.about-v2-principles-list .focus-diagnostic-item > summary) {
-      grid-template-columns: minmax(2.75rem, auto) minmax(0, 1fr) auto;
+    .about-v2-mosaic {
+      grid-template-columns: repeat(4, minmax(13rem, 72vw));
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
     }
 
-    :global(.about-v2-principles-list .focus-diagnostic-item h3) {
-      font-size: var(--ds-mobile-type-title-sm);
+    .about-v2-mosaic::-webkit-scrollbar {
+      display: none;
     }
 
-    :global(.about-v2-principles-list .focus-diagnostic-item-panel-inner) {
-      padding-left: 0;
+    .about-v2-mosaic-item {
+      grid-column: auto;
+      grid-row: auto;
+      scroll-snap-align: start;
     }
 
+    .about-v2-mosaic-item img {
+      min-height: auto;
+    }
+
+    .about-v2-mosaic-item--asheville img {
+      aspect-ratio: 4 / 5;
+      object-position: center 42%;
+    }
+
+    .about-v2-mosaic-item--group img {
+      aspect-ratio: 3 / 4;
+      object-position: center 38%;
+    }
+
+    .about-v2-principle-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-xs);
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-v2-hero::before {
+      animation: none;
+    }
   }
 </style>

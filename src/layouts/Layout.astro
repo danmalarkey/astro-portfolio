@@ -34,7 +34,7 @@ const inferredBaseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/as
 		<slot />
 		<script>
 			(() => {
-				const revealEls = Array.from(document.querySelectorAll('[data-motion-reveal], [data-motion-reveal-late]'));
+				const revealEls = Array.from(document.querySelectorAll('[data-motion-reveal], [data-motion-reveal-early], [data-motion-reveal-late]'));
 				if (!revealEls.length) return;
 
 				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -61,6 +61,11 @@ const inferredBaseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/as
 				observe('[data-motion-reveal]', {
 					threshold: 0.22,
 					rootMargin: '0px 0px -16% 0px'
+				});
+
+				observe('[data-motion-reveal-early]', {
+					threshold: 0.08,
+					rootMargin: '0px 0px 12% 0px'
 				});
 
 				observe('[data-motion-reveal-late]', {
