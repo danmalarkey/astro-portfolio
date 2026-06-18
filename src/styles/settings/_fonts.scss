@@ -1,41 +1,15 @@
-// src/styles/fonts.scss
-@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Geist:wght@100..900&display=swap');
+@font-face {
+  font-family: "Geist";
+  src: url("../assets/fonts/GeistVariableVF.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 
-//@font-face {
-//    font-family: 'Geist';
-//    src: url('/fonts/Geist/geist-regular.woff2') format('woff2'),
-//    url('/fonts/Geist/geist-regular.woff') format('woff'),
-//    url('/fonts/Geist/geist-regular.otf') format('opentype');
-//    font-weight: 400;
-//    font-style: normal;
-//}
-//
-//@font-face {
-//    font-family: 'Geist';
-//    src: url('../../../public/fonts/Geist/geist-bold.woff2') format('woff2'),
-//    url('../../../public/fonts/Geist/geist-bold.woff') format('woff'),
-//    url('../../../publicfonts/Geist/geist-bold.otf') format('opentype');
-//    font-weight: 700;
-//    font-style: normal;
-//}
-//
-//@font-face {
-//    font-family: 'Cal Sans';
-//    src: url('../../../public/fonts/CalSans/fonts/otf/CalSans-SemiBold.otf') format('otf'),
-//    url('../../../public/fonts/CalSans/fonts/webfonts/CalSans-SemiBold.woff2') format('woff2'),
-//    url('../../../public/fonts/CalSans/fonts/webfonts/CalSans-SemiBold.woff') format('woff');
-//    font-weight: 400;
-//    font-style: normal;
-//}
-//
-//@font-face {
-//    font-family: 'Cal Sans';
-//    src: url('../../../public/fonts/CalSans/fonts/otf/CalSans-SemiBold.otf') format('otf'),
-//    //url('/fonts/CalSans/fonts/webfonts/CalSans-SemiBold.woff2') format('woff2'),
-//    url('../../../public/fonts/CalSans/fonts/webfonts/CalSans-SemiBold.woff2') format('woff2'),
-//    url('../../../public/fonts/CalSans/fonts/webfonts/CalSans-SemiBold.woff') format('woff');
-//    font-weight: 600;
-//    font-style: normal;
-//}
-
-// Add more variations if you have them (e.g., italics, medium, light, etc.)
+@font-face {
+  font-family: "Cal Sans";
+  src: url("../assets/fonts/CalSans-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}

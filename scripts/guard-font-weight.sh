@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-matches="$(rg -n "font-weight\\s*:\\s*(bold|[0-9]+)" src/layouts src/styles src/pages | rg -v ":\s*//" || true)"
+matches="$(
+  rg -n "font-weight\\s*:\\s*(bold|[0-9]+)" src/layouts src/styles src/pages \
+    | rg -v "^src/styles/settings/_fonts\\.scss:" \
+    | rg -v ":\s*//" ||
+    true
+)"
 
 if [[ -n "$matches" ]]; then
   echo "Found hard-coded font-weight values. Use font-weight tokens instead:"

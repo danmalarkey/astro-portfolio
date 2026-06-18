@@ -1,5 +1,6 @@
 // Settings
 @use "sass:map";
+@use "./settings/fonts";
 @use "./settings/grid";
 @use "./settings/typography";
 @use "./settings/visual-language";
@@ -382,6 +383,30 @@ code {
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: var(--size-focus-ring) solid var(--color-accent-primary);
   outline-offset: var(--size-focus-ring);
+}
+
+.inline-link {
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-accent-primary) 42%, transparent), color-mix(in srgb, var(--color-accent-primary) 42%, transparent)) 0 100% / 100% var(--size-border-thin) no-repeat,
+    linear-gradient(var(--color-accent-primary), var(--color-accent-primary)) 0 100% / 100% 0 no-repeat;
+  transition:
+    color var(--duration-transition-interactive-ui) var(--easing-standard),
+    background-size var(--duration-transition-interactive-bg) var(--easing-standard);
+}
+
+@media (hover: hover) {
+  .inline-link:hover {
+    color: var(--color-background-canvas);
+    background-size: 100% var(--size-border-thin), 100% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inline-link {
+    transition: none;
+  }
 }
 
 .cta-link,
