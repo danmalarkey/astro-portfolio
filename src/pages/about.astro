@@ -1,67 +1,68 @@
 ---
 import HomeFooter from "../components/HomeFooter.astro";
+import PinnedStackCards from "../components/PinnedStackCards.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { focusAreaServiceRows } from "../data/focus-area-service-rows";
 import Header from "../layouts/Header.astro";
 import Layout from "../layouts/Layout.astro";
 
-const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
-const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
+const baseUrl = Astro.url.pathname.startsWith("/astro-portfolio") ? "/astro-portfolio/" : "/";
+const withBase = (path: string) => `${baseUrl}${path.startsWith("/") ? path.slice(1) : path}`;
 
 const profileRows = [
   {
-    number: '01',
-    eyebrow: 'Current role',
-    title: 'Chief Product Designer at feature[23]',
-    text: 'Leading product design across complex software engagements with executives, product leaders, designers, and engineers.'
+    number: "01",
+    label: "Current role",
+    title: "Chief Product Designer at feature[23]",
+    titleLines: ["Chief Product Designer", "at feature[23]"],
+    body: "Growing design capabilities with executives, product leaders, designers, and engineers, helping teams stay focused on people, outcomes, and responsible execution.",
   },
   {
-    number: '02',
-    eyebrow: 'Scope',
-    title: 'Product design, systems, standards, and delivery',
-    text: 'Strategy, workshops, workflow modeling, design systems, accessibility, AI-enabled exploration, and implementation support.'
+    number: "02",
+    label: "Scope",
+    title: "Product design, systems, standards, and delivery",
+    titleLines: ["Product design, systems,", "standards, and delivery"],
+    body: "Strategy, workshops, workflow modeling, design systems, accessibility, AI-enabled exploration, and implementation support.",
   },
   {
-    number: '03',
-    eyebrow: 'Operating context',
-    title: 'Operational software and middle-market complexity',
-    text: 'Where business goals, human activity, technology, compliance, and delivery constraints need to stay connected.'
+    number: "03",
+    label: "Operating context",
+    title: "Operational software and middle-market companies",
+    titleLines: ["Operational software", "and middle-market companies"],
+    body: "Where business goals, human activity, technology, compliance, and delivery constraints need to stay connected.",
   }
 ];
 
-const workMethods = [
+const visibleDesignPrinciples = [
   {
-    number: '01',
-    title: 'Define direction',
-    text: 'Clarify the product, business, and organizational choices before delivery accelerates.'
+    number: "01",
+    title: "Clarity before execution",
+    body: "Teams make better decisions when they understand what they are trying to make true before moving too quickly. Clarity is not a delay. It keeps effort from scattering.",
   },
   {
-    number: '02',
-    title: 'Model the system',
-    text: 'Map roles, activities, workflows, rules, and behavior before teams design from assumptions.'
+    number: "02",
+    title: "Make the model visible",
+    body: "Every product carries an underlying model: the business goal, the people involved, the activity being supported, the rules of the system, and the decisions that shape behavior. When that model is unclear, the product becomes harder to explain, build, use, and sustain.",
   },
   {
-    number: '03',
-    title: 'Strengthen the standard',
-    text: 'Connect design systems, accessibility, ethical standards, implementation guidance, and governance.'
+    number: "03",
+    title: "Start with human activity",
+    body: "Strong product decisions start with what people are trying to do. Goals, jobs, decisions, workflows, and constraints matter because they explain what the system needs to support.",
   },
   {
-    number: '04',
-    title: 'Support delivery',
-    text: 'Stay close to the build to reduce drift and help teams move with confidence.'
-  }
-];
-
-const operatingContexts = [
-  {
-    title: 'Regulated and operational systems',
-    text: 'Insurance, logistics, nonprofit services, food distribution, and financial workflows.'
+    number: "04",
+    title: "Standards protect decisions",
+    body: "Standards are not decoration or process for its own sake. They help teams make better decisions repeatedly and protect accessibility, consistency, quality, and trust as more people become involved.",
   },
   {
-    title: 'Product and delivery systems',
-    text: 'Design systems, delivery environments, implementation guidance, and reusable product infrastructure.'
+    number: "05",
+    title: "Rigor is responsibility",
+    body: "Craft matters, but rigor is larger than polish. It is the discipline of asking better questions, using evidence, understanding constraints, and making decisions that can be defended beyond preference.",
   },
   {
-    title: 'AI-enabled workflows',
-    text: 'AI-assisted concepting, product exploration, documentation, and delivery workflows.'
+    number: "06",
+    title: "AI needs direction",
+    body: "AI does not remove the need for design judgment. It increases the need for clarity, standards, human control, and responsible decision-making. The goal is not more disconnected output. The goal is useful systems people can understand, trust, and operate.",
   }
 ];
 ---
@@ -71,168 +72,143 @@ const operatingContexts = [
   description="About Dan Malarkey, a Chief Product Designer focused on clarity, systems, standards, accessibility, AI-enabled work, and responsible execution."
 >
   <Header />
+
   <main class="about-page">
-    <section class="about-hero" aria-labelledby="about-hero-title" style={`--about-hero-image: url('${withBase('/images/about/dan-drillstack.png')}')`}>
+    <section class="about-hero" aria-labelledby="about-hero-title" style={`--about-hero-image: url('${withBase("/images/about/dan-drillstack.png")}')`}>
       <div class="about-hero-field" aria-hidden="true"></div>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="about-hero-copy gc-start-2 gc-span-18">
-          <p class="about-kicker">About Dan</p>
-          <h1 id="about-hero-title">Clarity, systems, and responsible execution.</h1>
+          <p class="about-kicker type-eyebrow">About Dan</p>
+          <h1 id="about-hero-title">Hey. I'm Dan Malarkey.</h1>
           <div class="about-hero-body">
             <p>
-              I’m a Chief Product Designer with 17+ years of experience across product design, operational software, design systems, accessibility, and delivery.
+              I’m a Chief Product Designer with 17+ years across product design, operational software, design systems, accessibility, and delivery. For the last 14 years, I’ve helped shape product direction and design practice at <a class="inline-link" href="https://www.feature23.com/" target="_blank" rel="noreferrer">feature[23]</a>. I balance business goals, human activity, technology, standards, and implementation so decisions can safely move the business forward.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-profile-section" aria-label="Profile snapshot" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <figure class="about-profile-image gc-start-1 gc-span-18" data-motion-item>
+          <img src={withBase("/images/about/board.png")} alt="Whiteboard with product workflow notes arranged in columns" loading="lazy" decoding="async" />
+        </figure>
+        <aside class="about-profile-rows gc-start-12 gc-span-13" aria-label="Profile snapshot" role="list" data-motion-item>
+          {profileRows.map((item) => (
+            <article class="about-profile-row" role="listitem">
+              <p class="about-profile-index">{item.label}</p>
+              <h3 class="type-title-geist-300">{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </aside>
+      </div>
+    </section>
+
+    <section class="about-section about-story-section" aria-labelledby="about-story-title" data-motion-reveal>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <article class="about-article about-article--split dm-grid-l dm-grid-l--grid-sys gc-start-1 gc-span-26" data-motion-item>
+          <figure class="about-practitioner-image gc-start-11 gc-span-16" aria-hidden="true">
+            <img src={withBase("/images/dan.png")} alt="" loading="lazy" decoding="async" />
+          </figure>
+          <div class="about-article-columns about-article-columns--overlay gc-start-2 gc-span-13">
+            <div class="about-article-head">
+              <h2 id="about-story-title" class="about-story-title--sm">A practitioner of clarity, systems, and responsible execution.</h2>
+            </div>
+            <p>
+              I’ve committed my career to the craft and rigor of helping middle-market businesses make better product decisions. I believe strong design connects business goals, human activity, and team capability into systems that can carry an organization further than any individual feature or initiative. Systems matter because disconnected decisions create drift, and drift quietly undermines progress.
             </p>
             <p>
-              For the last 14 years, I’ve helped shape product direction and design practice at feature[23], working where business goals, human activity, technology, and implementation need to hold together.
+              I believe good design leadership starts with understanding. Ask better questions. Understand constraints. Help people see the situation more clearly. When teams share the same understanding of the problem, they make better decisions with greater confidence. Responsible execution starts earlier than implementation. It starts with diagnosis, planning, alignment, and the decisions teams make before the work becomes expensive to change.
             </p>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section about-image-section" aria-label="Personal image row" data-motion-reveal hidden>
+      <div class="dm-grid-l dm-grid-l--grid-sys">
+        <div class="about-image-row gc-start-2 gc-span-24" data-motion-item>
+          <figure class="about-image-row-item">
+            <img src={withBase("/images/about/drillstack-group.JPG")} alt="Dan with a group during a working session" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-image-row-item">
+            <img src={withBase("/images/about/asheville-pic.JPG")} alt="Dan outside in Asheville" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-image-row-item">
+            <img src={withBase("/images/about/dan-family.JPG")} alt="Dan in a family photo" loading="lazy" decoding="async" />
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="about-section about-profile" aria-labelledby="about-profile-title">
+    <section class="about-section about-principles-visible-section" aria-labelledby="about-principles-visible-title">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <figure class="about-profile-media gc-start-2 gc-span-11">
-          <img src={withBase('/images/dan-right.png')} alt="Dan leading a whiteboard session with a product team" loading="lazy" decoding="async" />
-        </figure>
-
-        <div class="about-profile-panel gc-start-15 gc-span-10">
-          <div class="about-profile-rows" role="list">
-            {profileRows.map((item, index) => (
-              <article class="about-profile-row" role="listitem">
-                <p class="about-row-index">{item.number}</p>
-                <div>
-                  <p class="about-row-eyebrow">{item.eyebrow}</p>
-                  <h3 id={index === 0 ? 'about-profile-title' : undefined}>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section about-editorial about-origin" aria-labelledby="about-origin-title">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-section-head gc-start-2 gc-span-8">
-          <p class="about-kicker">How I got here</p>
-          <h2 id="about-origin-title">I came to design through structure.</h2>
-        </div>
-        <div class="about-copy-block gc-start-12 gc-span-12">
-          <p>
-            I originally wanted to be an architect. What pulled me into design was the same underlying discipline: structure, proportion, typography, grid systems, and the clarity of Swiss design and mid-century modernism.
-          </p>
-          <p>
-            That foundation still shapes how I work. I care about how things look, but I care more about whether the thinking holds. Good design is not decoration around a decision. It is the discipline that helps people understand what the decision should be.
-          </p>
-          <div class="about-copy-subsection">
-            <h3>The most important design work often happens before the screen.</h3>
-          </div>
-          <p>
-            Early in my career, I realized the visible product is only one expression of a much larger system. The business, the human activity, and the technology all have to stay in balance. When one side is ignored, the system tips.
-          </p>
-          <p>
-            That changed how I understood design. The work was not only about making the product easier to use. It was about helping teams understand what should be built, how it should work, what constraints mattered, and how decisions would hold up once the system moved into delivery.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-archive" aria-labelledby="about-archive-title">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <figure class="about-archive-media gc-start-3 gc-span-8">
-          <img src={withBase('/images/about/about-songlinkr.jpg')} alt="Archived client session artifact from 2016" loading="lazy" decoding="async" />
-        </figure>
-        <div class="about-archive-copy gc-start-13 gc-span-10">
-          <p class="about-kicker">From the archives</p>
-          <h2 id="about-archive-title">The tools have changed. The work has not.</h2>
-          <p class="about-archive-note">From a client session, 2016.</p>
-          <p>
-            Make the model visible. Explain the tradeoffs. Help the room understand what needs to happen next.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section about-responsibility" aria-labelledby="about-responsibility-title">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-section-head gc-start-2 gc-span-8">
-          <p class="about-kicker">Craft and responsibility</p>
-          <h2 id="about-responsibility-title">Rigor is an ethical concern.</h2>
-        </div>
-        <div class="about-copy-block gc-start-12 gc-span-12">
-          <p>
-            I care about craft because the details reveal the thinking behind the work. But rigor is not just polish. Rigor is how teams move beyond preference, bias, and assumption. It is how evidence, accessibility, standards, and responsible judgment become part of the way products are shaped.
-          </p>
-          <p>
-            The stronger the rigor, the more trust the work can carry — with executives, stakeholders, teams, and the people who depend on the systems we build.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section about-work" aria-labelledby="about-work-title">
-      <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-section-head gc-start-2 gc-span-9">
-          <p class="about-kicker">How I work</p>
-          <h2 id="about-work-title">I turn ambiguity into structure teams can use.</h2>
-        </div>
-        <div class="about-copy-block gc-start-13 gc-span-11">
-          <p>
-            I help teams clarify direction, model the system, strengthen the standard, and stay close enough to delivery to protect intent.
-          </p>
-        </div>
-
-        <div class="about-method-grid section-flow-content gc-start-2 gc-span-24" role="list">
-          {workMethods.map((item) => (
-            <article class="about-method-card" role="listitem">
-              <p>{item.number}</p>
-              <h3>{item.title}</h3>
-              <span>{item.text}</span>
+        <SectionHeader
+          eyebrow="Design Principles"
+          title="How I think, lead, and evaluate design."
+          headingId="about-principles-visible-title"
+          headClass="about-principles-visible-head gc-start-2 gc-span-10"
+        />
+        <div class="about-principles-visible gc-start-13 gc-span-13" role="list">
+          {visibleDesignPrinciples.map((item) => (
+            <article class="about-principle-row" role="listitem">
+              <div class="about-principle-copy">
+                <h3 class="type-title-geist-300">{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="about-section about-context" aria-labelledby="about-context-title">
+    <section class="about-section about-mosaic-section" aria-label="Image mosaic" data-motion-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-section-head gc-start-2 gc-span-9">
-          <p class="about-kicker">Where this shows up</p>
-          <h2 id="about-context-title">The work often lives inside complex operating environments.</h2>
-        </div>
-        <div class="about-copy-block gc-start-13 gc-span-11">
-          <p>
-            I’ve worked across insurance, logistics, food distribution, franchise operations, nonprofit services, restaurant commerce, financial workflows, and internal product infrastructure. The industries change. The pattern is consistent: business goals, product behavior, standards, and delivery choices need to stay connected.
-          </p>
-        </div>
-
-        <div class="about-context-list section-flow-content gc-start-2 gc-span-24" role="list">
-          {operatingContexts.map((item) => (
-            <article class="about-context-row" role="listitem">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
+        <div class="about-mosaic gc-start-2 gc-span-24" data-motion-item>
+          <figure class="about-mosaic-item about-mosaic-item--session">
+            <img src={withBase("/images/about/about-songlinkr.jpg")} alt="Dan working through product structure with a team during an archived client session" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-mosaic-item about-mosaic-item--asheville">
+            <img src={withBase("/images/about/asheville-pic.JPG")} alt="Dan outside in Asheville" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-mosaic-item about-mosaic-item--group">
+            <img src={withBase("/images/about/drillstack-group.JPG")} alt="Dan with a group during a working session" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="about-mosaic-item about-mosaic-item--family">
+            <img src={withBase("/images/about/dan-family.JPG")} alt="Dan in a family photo" loading="lazy" decoding="async" />
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="about-section about-mentoring" aria-labelledby="about-mentoring-title">
+    <section class="about-section about-focus-section" aria-labelledby="about-focus-title" data-motion-reveal-early>
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <div class="about-section-head gc-start-2 gc-span-8">
-          <p class="about-kicker">Leadership and mentoring</p>
-          <h2 id="about-mentoring-title">I care about helping designers become clearer thinkers.</h2>
-        </div>
-        <div class="about-copy-block gc-start-12 gc-span-12">
-          <p>
-            A large part of my work is helping designers, product teams, and engineering partners understand how strong design decisions are made: how to frame problems, explain tradeoffs, use evidence, and protect quality when the work becomes complicated.
-          </p>
+        <SectionHeader
+          eyebrow="Where this connects"
+          title="The same practice shows up in a few focused areas."
+          body="Operating models, direction, standards, and AI-enabled systems are different entry points into the same concern: helping teams make better decisions and keep the system coherent."
+          headingId="about-focus-title"
+          headClass="gc-start-2 gc-span-10"
+          bodyClass="gc-start-15 gc-span-11"
+          reveal
+        />
+        <div class="about-focus-stack gc-start-2 gc-span-24">
+          <PinnedStackCards
+            items={focusAreaServiceRows.map((item) => ({
+              title: item.title,
+              titleLines: item.titleLines,
+              href: item.href,
+              image: item.image,
+              tags: item.capabilities,
+              fitLine: item.fitLine,
+              body: item.description
+            }))}
+          />
         </div>
       </div>
     </section>
-
   </main>
 
   <HomeFooter
@@ -246,31 +222,23 @@ const operatingContexts = [
 <style>
   .about-page {
     --about-shell-gutter: var(--ds-mobile-content-gutter);
-    --about-section-space: clamp(var(--spacing-3xl), 8vw, calc(var(--spacing-4xl) + var(--spacing-3xl)));
-    --about-panel-space: clamp(var(--spacing-lg), 4vw, var(--spacing-3xl));
+    --about-section-space: calc(var(--spacing-4xl) + var(--spacing-3xl));
+    --about-rule: var(--ds-border-soft);
+    --about-accent: var(--color-tag-text-accent);
     --about-hero-bottom-space: clamp(var(--spacing-3xl), 7vw, calc(var(--spacing-4xl) + var(--spacing-lg)));
     --about-hero-image-size: min(48rem, 54vw);
     --about-hero-image-offset: max(calc(var(--spacing-4xl) * -1.5), -6vw);
-    --about-hero-image-opacity: 0.62;
+    --about-hero-image-opacity: .62;
     --about-hero-dot-size: 1rem;
-    --about-profile-media-height: clamp(24rem, 34vw, 34rem);
-    --about-profile-row-space: var(--spacing-md);
-    --about-rule: var(--ds-border-soft);
-    --about-accent: var(--color-tag-text-accent);
-    --about-surface: rgba(var(--ds-surface-panel-rgb), 0.72);
     position: relative;
-    overflow: hidden;
-    padding-inline: 0;
-    background:
-      radial-gradient(ellipse at 72% 0%, color-mix(in srgb, var(--about-accent) 16%, transparent), transparent 34rem),
-      radial-gradient(ellipse at 10% 18%, var(--ds-surface-strong), transparent 28rem),
-      var(--ds-background);
+    overflow-x: clip;
+    overflow-y: visible;
+    padding: 0;
     color: var(--ds-text);
   }
 
   .about-hero,
-  .about-section,
-  .about-archive {
+  .about-section {
     position: relative;
     padding: var(--about-section-space) 0;
   }
@@ -301,7 +269,7 @@ const operatingContexts = [
     z-index: 1;
     pointer-events: none;
     opacity: 0.63;
-    background: radial-gradient(circle, color-mix(in srgb, var(--ds-text) 10%, transparent) 0 var(--size-border-thin), transparent calc(var(--size-border-thin) + 0.025rem)) left top / var(--about-hero-dot-size) var(--about-hero-dot-size) repeat;
+    background: radial-gradient(circle, color-mix(in srgb, var(--ds-text) 10%, transparent) 0 var(--size-border-thin), transparent calc(var(--size-border-thin) + .025rem)) left top / var(--about-hero-dot-size) var(--about-hero-dot-size) repeat;
     mask-image: linear-gradient(90deg, black 0 46%, transparent 68%);
     animation: about-hero-dots-enter 1200ms ease 260ms both;
   }
@@ -314,8 +282,8 @@ const operatingContexts = [
     pointer-events: none;
     background:
       radial-gradient(ellipse at 78% 42%, color-mix(in srgb, var(--about-accent) 14%, transparent), transparent 34rem),
-      linear-gradient(180deg, rgba(var(--ds-background-rgb), 0.08), var(--ds-background)),
-      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.98), rgba(var(--ds-background-rgb), 0.78) 48%, rgba(var(--ds-background-rgb), 0.9));
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), .08), var(--ds-background)),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), .98), rgba(var(--ds-background-rgb), .78) 48%, rgba(var(--ds-background-rgb), .9));
   }
 
   .about-hero-field::before {
@@ -329,10 +297,10 @@ const operatingContexts = [
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: brightness(0.62) saturate(0.94);
+    filter: brightness(.62) saturate(.94);
     opacity: var(--about-hero-image-opacity);
     transform: translate3d(1.25rem, 0, 0) rotate(-2deg) scale(1.015);
-    mask-image: radial-gradient(ellipse at 50% 50%, black 0 48%, rgba(0, 0, 0, 0.72) 66%, transparent 84%);
+    mask-image: radial-gradient(ellipse at 50% 50%, black 0 48%, rgba(0, 0, 0, .72) 66%, transparent 84%);
     animation: about-hero-image-enter 1200ms ease 180ms both;
   }
 
@@ -341,20 +309,12 @@ const operatingContexts = [
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 76% 42%, rgba(var(--ds-background-rgb), 0.02), rgba(var(--ds-background-rgb), 0.42) 54%, rgba(var(--ds-background-rgb), 0.84) 82%),
-      linear-gradient(90deg, rgba(var(--ds-background-rgb), 0.98) 0%, rgba(var(--ds-background-rgb), 0.72) 46%, rgba(var(--ds-background-rgb), 0.2) 74%, rgba(var(--ds-background-rgb), 0.64) 100%);
-    mask-image: none;
+      radial-gradient(ellipse at 76% 42%, rgba(var(--ds-background-rgb), .02), rgba(var(--ds-background-rgb), .42) 54%, rgba(var(--ds-background-rgb), .84) 82%),
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), .98) 0%, rgba(var(--ds-background-rgb), .72) 46%, rgba(var(--ds-background-rgb), .2) 74%, rgba(var(--ds-background-rgb), .64) 100%);
   }
 
   .about-hero-copy,
-  .about-profile-media,
-  .about-profile-panel,
-  .about-section-head,
-  .about-copy-block,
-  .about-archive-media,
-  .about-archive-copy,
-  .about-method-grid,
-  .about-context-list {
+  .about-profile-rows {
     position: relative;
     z-index: 1;
   }
@@ -367,20 +327,12 @@ const operatingContexts = [
   }
 
   .about-kicker {
-    margin: 0;
-    color: var(--about-accent);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--ds-line-label);
-    letter-spacing: var(--ds-tracking-label);
-    text-transform: uppercase;
+    --type-eyebrow-color: var(--ds-text-soft);
   }
 
-  .about-hero h1,
-  .about-section-head h2,
-  .about-archive h2 {
+  .about-page h1,
+  .about-page h2 {
     margin: 0;
-    color: var(--ds-text);
     font-family: var(--font-family-display);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--ds-tracking-title);
@@ -390,31 +342,28 @@ const operatingContexts = [
   .about-hero h1 {
     max-width: 12ch;
     margin-top: var(--spacing-lg);
+    color: var(--ds-text);
     font-size: var(--ds-type-title-xl);
-    line-height: 0.94;
+    line-height: .94;
   }
 
   .about-hero-body {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--spacing-md);
     max-width: 54rem;
     margin-top: clamp(var(--spacing-xl), 4vw, var(--spacing-3xl));
   }
 
+  .about-hero-body p + p {
+    margin-top: 0;
+  }
+
   .about-hero-body p,
-  .about-copy-block p,
-  .about-archive-copy > p {
+  .about-profile-row p:not(.about-profile-index) {
     margin: 0;
     color: var(--ds-text-muted);
     font-size: var(--ds-type-lead);
     line-height: var(--ds-line-lead);
     letter-spacing: var(--ds-tracking-text);
     text-wrap: pretty;
-  }
-
-  .about-profile {
-    border-bottom: var(--size-border-thin) solid var(--about-rule);
   }
 
   @keyframes about-hero-copy-enter {
@@ -447,254 +396,24 @@ const operatingContexts = [
     }
 
     to {
-      opacity: 0.63;
+      opacity: .63;
     }
   }
 
-  .about-profile > .dm-grid-l {
-    align-items: stretch;
-  }
-
-  .about-profile-media {
-    min-height: var(--about-profile-media-height);
-    margin: 0;
-    overflow: hidden;
-    border: var(--size-border-thin) solid var(--ds-border-soft);
-    border-radius: var(--radius-panel);
-    background: var(--about-surface);
-    box-shadow: var(--ds-shadow);
-  }
-
-  .about-profile-media img,
-  .about-archive-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .about-profile-media img {
-    object-position: center 44%;
-    filter: brightness(0.7) saturate(1.02);
-  }
-
-  .about-profile-panel {
-    display: grid;
-    align-content: start;
-  }
-
-  .about-section-head {
-    display: grid;
-    align-content: start;
-    gap: var(--ds-section-header-gap);
-  }
-
-  .about-section-head h2,
-  .about-archive h2 {
-    font-size: var(--ds-type-title-lg);
-    line-height: var(--ds-line-card-title);
-  }
-
-  .about-profile-rows,
-  .about-context-list {
-    display: grid;
-  }
-
-  .about-context-list {
-    border-top: var(--size-border-thin) solid var(--about-rule);
-  }
-
-  .about-profile-row {
-    display: grid;
-    grid-template-columns: minmax(2.5rem, 0.16fr) minmax(0, 0.84fr);
-    gap: var(--spacing-md);
-    padding: var(--about-profile-row-space) 0;
-  }
-
-  .about-profile-row + .about-profile-row {
-    border-top: var(--size-border-thin) solid var(--about-rule);
-  }
-
-  .about-profile-row:first-child {
-    padding-top: 0;
-  }
-
-  .about-row-index,
-  .about-row-eyebrow,
-  .about-method-card > p {
-    margin: 0;
-    color: var(--about-accent);
-    font-size: var(--ds-type-label);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--ds-line-label);
-    letter-spacing: var(--ds-tracking-label);
-    text-transform: uppercase;
-  }
-
-  .about-profile-row h3,
-  .about-method-card h3,
-  .about-context-row h3 {
-    margin: 0;
-    color: var(--ds-text);
-    font-size: var(--ds-type-card-title-compact);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--ds-line-card-title);
-    letter-spacing: var(--ds-tracking-card);
-    text-wrap: balance;
-  }
-
-  .about-profile-row h3 {
-    margin-top: var(--spacing-xs);
-  }
-
-  .about-profile-row p:not(.about-row-index, .about-row-eyebrow),
-  .about-method-card span,
-  .about-context-row p {
-    display: block;
-    margin: var(--spacing-sm) 0 0;
-    color: var(--ds-text-muted);
-    font-size: var(--ds-type-body-sm);
-    line-height: var(--ds-line-body-compact);
-    letter-spacing: var(--ds-tracking-text);
-    text-wrap: pretty;
-  }
-
-  .about-copy-subsection {
-    margin-top: var(--spacing-lg);
-    padding-top: var(--spacing-lg);
-    border-top: var(--size-border-thin) solid var(--about-rule);
-  }
-
-  .about-copy-subsection h3 {
-    max-width: 18ch;
-    margin: 0;
-    color: var(--ds-text);
-    font-size: var(--ds-type-title-sm);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--ds-line-section-title-compact);
-    letter-spacing: var(--ds-tracking-title);
-    text-wrap: balance;
-  }
-
-  .about-editorial,
-  .about-responsibility,
-  .about-work,
-  .about-context,
-  .about-mentoring {
-    border-bottom: var(--size-border-thin) solid var(--about-rule);
-  }
-
-  .about-copy-block {
-    display: grid;
-    gap: var(--spacing-md);
-  }
-
-  .about-archive {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.006)),
-      rgba(var(--ds-surface-panel-rgb), 0.38);
-    border-bottom: var(--size-border-thin) solid var(--about-rule);
-  }
-
-  .about-archive > .dm-grid-l {
-    align-items: center;
-  }
-
-  .about-archive-media {
-    aspect-ratio: 1;
-    margin: 0;
-    overflow: hidden;
-    border: var(--size-border-thin) solid var(--ds-border-soft);
-    border-radius: var(--radius-panel);
-    background: var(--about-surface);
-  }
-
-  .about-archive-media img {
-    filter: brightness(0.72) saturate(0.95);
-  }
-
-  .about-archive-copy {
-    display: grid;
-    gap: var(--ds-section-header-gap);
-    max-width: 42rem;
-  }
-
-  .about-archive-note {
-    color: var(--ds-text-soft);
-    font-size: var(--ds-type-body-sm);
-  }
-
-  .about-method-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--spacing-sm);
-  }
-
-  .about-method-card {
-    display: grid;
-    align-content: start;
-    min-height: 20rem;
-    padding: clamp(var(--spacing-md), 2.5vw, var(--spacing-xl));
-    border: var(--size-border-thin) solid var(--ds-border-soft);
-    border-radius: var(--radius-panel);
-    background:
-      radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--about-accent) 16%, transparent), transparent 16rem),
-      linear-gradient(180deg, var(--ds-surface-strong), color-mix(in srgb, var(--ds-surface) 64%, transparent)),
-      rgba(var(--ds-surface-panel-rgb), 0.92);
-  }
-
-  .about-method-card h3 {
-    margin-top: var(--spacing-lg);
-  }
-
-  .about-context-row {
-    display: grid;
-    grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 0.68fr);
-    gap: var(--spacing-xl);
-    padding: var(--spacing-xl) 0;
-    border-bottom: var(--size-border-thin) solid var(--about-rule);
-  }
-
-  .about-context-row p {
-    max-width: 62ch;
-    margin-top: 0;
-  }
-
-  @media (max-width: 78rem) {
-    .about-hero-copy,
-    .about-profile-media,
-    .about-profile-panel,
-    .about-section-head,
-    .about-copy-block,
-    .about-archive-media,
-    .about-archive-copy,
-    .about-method-grid,
-    .about-context-list {
-      grid-column: 2 / span 24;
-    }
-
-    .about-profile > .dm-grid-l {
-      row-gap: var(--ds-section-content-gap);
-    }
-
-    .about-profile-panel {
-      align-content: start;
-    }
-
-    .about-method-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 62rem) {
+    .about-hero-copy {
+      grid-column: 2 / -2;
     }
   }
 
   @media (max-width: 48rem) {
     .about-page {
-      --about-section-space: clamp(var(--spacing-3xl), 18vw, var(--spacing-4xl));
+      --about-section-space: var(--spacing-3xl);
       --about-hero-bottom-space: clamp(var(--spacing-xl), 10vw, var(--spacing-3xl));
       --about-hero-image-size: min(34rem, 92vw);
       --about-hero-image-offset: -38%;
-      --about-hero-image-opacity: 0.34;
-      --about-hero-dot-size: 0.875rem;
-      --about-profile-media-height: 24rem;
+      --about-hero-image-opacity: .34;
+      --about-hero-dot-size: .875rem;
     }
 
     .about-page .dm-grid-l.dm-grid-l--grid-sys {
@@ -702,15 +421,7 @@ const operatingContexts = [
       padding-inline: 0;
     }
 
-    .about-hero-copy,
-    .about-profile-media,
-    .about-profile-panel,
-    .about-section-head,
-    .about-copy-block,
-    .about-archive-media,
-    .about-archive-copy,
-    .about-method-grid,
-    .about-context-list {
+    .about-hero-copy {
       grid-column: 1 / -1;
       margin-inline: var(--about-shell-gutter);
       min-width: 0;
@@ -729,71 +440,547 @@ const operatingContexts = [
       top: 11%;
     }
 
-    .about-profile-media img {
-      object-position: right center;
-    }
-
     .about-hero h1 {
       max-width: 9.5ch;
       font-size: var(--ds-mobile-type-title-xl);
     }
 
-    .about-hero-body {
-      grid-template-columns: minmax(0, 1fr);
-      gap: var(--spacing-sm);
-    }
-
     .about-hero-body p,
-    .about-copy-block p,
-    .about-archive-copy > p {
+    .about-profile-row p:not(.about-profile-index) {
       font-size: var(--ds-mobile-type-body);
       line-height: var(--ds-line-body);
     }
+  }
 
-    .about-section-head {
-      gap: var(--ds-mobile-section-header-gap);
+  .about-article {
+    min-width: 0;
+  }
+
+  .about-article--split {
+    align-items: start;
+  }
+
+  .about-article--split > * {
+    grid-row: 1;
+  }
+
+  .about-article-head {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    align-content: start;
+    gap: var(--spacing-md);
+  }
+
+  .about-article > h2,
+  .about-article-head h2 {
+    color: var(--ds-text);
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .about-article > h2,
+  .about-article-head h2 {
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .about-article-head .about-story-title--sm {
+    font-size: var(--ds-type-title-md);
+  }
+
+  .about-article > p:not(.about-kicker) {
+    max-width: 46rem;
+    margin: var(--spacing-md) 0 0;
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-body);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .about-article-columns {
+    position: relative;
+    z-index: 2;
+    align-self: end;
+    margin-top: 0;
+    max-width: 46rem;
+  }
+
+  .about-article-columns--overlay {
+    --about-overlay-space: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+    display: grid;
+    gap: var(--spacing-lg);
+    padding: var(--about-overlay-space);
+    padding-left: 0;
+    background: none;
+  }
+
+  .about-article-columns--overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 calc(var(--about-overlay-space) * -1);
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), .92), rgba(var(--ds-background-rgb), .84)),
+      rgba(var(--ds-surface-panel-rgb), .78);
+  }
+
+  .about-article-columns--overlay .about-article-head {
+    max-width: 34rem;
+  }
+
+  .about-article-columns > p {
+    margin: 0;
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-body);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .about-article-columns > p + p {
+    margin-top: 0;
+  }
+
+  .about-practitioner-image {
+    position: relative;
+    z-index: 1;
+    min-height: clamp(28rem, 45vw, 42rem);
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .about-practitioner-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), .22), transparent 45%),
+      linear-gradient(180deg, transparent 42%, rgba(var(--ds-background-rgb), .4));
+    pointer-events: none;
+  }
+
+  .about-practitioner-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.74) saturate(.9);
+  }
+
+  .about-article > .about-kicker {
+    margin: 0 0 var(--spacing-md);
+  }
+
+  .about-article-head .about-kicker {
+    margin: 0;
+  }
+
+  .about-article .about-story-lede {
+    max-width: 49rem;
+    margin-top: clamp(var(--spacing-xl), 5vw, var(--spacing-3xl));
+    color: rgba(244, 247, 255, .9);
+    font-family: var(--font-family-display);
+    font-size: var(--ds-type-lead);
+    line-height: var(--ds-line-lead);
+  }
+
+  .about-article blockquote {
+    margin: clamp(var(--spacing-3xl), 7vw, var(--spacing-4xl)) 0;
+    padding: clamp(var(--spacing-lg), 4vw, var(--spacing-2xl)) 0;
+    border-bottom: var(--size-border-thin) solid var(--ds-border);
+  }
+
+  .about-article blockquote p {
+    max-width: 11ch;
+    margin: 0;
+    color: var(--ds-text);
+    font-family: var(--font-family-display);
+    font-size: var(--ds-type-title-lg);
+    line-height: var(--ds-line-card-title);
+  }
+
+  .about-image-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+    align-items: stretch;
+  }
+
+  .about-image-row-item {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-bottom: var(--size-border-thin) solid var(--ds-border);
+    border-radius: 0;
+    background: rgba(var(--ds-surface-panel-rgb), .72);
+    box-shadow: none;
+  }
+
+  .about-image-row-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 52%, rgba(var(--ds-background-rgb), .26)),
+      radial-gradient(ellipse at 70% 10%, var(--ds-border), transparent 46%);
+  }
+
+  .about-image-row-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: brightness(.82) saturate(.9);
+  }
+
+  .about-profile-section {
+    padding-top: calc(var(--about-section-space) + var(--spacing-3xl));
+  }
+
+  .about-profile-image {
+    position: relative;
+    z-index: 1;
+    grid-row: 1;
+    min-height: clamp(40rem, 60vw, 56rem);
+    margin: 0;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+  }
+
+  .about-profile-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(var(--ds-background-rgb), .22), transparent 45%),
+      linear-gradient(180deg, transparent 42%, rgba(var(--ds-background-rgb), .36));
+  }
+
+  .about-profile-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.82) saturate(.9);
+  }
+
+  .about-profile-rows {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-row: 1;
+    align-self: end;
+    max-width: 46rem;
+    margin-top: clamp(var(--spacing-3xl), 8vw, calc(var(--spacing-4xl) * 2));
+    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+    background:
+      linear-gradient(180deg, rgba(var(--ds-background-rgb), .92), rgba(var(--ds-background-rgb), .84)),
+      rgba(var(--ds-surface-panel-rgb), .78);
+    text-align: left;
+  }
+
+  .about-profile-row {
+    display: grid;
+    grid-template-columns: none;
+    gap: var(--spacing-sm);
+    padding: clamp(var(--spacing-lg), 3vw, var(--spacing-2xl)) 0;
+    color: var(--ds-text);
+    text-align: left;
+  }
+
+  .about-profile-row:first-child {
+    padding-top: 0;
+  }
+
+  .about-profile-row:last-child {
+    padding-bottom: 0;
+  }
+
+  .about-profile-row + .about-profile-row {
+    border-top: var(--size-border-thin) solid var(--ds-border);
+  }
+
+  .about-profile-index {
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-transform: none;
+  }
+
+  .about-profile-row p:not(.about-profile-index) {
+    max-width: 41rem;
+    margin-top: 0;
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-body);
+    line-height: var(--ds-line-body);
+    text-align: left;
+  }
+
+  .about-principles-visible-section {
+    isolation: isolate;
+  }
+
+  .about-principles-visible-section::before {
+    content: "";
+    position: sticky;
+    top: clamp(7rem, 18vh, 12rem);
+    display: block;
+    width: 100%;
+    height: clamp(24rem, 52vh, 40rem);
+    margin-block: calc(var(--spacing-4xl) * -1) calc(clamp(24rem, 52vh, 40rem) * -1);
+    z-index: 0;
+    pointer-events: none;
+    opacity: .96;
+    background:
+      radial-gradient(ellipse 54rem 18rem at 50% 34%, rgba(74, 124, 190, 0.4), rgba(74, 124, 190, 0.18) 34%, rgba(74, 124, 190, 0.055) 58%, transparent 78%),
+      radial-gradient(ellipse 32rem 12rem at 58% 35%, rgba(176, 204, 255, 0.22), rgba(176, 204, 255, 0.075) 38%, transparent 70%),
+      radial-gradient(ellipse 70rem 24rem at 52% 42%, rgba(13, 32, 62, 0.44), rgba(13, 32, 62, 0.16) 48%, transparent 78%);
+    filter: blur(1.15rem);
+    transform: translateZ(0);
+    mask-image: linear-gradient(180deg, transparent 0, black 16%, black 84%, transparent 100%);
+  }
+
+  .about-principles-visible-section::after {
+    content: "";
+    position: sticky;
+    top: clamp(7rem, 18vh, 12rem);
+    display: block;
+    width: 100%;
+    height: clamp(24rem, 52vh, 40rem);
+    margin-bottom: calc(clamp(24rem, 52vh, 40rem) * -1);
+    z-index: 0;
+    pointer-events: none;
+    opacity: .58;
+    background:
+      radial-gradient(circle at 37% 24%, rgba(231, 239, 255, 0.58) 0 0.075rem, transparent 0.14rem),
+      radial-gradient(circle at 53% 35%, rgba(214, 232, 255, 0.44) 0 0.065rem, transparent 0.13rem),
+      radial-gradient(circle at 61% 52%, rgba(231, 239, 255, 0.5) 0 0.07rem, transparent 0.13rem),
+      radial-gradient(circle at 45% 60%, rgba(176, 204, 255, 0.38) 0 0.06rem, transparent 0.12rem),
+      linear-gradient(112deg, transparent 0 35%, rgba(184, 207, 255, 0.07) 46%, transparent 60%);
+    mask-image: linear-gradient(180deg, transparent 0, black 18%, black 82%, transparent 100%);
+  }
+
+  .about-principles-visible-section > .dm-grid-l {
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.about-principles-visible-head) {
+    position: sticky;
+    top: clamp(8rem, 14vh, 11rem);
+    align-self: start;
+  }
+
+  .about-principles-visible {
+    display: grid;
+    min-width: 0;
+  }
+
+  .about-principle-row {
+    display: grid;
+    padding: clamp(var(--spacing-lg), 3vw, var(--spacing-2xl)) 0;
+    border-bottom: var(--size-border-thin) solid var(--ds-border);
+  }
+
+  .about-principle-row:last-child {
+    border-bottom: 0;
+  }
+
+  .about-principle-copy {
+    display: grid;
+    gap: var(--spacing-sm);
+    min-width: 0;
+  }
+
+  .about-principle-copy p {
+    max-width: 43rem;
+    margin: 0;
+    color: var(--ds-text-muted);
+    font-size: var(--ds-type-body);
+    line-height: var(--ds-line-body);
+    letter-spacing: var(--ds-tracking-text);
+    text-wrap: pretty;
+  }
+
+  .about-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+    align-items: stretch;
+  }
+
+  .about-mosaic-item {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    background: rgba(var(--ds-surface-panel-rgb), .72);
+  }
+
+  .about-mosaic-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 48%, rgba(var(--ds-background-rgb), .24)),
+      radial-gradient(ellipse at 72% 8%, color-mix(in srgb, var(--ds-border) 68%, transparent), transparent 42%);
+  }
+
+  .about-mosaic-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: brightness(.82) saturate(.92);
+  }
+
+  .about-mosaic-item--session img {
+    object-position: center 42%;
+  }
+
+  @media (max-width: 78rem) {
+    .about-article,
+    .about-principles-visible {
+      grid-column: 2 / span 24;
     }
 
-    .about-section-head h2,
-    .about-archive h2 {
+    .about-principles-visible-section :global(.section-header) {
+      grid-column: 2 / span 24;
+    }
+
+    :global(.about-principles-visible-head) {
+      position: static;
+    }
+
+    .about-article-columns {
+      max-width: 46rem;
+    }
+
+    .about-article--split > * {
+      grid-row: auto;
+    }
+
+    .about-practitioner-image {
+      min-height: clamp(24rem, 52vw, 34rem);
+    }
+
+    .about-article-columns--overlay {
+      margin-top: calc(var(--spacing-2xl) * -1);
+      max-width: none;
+    }
+
+  }
+
+  @media (max-width: 48rem) {
+    .about-article > h2,
+    .about-article-head h2 {
       font-size: var(--ds-mobile-type-title-lg);
+      line-height: var(--ds-line-card-title);
     }
 
-    .about-profile-row,
-    .about-context-row {
+    .about-profile-image {
+      min-height: clamp(18rem, 70vw, 26rem);
+      margin-left: 0;
+      transform: none;
+    }
+
+    .about-profile-image,
+    .about-profile-rows {
+      grid-column: 1 / -1;
+      grid-row: auto;
+    }
+
+    .about-section > .dm-grid-l > *,
+    .about-article,
+    .about-principles-visible-section :global(.section-header),
+    .about-principles-visible {
+      margin-inline: var(--about-shell-gutter);
+      min-width: 0;
+    }
+
+    .about-profile-image,
+    .about-practitioner-image {
+      margin-inline: 0;
+    }
+
+    .about-profile-rows {
+      margin-top: calc(var(--spacing-xl) * -1);
+      max-width: none;
+    }
+
+    .about-image-row {
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--spacing-sm);
     }
 
-    .about-method-grid {
+    .about-image-row-item--primary,
+    .about-image-row-item--secondary {
+      grid-column: auto;
+      transform: none;
+    }
+
+    .about-image-row-item--primary img,
+    .about-image-row-item img {
+      aspect-ratio: 4 / 3;
+    }
+
+    .about-article-columns--overlay {
+      margin-top: calc(var(--spacing-xl) * -1);
+      --about-overlay-space: var(--spacing-md);
+    }
+
+    .about-practitioner-image {
+      min-height: 22rem;
+    }
+
+    .about-practitioner-image img {
+      width: calc(100% + 6rem);
+      max-width: none;
+      transform: translateX(-6rem);
+    }
+
+    .about-mosaic {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-mosaic-item {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .about-mosaic-item img {
+      min-height: auto;
+    }
+
+    .about-mosaic-item--asheville img {
+      aspect-ratio: 4 / 5;
+      object-position: center 42%;
+    }
+
+    .about-mosaic-item--group img {
+      aspect-ratio: 3 / 4;
+      object-position: center 38%;
+    }
+
+    .about-principle-row {
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--spacing-sm);
-    }
-
-    .about-method-card {
-      min-height: 14rem;
-    }
-
-    .about-archive-media {
-      max-width: 24rem;
+      gap: var(--spacing-xs);
     }
 
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .about-hero::before,
-    .about-hero-field::before,
-    .about-hero-copy {
+    .about-hero::before {
       animation: none;
-    }
-
-    .about-hero-copy {
-      opacity: 1;
-      transform: none;
-    }
-
-    .about-hero-field::before {
-      transform: rotate(-2deg);
     }
   }
 </style>
