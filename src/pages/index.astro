@@ -5,18 +5,10 @@ import HomeFooter from '../components/HomeFooter.astro';
 import PinnedStackCards from '../components/PinnedStackCards.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { focusAreaServiceRows } from '../data/focus-area-service-rows';
-import { writingRoadmapEntries } from '../data/writing-roadmap';
 
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 const proofDraftImage = withBase('images/case-studies/home/tri-proof-bg.png');
-const createActorMailto = (actor: string, prompt: string) => {
-  const params = new URLSearchParams();
-  params.set('subject', `[${actor}] Advisory inquiry`);
-  params.set('body', `Hi Dan,\n\nI'm reaching out as ${prompt} and would like to talk about design leadership support.\n\nContext:\n- Team/company:\n- What we're navigating:\n- What kind of support we need:\n\nThanks,`);
-  return `mailto:hello@danmalarkey.com?${params.toString()}`;
-};
-
 const supportedOrganizations = [
   { name: 'AIDSVu', logo: 'images/case-logos/aidsvu.svg' },
   { name: 'Availity', logo: 'images/case-logos/availity-logo.svg' },
@@ -39,95 +31,6 @@ const supportedOrganizationLoop = [
   ...supportedOrganizations,
   ...supportedOrganizations
 ];
-
-const leverageCards = [
-  {
-    title: 'AI-enabled product exploration',
-    descriptionLines: [
-      'Explore new workflows, model system',
-      'behavior, and pressure-test what needs',
-      'to be true before teams invest.'
-    ],
-    cardFit: 'Explore new workflows, model system behavior, and pressure-test what needs to be true before teams invest.',
-    artType: 'ai',
-    conceptLabel: 'AI product systems',
-    conceptSignals: ['Workflow', 'Prompts', 'Behavior'],
-    laneRows: [
-      { label: 'Workflow', detail: 'Human control' },
-      { label: 'Prompts', detail: 'Reusable systems' },
-      { label: 'Behavior', detail: 'Product integrity' }
-    ],
-    image: 'images/home-v3/blueprint/operating-model-blueprint-transparent.png',
-    imageAlt: 'AI-enabled product systems blueprint',
-    actorSlug: '/ai-enabled-systems',
-    actorLabel: 'a product or AI systems leader'
-  },
-  {
-    title: 'Executives & Product Leaders',
-    descriptionLines: [
-      'Clarifying product direction, aligning',
-      'investment priorities, and making design',
-      'a driver of business outcomes.'
-    ],
-    cardFit: 'For teams that need sharper product direction, clearer investment decisions, and stronger alignment around what deserves attention now.',
-    artType: 'executive',
-    conceptLabel: 'Strategic direction',
-    conceptSignals: ['Direction', 'Investment', 'Outcomes'],
-    laneRows: [
-      { label: 'Direction', detail: 'What matters now' },
-      { label: 'Investment', detail: 'Where to focus' },
-      { label: 'Outcomes', detail: 'Business impact' }
-    ],
-    image: 'images/dan-right.png',
-    imageAlt: 'Executive product design leadership and strategy collaboration',
-    actorSlug: '/executives-and-product-drivers',
-    actorLabel: 'an executive or product leader'
-  },
-  {
-    title: 'Product & Engineering Teams',
-    descriptionLines: [
-      'Reducing delivery friction across workflows,',
-      'handoffs, and shared tooling so teams can',
-      'ship with more confidence.'
-    ],
-    cardFit: 'For teams that need product decisions, design direction, and implementation details to stay connected as ideas move into production.',
-    artType: 'product',
-    conceptLabel: 'Execution systems',
-    conceptSignals: ['Direction', 'Translation', 'Production'],
-    laneRows: [
-      { label: 'Direction', detail: 'Clear priorities' },
-      { label: 'Translation', detail: 'Fewer gaps' },
-      { label: 'Production', detail: 'Less rework' }
-    ],
-    image: 'images/img.png',
-    imageAlt: 'Cross-functional product and engineering collaboration',
-    actorSlug: '/product-and-engineering-teams',
-    actorLabel: 'a product or engineering leader'
-  },
-  {
-    title: 'Designers & Design Leaders',
-    descriptionLines: [
-      'Raising craft maturity, establishing standards,',
-      'and strengthening design influence in product,',
-      'operational, and organizational decisions.'
-    ],
-    cardFit: 'For organizations strengthening design standards, critique, coaching, and influence across product decisions.',
-    artType: 'design',
-    conceptLabel: 'Design maturity',
-    conceptSignals: ['Standards', 'Coaching', 'Influence'],
-    laneRows: [
-      { label: 'Standards', detail: 'Quality bar' },
-      { label: 'Coaching', detail: 'Stronger judgment' },
-      { label: 'Influence', detail: 'Earlier decisions' }
-    ],
-    image: 'images/dan.png',
-    imageAlt: 'Design leadership and team development',
-    actorSlug: '/designers-and-design-leaders',
-    actorLabel: 'a design leader'
-  }
-];
-
-const actorAudienceCards = leverageCards.filter((item) => item.artType !== 'ai');
 
 const focusAreaCards = [
   {
@@ -184,7 +87,7 @@ const practiceStats = [
   {
     eyebrow: 'Operating Model',
     labelLines: ['Systems-led, people-first', 'operating model'],
-    text: 'Clarifies goals, concepts, and activities to align teams and build standards that keep momentum high without creating chaos.',
+    text: 'Starts with the activities people perform and the concepts they work with, then connects product behavior, design standards, and implementation into a coherent whole.',
     visualType: 'helmet',
     outlineImage: withBase('images/home-v3/practice/practice-helmet-outline.svg'),
     detailImage: withBase('images/home-v3/practice/practice-helmet-detail.png')
@@ -196,22 +99,22 @@ const bridgePillars = [
     index: '1.0',
     tone: 'clarity',
     title: 'Clarity.',
-    headline: 'Make better decisions sooner with clearer direction.',
-    body: 'Create shared understanding, sharper context, and alignment leaders can trust.'
+    headline: 'Understand the work before defining the solution.',
+    body: 'Start with human activities, core concepts, and the business reality. Make the problem visible before jumping to screens.'
   },
   {
     index: '2.0',
     tone: 'strategy',
     title: 'Strategy.',
-    headline: 'Turn competing inputs into a path people can commit to.',
-    body: 'Align priorities, tradeoffs, sequencing, and investment around what matters most.'
+    headline: 'Make deliberate choices about where to go.',
+    body: 'Connect objectives, constraints, tradeoffs, and measures of success so teams know what they are pursuing and why.'
   },
   {
     index: '3.0',
     tone: 'systems',
     title: 'Systems.',
-    headline: 'Create the standards and rhythms that sustain execution.',
-    body: 'Build the operating models, practices, and guardrails that help execution hold.'
+    headline: 'Make the decisions hold together in practice.',
+    body: 'Shape product behavior, accessibility, design standards, and implementation around a coherent model that survives delivery.'
   }
 ];
 
@@ -240,44 +143,6 @@ const changeSignals = [
     label: 'Team confidence',
     title: 'People can move without guessing.',
     text: 'Strong teams do better work when they are not decoding vague direction, defending the same points, or waiting for alignment to re-form.'
-  }
-];
-
-const operatingShifts = [
-  {
-    result: 'Conceptual integrity',
-    resultLines: ['Conceptual', 'integrity'],
-    before: '',
-    mechanism: 'Core concepts, behavior, standards, and implementation logic stay consistent.',
-    after: ''
-  },
-  {
-    result: 'Sharper vision',
-    resultLines: ['Sharper', 'vision'],
-    before: '',
-    mechanism: 'Decision confidence becomes easier to see, choose, communicate, and sustain.',
-    after: ''
-  },
-  {
-    result: 'Baseline rigor',
-    resultLines: ['Baseline', 'rigor'],
-    before: '',
-    mechanism: 'Accessibility, ethical standards, and best practices drive shared expectations.',
-    after: ''
-  },
-  {
-    result: 'Integrated systems',
-    resultLines: ['Integrated', 'systems'],
-    before: '',
-    mechanism: 'Rituals, artifacts, and infrastructure keep disciplines connected.',
-    after: ''
-  },
-  {
-    result: 'Confident teams',
-    resultLines: ['Confident', 'teams'],
-    before: '',
-    mechanism: 'Visible constraints, clear direction, and decisions teams trust reduce drift, ambiguity, and costly rework.',
-    after: ''
   }
 ];
 
@@ -345,7 +210,7 @@ const proofDraftCards = [
   {
     kicker: 'Regulated insurance platform',
     details: ['Insurance operations', 'Business workshops', 'Conceptual product design', 'Agent, member, and underwriting workflows'],
-    title: 'Helped shape core insurance workflows across agents, members, and underwriting.',
+    title: 'Connecting agent, member, and underwriting activities in a regulated insurance platform.',
     image: proofDraftImage,
     imageAlt: 'Swimmer moving through pool water',
     imagePosition: 'center center'
@@ -353,7 +218,7 @@ const proofDraftCards = [
   {
     kicker: 'Franchise operations platform',
     details: ['Bid Management', 'Reporting & Forecasting', 'Analytics', 'Franchise Expansion & Growth'],
-    title: 'Contributed operational tooling that helps franchise teams see, manage, and forecast fence installations.',
+    title: 'Shaping bid management, reporting, and forecasting around commercial fence operations.',
     image: 'https://images.unsplash.com/photo-1560749003-f4b1e17e2dff?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageAlt: 'Person working at a desk with technology',
     imagePosition: 'center center'
@@ -361,7 +226,7 @@ const proofDraftCards = [
   {
     kicker: 'Global seafood supply chain platform',
     details: ['Food distribution', 'Global supply chain operations', 'Production scheduling', 'Workflow design'],
-    title: 'Helped shape operations workflows across a global seafood supply chain platform, including production floor scheduling.',
+    title: 'Designing around production scheduling and the realities of a global seafood supply chain.',
     image: 'https://images.unsplash.com/photo-1588160282477-7abbf7ee8c5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageAlt: 'Seafood displayed on ice',
     imagePosition: 'center center'
@@ -369,7 +234,7 @@ const proofDraftCards = [
   {
     kicker: 'Veteran services data platform',
     details: ['Veteran services', 'Secure intake workflows', 'Sensitive data management', 'Reporting systems'],
-    title: 'Contributed to veteran intake and secure data management for a growing national nonprofit.',
+    title: 'Supporting secure intake, sensitive data management, and reporting for veteran services.',
     image: 'https://images.unsplash.com/photo-1696271929832-6a91a90b5884?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageAlt: 'Veteran service dog sitting beside a person',
     imagePosition: 'center center'
@@ -379,50 +244,23 @@ const proofDraftCards = [
 const engagementModels = [
   {
     title: 'Fractional design leadership',
-    fit: 'For sustained leadership',
-    text: 'Embedded leadership support for product direction, organizational alignment, and critical design decisions across teams.'
+    fit: 'Ongoing partnership',
+    text: 'Fractional Chief Design Officer-level leadership for product direction, design capability, standards, and critical decisions, without a full-time executive hire.'
   },
   {
-    title: 'AI-enabled product exploration',
-    fit: 'For high-stakes inflection points',
-    text: 'Explore new workflows, model system behavior, and pressure-test what needs to be true before teams invest.'
+    title: 'Product strategy & advisory',
+    fit: 'Focused engagement',
+    text: 'Work through the problem, model the concepts and activities involved, evaluate options, and establish a direction teams can act on.'
   },
   {
-    title: 'Operating reset work',
-    fit: 'For reset, scale, or recovery',
-    text: 'Focused engagements to diagnose operational friction, realign teams, and establish stronger product and design foundations.'
-  }
-];
-
-const fitQuestions = [
-  {
-    question: 'Are you looking for a full-time role?',
-    answer: 'No. I am happy in my current role at feature[23]. I am open to select advisory, consulting, and fractional leadership engagements.'
-  },
-  {
-    question: 'When should a team reach out?',
-    answer: 'When direction is moving, the stakes are real, and leadership needs sharper decisions across product, design, and engineering.'
-  },
-  {
-    question: 'What kinds of teams are a fit?',
-    answer: 'Executives, product leaders, engineering partners, and design teams working through growth, transformation, or complex delivery.'
-  },
-  {
-    question: 'Is this strategy or execution support?',
-    answer: 'Both. The work is strongest when direction, standards, and implementation details stay connected.'
-  },
-  {
-    question: 'What work is not a fit?',
-    answer: 'Quick-turn identity work, low-leverage collateral, and isolated visual polish are not the fit. I work best on product direction, UX systems, design leadership, and implementation-focused product work.'
+    title: 'Design systems & delivery leadership',
+    fit: 'Teams scaling or rebuilding',
+    text: 'Establish accessibility standards, reusable design systems, and shared practices that keep quality and product intent intact through implementation.'
   }
 ];
 
 const featuredPractice = practiceStats[0];
 const supportingPractice = practiceStats.slice(1);
-const featuredWriting = writingRoadmapEntries[0];
-const supportingWriting = writingRoadmapEntries.slice(1);
-const writingVisualVariants = ['quiet', 'quiet-violet', 'quiet-blue', 'quiet-ink'];
-const getWritingVisualVariant = (index: number) => writingVisualVariants[index % writingVisualVariants.length];
 ---
 
 <Layout
@@ -491,12 +329,39 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section id="focus-areas" class="section home-focus-areas" aria-label="Focus areas" data-home-reveal hidden>
+    <section class="section home-pillars" aria-label="Clarity, strategy, and systems" data-home-reveal>
+        <div class="dm-grid-l dm-grid-l--grid-sys">
+          <div class="home-pillars-shell gc-start-2 gc-span-24">
+            <div class="home-pillars-head">
+              <p class="home-section-label">Operating signals</p>
+              <h2>Clarity. Strategy. Systems.</h2>
+            </div>
+            <div class="home-pillars-surface" data-home-reveal-late>
+              <div class="home-pillars-grid" role="list">
+                {bridgePillars.map((pillar) => (
+                  <article class={`home-pillar home-pillar--${pillar.tone}`} role="listitem">
+                    <p class="home-pillar-index">{pillar.index}</p>
+                    <div class="home-pillar-main">
+                      <h2 class="home-pillar-title">{pillar.title}</h2>
+                      <p class="home-pillar-headline">{pillar.headline}</p>
+                    </div>
+                    <p class="home-pillar-body">{pillar.body}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+    <section id="focus-areas-legacy" class="section home-focus-areas" aria-label="Focus areas" data-home-reveal hidden>
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
           eyebrow="Focus areas across the organization"
           title="Different areas. One connected model."
-          body="Direction, operating models, emerging technology, standards, and delivery decisions all shape each other. I focus where those decisions need to stay connected, so your teams can move with clearer priorities and fewer disconnected efforts."
+          body="Business goals, human activity, core concepts, product behavior, and implementation need to reinforce the same underlying model. These are the four areas where I most often help teams keep those decisions connected."
           accent
           headClass="home-focus-areas-head gc-start-2 gc-span-10"
           bodyClass="gc-start-15 gc-span-11"
@@ -527,12 +392,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-focus-services" aria-label="Focus areas">
+    <section id="focus-areas" class="section home-focus-services" aria-label="Focus areas">
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <SectionHeader
           eyebrow="Focus areas across the organization"
           title="Different areas. One connected model."
-          body="Direction, operating models, emerging technology, standards, and delivery decisions all shape each other. I focus where those decisions need to stay connected, so your teams can move with clearer priorities and fewer disconnected efforts."
+          body="Business goals, human activity, core concepts, product behavior, and implementation need to reinforce the same underlying model. These are the four areas where I most often help teams keep those decisions connected."
           accent
           headClass="home-focus-services-head gc-start-2 gc-span-10"
           bodyClass="gc-start-15 gc-span-11"
@@ -552,116 +417,6 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
             body: item.description
           }))}
         />
-      </div>
-    </section>
-
-          <section class="section home-pillars" aria-label="Clarity, strategy, and systems" data-home-reveal>
-        <div class="dm-grid-l dm-grid-l--grid-sys">
-          <div class="home-pillars-shell gc-start-2 gc-span-24">
-            <div class="home-pillars-head">
-              <p class="home-section-label">Operating signals</p>
-              <h2>Clearer priorities when the stakes are high.</h2>
-            </div>
-            <div class="home-pillars-surface" data-home-reveal-late>
-              <div class="home-pillars-grid" role="list">
-                {bridgePillars.map((pillar) => (
-                  <article class={`home-pillar home-pillar--${pillar.tone}`} role="listitem">
-                    <p class="home-pillar-index">{pillar.index}</p>
-                    <div class="home-pillar-main">
-                      <h2 class="home-pillar-title">{pillar.title}</h2>
-                      <p class="home-pillar-headline">{pillar.headline}</p>
-                    </div>
-                    <p class="home-pillar-body">{pillar.body}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-    <section class="section home-actors" data-home-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-actors-intro">
-        <SectionHeader
-          eyebrow="Different roles. Shared pressure."
-          title="Leadership across the system."
-          body="Different roles carry different pressures. The same patterns still show up: unclear direction, disconnected decisions, delivery friction, inconsistent standards, and systems that become harder to operate as they grow."
-          accent
-        />
-      </div>
-
-      <div class="home-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
-        {actorAudienceCards.map((item) => (
-          <article class={`home-actor-lane home-actor-lane--${item.artType}`} role="listitem">
-            <div class="home-actor-lane-head">
-              <p class="home-actor-lane-kicker">{item.conceptLabel}</p>
-            </div>
-
-            <div class={`home-actor-lane-scene home-actor-card-concept--${item.artType}`} aria-hidden="true">
-              <div class="home-actor-card-concept-atmosphere"></div>
-              <div class="home-actor-card-concept-stars"></div>
-              <div class={`home-actor-card-concept-diagram home-actor-card-concept-diagram--${item.artType}`}>
-                <span class="home-actor-card-concept-path home-actor-card-concept-path--a"></span>
-                <span class="home-actor-card-concept-path home-actor-card-concept-path--b"></span>
-                <span class="home-actor-card-concept-path home-actor-card-concept-path--c"></span>
-                <span class="home-actor-card-concept-node home-actor-card-concept-node--a"></span>
-                <span class="home-actor-card-concept-node home-actor-card-concept-node--b"></span>
-                <span class="home-actor-card-concept-node home-actor-card-concept-node--c"></span>
-                <span class="home-actor-card-concept-node home-actor-card-concept-node--focus"></span>
-                <span class="home-actor-card-concept-focus-ring"></span>
-                <span class="home-actor-card-concept-beam"></span>
-              </div>
-            </div>
-
-            <div class="home-actor-lane-copy">
-              <h3>{item.title}</h3>
-              <p>{item.cardFit}</p>
-            </div>
-
-            <div class="home-actor-lane-strip">
-              {item.laneRows.map((row, rowIndex) => (
-                <div class={`home-actor-lane-metric home-actor-lane-metric--${rowIndex + 1}`}>
-                  <span class="home-actor-lane-metric-label">{row.label}</span>
-                  <span class="home-actor-lane-metric-detail">{row.detail}</span>
-                </div>
-              ))}
-            </div>
-
-            <div class="home-actor-lane-footer">
-              <div class="home-actions home-actions--actor home-actions--actor-lane">
-                <a class="home-button home-button--compact home-button--actor-primary" href={createActorMailto(item.title, item.actorLabel)}>Work with me</a>
-                <a class="home-actor-link" href={withBase(item.actorSlug)}>How I help</a>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section home-operating-shift" id="operating-shift" data-home-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-operating-shift-layout">
-        <SectionHeader
-          eyebrow="The standard"
-          title="Good systems keep decisions connected."
-          body="Business goals, core concepts, human activity, product behavior, standards, and implementation logic need to reinforce the same underlying model so teams can move without losing coherence."
-          accent
-          headClass="home-operating-shift-head gc-start-2 gc-span-10"
-        />
-
-        <div class="home-operating-grid gc-start-2 gc-span-24" role="list" aria-label="Leadership shifts">
-          {operatingShifts.map((item, index) => (
-            <article class="home-operating-grid-item" role="listitem">
-              <p class="home-operating-grid-index">{String(index + 1).padStart(2, '0')}</p>
-              <div class="home-operating-grid-copy">
-                <h3 class="type-title-geist-300 home-proof-card-title home-operating-grid-title" aria-label={item.result}>
-                  {item.resultLines.map((line) => <span>{line}</span>)}
-                </h3>
-                <p class="home-operating-grid-text">{item.mechanism}{item.after ? ` ${item.after}` : ''}</p>
-              </div>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
 
@@ -696,12 +451,12 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
 
     </section>
 
-    <section class="section proof-showcase" data-home-reveal>
+    <section id="selected-work" class="section proof-showcase" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys proof-showcase-intro">
         <SectionHeader
           eyebrow="Proof"
-          title="Real business outcomes"
-          body="Selected operational systems, workflow transformations, and AI-assisted delivery work across client engagements and internal product infrastructure. Some details are anonymized."
+          title="Selected work"
+          body="Complex product and operational problems across insurance, franchise operations, supply chains, and nonprofit services. These examples reflect contributions made through client engagements, with public-safe details."
           accent
           headClass="proof-showcase-head gc-start-2 gc-span-10"
         />
@@ -739,9 +494,9 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-engagements home-engagements--editorial" data-home-reveal>
+    <section id="engagements" class="section home-engagements home-engagements--editorial" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-engagements-intro">
-        <SectionHeader eyebrow="Engagements" title="Ways to engage" />
+        <SectionHeader eyebrow="Engagements" title="Ways to engage" body="Selective partnerships for organizations that need experienced design and product leadership, whether for a difficult decision or ongoing direction." />
       </div>
 
       <div class="dm-grid-l dm-grid-l--grid-sys">
@@ -761,65 +516,29 @@ const getWritingVisualVariant = (index: number) => writingVisualVariants[index %
       </div>
     </section>
 
-    <section class="section home-fit" data-home-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-fit-layout">
-        <div class="home-fit-copy gc-start-2 gc-span-11">
-          <div class="home-fit-head">
-            <p class="home-section-label">Fit / FAQ</p>
-            <h2>Before we talk.</h2>
-          </div>
-          <p class="home-fit-body">
-            I’m a strong fit when the business needs clearer direction and that direction has to translate into product decisions, standards, systems, and delivery. That can include shaping a roadmap of success, clarifying what should be built, aligning teams around priorities, or helping leaders make better decisions when the direction, constraints, and delivery path are still forming.
-          </p>
-        </div>
-
-        <div class="home-fit-rows gc-start-15 gc-span-11" role="list" aria-label="Fit and FAQ">
-          {fitQuestions.map((item) => (
-            <details class="home-fit-row" role="listitem">
-              <summary>
-                <h3>{item.question}</h3>
-                <span class="home-fit-row-icon" aria-hidden="true"></span>
-              </summary>
-              <div class="home-fit-row-answer">
-                <p>{item.answer}</p>
-              </div>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section home-writing home-writing--editorial" data-home-reveal>
+    <section id="writing" class="section home-writing home-writing--editorial" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys home-writing-layout">
-        <SectionHeader title="Curated thinking" headClass="home-writing-head gc-start-2 gc-span-10" />
+        <SectionHeader title="Writing &amp; building" body="I write about design, systems, and product decisions. I also build products of my own." headClass="home-writing-head gc-start-2 gc-span-10" />
       </div>
-
       <div class="dm-grid-l dm-grid-l--grid-sys">
         <div class="home-writing-rail-wrap gc-start-2 gc-span-24">
-          <div class="home-writing-rail" role="list" aria-label="Writing roadmap" data-home-edge-rail>
-            {[featuredWriting, ...supportingWriting].map((entry, index) => (
-              <article class={`home-writing-volume home-writing-volume--${getWritingVisualVariant(index)}`} role="listitem">
-                {entry.live ? (
-                  <a class="home-writing-volume-link" href={withBase(`/writing/${entry.slug}`)}>
-                    <div class="home-writing-volume-head">
-                      <p class="home-writing-volume-meta home-card-meta-text">{entry.type}</p>
-                    </div>
-                    <h3 class="home-writing-volume-title type-title-geist-300">{entry.title}</h3>
-                    <p class="home-writing-volume-summary">{entry.summary}</p>
-                    <div class="home-writing-volume-art" aria-hidden="true"></div>
-                  </a>
-                ) : (
-                  <div class="home-writing-volume-link" aria-disabled="true">
-                    <div class="home-writing-volume-head">
-                      <p class="home-writing-volume-meta home-card-meta-text">{entry.type}</p>
-                    </div>
-                    <h3 class="home-writing-volume-title type-title-geist-300">{entry.title}</h3>
-                    <p class="home-writing-volume-summary">{entry.summary}</p>
-                    <div class="home-writing-volume-art" aria-hidden="true"></div>
-                  </div>
-                )}
-              </article>
-            ))}
+          <div class="home-writing-rail" role="list" aria-label="Writing and independent products" data-home-edge-rail>
+            <article class="home-writing-volume home-writing-volume--quiet" role="listitem">
+              <a class="home-writing-volume-link" href="https://www.linkedin.com/in/danmalarkey/" target="_blank" rel="noopener noreferrer">
+                <div class="home-writing-volume-head"><p class="home-writing-volume-meta home-card-meta-text">Writing</p></div>
+                <h3 class="home-writing-volume-title type-title-geist-300">Ideas from the work.</h3>
+                <p class="home-writing-volume-summary">Perspectives on designing software, leading teams, and keeping product decisions connected.</p>
+                <div class="home-writing-volume-art" aria-hidden="true"></div>
+              </a>
+            </article>
+            <article class="home-writing-volume home-writing-volume--quiet-blue" role="listitem">
+              <a class="home-writing-volume-link" href="https://usecatalist.com/" target="_blank" rel="noopener noreferrer">
+                <div class="home-writing-volume-head"><p class="home-writing-volume-meta home-card-meta-text">Independent product</p></div>
+                <h3 class="home-writing-volume-title type-title-geist-300">Catalist.</h3>
+                <p class="home-writing-volume-summary">A personal inventory and collection app I'm building. One catalog for all your collections.</p>
+                <div class="home-writing-volume-art" aria-hidden="true"></div>
+              </a>
+            </article>
           </div>
         </div>
       </div>
