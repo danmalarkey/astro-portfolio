@@ -17,17 +17,17 @@ const isPathActive = (target: string) => currentPath === target || currentPath.s
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 
 const navItems = [
-  { href: '/work', label: 'Work', active: isPathActive('/work') },
-  { href: '/library', label: 'Library', active: isPathActive('/library') },
-  { href: '/about', label: 'About', active: isPathActive('/about') },
-  { href: '/writing', label: 'Writing', active: isPathActive('/writing') || isPathActive('/blog') }
+  { href: '/operating-model', label: 'Operating Model', active: isPathActive('/operating-model') },
+  { href: '/direction-and-prioritization', label: 'Direction & Prioritization', active: isPathActive('/direction-and-prioritization') },
+  { href: '/standards-and-scale', label: 'Standards & Scale', active: isPathActive('/standards-and-scale') },
+  { href: '/ai-enabled-systems', label: 'AI-enabled Systems', active: isPathActive('/ai-enabled-systems') }
 ];
 
 const focusItems = [
-  { href: '/operating-model', label: 'Operating Model', active: isPathActive('/operating-model') },
-  { href: '/ai-enabled-systems', label: 'AI-Enabled', active: isPathActive('/ai-enabled-systems') },
-  { href: '/direction-and-prioritization', label: 'Direction', active: isPathActive('/direction-and-prioritization') },
-  { href: '/standards-and-scale', label: 'Standards', active: isPathActive('/standards-and-scale') }
+  { href: '/#focus-areas', label: 'Focus', active: false },
+  { href: '/#selected-work', label: 'Work', active: false },
+  { href: '/#writing', label: 'Writing', active: false },
+  { href: '/about', label: 'About', active: isPathActive('/about') }
 ];
 ---
 
@@ -54,7 +54,7 @@ const focusItems = [
             {item.label}
           </a>
         ))}
-        <a href="mailto:hello@danmalarkey.com" class="site-header-nav-cta" style="--nav-item-index: 4">Contact</a>
+        <a href="mailto:hello@danmalarkey.com" class="site-header-nav-cta" style="--nav-item-index: 4">Work with me</a>
       </div>
 
       <button class="site-header-menu-toggle" type="button" aria-expanded="false" aria-controls="site-mobile-nav">
@@ -100,7 +100,7 @@ const focusItems = [
 
         <div class="site-mobile-nav-actions" style="--nav-item-index: 6" aria-label="Mobile navigation actions">
           <a class="site-mobile-nav-action site-mobile-nav-action--primary" href="mailto:hello@danmalarkey.com">Work with me</a>
-          <a class="site-mobile-nav-action site-mobile-nav-action--secondary" href="mailto:hello@danmalarkey.com">Book a call</a>
+          <a class="site-mobile-nav-action site-mobile-nav-action--secondary" href="https://www.linkedin.com/in/danmalarkey/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </div>
