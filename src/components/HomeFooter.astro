@@ -19,7 +19,7 @@ const {
   title = 'Design leadership for teams navigating growth, complexity, and change.',
   body = 'Available for select advisory, consulting, and fractional leadership engagements where sharper direction and stronger product design leadership can move the work forward.',
   ctaLabel = 'Work with me',
-  secondaryCtaLabel = 'Book a call',
+  secondaryCtaLabel = 'LinkedIn',
   secondaryCtaHref,
   email = 'hello@danmalarkey.com',
   linkedinUrl = 'https://www.linkedin.com/in/danmalarkey/',
@@ -44,7 +44,7 @@ const currentYear = new Date().getFullYear();
           <p>{body}</p>
           <div class="site-footer-new-actions">
             <Button href={`mailto:${email}`}>{ctaLabel}</Button>
-            <Button href={secondaryCtaHref ?? `mailto:${email}`} variant="ghost">{secondaryCtaLabel}</Button>
+            <Button href={secondaryCtaHref ?? linkedinUrl} variant="ghost">{secondaryCtaLabel}</Button>
           </div>
         </div>
       </div>
@@ -60,9 +60,9 @@ const currentYear = new Date().getFullYear();
           </div>
           <div class="site-footer-new-link-group">
             <p>Explore</p>
-            <a href={withBase('/work')}>Work</a>
-            <a href={withBase('/library')}>Library</a>
-            <a href={withBase('/writing')}>Writing</a>
+            <a href={withBase('/#selected-work')}>Work</a>
+            <a href={withBase('/#focus-areas')}>Focus</a>
+            <a href={withBase('/#writing')}>Writing</a>
           </div>
           <div class="site-footer-new-link-group">
             <p>Contact</p>
