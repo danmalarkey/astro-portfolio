@@ -1,6 +1,6 @@
 # Project Context: Dan Malarkey Portfolio
 
-Last Updated: February 22, 2026
+Last Updated: November 2, 2026
 
 ## Purpose
 
@@ -99,14 +99,12 @@ Constraint:
 
 ## Current Product Direction (Landing Page)
 
-- The landing page is a first-pass concept and foundation, not final
-- It already reflects the space-themed visual direction
-- It should continue evolving toward:
-  - stronger executive-facing clarity
-  - clearer engagement pathways
-  - clearer proof/outcomes
-  - stronger "writing" integration
-  - stronger personal identity without losing focus
+- `/press1` is the focused pre-publication landing page for visitors arriving from the upcoming Fast Company article.
+- The immediate priority is a concise, credible release rather than a full rewrite of the supporting site.
+- The page positions Dan through the connected work of business context, people and teams, product direction, systems, standards, and delivery.
+- Fractional leadership remains a selective engagement option, not the primary explanation of Dan's role or everyday work.
+- The broader site will later be reorganized around Dan's own public adaptation of the design model he created for feature[23].
+- See `docs/portfolio-model-evolution-plan.md` for the deferred page and information architecture work.
 
 ## Information Architecture Intent (Working)
 
@@ -176,6 +174,7 @@ Implementation preferences (current):
 
 ## Current Known Follow-Ups
 
+- After the Fast Company release, update the supporting pages and navigation around the public adaptation of Dan's connected design model. Follow `docs/portfolio-model-evolution-plan.md`.
 - Refine navigation IA (`Writing` vs `Blog`)
 - Strengthen landing page messaging for executive design leadership conversion
 - Define writing strategy/categories

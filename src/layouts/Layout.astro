@@ -15,6 +15,9 @@ const resolvedDescription =
 	description ??
 	"Portfolio and writing platform for Dan Malarkey, focused on design leadership, product direction, and selective advisory work.";
 const inferredBaseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
+const googleTagId = import.meta.env.PROD
+	? import.meta.env.PUBLIC_GOOGLE_TAG_ID?.trim()
+	: undefined;
 ---
 
 <!doctype html>
@@ -26,6 +29,17 @@ const inferredBaseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/as
 		<link rel="icon" type="image/svg+xml" href={`${inferredBaseUrl}favicon.svg`} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{resolvedTitle}</title>
+		{googleTagId && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}></script>
+				<script is:inline define:vars={{ googleTagId }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag() { dataLayer.push(arguments); }
+					gtag('js', new Date());
+					gtag('config', googleTagId);
+				</script>
+			</>
+		)}
 		<!--<style lang="scss" is:global>-->
 		<!--	@use '../styles/global.scss';-->
 		<!--</style>-->

@@ -30,6 +30,8 @@ const {
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 const currentYear = new Date().getFullYear();
+const showFocusAreaLinks = false;
+const showExploreLinks = false;
 ---
 
 <section class="site-footer-section" data-motion-reveal>
@@ -50,7 +52,14 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="site-footer-new-directory">
-        <nav class="site-footer-new-links" aria-label="Footer">
+        <nav
+          class:list={[
+            'site-footer-new-links',
+            !showFocusAreaLinks && !showExploreLinks && 'site-footer-new-links--launch'
+          ]}
+          aria-label="Footer"
+        >
+          {showFocusAreaLinks && (
           <div class="site-footer-new-link-group site-footer-new-link-group--services">
             <p>Focus areas</p>
             <a href={withBase('/operating-model')}>Operating Model</a>
@@ -58,12 +67,15 @@ const currentYear = new Date().getFullYear();
             <a href={withBase('/direction-and-prioritization')}>Direction & Prioritization</a>
             <a href={withBase('/standards-and-scale')}>Standards & Scale</a>
           </div>
+          )}
+          {showExploreLinks && (
           <div class="site-footer-new-link-group">
             <p>Explore</p>
             <a href={withBase('/work')}>Work</a>
             <a href={withBase('/library')}>Library</a>
             <a href={withBase('/writing')}>Writing</a>
           </div>
+          )}
           <div class="site-footer-new-link-group">
             <p>Contact</p>
             <a href={withBase('/about')}>About</a>
@@ -107,7 +119,6 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
   </footer>
-  <p class="site-footer-wordmark" aria-hidden="true">DanMalarkey</p>
 </section>
 
 <style lang="scss">
@@ -202,7 +213,6 @@ const currentYear = new Date().getFullYear();
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--ds-tracking-label);
     line-height: 1;
-    text-transform: uppercase;
   }
 
   .site-footer-new-main h2 {
@@ -249,6 +259,12 @@ const currentYear = new Date().getFullYear();
     gap: clamp(1.25rem, 2.8vw, 2.6rem);
   }
 
+  .site-footer-new-links--launch {
+    grid-template-columns: repeat(2, minmax(8rem, 1fr));
+    max-width: 32rem;
+    margin-left: auto;
+  }
+
   .site-footer-new-link-group {
     display: grid;
     align-content: start;
@@ -261,9 +277,8 @@ const currentYear = new Date().getFullYear();
     color: rgba(231, 235, 242, 0.38);
     font-size: var(--ds-type-label);
     font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.14em;
+    letter-spacing: var(--ds-tracking-label);
     line-height: 1.2;
-    text-transform: uppercase;
   }
 
   .site-footer-new-links a {
@@ -316,27 +331,6 @@ const currentYear = new Date().getFullYear();
     line-height: 1.4;
   }
 
-  .site-footer-wordmark {
-    display: block;
-    width: 100%;
-    height: clamp(6rem, 13vw, 15.2rem);
-    margin: clamp(0.25rem, 2.6vw, 2rem) 0 clamp(-3rem, -2.6vw, -1.4rem);
-    overflow: visible;
-    color: rgba(231, 235, 242, 0.045);
-    font-family: var(--font-family-display);
-    font-size: clamp(7.5rem, 18vw, 22rem);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: -0.085em;
-    line-height: 0.72;
-    white-space: nowrap;
-    transform: translate(-0.08em, -0.06em) scaleX(1.08);
-    transform-origin: left bottom;
-    pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
   @media (max-width: 48rem) {
     .site-footer-section {
       width: 100%;
@@ -374,6 +368,11 @@ const currentYear = new Date().getFullYear();
       gap: 2.35rem 1.5rem;
     }
 
+    .site-footer-new-links--launch {
+      max-width: none;
+      margin-left: 0;
+    }
+
     .site-footer-new-link-group {
       gap: 0.82rem;
     }
@@ -387,13 +386,6 @@ const currentYear = new Date().getFullYear();
       gap: 0.5rem;
       margin-inline: -1.2rem;
       padding: 0.9rem 1.2rem 1rem;
-    }
-
-    .site-footer-wordmark {
-      height: clamp(5.35rem, 22vw, 7.1rem);
-      margin: 1.25rem 0 -2.85rem;
-      font-size: clamp(5.75rem, 25vw, 9.6rem);
-      transform: translate(-0.09em, -0.1em) scaleX(1.08);
     }
   }
 </style>

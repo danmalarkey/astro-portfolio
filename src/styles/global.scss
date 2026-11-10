@@ -24,6 +24,7 @@
   --radius-lg: 1rem;
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
+  --radius-section: var(--spacing-4xl);
   --radius-card: 0;
   --radius-panel: 0;
   --radius-visual-panel: 0.125rem;
@@ -272,7 +273,7 @@
   --color-about-eyebrow: rgba(123, 99, 194, 0.92);
   --size-about-accent-rule-width: 4rem;
   --size-about-accent-rule-height: 0.125rem;
-  --letter-spacing-about-eyebrow: 0.08em;
+  --letter-spacing-about-eyebrow: var(--ds-tracking-label);
   --spacing-about-eyebrow-gap: var(--spacing-sm);
   --spacing-about-proof-value-gap: calc(var(--spacing-xs) * 0.5);
   --size-case-rail-bleed-desktop: 8vw;
@@ -916,8 +917,7 @@ main {
   margin: 0;
   font-size: var(--size-label-xs);
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -1304,7 +1304,6 @@ main {
     font-size: var(--size-label-xs);
     line-height: 1.2;
     letter-spacing: var(--letter-spacing-about-eyebrow);
-    text-transform: uppercase;
     font-weight: var(--font-weight-medium);
     display: inline-flex;
     align-items: center;
@@ -1694,7 +1693,7 @@ main {
   color: var(--color-text-on-dark-high);
   font-size: var(--size-label-sm);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--ds-tracking-label);
 }
 
 .case-rail-sep {
@@ -2174,8 +2173,7 @@ main {
       margin: 0;
       color: var(--color-site-footer-side-heading);
       font-size: var(--size-label-sm);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      letter-spacing: var(--ds-tracking-label);
       font-weight: var(--font-weight-semibold);
     }
 
@@ -2211,8 +2209,7 @@ main {
       margin: 0;
       color: var(--color-site-footer-eyebrow);
       font-size: var(--size-label-sm);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: var(--ds-tracking-label);
       font-weight: var(--font-weight-semibold);
     }
 
@@ -2615,8 +2612,7 @@ main {
   color: var(--color-writing-post-callout-label);
   font-size: var(--size-label-xs);
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -2638,8 +2634,7 @@ main {
   color: var(--color-writing-post-outline-heading);
   font-size: var(--size-label-sm);
   line-height: 1.2;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -2693,8 +2688,7 @@ main {
   color: var(--color-actor-page-side-note);
   font-size: var(--size-label-xs);
   line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -2709,8 +2703,7 @@ main {
   color: var(--color-actor-page-side-heading);
   font-size: var(--size-label-sm);
   line-height: 1.2;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -3005,7 +2998,6 @@ main {
   font-weight: var(--type-eyebrow-weight, var(--font-weight-medium));
   line-height: var(--ds-line-label);
   letter-spacing: var(--ds-tracking-label);
-  text-transform: uppercase;
 }
 
 .signal-row-text {
@@ -3156,8 +3148,7 @@ main {
   color: rgba(20, 20, 20, 0.62);
   font-size: var(--size-label-sm);
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -3202,8 +3193,7 @@ main {
   color: rgba(20, 20, 20, 0.7);
   font-size: var(--size-label-sm);
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -3259,8 +3249,7 @@ main {
   color: rgba(20, 20, 20, 0.62);
   font-size: var(--size-label-sm);
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-label);
   font-weight: var(--font-weight-semibold);
 }
 

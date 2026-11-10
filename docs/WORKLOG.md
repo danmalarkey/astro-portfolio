@@ -1,5 +1,13 @@
 # Worklog
 
+## 2026-11-02
+
+- Added the feature[23] design model and a portfolio-safe reference summary.
+- Established `/press1` as the focused pre-Fast Company landing page.
+- Consolidated overlapping approach and practice messaging on `/press1`.
+- Deferred comprehensive rewrites of the current supporting pages until after the immediate release.
+- Added `docs/portfolio-model-evolution-plan.md` to guide the later model-led information architecture, content, and page redesign.
+
 ## 2026-02-22
 
 - Established GitHub repo integration and first push workflow

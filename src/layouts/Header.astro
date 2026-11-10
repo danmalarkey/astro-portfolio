@@ -1,4 +1,6 @@
 ---
+import Button from '../components/Button.astro';
+
 const baseUrl = Astro.url.pathname.startsWith('/astro-portfolio') ? '/astro-portfolio/' : '/';
 const normalizePath = (value: string) => {
   const normalized = value.endsWith('/') && value !== '/' ? value.slice(0, -1) : value;
@@ -17,10 +19,7 @@ const isPathActive = (target: string) => currentPath === target || currentPath.s
 const withBase = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 
 const navItems = [
-  { href: '/work', label: 'Work', active: isPathActive('/work') },
-  { href: '/library', label: 'Library', active: isPathActive('/library') },
-  { href: '/about', label: 'About', active: isPathActive('/about') },
-  { href: '/writing', label: 'Writing', active: isPathActive('/writing') || isPathActive('/blog') }
+  { href: '/about', label: 'About', active: isPathActive('/about') }
 ];
 
 const focusItems = [
@@ -29,6 +28,7 @@ const focusItems = [
   { href: '/direction-and-prioritization', label: 'Direction', active: isPathActive('/direction-and-prioritization') },
   { href: '/standards-and-scale', label: 'Standards', active: isPathActive('/standards-and-scale') }
 ];
+const showFocusAreaLinks = false;
 ---
 
 <header class="site-header" data-site-header>
@@ -44,7 +44,7 @@ const focusItems = [
       </span>
 
       <div class="site-header-nav-links">
-        {focusItems.map((item, index) => (
+        {navItems.map((item, index) => (
           <a
             href={withBase(item.href)}
             class:list={[item.active && 'is-active']}
@@ -54,7 +54,25 @@ const focusItems = [
             {item.label}
           </a>
         ))}
-        <a href="mailto:hello@danmalarkey.com" class="site-header-nav-cta" style="--nav-item-index: 4">Contact</a>
+        {showFocusAreaLinks && focusItems.map((item, index) => (
+          <a
+            href={withBase(item.href)}
+            class:list={[item.active && 'is-active']}
+            aria-current={item.active ? 'page' : undefined}
+            style={`--nav-item-index: ${index}`}
+          >
+            {item.label}
+          </a>
+        ))}
+        <Button
+          className="site-header-contact-action"
+          href="mailto:hello@danmalarkey.com"
+          variant="ghost"
+          size="compact"
+        >
+          <span>Contact</span>
+          <span aria-hidden="true">↗</span>
+        </Button>
       </div>
 
       <button class="site-header-menu-toggle" type="button" aria-expanded="false" aria-controls="site-mobile-nav">
@@ -66,7 +84,7 @@ const focusItems = [
     <div class="site-mobile-nav" id="site-mobile-nav" aria-hidden="true" inert>
       <div class="site-mobile-nav-panel">
         <div class="site-mobile-nav-primary" aria-label="Primary mobile navigation">
-          {focusItems.map((item, index) => (
+          {navItems.map((item, index) => (
             <a
               href={withBase(item.href)}
               class:list={[item.active && 'is-active']}
@@ -76,21 +94,19 @@ const focusItems = [
               {item.label}
             </a>
           ))}
+          {showFocusAreaLinks && focusItems.map((item, index) => (
+            <a
+              href={withBase(item.href)}
+              class:list={[item.active && 'is-active']}
+              aria-current={item.active ? 'page' : undefined}
+              style={`--nav-item-index: ${index + navItems.length}`}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
 
-        <div class="site-mobile-nav-secondary" aria-label="Secondary mobile navigation">
-          <div class="site-mobile-nav-group" style="--nav-item-index: 4">
-            <p>Explore</p>
-            {navItems.map((item) => (
-              <a
-                href={withBase(item.href)}
-                class:list={[item.active && 'is-active']}
-                aria-current={item.active ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
+        <div class="site-mobile-nav-secondary site-mobile-nav-secondary--contact-only" aria-label="Secondary mobile navigation">
           <div class="site-mobile-nav-group" style="--nav-item-index: 5">
             <p>Contact</p>
             <a href="mailto:hello@danmalarkey.com">Email</a>
@@ -320,12 +336,6 @@ const focusItems = [
   .site-header-nav-links a:focus-visible,
   .site-header-nav-links a.is-active {
     color: var(--ds-text, #e7ebf2);
-  }
-
-  .site-header-nav-cta {
-    padding: 0;
-    border: 0;
-    background: transparent;
   }
 
   .site-header-menu-toggle,
@@ -613,6 +623,10 @@ const focusItems = [
       border-top: var(--size-border-thin) solid rgba(231, 235, 242, 0.09);
     }
 
+    .site-mobile-nav-secondary--contact-only {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
     .site-mobile-nav-group {
       display: grid;
       align-content: start;
@@ -624,9 +638,8 @@ const focusItems = [
       color: rgba(231, 235, 242, 0.38);
       font-size: var(--ds-mobile-type-label-decorative, 0.75rem);
       font-weight: var(--font-weight-semibold);
-      letter-spacing: 0.14em;
+      letter-spacing: var(--ds-tracking-label);
       line-height: 1;
-      text-transform: uppercase;
     }
 
     .site-mobile-nav-group a {
