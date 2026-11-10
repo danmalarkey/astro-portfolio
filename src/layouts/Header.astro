@@ -38,10 +38,11 @@ const showFocusAreaLinks = false;
         <img src={withBase('/images/brand/d-logo-halfmoon.svg')} alt="Dan Malarkey" />
       </a>
 
-      <span class="site-header-availability" aria-label="Available for select engagements">
+      <a class="site-header-availability" href={withBase('/#faq')} aria-label="View availability and frequently asked questions">
         <span class="site-header-availability-dot" aria-hidden="true"></span>
-        <span>Available for select engagements</span>
-      </span>
+        <span class="site-header-availability-label site-header-availability-label--desktop">Available for select engagements</span>
+        <span class="site-header-availability-label site-header-availability-label--mobile">Available</span>
+      </a>
 
       <div class="site-header-nav-links">
         {navItems.map((item, index) => (
@@ -273,6 +274,7 @@ const showFocusAreaLinks = false;
     font-size: var(--ds-type-label, 0.75rem);
     font-weight: var(--font-weight-medium);
     line-height: 1.15;
+    text-decoration: none;
     white-space: nowrap;
     opacity: 0;
     transform: translateX(-0.28rem);
@@ -282,6 +284,18 @@ const showFocusAreaLinks = false;
       transform 420ms ease,
       border-color 420ms ease,
       background 420ms ease;
+  }
+
+  .site-header-availability:hover,
+  .site-header-availability:focus-visible {
+    border-color: rgba(231, 235, 242, 0.2);
+    background: rgba(255, 255, 255, 0.065);
+    color: var(--ds-text, #e7ebf2);
+    outline: none;
+  }
+
+  .site-header-availability-label--mobile {
+    display: none;
   }
 
   .site-header.is-scrolled .site-header-availability,
@@ -445,7 +459,15 @@ const showFocusAreaLinks = false;
       pointer-events: auto;
     }
 
-    .site-header-availability > span:last-child {
+    .site-header-availability-label--desktop {
+      display: none;
+    }
+
+    .site-header-availability-label--mobile {
+      display: inline;
+    }
+
+    .site-header-availability-label {
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;

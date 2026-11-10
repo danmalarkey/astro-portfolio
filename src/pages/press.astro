@@ -216,8 +216,8 @@ const actorAudienceCards = [
 const portfolioEngagementCards = [
   {
     ...actorAudienceCards[0],
-    cardFit: 'Senior design leadership for organizations that need ongoing direction, stronger alignment, and a more coherent product practice without adding a full-time role.',
-    conceptLabel: 'Select ongoing partnership',
+    cardFit: 'Design leadership for organizations that need ongoing direction, stronger alignment, and a more coherent product practice without adding a full-time role.',
+    conceptLabel: 'Focus',
     outcomes: ['Shape direction', 'Focus investment', 'Strengthen capability']
   },
   {
@@ -596,7 +596,7 @@ const engagementModels = [
 const catalistFeature = {
   title: 'Catalist',
   eyebrow: 'Independent product',
-  description: 'One private catalog for the books, music, tools, technology, and other things people own.',
+  description: 'Catalist is my personal product: one private catalog for the books, music, tools, technology, and other things people own.',
   role: 'Product strategy, design, development, and operation',
   image: withBase('images/catalist/music-collection-desktop.webp'),
   href: 'https://www.usecatalist.com/?utm_source=danmalarkey.com&utm_medium=referral&utm_campaign=portfolio'
@@ -877,6 +877,7 @@ const supportingPractice = practiceStats.slice(1);
                   role="listitem"
                   style={`--outcome-index: ${index}`}
                   data-home-reveal
+                  data-mobile-reveal="case-study"
                 >
                   <article class="portfolio-outcome-card">
                     <img src={item.image} alt={`${item.kicker} selected work`} loading="lazy" decoding="async" />
@@ -1129,7 +1130,7 @@ const supportingPractice = practiceStats.slice(1);
     {isPortfolioVariant && (
     <section class="section portfolio-focus" aria-labelledby="portfolio-focus-title">
       <div class="dm-grid-l dm-grid-l--grid-sys">
-        <header class="portfolio-focus-head gc-start-4 gc-span-20" data-home-reveal>
+        <header class="portfolio-focus-head gc-start-4 gc-span-20" data-home-reveal data-mobile-reveal="rise">
           <div class="portfolio-focus-heading">
             <p class="home-section-label home-kicker--accent">How I lead</p>
             <h2 id="portfolio-focus-title">Clarity, strategy, and systems keep direction coherent from the first decision through delivery.</h2>
@@ -1139,8 +1140,8 @@ const supportingPractice = practiceStats.slice(1);
         <div class="portfolio-focus-assembly gc-start-2 gc-span-24" data-focus-assembly>
           <div class="portfolio-focus-stage" data-focus-stage>
             <div class="portfolio-focus-stack" role="list" aria-label="Focus areas">
-              {focusAreaCards.map((item) => (
-                <div class="portfolio-focus-card-slot" role="listitem">
+              {focusAreaCards.map((item, index) => (
+                <div class="portfolio-focus-card-slot" role="listitem" style={`--focus-index: ${index}`}>
                   <article class="portfolio-focus-card">
                     <img src={withBase(item.image)} alt="" loading="lazy" decoding="async" />
                     <span class="portfolio-focus-card-shade" aria-hidden="true"></span>
@@ -1420,7 +1421,7 @@ const supportingPractice = practiceStats.slice(1);
 
     {isPortfolioVariant && (
     <section class="section home-actors portfolio-engagements" data-home-reveal>
-      <div class="dm-grid-l dm-grid-l--grid-sys home-actors-intro">
+      <div class="dm-grid-l dm-grid-l--grid-sys home-actors-intro" data-mobile-reveal="rise">
         <SectionHeader
           eyebrow={pageCopy.engagementEyebrow}
           title={pageCopy.engagementTitle}
@@ -1433,7 +1434,7 @@ const supportingPractice = practiceStats.slice(1);
 
       <div class="home-actor-lane-grid col-layout col-layout--3x8 dm-grid-l dm-grid-l--grid-sys" role="list">
         {portfolioEngagementCards.map((item) => (
-          <article class={`concept-card home-actor-lane home-actor-lane--${item.artType}`} role="listitem">
+          <article class={`concept-card home-actor-lane home-actor-lane--${item.artType}`} role="listitem" data-mobile-reveal="rise">
             <div class="home-actor-lane-head">
               <p class="home-actor-lane-kicker">{item.conceptLabel}</p>
             </div>
@@ -1466,7 +1467,7 @@ const supportingPractice = practiceStats.slice(1);
     </section>
     )}
 
-    <section class="section home-fit portfolio-fit" data-home-reveal>
+    <section id="faq" class="section home-fit portfolio-fit" data-home-reveal>
       <div class="dm-grid-l dm-grid-l--grid-sys engagement-mosaic-intro">
         <SectionHeader
           title="Before we talk."
@@ -1844,6 +1845,43 @@ const supportingPractice = practiceStats.slice(1);
   })();
 
   (() => {
+    const mobileQuery = window.matchMedia('(max-width: 48rem)');
+    if (!mobileQuery.matches) return;
+
+    const targets = Array.from(document.querySelectorAll('[data-mobile-reveal]'));
+    if (!targets.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      targets.forEach((target) => target.classList.add('is-mobile-visible'));
+      return;
+    }
+
+    targets.forEach((target) => target.classList.add('is-mobile-motion-pending'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-mobile-visible');
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    // Give mobile Safari a painted starting frame before any visible target resolves.
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        targets.forEach((target) => observer.observe(target));
+      });
+    });
+  })();
+
+  (() => {
     const assemblies = Array.from(document.querySelectorAll('[data-scroll-assembly]'));
     if (!assemblies.length) return;
 
@@ -2139,17 +2177,25 @@ const supportingPractice = practiceStats.slice(1);
     const cards = stage ? Array.from(stage.querySelectorAll('.portfolio-focus-card-slot')) : [];
     if (!assembly || !stage || !stack || !(section instanceof HTMLElement) || !(heading instanceof HTMLElement) || !cards.length) return;
 
-    const motionQuery = window.matchMedia('(min-width: 64.0625rem) and (min-height: 44rem)');
+    const desktopMotionQuery = window.matchMedia('(min-width: 64.0625rem) and (min-height: 44rem)');
+    const mobileDeckQuery = window.matchMedia('(max-width: 48rem)');
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
     const reset = () => {
-      assembly.classList.remove('is-focus-motion-ready', 'is-focus-settled');
+      assembly.classList.remove('is-focus-motion-ready', 'is-focus-settled', 'is-focus-mobile-fan-ready');
+      assembly.style.removeProperty('--focus-mobile-card-height');
+      assembly.style.removeProperty('--focus-mobile-pin-top');
+      assembly.style.removeProperty('--focus-mobile-scroll-height');
       cards.forEach((card) => {
         card.style.removeProperty('--focus-width');
         card.style.removeProperty('--focus-opacity');
+        card.style.removeProperty('--focus-deck-x');
+        card.style.removeProperty('--focus-deck-y');
+        card.style.removeProperty('--focus-deck-rotation');
+        card.style.removeProperty('--focus-deck-scale');
       });
     };
 
@@ -2158,11 +2204,62 @@ const supportingPractice = practiceStats.slice(1);
       const firstCardTop = cards[0].getBoundingClientRect().top;
       section.classList.toggle('is-focus-surface-light', firstCardTop <= window.innerHeight);
 
-      if (!motionQuery.matches || reducedMotionQuery.matches) {
+      if (reducedMotionQuery.matches) {
         reset();
         return;
       }
 
+      if (mobileDeckQuery.matches) {
+        assembly.classList.remove('is-focus-motion-ready', 'is-focus-settled');
+        assembly.classList.add('is-focus-mobile-fan-ready');
+
+        const viewportHeight = window.innerHeight;
+        const cardHeight = cards[0].offsetHeight;
+        const cardGap = 10;
+        const cardStep = cardHeight + cardGap;
+        const pinTop = viewportHeight - (cardHeight * 0.55);
+        const releaseDistance = cardStep * (cards.length - 1);
+        const assemblyTop = assembly.getBoundingClientRect().top;
+        const scrollDistance = clamp(pinTop - assemblyTop, 0, releaseDistance);
+        const stageReleaseDistance = Math.max(0, pinTop - stage.getBoundingClientRect().top);
+
+        assembly.style.setProperty('--focus-mobile-card-height', `${cardHeight}px`);
+        assembly.style.setProperty('--focus-mobile-pin-top', `${pinTop}px`);
+        assembly.style.setProperty('--focus-mobile-scroll-height', `${cardHeight + releaseDistance}px`);
+
+        cards.forEach((card, index) => {
+          const releasedDistance = Math.max(0, scrollDistance - (index * cardStep));
+          const isFrontCard = index === cards.length - 1;
+          const straightenDistance = isFrontCard ? stageReleaseDistance : releasedDistance;
+          const straightenProgress = clamp(straightenDistance / (cardHeight * 0.28), 0, 1);
+          const easedStraighten = 1 - Math.pow(1 - straightenProgress, 3);
+          const fanRemaining = 1 - easedStraighten;
+          const fanOffset = index - ((cards.length - 1) / 2);
+          const x = fanOffset * 7 * fanRemaining;
+          const y = (index * 5 * fanRemaining) - releasedDistance;
+          const rotation = fanOffset * 1.8 * fanRemaining;
+          const scale = 1 - (index * 0.006 * fanRemaining);
+
+          card.style.setProperty('--focus-deck-x', `${x}px`);
+          card.style.setProperty('--focus-deck-y', `${y}px`);
+          card.style.setProperty('--focus-deck-rotation', `${rotation}deg`);
+          card.style.setProperty('--focus-deck-scale', String(scale));
+          card.style.setProperty('--focus-opacity', '1');
+          card.style.removeProperty('--focus-width');
+        });
+
+        return;
+      }
+
+      if (!desktopMotionQuery.matches) {
+        reset();
+        return;
+      }
+
+      assembly.classList.remove('is-focus-mobile-fan-ready');
+      assembly.style.removeProperty('--focus-mobile-card-height');
+      assembly.style.removeProperty('--focus-mobile-pin-top');
+      assembly.style.removeProperty('--focus-mobile-scroll-height');
       assembly.classList.add('is-focus-motion-ready');
       const stackRect = stack.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
@@ -2195,7 +2292,8 @@ const supportingPractice = practiceStats.slice(1);
     frame = window.requestAnimationFrame(update);
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
-    motionQuery.addEventListener?.('change', schedule);
+    desktopMotionQuery.addEventListener?.('change', schedule);
+    mobileDeckQuery.addEventListener?.('change', schedule);
     reducedMotionQuery.addEventListener?.('change', schedule);
     document.fonts?.ready.then(schedule);
   })();
@@ -6725,6 +6823,10 @@ const supportingPractice = practiceStats.slice(1);
       padding: 1.6rem 1.2rem 1.45rem;
     }
 
+    .home-actor-lane-head {
+      padding-bottom: 0;
+    }
+
     .home-actor-lane-scene {
       display: none;
     }
@@ -7584,7 +7686,6 @@ const supportingPractice = practiceStats.slice(1);
     --home-text-soft: var(--portfolio-light-soft);
     --ds-text-supporting: var(--portfolio-light-muted);
     color: var(--portfolio-light-ink);
-    border-block: 1px solid var(--portfolio-light-rule);
     background:
       radial-gradient(circle at 86% 4%, rgba(119, 92, 183, 0.1), transparent 30rem),
       linear-gradient(132deg, rgba(255, 255, 255, 0.58), transparent 46%),
@@ -7643,6 +7744,7 @@ const supportingPractice = practiceStats.slice(1);
     --portfolio-outcome-index-width: clamp(14rem, 16vw, 18rem);
     --portfolio-outcome-column-gap: clamp(1.5rem, 3vw, 3rem);
     overflow: clip;
+    border-block: 1px solid var(--portfolio-light-rule);
   }
 
   .portfolio-outcome-composition {
@@ -7973,10 +8075,11 @@ const supportingPractice = practiceStats.slice(1);
   }
 
   /* Study 03: an editorial spread with a deliberately dominant press feature. */
-  .portfolio-editorial-study {
+  .home--portfolio .portfolio-editorial-study {
     border-end-start-radius: var(--radius-section);
     border-end-end-radius: var(--radius-section);
     background:
+      linear-gradient(180deg, var(--portfolio-light-paper) 0, rgba(248, 248, 246, 0) 6rem),
       linear-gradient(116deg, rgba(255, 255, 255, 0.72), transparent 40%),
       radial-gradient(circle at 82% 18%, rgba(123, 139, 184, 0.13), transparent 34rem),
       var(--portfolio-light-neutral);
@@ -8262,9 +8365,80 @@ const supportingPractice = practiceStats.slice(1);
     .portfolio-editorial-product-media {
       aspect-ratio: 16 / 9;
     }
+
+    .home--portfolio > .section.portfolio-fit {
+      padding-bottom: 0;
+      scroll-margin-top: 5rem;
+    }
+
+    .portfolio-fit .home-fit-row:last-child {
+      border-bottom: 0;
+    }
+
+    .home--portfolio .portfolio-engagements[data-home-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+
+    [data-mobile-reveal]:not([data-mobile-reveal='case-study']).is-mobile-motion-pending {
+      opacity: 0;
+      transform: translate3d(0, 2.25rem, 0);
+      transition:
+        opacity 620ms ease,
+        transform 840ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    [data-mobile-reveal]:not([data-mobile-reveal='case-study']).is-mobile-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      will-change: auto;
+    }
+
+    .portfolio-outcome-card-slot[data-mobile-reveal='case-study'] {
+      opacity: 1;
+      transform: none;
+    }
+
+    .portfolio-outcome-card-slot.is-mobile-motion-pending:not(.is-mobile-visible) .portfolio-outcome-card {
+      opacity: 0;
+      transform: translate3d(24vw, 3rem, 0) rotate(0.75deg) scale(0.96);
+    }
+
+    .portfolio-outcome-card-slot.is-mobile-motion-pending .portfolio-outcome-card {
+      transition:
+        opacity 620ms ease,
+        transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .portfolio-outcome-card-slot.is-mobile-visible .portfolio-outcome-card {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      will-change: auto;
+    }
+
+    .home--portfolio .portfolio-engagements .home-actor-lane {
+      margin-bottom: var(--spacing-xl);
+      padding: 0 0 var(--spacing-xl);
+      border-bottom: 1px solid rgba(231, 235, 242, 0.1);
+    }
+
+    .home--portfolio .portfolio-engagements .home-actor-lane:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
   }
 
   @media (max-width: 48rem) {
+    .portfolio-focus {
+      overflow: visible;
+      transition: none;
+    }
+
     .portfolio-study-head {
       margin-bottom: var(--home-mobile-section-content-gap);
     }
@@ -8309,8 +8483,61 @@ const supportingPractice = practiceStats.slice(1);
     }
 
     .portfolio-focus-card-slot {
+      width: 100%;
       height: auto;
       min-height: 22rem;
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready {
+      height: var(--focus-mobile-scroll-height, 90rem);
+      overflow: visible;
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-stage {
+      position: sticky;
+      top: var(--focus-mobile-pin-top, 68svh);
+      height: var(--focus-mobile-card-height, 22rem);
+      overflow: visible;
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-stack {
+      position: relative;
+      display: block;
+      height: 100%;
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-card-slot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: calc(10 + var(--focus-index, 0));
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+      opacity: var(--focus-opacity, 1);
+      transform:
+        translate3d(var(--focus-deck-x, 0px), var(--focus-deck-y, 0px), 0)
+        rotate(var(--focus-deck-rotation, 0deg))
+        scale(var(--focus-deck-scale, 1));
+      transform-origin: center center;
+      will-change: opacity, transform;
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-card {
+      height: 100%;
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-card-slot:nth-child(1) .portfolio-focus-card {
+      border-color: rgba(99, 177, 230, 0.2);
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-card-slot:nth-child(2) .portfolio-focus-card {
+      border-color: rgba(147, 129, 233, 0.22);
+    }
+
+    .portfolio-focus-assembly.is-focus-mobile-fan-ready .portfolio-focus-card-slot:nth-child(3) .portfolio-focus-card {
+      border-color: rgba(106, 191, 174, 0.2);
     }
 
     .portfolio-focus-card-title {
@@ -8389,6 +8616,7 @@ const supportingPractice = practiceStats.slice(1);
     }
 
     .portfolio-focus-card-slot {
+      opacity: 1;
       transform: none;
       will-change: auto;
     }

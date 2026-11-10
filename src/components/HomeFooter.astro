@@ -125,7 +125,7 @@ const showExploreLinks = false;
   .site-footer-section {
     position: relative;
     width: 100%;
-    margin: clamp(3rem, 7vw, 6rem) 0 var(--spacing-sm);
+    margin: clamp(3rem, 7vw, 6rem) 0 0;
   }
 
   .site-footer-section::before {
@@ -149,7 +149,7 @@ const showExploreLinks = false;
     width: 100%;
     overflow: hidden;
     border: var(--size-border-thin) solid rgba(121, 154, 255, 0.12);
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
     background:
       radial-gradient(ellipse 62% 38% at 50% 0%, rgba(231, 235, 242, 0.045), rgba(231, 235, 242, 0.012) 44%, transparent 72%),
       linear-gradient(180deg, rgba(7, 13, 24, 0.72), rgba(4, 10, 20, 0.96) 74%),
@@ -334,6 +334,7 @@ const showExploreLinks = false;
   @media (max-width: 48rem) {
     .site-footer-section {
       width: 100%;
+      margin-top: 0;
     }
 
     .site-footer-new-inner {
@@ -382,10 +383,16 @@ const showExploreLinks = false;
     }
 
     .site-footer-new-bottom {
-      display: grid;
-      gap: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: var(--spacing-sm);
       margin-inline: -1.2rem;
       padding: 0.9rem 1.2rem 1rem;
+    }
+
+    .site-footer-new-bottom p:last-child {
+      text-align: right;
+      white-space: nowrap;
     }
   }
 </style>
